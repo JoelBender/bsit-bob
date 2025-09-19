@@ -1,0 +1,15 @@
+[project]
+name = "bsit-bob"
+version = "0.1.0"
+description = "BACnet Semantic Interoperability Toolkit - Bob - Building Model Builder"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "rdflib>=7.1.4",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.4.2",
+    "ruff>=0.13.0",
+]
