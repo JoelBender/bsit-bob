@@ -9,8 +9,23 @@ dependencies = [
     "rdflib>=7.1.4",
 ]
 
+[project.optional-dependencies]
+docs = [
+    "furo>=2025.7.19",
+    "myst-parser>=4.0.1",
+    "sphinx>=8.2.3",
+    "sphinx-autobuild>=2025.8.25",
+    "sphinx-copybutton>=0.5.2",
+    "sphinxcontrib-mermaid>=1.0.0",
+]
+
+# [tool.uv.scripts]
+# docs-build = { cmd = "sphinx-build docs docs/_build/html" }
+# docs-live = { cmd = "sphinx-autobuild docs docs/_build/html --open-browser" }
+
 [dependency-groups]
 dev = [
     "pytest>=8.4.2",
     "ruff>=0.13.0",
 ]
+
