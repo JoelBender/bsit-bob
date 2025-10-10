@@ -25,11 +25,13 @@ ex42:00001 a s223:Connectable,
 
 ex42:00002 a s223:ConnectionPoint,
         s223:InletConnectionPoint ;
+    s223:cnx ex42:00001 ;
     s223:connectsThrough ex42:00003 ;
     s223:hasMedium s223:Fluid-Air ;
     s223:isConnectionPointOf ex42:00001 .
 
 ex42:00003 a s223:Connection ;
+    s223:cnx ex42:00002 ;
     s223:connectsAt ex42:00002 ;
     s223:connectsTo ex42:00001 ;
     s223:hasMedium s223:Fluid-Air .

@@ -20,11 +20,13 @@
 ex42:00001 a s223:Connectable,
         s223:Equipment ;
     rdfs:label "d1" ;
+    s223:cnx ex42:00002 ;
     s223:connectedThrough ex42:00003 ;
     s223:hasConnectionPoint ex42:00002 .
 
 ex42:00002 a s223:ConnectionPoint,
         s223:OutletConnectionPoint ;
+    s223:cnx ex42:00003 ;
     s223:connectsThrough ex42:00003 ;
     s223:hasMedium s223:Fluid-Air ;
     s223:isConnectionPointOf ex42:00001 .

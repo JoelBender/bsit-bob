@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from header import ttl_test_header
+from .header import ttl_test_header
 from rdflib import URIRef
 
 from bob.core import P223, Equipment, bind_model_namespace, dump

@@ -3,7 +3,7 @@ from pathlib import Path
 from bob.functions import Function, FunctionInput, FunctionOutput
 from bob.properties.temperature import Temperature
 from bob.core import UNIT, Property, bind_model_namespace, dump
-from header import ttl_test_header
+from .header import ttl_test_header
 
 model_name = Path(__file__).stem
 _namespace = bind_model_namespace("ex", f"urn:ex/{model_name}/")

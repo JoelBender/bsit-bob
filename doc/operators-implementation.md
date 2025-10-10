@@ -2,6 +2,106 @@
 
 This page is generated from the codebase. It lists operator overloads (dunder methods) and multimethods used by si-builder to simplify modeling.
 
+## bob.application.AirHandlingUnit
+- __gt__(self, value, /)  —  Return self>value.
+- __iadd__(self, other: 'Any') -> 'Any'  —  Add something (aspect, role...) to the node prop += aspect
+- __lshift__(self, other: 'Any') -> 'Any'  —  Build a connection to this thing from another thing.
+- __rshift__(self, other: 'Any') -> 'Any'  —  Build a connection from this thing to another thing.
+## bob.application.AirToAirHeatPump
+- __gt__(self, value, /)  —  Return self>value.
+- __iadd__(self, other: 'Any') -> 'Any'  —  Add something (aspect, role...) to the node prop += aspect
+- __lshift__(self, other: 'Any') -> 'Any'  —  Build a connection to this thing from another thing.
+- __rshift__(self, other: 'Any') -> 'Any'  —  Build a connection from this thing to another thing.
+## bob.application.Boiler
+- __gt__(self, value, /)  —  Return self>value.
+- __iadd__(self, other: 'Any') -> 'Any'  —  Add something (aspect, role...) to the node prop += aspect
+- __lshift__(self, other: 'Any') -> 'Any'  —  Build a connection to this thing from another thing.
+- __rshift__(self, other: 'Any') -> 'Any'  —  Build a connection from this thing to another thing.
+## bob.application.Chiller
+- __gt__(self, value, /)  —  Return self>value.
+- __iadd__(self, other: 'Any') -> 'Any'  —  Add something (aspect, role...) to the node prop += aspect
+- __lshift__(self, other: 'Any') -> 'Any'  —  Build a connection to this thing from another thing.
+- __rshift__(self, other: 'Any') -> 'Any'  —  Build a connection from this thing to another thing.
+## bob.application.CoolingTower
+- __gt__(self, value, /)  —  Return self>value.
+- __iadd__(self, other: 'Any') -> 'Any'  —  Add something (aspect, role...) to the node prop += aspect
+- __lshift__(self, other: 'Any') -> 'Any'  —  Build a connection to this thing from another thing.
+- __rshift__(self, other: 'Any') -> 'Any'  —  Build a connection from this thing to another thing.
+## bob.application.DualDuctTerminal
+- __gt__(self, value, /)  —  Return self>value.
+- __iadd__(self, other: 'Any') -> 'Any'  —  Add something (aspect, role...) to the node prop += aspect
+- __lshift__(self, other: 'Any') -> 'Any'  —  Build a connection to this thing from another thing.
+- __rshift__(self, other: 'Any') -> 'Any'  —  Build a connection from this thing to another thing.
+## bob.application.ElectricalDistribution
+- __gt__(self, value, /)  —  Return self>value.
+- __iadd__(self, other: 'Any') -> 'Any'  —  Add something (aspect, role...) to the node prop += aspect
+- __lshift__(self, other: 'Any') -> 'Any'  —  Build a connection to this thing from another thing.
+- __rshift__(self, other: 'Any') -> 'Any'  —  Build a connection from this thing to another thing.
+## bob.application.ElectricalPanel
+- __gt__(self, value, /)  —  Return self>value.
+- __iadd__(self, other: 'Any') -> 'Any'  —  Add something (aspect, role...) to the node prop += aspect
+- __lshift__(self, other: 'Any') -> 'Any'  —  Build a connection to this thing from another thing.
+- __rshift__(self, other: 'Any') -> 'Any'  —  Build a connection from this thing to another thing.
+## bob.application.FanCoilUnit
+- __gt__(self, value, /)  —  Return self>value.
+- __iadd__(self, other: 'Any') -> 'Any'  —  Add something (aspect, role...) to the node prop += aspect
+- __lshift__(self, other: 'Any') -> 'Any'  —  Build a connection to this thing from another thing.
+- __rshift__(self, other: 'Any') -> 'Any'  —  Build a connection from this thing to another thing.
+## bob.application.FanPoweredTerminal
+- __gt__(self, value, /)  —  Return self>value.
+- __iadd__(self, other: 'Any') -> 'Any'  —  Add something (aspect, role...) to the node prop += aspect
+- __lshift__(self, other: 'Any') -> 'Any'  —  Build a connection to this thing from another thing.
+- __rshift__(self, other: 'Any') -> 'Any'  —  Build a connection from this thing to another thing.
+## bob.application.FumeHood
+- __gt__(self, value, /)  —  Return self>value.
+- __iadd__(self, other: 'Any') -> 'Any'  —  Add something (aspect, role...) to the node prop += aspect
+- __lshift__(self, other: 'Any') -> 'Any'  —  Build a connection to this thing from another thing.
+- __rshift__(self, other: 'Any') -> 'Any'  —  Build a connection from this thing to another thing.
+## bob.application.Furnace
+- __gt__(self, value, /)  —  Return self>value.
+- __iadd__(self, other: 'Any') -> 'Any'  —  Add something (aspect, role...) to the node prop += aspect
+- __lshift__(self, other: 'Any') -> 'Any'  —  Build a connection to this thing from another thing.
+- __rshift__(self, other: 'Any') -> 'Any'  —  Build a connection from this thing to another thing.
+## bob.application.GroundToAirHeatPump
+- __gt__(self, value, /)  —  Return self>value.
+- __iadd__(self, other: 'Any') -> 'Any'  —  Add something (aspect, role...) to the node prop += aspect
+- __lshift__(self, other: 'Any') -> 'Any'  —  Build a connection to this thing from another thing.
+- __rshift__(self, other: 'Any') -> 'Any'  —  Build a connection from this thing to another thing.
+## bob.application.HeatExchanger
+- __gt__(self, value, /)  —  Return self>value.
+- __iadd__(self, other: 'Any') -> 'Any'  —  Add something (aspect, role...) to the node prop += aspect
+- __lshift__(self, other: 'Any') -> 'Any'  —  Build a connection to this thing from another thing.
+- __rshift__(self, other: 'Any') -> 'Any'  —  Build a connection from this thing to another thing.
+## bob.application.HeatPump
+- __gt__(self, value, /)  —  Return self>value.
+- __iadd__(self, other: 'Any') -> 'Any'  —  Add something (aspect, role...) to the node prop += aspect
+- __lshift__(self, other: 'Any') -> 'Any'  —  Build a connection to this thing from another thing.
+- __rshift__(self, other: 'Any') -> 'Any'  —  Build a connection from this thing to another thing.
+## bob.application.HotWaterHeater
+- __gt__(self, value, /)  —  Return self>value.
+- __iadd__(self, other: 'Any') -> 'Any'  —  Add something (aspect, role...) to the node prop += aspect
+- __lshift__(self, other: 'Any') -> 'Any'  —  Build a connection to this thing from another thing.
+- __rshift__(self, other: 'Any') -> 'Any'  —  Build a connection from this thing to another thing.
+## bob.application.SingleDuctTerminal
+- __gt__(self, value, /)  —  Return self>value.
+- __iadd__(self, other: 'Any') -> 'Any'  —  Add something (aspect, role...) to the node prop += aspect
+- __lshift__(self, other: 'Any') -> 'Any'  —  Build a connection to this thing from another thing.
+- __rshift__(self, other: 'Any') -> 'Any'  —  Build a connection from this thing to another thing.
+## bob.application.TerminalUnit
+- __gt__(self, value, /)  —  Return self>value.
+- __iadd__(self, other: 'Any') -> 'Any'  —  Add something (aspect, role...) to the node prop += aspect
+- __lshift__(self, other: 'Any') -> 'Any'  —  Build a connection to this thing from another thing.
+- __rshift__(self, other: 'Any') -> 'Any'  —  Build a connection from this thing to another thing.
+## bob.application.WaterToAirHeatPump
+- __gt__(self, value, /)  —  Return self>value.
+- __iadd__(self, other: 'Any') -> 'Any'  —  Add something (aspect, role...) to the node prop += aspect
+- __lshift__(self, other: 'Any') -> 'Any'  —  Build a connection to this thing from another thing.
+- __rshift__(self, other: 'Any') -> 'Any'  —  Build a connection from this thing to another thing.
+## bob.application.WaterToWaterHeatPump
+- __gt__(self, value, /)  —  Return self>value.
+- __iadd__(self, other: 'Any') -> 'Any'  —  Add something (aspect, role...) to the node prop += aspect
+- __lshift__(self, other: 'Any') -> 'Any'  —  Build a connection to this thing from another thing.
+- __rshift__(self, other: 'Any') -> 'Any'  —  Build a connection from this thing to another thing.
 ## bob.bacnet.AnalogInputObject
 - __gt__(self, value, /)  —  Return self>value.
 - __iadd__(self, other: 'Any') -> 'Any'  —  Add something (aspect, role...) to the node prop += aspect
@@ -2272,6 +2372,31 @@ This page is generated from the codebase. It lists operator overloads (dunder me
 - __iadd__(self, other: 'Any') -> 'Any'  —  Add something (aspect, role...) to the node prop += aspect
 - __lshift__(self, other: 'Any') -> 'Any'  —  Build a connection to this thing from another thing.
 - __rshift__(self, other: 'Any') -> 'Any'  —  Build a connection from this thing to another thing.
+## bob.connections.mechanical.MechanicalBidirectionalConnectionPoint
+- __gt__(self, value, /)  —  Return self>value.
+- __iadd__(self, other: 'Any') -> 'Any'  —  Add something (aspect, role...) to the node prop += aspect
+- __lshift__(self, other: 'Any') -> 'Any'  —  Build a connection to this thing from another thing.
+- __rshift__(self, other: 'Any') -> 'Any'  —  Build a connection from this thing to another thing.
+## bob.connections.mechanical.MechanicalConnection
+- __gt__(self, value, /)  —  Return self>value.
+- __iadd__(self, other: 'Any') -> 'Any'  —  Add something (aspect, role...) to the node prop += aspect
+- __lshift__(self, other: 'Any') -> 'Any'  —  Build a connection to this thing from another thing.
+- __rshift__(self, other: 'Any') -> 'Any'  —  Build a connection from this thing to another thing.
+## bob.connections.mechanical.MechanicalConnectionPoint
+- __gt__(self, value, /)  —  Return self>value.
+- __iadd__(self, other: 'Any') -> 'Any'  —  Add something (aspect, role...) to the node prop += aspect
+- __lshift__(self, other: 'Any') -> 'Any'  —  Build a connection to this thing from another thing.
+- __rshift__(self, other: 'Any') -> 'Any'  —  Build a connection from this thing to another thing.
+## bob.connections.mechanical.MechanicalInletConnectionPoint
+- __gt__(self, value, /)  —  Return self>value.
+- __iadd__(self, other: 'Any') -> 'Any'  —  Add something (aspect, role...) to the node prop += aspect
+- __lshift__(self, other: 'Any') -> 'Any'  —  Build a connection to this thing from another thing.
+- __rshift__(self, other: 'Any') -> 'Any'  —  Build a connection from this thing to another thing.
+## bob.connections.mechanical.MechanicalOutletConnectionPoint
+- __gt__(self, value, /)  —  Return self>value.
+- __iadd__(self, other: 'Any') -> 'Any'  —  Add something (aspect, role...) to the node prop += aspect
+- __lshift__(self, other: 'Any') -> 'Any'  —  Build a connection to this thing from another thing.
+- __rshift__(self, other: 'Any') -> 'Any'  —  Build a connection from this thing to another thing.
 ## bob.connections.naturalgas.NaturalGasConnection
 - __gt__(self, value, /)  —  Return self>value.
 - __iadd__(self, other: 'Any') -> 'Any'  —  Add something (aspect, role...) to the node prop += aspect
@@ -2644,12 +2769,24 @@ This page is generated from the codebase. It lists operator overloads (dunder me
 - __iadd__(self, role: 'EnumerationKind') -> 'Node'  —  Add a role to an equipment
 - __lshift__(self, other: 'Any') -> 'Any'  —  Build a connection to this thing from another thing.
 - __rshift__(self, other: 'Any') -> 'Any'  —  Build a connection from this thing to another thing.
+## bob.equipment.electricity.meter.ThreePhaseElectricalMeter
+- __gt__(self, other: 'Node') -> 'Node'  —  This node contains some other node.
+- __iadd__(self, role: 'EnumerationKind') -> 'Node'  —  Add a role to an equipment
+- __lshift__(self, other: 'Any') -> 'Any'  —  Build a connection to this thing from another thing.
+- __rshift__(self, other: 'Any') -> 'Any'  —  Build a connection from this thing to another thing.
+- [WARN] import failed: bob.equipment.electricity.starter: cannot import name '_MotorStarter' from 'bob.equipment.electricity' (D:\0Programmes\Ashrae\github\bsit-bob\.venv\Lib\site-packages\bob\equipment\electricity\__init__.py)
+- [WARN] import failed: bob.equipment.electricity.switch: cannot import name '_Producer' from 'bob.core' (D:\0Programmes\Ashrae\github\bsit-bob\.venv\Lib\site-packages\bob\core.py)
 ## bob.equipment.electricity.vfd.VFD
 - __gt__(self, other: 'Node') -> 'Node'  —  This node contains some other node.
 - __iadd__(self, role: 'EnumerationKind') -> 'Node'  —  Add a role to an equipment
 - __lshift__(self, other: 'Any') -> 'Any'  —  Build a connection to this thing from another thing.
 - __rshift__(self, other: 'Any') -> 'Any'  —  Build a connection from this thing to another thing.
 ## bob.equipment.hvac.actuator.Actuator
+- __gt__(self, other: 'Node') -> 'Node'  —  This node contains some other node.
+- __iadd__(self, role: 'EnumerationKind') -> 'Node'  —  Add a role to an equipment
+- __lshift__(self, other: 'Any') -> 'Any'  —  Build a connection to this thing from another thing.
+- __rshift__(self, other: 'Any') -> 'Any'  —  Build a connection from this thing to another thing.
+## bob.equipment.hvac.airflowstation.AirFlowMonitor
 - __gt__(self, other: 'Node') -> 'Node'  —  This node contains some other node.
 - __iadd__(self, role: 'EnumerationKind') -> 'Node'  —  Add a role to an equipment
 - __lshift__(self, other: 'Any') -> 'Any'  —  Build a connection to this thing from another thing.
@@ -2744,6 +2881,11 @@ This page is generated from the codebase. It lists operator overloads (dunder me
 - __iadd__(self, role: 'EnumerationKind') -> 'Node'  —  Add a role to an equipment
 - __lshift__(self, other: 'Any') -> 'Any'  —  Build a connection to this thing from another thing.
 - __rshift__(self, other: 'Any') -> 'Any'  —  Build a connection from this thing to another thing.
+## bob.equipment.hvac.gas.GasMonitor
+- __gt__(self, other: 'Node') -> 'Node'  —  This node contains some other node.
+- __iadd__(self, role: 'EnumerationKind') -> 'Node'  —  Add a role to an equipment
+- __lshift__(self, other: 'Any') -> 'Any'  —  Build a connection to this thing from another thing.
+- __rshift__(self, other: 'Any') -> 'Any'  —  Build a connection from this thing to another thing.
 ## bob.equipment.hvac.geothermal.GeothermalWell
 - __gt__(self, other: 'Node') -> 'Node'  —  This node contains some other node.
 - __iadd__(self, role: 'EnumerationKind') -> 'Node'  —  Add a role to an equipment
@@ -2774,7 +2916,17 @@ This page is generated from the codebase. It lists operator overloads (dunder me
 - __iadd__(self, role: 'EnumerationKind') -> 'Node'  —  Add a role to an equipment
 - __lshift__(self, other: 'Any') -> 'Any'  —  Build a connection to this thing from another thing.
 - __rshift__(self, other: 'Any') -> 'Any'  —  Build a connection from this thing to another thing.
+## bob.equipment.hvac.particlecounter.ParticleCounter
+- __gt__(self, other: 'Node') -> 'Node'  —  This node contains some other node.
+- __iadd__(self, role: 'EnumerationKind') -> 'Node'  —  Add a role to an equipment
+- __lshift__(self, other: 'Any') -> 'Any'  —  Build a connection to this thing from another thing.
+- __rshift__(self, other: 'Any') -> 'Any'  —  Build a connection from this thing to another thing.
 ## bob.equipment.hvac.pump.Pump
+- __gt__(self, other: 'Node') -> 'Node'  —  This node contains some other node.
+- __iadd__(self, role: 'EnumerationKind') -> 'Node'  —  Add a role to an equipment
+- __lshift__(self, other: 'Any') -> 'Any'  —  Build a connection to this thing from another thing.
+- __rshift__(self, other: 'Any') -> 'Any'  —  Build a connection from this thing to another thing.
+## bob.equipment.hvac.scr.SCR
 - __gt__(self, other: 'Node') -> 'Node'  —  This node contains some other node.
 - __iadd__(self, role: 'EnumerationKind') -> 'Node'  —  Add a role to an equipment
 - __lshift__(self, other: 'Any') -> 'Any'  —  Build a connection to this thing from another thing.
@@ -2820,6 +2972,16 @@ This page is generated from the codebase. It lists operator overloads (dunder me
 - __lshift__(self, other: 'Any') -> 'Any'  —  Build a connection to this thing from another thing.
 - __rshift__(self, other: 'Any') -> 'Any'  —  Build a connection from this thing to another thing.
 ## bob.equipment.hvac.stats.Thermostat
+- __gt__(self, other: 'Node') -> 'Node'  —  This node contains some other node.
+- __iadd__(self, role: 'EnumerationKind') -> 'Node'  —  Add a role to an equipment
+- __lshift__(self, other: 'Any') -> 'Any'  —  Build a connection to this thing from another thing.
+- __rshift__(self, other: 'Any') -> 'Any'  —  Build a connection from this thing to another thing.
+## bob.equipment.hvac.tank.Tank
+- __gt__(self, other: 'Node') -> 'Node'  —  This node contains some other node.
+- __iadd__(self, role: 'EnumerationKind') -> 'Node'  —  Add a role to an equipment
+- __lshift__(self, other: 'Any') -> 'Any'  —  Build a connection to this thing from another thing.
+- __rshift__(self, other: 'Any') -> 'Any'  —  Build a connection from this thing to another thing.
+## bob.equipment.hvac.triac.Triac
 - __gt__(self, other: 'Node') -> 'Node'  —  This node contains some other node.
 - __iadd__(self, role: 'EnumerationKind') -> 'Node'  —  Add a role to an equipment
 - __lshift__(self, other: 'Any') -> 'Any'  —  Build a connection to this thing from another thing.
@@ -2870,6 +3032,11 @@ This page is generated from the codebase. It lists operator overloads (dunder me
 - __lshift__(self, other: 'Any') -> 'Any'  —  Build a connection to this thing from another thing.
 - __rshift__(self, other: 'Any') -> 'Any'  —  Build a connection from this thing to another thing.
 ## bob.equipment.lighting.light.Luminaire
+- __gt__(self, other: 'Node') -> 'Node'  —  This node contains some other node.
+- __iadd__(self, role: 'EnumerationKind') -> 'Node'  —  Add a role to an equipment
+- __lshift__(self, other: 'Any') -> 'Any'  —  Build a connection to this thing from another thing.
+- __rshift__(self, other: 'Any') -> 'Any'  —  Build a connection from this thing to another thing.
+## bob.equipment.network.firewall.EthernetFirewall
 - __gt__(self, other: 'Node') -> 'Node'  —  This node contains some other node.
 - __iadd__(self, role: 'EnumerationKind') -> 'Node'  —  Add a role to an equipment
 - __lshift__(self, other: 'Any') -> 'Any'  —  Build a connection to this thing from another thing.
@@ -2943,6 +3110,7 @@ This page is generated from the codebase. It lists operator overloads (dunder me
 - __gt__(self, value, /)  —  Return self>value.
 ## bob.multimethods._MultiMethod
 - __gt__(self, value, /)  —  Return self>value.
+- [WARN] import failed: bob.producer: cannot import name '_Producer' from 'bob.core' (D:\0Programmes\Ashrae\github\bsit-bob\.venv\Lib\site-packages\bob\core.py)
 ## bob.properties.electricity.Amps
 - __gt__(self, value, /)  —  Return self>value.
 - __iadd__(self, other: 'Any') -> 'Any'  —  Add something (aspect, role...) to the node prop += aspect

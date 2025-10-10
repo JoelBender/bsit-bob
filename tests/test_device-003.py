@@ -1,6 +1,6 @@
 from pathlib import Path
 from typing import Dict
-from header import ttl_test_header
+from .header import ttl_test_header
 
 from bob.core import bind_model_namespace, dump, Equipment, SCRATCH
 

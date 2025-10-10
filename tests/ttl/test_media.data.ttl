@@ -1,7 +1,7 @@
 # baseURI: http://data.ashrae.org/standard223/1.0/sample/test_media
 # imports: http://data.ashrae.org/standard223/1.0/model/all
 
-@prefix bob: <http://data.ashrae.org/standard223/si-builder#> .
+@prefix bob: <https://github.com/JoelBender/bsit-bob/> .
 @prefix ex42: <urn:ex/test_system-007/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix qudt: <http://qudt.org/schema/qudt/> .

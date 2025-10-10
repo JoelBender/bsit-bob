@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from header import ttl_test_header
+from .header import ttl_test_header
 from rdflib import Literal
 from bob import core
 from bob.core import bind_model_namespace, dump, data_graph, schema_graph

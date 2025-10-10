@@ -1,7 +1,7 @@
 from pathlib import Path
 
 import pytest
-from header import ttl_test_header
+from .header import ttl_test_header
 
 from bob.core import (
     Connection,

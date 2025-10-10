@@ -545,6 +545,12 @@ Legend: Signature shows __init__ (minus self). s223 term is derived from _class_
 - Summary: Generic connection object type, unrestricted.
 - s223 term: `Connection` (<https://explore.open223.info/s223/Connection>)
 
+## bob.connections.mechanical
+### MechanicalConnection
+- Signature: `MechanicalConnection(**kwargs: 'Any')`
+- Summary: Generic connection object type, unrestricted.
+- s223 term: `Connection` (<https://explore.open223.info/s223/Connection>)
+
 ## bob.connections.naturalgas
 ### NaturalGasConnection
 - Signature: `NaturalGasConnection(**kwargs: 'Any')`

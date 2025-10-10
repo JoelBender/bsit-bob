@@ -1,7 +1,7 @@
 # baseURI: http://data.ashrae.org/standard223/1.0/sample/test_junction-002
 # imports: http://data.ashrae.org/standard223/1.0/model/all
 
-@prefix bob: <http://data.ashrae.org/standard223/si-builder#> .
+@prefix bob: <https://github.com/JoelBender/bsit-bob/> .
 @prefix ex27: <urn:ex/test_junction-002/> .
 @prefix ex42: <urn:ex/test_system-007/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -23,6 +23,7 @@ ex42:00001 a s223:Connectable,
         s223:Equipment,
         ex27:OutletThing ;
     rdfs:label "x" ;
+    s223:cnx ex42:00002 ;
     s223:connected ex42:00007 ;
     s223:connectedThrough ex42:00009 ;
     s223:connectedTo ex42:00007 ;
@@ -33,6 +34,7 @@ ex42:00002 a s223:ConnectionPoint,
         s223:OutletConnectionPoint,
         bob:AirConnectionPoint ;
     rdfs:label "x.airOutlet" ;
+    s223:cnx ex42:00009 ;
     s223:connectsThrough ex42:00009 ;
     s223:hasMedium s223:Fluid-Air ;
     s223:isConnectionPointOf ex42:00001 .
@@ -49,6 +51,7 @@ ex42:00004 a s223:ConnectionPoint,
         s223:InletConnectionPoint,
         bob:AirConnectionPoint ;
     rdfs:label "y.airInlet" ;
+    s223:cnx ex42:00003 ;
     s223:connectsThrough ex42:00011 ;
     s223:hasMedium s223:Fluid-Air ;
     s223:isConnectionPointOf ex42:00003 .
@@ -65,6 +68,7 @@ ex42:00006 a s223:ConnectionPoint,
         s223:InletConnectionPoint,
         bob:AirConnectionPoint ;
     rdfs:label "z.airInlet" ;
+    s223:cnx ex42:00005 ;
     s223:connectsThrough ex42:00011 ;
     s223:hasMedium s223:Fluid-Air ;
     s223:isConnectionPointOf ex42:00005 .
@@ -72,6 +76,7 @@ ex42:00006 a s223:ConnectionPoint,
 ex42:00007 a s223:Connectable,
         s223:Junction ;
     rdfs:label "j" ;
+    s223:cnx ex42:00010 ;
     s223:connected ex42:00001 ;
     s223:connectedFrom ex42:00001 ;
     s223:connectedThrough ex42:00009,
@@ -82,11 +87,13 @@ ex42:00007 a s223:Connectable,
 
 ex42:00008 a s223:ConnectionPoint,
         s223:InletConnectionPoint ;
+    s223:cnx ex42:00007 ;
     s223:connectsThrough ex42:00009 ;
     s223:hasMedium s223:Fluid-Air ;
     s223:isConnectionPointOf ex42:00007 .
 
 ex42:00009 a s223:Connection ;
+    s223:cnx ex42:00008 ;
     s223:connectsAt ex42:00002,
         ex42:00008 ;
     s223:connectsFrom ex42:00001 ;
@@ -95,11 +102,14 @@ ex42:00009 a s223:Connection ;
 
 ex42:00010 a s223:ConnectionPoint,
         s223:OutletConnectionPoint ;
+    s223:cnx ex42:00011 ;
     s223:connectsThrough ex42:00011 ;
     s223:hasMedium s223:Fluid-Air ;
     s223:isConnectionPointOf ex42:00007 .
 
 ex42:00011 a s223:Connection ;
+    s223:cnx ex42:00004,
+        ex42:00006 ;
     s223:connectsAt ex42:00004,
         ex42:00006,
         ex42:00010 ;

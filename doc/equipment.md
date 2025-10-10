@@ -34,6 +34,14 @@ Legend: Signature shows __init__ (minus self). s223 term is derived from _class_
 - Summary: A Equipment is normally a physical entity that one might buy from a vendor - a tangible object designed to accomplish a specific task.
 - s223 term: `ElectricEnergyTransformer` (<https://explore.open223.info/s223/ElectricEnergyTransformer>)
 
+## bob.equipment.electricity.meter
+### ThreePhaseElectricalMeter
+- Signature: `ThreePhaseElectricalMeter(config: Dict = None, **kwargs)`
+- Summary: This is an attemp to model a complete Electrical meter
+- s223 term: `ElectricMeter` (<https://explore.open223.info/s223/ElectricMeter>)
+
+- [WARN] bob.equipment.electricity.starter: import failed: cannot import name '_MotorStarter' from 'bob.equipment.electricity' (D:\0Programmes\Ashrae\github\bsit-bob\.venv\Lib\site-packages\bob\equipment\electricity\__init__.py)
+- [WARN] bob.equipment.electricity.switch: import failed: cannot import name '_Producer' from 'bob.core' (D:\0Programmes\Ashrae\github\bsit-bob\.venv\Lib\site-packages\bob\core.py)
 ## bob.equipment.electricity.vfd
 ### VFD
 - Signature: `VFD(config: Optional[Dict] = None, **kwargs)`
@@ -45,6 +53,12 @@ Legend: Signature shows __init__ (minus self). s223 term is derived from _class_
 - Signature: `Actuator(config: Dict = None, **kwargs)`
 - Summary: A Equipment is normally a physical entity that one might buy from a vendor - a tangible object designed to accomplish a specific task.
 - s223 term: `Actuator` (<https://explore.open223.info/s223/Actuator>)
+
+## bob.equipment.hvac.airflowstation
+### AirFlowMonitor
+- Signature: `AirFlowMonitor(config: 'Dict[str, Any]' = {}, *args, **kwargs: 'Any')`
+- Summary: A Equipment is normally a physical entity that one might buy from a vendor - a tangible object designed to accomplish a specific task.
+- s223 term: `FlowSensor` (<https://explore.open223.info/s223/FlowSensor>)
 
 ## bob.equipment.hvac.airhandlingunit
 ### AirHandlingUnit
@@ -144,6 +158,12 @@ Legend: Signature shows __init__ (minus self). s223 term is derived from _class_
 - Summary: A Equipment is normally a physical entity that one might buy from a vendor - a tangible object designed to accomplish a specific task.
 - s223 term: `Filter` (<https://explore.open223.info/s223/Filter>)
 
+## bob.equipment.hvac.gas
+### GasMonitor
+- Signature: `GasMonitor(config: Dict = {'params': {'label': 'Name Of Equipment', 'comment': 'Description'}, 'sensors': {('COSensor', <class 'bob.sensor.gas.COSensor'>): {'hasExternalReference': 'bacnet://'}, ('NO2Sensor', <class 'bob.sensor.gas.NO2Sensor'>): {'hasExternalReference': 'bacnet://'}}, 'properties': {}}, **kwargs)`
+- Summary: Gas monitor that contains 1 or more gas sensors
+- s223 term: `GasMonitor` (<https://explore.open223.info/s223/GasMonitor>)
+
 ## bob.equipment.hvac.geothermal
 ### GeothermalWell
 - Signature: `GeothermalWell(config: Dict = None, **kwargs)`
@@ -177,11 +197,23 @@ Legend: Signature shows __init__ (minus self). s223 term is derived from _class_
 - Summary: A Equipment is normally a physical entity that one might buy from a vendor - a tangible object designed to accomplish a specific task.
 - s223 term: `Equipment` (<https://explore.open223.info/s223/Equipment>)
 
+## bob.equipment.hvac.particlecounter
+### ParticleCounter
+- Signature: `ParticleCounter(config: Dict = {'properties': {'alarmStatus': <class 'bob.properties.states.NormalAlarmStatus'>}, 'sensors': {('label_of_sensor_1', <class 'bob.sensor.particle.CoarseParticulateSensor'>): {'hasExternalReference': 'bacnet://', 'comment': 'Coarse Particles 10.0um or less'}, ('label_of_sensor_2', <class 'bob.sensor.particle.FineParticulateSensor'>): {'hasExternalReference': 'bacnet://', 'comment': 'Fine Particles 2.5um or less'}, ('label_of_sensor_3', <class 'bob.sensor.particle.UltraFineParticulateSensor'>): {'hasExternalReference': 'bacnet://', 'comment': 'Ultra Fine Particles 1.0um or less'}}}, **kwargs)`
+- Summary: A Equipment is normally a physical entity that one might buy from a vendor - a tangible object designed to accomplish a specific task.
+- s223 term: `ParticleCounter` (<https://explore.open223.info/s223/ParticleCounter>)
+
 ## bob.equipment.hvac.pump
 ### Pump
 - Signature: `Pump(config: Dict = None, **kwargs)`
 - Summary: A Equipment is normally a physical entity that one might buy from a vendor - a tangible object designed to accomplish a specific task.
 - s223 term: `Pump` (<https://explore.open223.info/s223/Pump>)
+
+## bob.equipment.hvac.scr
+### SCR
+- Signature: `SCR(config: Dict = {'cp': {'electricalInlet': <class 'bob.connections.electricity.Electricity_600VLL_3Ph_60HzInletConnectionPoint'>, 'electricalOutlet': <class 'bob.connections.electricity.Electricity_600VLL_3Ph_60HzOutletConnectionPoint'>, 'modulationSignal': <class 'bob.connections.controlsignal.ModulationSignalInletConnectionPoint'>}, 'properties': {('modulation', <class 'bob.properties.ratio.PercentCommand'>): {}, ('amps', <class 'bob.properties.electricity.Amps'>): {}, ('kW', <class 'bob.properties.electricity.ElectricPowerkW'>): {}}}, **kwargs)`
+- Summary: A Equipment is normally a physical entity that one might buy from a vendor - a tangible object designed to accomplish a specific task.
+- s223 term: `SCR` (<https://explore.open223.info/s223/SCR>)
 
 ## bob.equipment.hvac.stats
 ### FlowSwitch
@@ -228,6 +260,18 @@ Legend: Signature shows __init__ (minus self). s223 term is derived from _class_
 - Signature: `Thermostat(config: 'Dict[str, Any]' = {}, *args, **kwargs: 'Any')`
 - Summary: A Equipment is normally a physical entity that one might buy from a vendor - a tangible object designed to accomplish a specific task.
 - s223 term: `Thermostat` (<https://explore.open223.info/s223/Thermostat>)
+
+## bob.equipment.hvac.tank
+### Tank
+- Signature: `Tank(config: Dict = None, **kwargs)`
+- Summary: A Equipment is normally a physical entity that one might buy from a vendor - a tangible object designed to accomplish a specific task.
+- s223 term: `Tank` (<https://explore.open223.info/s223/Tank>)
+
+## bob.equipment.hvac.triac
+### Triac
+- Signature: `Triac(config: Dict = {'cp': {'electricalInlet': <class 'bob.connections.electricity.Electricity_600VLL_3Ph_60HzInletConnectionPoint'>, 'electricalOutlet': <class 'bob.connections.electricity.Electricity_600VLL_3Ph_60HzOutletConnectionPoint'>, 'onOffSignalInlet': <class 'bob.connections.controlsignal.ModulationSignalInletConnectionPoint'>}, 'properties': {('onOffCommand', <class 'bob.properties.states.OnOffCommand'>): {}, ('amps', <class 'bob.properties.electricity.Amps'>): {}, ('kW', <class 'bob.properties.electricity.ElectricPowerkW'>): {}}}, **kwargs)`
+- Summary: A Equipment is normally a physical entity that one might buy from a vendor - a tangible object designed to accomplish a specific task.
+- s223 term: `Triac` (<https://explore.open223.info/s223/Triac>)
 
 ## bob.equipment.hvac.valve
 ### ExpansionValve
@@ -281,6 +325,12 @@ Legend: Signature shows __init__ (minus self). s223 term is derived from _class_
 - Signature: `Luminaire(config: Dict = {}, **kwargs)`
 - Summary: A Equipment is normally a physical entity that one might buy from a vendor - a tangible object designed to accomplish a specific task.
 - s223 term: `Luminaire` (<https://explore.open223.info/s223/Luminaire>)
+
+## bob.equipment.network.firewall
+### EthernetFirewall
+- Signature: `EthernetFirewall(config: Dict = None, **kwargs)`
+- Summary: An Ethernet Firewall with wan and lan ports
+- s223 term: `EthernetFirewall` (<https://explore.open223.info/s223/EthernetFirewall>)
 
 ## bob.equipment.network.switch
 ### EthernetSwitch

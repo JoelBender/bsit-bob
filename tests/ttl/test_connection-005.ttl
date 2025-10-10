@@ -20,6 +20,7 @@
 ex42:00001 a s223:Connectable,
         s223:Equipment ;
     rdfs:label "d1" ;
+    s223:cnx ex42:00002 ;
     s223:hasConnectionPoint ex42:00002 .
 
 ex42:00002 a s223:ConnectionPoint,
@@ -35,6 +36,7 @@ ex42:00003 a s223:Connectable,
 ex42:00004 a s223:ConnectionPoint,
         s223:InletConnectionPoint ;
     rdfs:label "d2.in" ;
+    s223:cnx ex42:00003 ;
     s223:isConnectionPointOf ex42:00003 .
 
 ex42:00005 a s223:Connection .

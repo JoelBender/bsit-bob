@@ -1,7 +1,7 @@
 # baseURI: http://data.ashrae.org/standard223/1.0/sample/test_device-002
 # imports: http://data.ashrae.org/standard223/1.0/model/all
 
-@prefix bob: <http://data.ashrae.org/standard223/si-builder#> .
+@prefix bob: <https://github.com/JoelBender/bsit-bob/> .
 @prefix ex42: <urn:ex/test_system-007/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix qudt: <http://qudt.org/schema/qudt/> .
@@ -25,12 +25,13 @@ ex42:00001 a s223:Boiler,
         s223:Connectable,
         s223:Equipment ;
     rdfs:label "HWB-1" ;
+    s223:cnx ex42:00002 ;
     s223:hasConnectionPoint ex42:00002,
         ex42:00003 ;
     s223:hasRole s223:Role-Heating ;
+    rdfs:comment "Hot Water Boiler" ;
     bob:hotWaterEntering ex42:00003 ;
-    bob:hotWaterLeaving ex42:00002 ;
-    rdfs:comment "Hot Water Boiler" .
+    bob:hotWaterLeaving ex42:00002 .
 
 ex42:00002 a s223:ConnectionPoint,
         s223:OutletConnectionPoint,
@@ -44,6 +45,7 @@ ex42:00003 a s223:ConnectionPoint,
         s223:InletConnectionPoint,
         bob:HotWaterConnectionPoint ;
     rdfs:label "HWB-1.hotWaterEntering" ;
+    s223:cnx ex42:00001 ;
     s223:hasMedium s223:Water-HotWater ;
     s223:isConnectionPointOf ex42:00001 ;
     s223:pairedConnectionPoint ex42:00002 .
@@ -53,6 +55,8 @@ ex42:00004 a s223:Coil,
         s223:Equipment,
         s223:HeatingCoil ;
     rdfs:label "Hot Water Coil" ;
+    s223:cnx ex42:00006,
+        ex42:00008 ;
     s223:hasConnectionPoint ex42:00005,
         ex42:00006,
         ex42:00007,
@@ -70,6 +74,7 @@ ex42:00005 a s223:ConnectionPoint,
         s223:InletConnectionPoint,
         bob:AirConnectionPoint ;
     rdfs:label "Hot Water Coil.airInlet" ;
+    s223:cnx ex42:00004 ;
     s223:hasMedium s223:Fluid-Air ;
     s223:isConnectionPointOf ex42:00004 ;
     s223:pairedConnectionPoint ex42:00006 .
@@ -86,6 +91,7 @@ ex42:00007 a s223:ConnectionPoint,
         s223:InletConnectionPoint,
         bob:HotWaterConnectionPoint ;
     rdfs:label "Hot Water Coil.hotWaterInlet" ;
+    s223:cnx ex42:00004 ;
     s223:hasMedium s223:Water-HotWater ;
     s223:isConnectionPointOf ex42:00004 ;
     s223:pairedConnectionPoint ex42:00008 .
@@ -127,6 +133,8 @@ ex42:00012 a s223:Coil,
         s223:CoolingCoil,
         s223:Equipment ;
     rdfs:label "Chilled Water Coil" ;
+    s223:cnx ex42:00014,
+        ex42:00016 ;
     s223:hasConnectionPoint ex42:00013,
         ex42:00014,
         ex42:00015,
@@ -144,6 +152,7 @@ ex42:00013 a s223:ConnectionPoint,
         s223:InletConnectionPoint,
         bob:AirConnectionPoint ;
     rdfs:label "Chilled Water Coil.airInlet" ;
+    s223:cnx ex42:00012 ;
     s223:hasMedium s223:Fluid-Air ;
     s223:isConnectionPointOf ex42:00012 ;
     s223:pairedConnectionPoint ex42:00014 .
@@ -160,6 +169,7 @@ ex42:00015 a s223:ConnectionPoint,
         s223:InletConnectionPoint,
         bob:ChilledWaterConnectionPoint ;
     rdfs:label "Chilled Water Coil.chilledWaterInlet" ;
+    s223:cnx ex42:00012 ;
     s223:hasMedium s223:Water-ChilledWater ;
     s223:isConnectionPointOf ex42:00012 ;
     s223:pairedConnectionPoint ex42:00016 .
@@ -199,7 +209,8 @@ ex42:00019 a s223:ObservableProperty,
 ex42:00020 a s223:Connectable,
         s223:ElectricResistanceElement,
         s223:Equipment ;
-    rdfs:label "Electrical Heating Coil" ;
+    rdfs:label "Electrical Heat ing Coil" ;
+    s223:cnx ex42:00022 ;
     s223:hasConnectionPoint ex42:00021,
         ex42:00022,
         ex42:00023 ;
@@ -214,7 +225,8 @@ ex42:00020 a s223:Connectable,
 ex42:00021 a s223:ConnectionPoint,
         s223:InletConnectionPoint,
         bob:AirConnectionPoint ;
-    rdfs:label "Electrical Heating Coil.airInlet" ;
+    rdfs:label "Electrical Heat ing Coil.airInlet" ;
+    s223:cnx ex42:00020 ;
     s223:hasMedium s223:Fluid-Air ;
     s223:isConnectionPointOf ex42:00020 ;
     s223:pairedConnectionPoint ex42:00022 .
@@ -222,7 +234,7 @@ ex42:00021 a s223:ConnectionPoint,
 ex42:00022 a s223:ConnectionPoint,
         s223:OutletConnectionPoint,
         bob:AirConnectionPoint ;
-    rdfs:label "Electrical Heating Coil.airOutlet" ;
+    rdfs:label "Electrical Heat ing Coil.airOutlet" ;
     s223:hasMedium s223:Fluid-Air ;
     s223:isConnectionPointOf ex42:00020 ;
     s223:pairedConnectionPoint ex42:00021 .
@@ -231,7 +243,8 @@ ex42:00023 a s223:ConnectionPoint,
         s223:InletConnectionPoint,
         bob:ElectricalConnectionPoint,
         bob:Electricity_600VLL_3Ph_60HzConnectionPoint ;
-    rdfs:label "Electrical Heating Coil.electricalInlet" ;
+    rdfs:label "Electrical Heat ing Coil.electricalInlet" ;
+    s223:cnx ex42:00020 ;
     s223:hasMedium s223:AC-600VLL-3Ph-60Hz ;
     s223:isConnectionPointOf ex42:00020 .
 

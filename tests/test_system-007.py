@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from header import ttl_test_header
+from .header import ttl_test_header
 
 from bob import core
 from bob.connections.air import AirInletConnectionPoint, AirOutletConnectionPoint
