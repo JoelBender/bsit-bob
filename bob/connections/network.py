@@ -40,7 +40,7 @@ class RS485BidirectionalConnectionPoint(
 
 
 class EthernetConnection(Connection):
-    hasMedium = Signal.Ethernet
+    hasMedium = Signal.WiredEthernet
     _class_iri = S223.Connection
 
 
@@ -50,7 +50,7 @@ class EthernetConnectionPoint(ConnectionPoint):
         "data_rate": P223.data_rate,
         "vlan": P223.VLAN,
     }
-    hasMedium = Signal.Ethernet
+    hasMedium = Signal.WiredEthernet
     hasProtocol: ProtocolEnum
     data_rate: Mbit_per_seconds
     vlan: Literal

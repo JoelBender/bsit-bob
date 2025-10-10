@@ -1,0 +1,27 @@
+name: VAVCONTROLLER
+template_class: bacnet.Device
+params:
+  comment: The VAV Box Controllers from our OEM
+cp:
+    electricalInlet: Electricity_24VLN_1Ph_60HzInletConnectionPoint
+    fcbus: RS485BidirectionalConnectionPoint
+    sabus: RS485BidirectionalConnectionPoint
+    ui1: ModulationSignalInletConnectionPoint
+    ui2: ModulationSignalInletConnectionPoint
+    ui3: ModulationSignalInletConnectionPoint
+    bi1: OnOffSignalInletConnectionPoint
+    bi2: OnOffSignalInletConnectionPoint
+    bo1: OnOffSignalOutletConnectionPoint
+    bo2: OnOffSignalOutletConnectionPoint
+    bo3: OnOffSignalOutletConnectionPoint
+    co1: ModulationSignalOutletConnectionPoint
+    co2: ModulationSignalOutletConnectionPoint
+bacnet: # template_class must be bacnet.Device
+  deviceObject:
+    class: DeviceObject
+    objectIdentifier: device,5204
+    vendorIdentifier: 5
+  DAVP:
+    class: AnalogInputObject
+    objectIdentifier: analogInput,1094
+    objectName: DA-VP

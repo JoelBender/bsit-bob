@@ -7,7 +7,6 @@ from ...connections.air import (
     CompressedAirOutletConnectionPoint,
 )
 from ...connections.liquid import WaterInletConnectionPoint, WaterOutletConnectionPoint
-from ...connections.mechanical import MechanicalInletConnectionPoint
 from ...connections.naturalgas import (
     NaturalGasInletConnectionPoint,
     NaturalGasOutletConnectionPoint,
@@ -39,7 +38,6 @@ class Valve(Equipment):
     """
 
     _class_iri: URIRef = S223.Valve
-    linkageInlet: MechanicalInletConnectionPoint
     position: PropertyReference
     command: PropertyReference
     position_feedback: PropertyReference
@@ -99,7 +97,7 @@ class ThreeWayValveMixing(Valve):
 
     _class_iri: URIRef = S223.ThreeWayValve
     fluidInletA: WaterInletConnectionPoint
-    fluidInletB: WaterOutletConnectionPoint
+    fluidInletB: WaterInletConnectionPoint
     fluidOutlet: WaterOutletConnectionPoint
 
     def __init__(self, config: Dict = None, **kwargs):

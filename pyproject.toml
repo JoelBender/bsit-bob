@@ -1,15 +1,33 @@
 [project]
-name = "bsit-bob"
-version = "0.1.0"
-description = "BACnet Semantic Interoperability Toolkit - Bob - Building Model Builder"
+name = "bob"
+version = "0.99.8"
+authors = [
+    {name="Joel Bender", email="jjb5@cornell.edu"},
+    {name="Christian Tremblay", email="christian.tremblay@servisys.com"},
+]
+requires-python = ">=3.11"
+description = "Bob the SI-WG Builder. Tool for building RDF graphs of HVAC systems"
 readme = "README.md"
-requires-python = ">=3.13"
+license = {text = "MIT"}
 dependencies = [
-    "rdflib>=7.1.4",
+    "rdflib",
 ]
 
-[dependency-groups]
-dev = [
-    "pytest>=8.4.2",
-    "ruff>=0.13.0",
+[project.optional-dependencies]
+templates = ["python-dotenv", "pyyaml>=5.4.1"]
+validation = ["pyvis>=0.3.2","click>=8.1.8","python-dotenv"]
+tests = [
+    "black>=25.1.0",
+    "flake8>=7.1.2",
+    "mypy>=1.17.1",
+    "ruff>=0.12.12",
+    "pytest-cov>=6.0.0",
+    "pytest>=4.6.11",
 ]
+
+[tool.setuptools.packages.find]
+include = ["bob*"]
+namespaces = false
+
+[tool.pytest.ini_options]
+asyncio_default_fixture_loop_scope = "session"

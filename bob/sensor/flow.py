@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Dict
 
 from rdflib import URIRef
 
@@ -27,29 +27,29 @@ class FlowSensor(Sensor):
     _class_iri = S223.Sensor
     observes: PropertyReference  # Flow
 
-    def __init__(self, **kwargs: Any) -> None:
+    def __init__(self, config: Dict[str, Any] = {}, **kwargs: Any) -> None:
         _sensor_kwargs, _property_kwargs = split_kwargs(kwargs)
 
-        super().__init__(**_sensor_kwargs)
-
-        self.observes = Flow(
-            # isObservedBy=self,
-            label=f"{self.label}.Flow",
+        observed_prop = Flow(
+            label="observed_property",
             **_property_kwargs,
         )
+        _sensor_kwargs["observed_property"] = observed_prop
+
+        super().__init__(config=config, **_sensor_kwargs)
 
 
 class AirFlowSensor(FlowSensor):
     _class_iri = S223.Sensor
 
     # typical unit : hasUnit=UNIT["FT3-PER-MIN"]
-    def __init__(self, **kwargs):
-        super().__init__(ofMedium=Air, **kwargs)
+    def __init__(self, config: Dict[str, Any] = {}, **kwargs: Any) -> None:
+        super().__init__(config=config, ofMedium=Air, **kwargs)
 
 
 class WaterFlowSensor(FlowSensor):
     _class_iri = S223.Sensor
 
     # typical unit : hasUnit=UNIT["GAL_UK-PER-MIN"]
-    def __init__(self, **kwargs):
-        super().__init__(ofMedium=Water, **kwargs)
+    def __init__(self, config: Dict[str, Any] = {}, **kwargs: Any) -> None:
+        super().__init__(config=config, ofMedium=Water, **kwargs)

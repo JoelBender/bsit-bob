@@ -1,0 +1,4 @@
+name: SF-1
+template_class: Fan
+params:
+  comment: "A really basic Fan"

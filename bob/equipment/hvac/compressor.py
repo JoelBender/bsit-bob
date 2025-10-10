@@ -20,6 +20,7 @@ from ...enum import (  # , R134a, R404a, R407c, R448a, R449a, R452a, R454b, R507
 
 _namespace = BOB
 
+
 compressor_template = {
     "cp": {"electricalInlet": Electricity_600VLL_3Ph_60HzInletConnectionPoint},
     "properties": {
@@ -28,8 +29,11 @@ compressor_template = {
 }
 
 
-class AirCompressor(Equipment):
+class Compressor(Equipment):
     _class_iri: URIRef = S223.Compressor
+
+
+class AirCompressor(Compressor):
     compressedAirOutlet: CompressedAirOutletConnectionPoint
 
     onOffStatus: OnOffStatus
@@ -47,8 +51,7 @@ class AirCompressor(Equipment):
         super().__init__(config, **kwargs)
 
 
-class RefrigerationGasCompressor(Equipment):
-    _class_iri: URIRef = S223.Compressor
+class RefrigerationGasCompressor(Compressor):
     returnPort: RefrigerantInletConnectionPoint
     dischargePort: RefrigerantOutletConnectionPoint
 

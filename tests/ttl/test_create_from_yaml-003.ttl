@@ -1,0 +1,714 @@
+# baseURI: http://data.ashrae.org/standard223/1.0/sample/test_create_from_yaml-003
+# imports: http://data.ashrae.org/standard223/1.0/model/all
+
+@prefix bob: <http://data.ashrae.org/standard223/si-builder#> .
+@prefix ex42: <urn:ex/test_system-007/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix qudtqk: <http://qudt.org/vocab/quantitykind/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix s223: <http://data.ashrae.org/standard223#> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+
+
+
+<http://data.ashrae.org/standard223/1.0/data/test_create_from_yaml-003>
+  a owl:Ontology ;
+  rdfs:isDefinedBy <http://data.ashrae.org/standard223/1.0/sample/test_create_from_yaml-003> ;
+  rdfs:label "test_create_from_yaml-003" ;
+  owl:imports <http://data.ashrae.org/standard223/1.0/model/all> .
+
+ex42:00001 a s223:System,
+        bob:DynamicSystem ;
+    rdfs:label "AHU" ;
+    s223:hasBoundaryConnectionPoint ex42:00033,
+        ex42:00040,
+        ex42:00052,
+        ex42:00055 ;
+    s223:hasMember ex42:00002,
+        ex42:00006,
+        ex42:00009,
+        ex42:00013,
+        ex42:00021,
+        ex42:00029,
+        ex42:00032,
+        ex42:00035,
+        ex42:00038,
+        ex42:00042,
+        ex42:00043,
+        ex42:00047,
+        ex42:00051,
+        ex42:00054 ;
+    rdfs:comment "AHU delivering air to 2 VAV boxes" .
+
+ex42:00002 a s223:Connectable,
+        s223:Equipment,
+        s223:Fan ;
+    rdfs:label "RF" ;
+    s223:connected ex42:00006,
+        ex42:00047,
+        ex42:00054 ;
+    s223:connectedFrom ex42:00006,
+        ex42:00054 ;
+    s223:connectedThrough ex42:00064,
+        ex42:00065,
+        ex42:00070 ;
+    s223:connectedTo ex42:00047 ;
+    s223:hasConnectionPoint ex42:00003,
+        ex42:00004,
+        ex42:00005 ;
+    s223:hasRole s223:Role-Return ;
+    bob:airInlet ex42:00003 ;
+    bob:airOutlet ex42:00004 ;
+    rdfs:comment "Return Air Fan" .
+
+ex42:00003 a s223:ConnectionPoint,
+        s223:InletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "RF.airInlet" ;
+    s223:connectsThrough ex42:00064 ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf ex42:00002 ;
+    s223:pairedConnectionPoint ex42:00004 .
+
+ex42:00004 a s223:ConnectionPoint,
+        s223:OutletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "RF.airOutlet" ;
+    s223:connectsThrough ex42:00065 ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf ex42:00002 ;
+    s223:pairedConnectionPoint ex42:00003 .
+
+ex42:00005 a s223:ConnectionPoint,
+        s223:InletConnectionPoint,
+        bob:ElectricalConnectionPoint,
+        bob:Electricity_600VLL_3Ph_60HzConnectionPoint ;
+    rdfs:label "RF.electricalInlet" ;
+    s223:connectsThrough ex42:00070 ;
+    s223:hasMedium s223:AC-600VLL-3Ph-60Hz ;
+    s223:isConnectionPointOf ex42:00002 .
+
+ex42:00006 a s223:Connectable,
+        s223:Controller,
+        s223:Equipment,
+        s223:VariableFrequencyDrive ;
+    rdfs:label "RF_VFD" ;
+    s223:connected ex42:00002 ;
+    s223:connectedThrough ex42:00070 ;
+    s223:connectedTo ex42:00002 ;
+    s223:hasConnectionPoint ex42:00007,
+        ex42:00008 ;
+    rdfs:comment "Return Air Fan VFD" .
+
+ex42:00007 a s223:ConnectionPoint,
+        s223:InletConnectionPoint,
+        bob:ElectricalConnectionPoint,
+        bob:Electricity_600VLL_3Ph_60HzConnectionPoint ;
+    rdfs:label "RF_VFD.electricalInlet" ;
+    s223:hasMedium s223:AC-600VLL-3Ph-60Hz ;
+    s223:isConnectionPointOf ex42:00006 .
+
+ex42:00008 a s223:ConnectionPoint,
+        s223:OutletConnectionPoint,
+        bob:ElectricalConnectionPoint,
+        bob:Electricity_600VLL_3Ph_60HzConnectionPoint ;
+    rdfs:label "RF_VFD.electricalOutlet" ;
+    s223:connectsThrough ex42:00070 ;
+    s223:hasMedium s223:AC-600VLL-3Ph-60Hz ;
+    s223:isConnectionPointOf ex42:00006 .
+
+ex42:00009 a s223:Connectable,
+        s223:Equipment,
+        s223:Fan ;
+    rdfs:label "SF" ;
+    s223:connected ex42:00013,
+        ex42:00021 ;
+    s223:connectedFrom ex42:00013 ;
+    s223:connectedThrough ex42:00061,
+        ex42:00062 ;
+    s223:connectedTo ex42:00021 ;
+    s223:hasConnectionPoint ex42:00010,
+        ex42:00011,
+        ex42:00012 ;
+    s223:hasRole s223:Role-Supply ;
+    bob:airInlet ex42:00010 ;
+    bob:airOutlet ex42:00011 ;
+    rdfs:comment "Supply Air Fan" .
+
+ex42:00010 a s223:ConnectionPoint,
+        s223:InletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "SF.airInlet" ;
+    s223:connectsThrough ex42:00061 ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf ex42:00009 ;
+    s223:pairedConnectionPoint ex42:00011 .
+
+ex42:00011 a s223:ConnectionPoint,
+        s223:OutletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "SF.airOutlet" ;
+    s223:connectsThrough ex42:00062 ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf ex42:00009 ;
+    s223:pairedConnectionPoint ex42:00010 .
+
+ex42:00012 a s223:ConnectionPoint,
+        s223:InletConnectionPoint,
+        bob:ElectricalConnectionPoint,
+        bob:Electricity_600VLL_3Ph_60HzConnectionPoint ;
+    rdfs:label "SF.electricalInlet" ;
+    s223:hasMedium s223:AC-600VLL-3Ph-60Hz ;
+    s223:isConnectionPointOf ex42:00009 .
+
+ex42:00013 a s223:Coil,
+        s223:Connectable,
+        s223:CoolingCoil,
+        s223:Equipment ;
+    rdfs:label "CLGCOIL" ;
+    s223:connected ex42:00009,
+        ex42:00029 ;
+    s223:connectedFrom ex42:00029 ;
+    s223:connectedThrough ex42:00060,
+        ex42:00061 ;
+    s223:connectedTo ex42:00009 ;
+    s223:hasConnectionPoint ex42:00014,
+        ex42:00015,
+        ex42:00016,
+        ex42:00017 ;
+    s223:hasProperty ex42:00018,
+        ex42:00019,
+        ex42:00020 ;
+    s223:hasRole s223:Role-Cooling ;
+    bob:airInlet ex42:00014 ;
+    bob:airOutlet ex42:00015 ;
+    bob:chilledWaterInlet ex42:00016 ;
+    bob:chilledWaterOutlet ex42:00017 ;
+    rdfs:comment "Cooling Coil" .
+
+ex42:00014 a s223:ConnectionPoint,
+        s223:InletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "CLGCOIL.airInlet" ;
+    s223:connectsThrough ex42:00060 ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf ex42:00013 ;
+    s223:pairedConnectionPoint ex42:00015 .
+
+ex42:00015 a s223:ConnectionPoint,
+        s223:OutletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "CLGCOIL.airOutlet" ;
+    s223:connectsThrough ex42:00061 ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf ex42:00013 ;
+    s223:pairedConnectionPoint ex42:00014 .
+
+ex42:00016 a s223:ConnectionPoint,
+        s223:InletConnectionPoint,
+        bob:ChilledWaterConnectionPoint ;
+    rdfs:label "CLGCOIL.chilledWaterInlet" ;
+    s223:hasMedium s223:Water-ChilledWater ;
+    s223:isConnectionPointOf ex42:00013 ;
+    s223:pairedConnectionPoint ex42:00017 .
+
+ex42:00017 a s223:ConnectionPoint,
+        s223:OutletConnectionPoint,
+        bob:ChilledWaterConnectionPoint ;
+    rdfs:label "CLGCOIL.chilledWaterOutlet" ;
+    s223:hasMedium s223:Water-ChilledWater ;
+    s223:isConnectionPointOf ex42:00013 ;
+    s223:pairedConnectionPoint ex42:00016 .
+
+ex42:00018 a s223:ObservableProperty,
+        s223:Property,
+        s223:QuantifiableObservableProperty,
+        s223:QuantifiableProperty,
+        bob:Temperature ;
+    rdfs:label "averageSurfaceTemperature" ;
+    qudt:hasQuantityKind qudtqk:Temperature .
+
+ex42:00019 a s223:ObservableProperty,
+        s223:Property,
+        s223:QuantifiableObservableProperty,
+        s223:QuantifiableProperty,
+        bob:Pressure ;
+    rdfs:label "internalPressure" ;
+    qudt:hasQuantityKind qudtqk:Pressure .
+
+ex42:00020 a s223:ObservableProperty,
+        s223:Property,
+        s223:QuantifiableObservableProperty,
+        s223:QuantifiableProperty,
+        bob:Temperature ;
+    rdfs:label "internalTemperature" ;
+    qudt:hasQuantityKind qudtqk:Temperature .
+
+ex42:00021 a s223:Coil,
+        s223:Connectable,
+        s223:Equipment,
+        s223:HeatingCoil ;
+    rdfs:label "HTGCOIL" ;
+    s223:connected ex42:00009,
+        ex42:00051 ;
+    s223:connectedFrom ex42:00009 ;
+    s223:connectedThrough ex42:00062,
+        ex42:00063 ;
+    s223:connectedTo ex42:00051 ;
+    s223:hasConnectionPoint ex42:00022,
+        ex42:00023,
+        ex42:00024,
+        ex42:00025 ;
+    s223:hasProperty ex42:00026,
+        ex42:00027,
+        ex42:00028 ;
+    s223:hasRole s223:Role-Heating ;
+    bob:airInlet ex42:00022 ;
+    bob:airOutlet ex42:00023 ;
+    bob:hotWaterInlet ex42:00024 ;
+    bob:hotWaterOutlet ex42:00025 ;
+    rdfs:comment "Heating coil" .
+
+ex42:00022 a s223:ConnectionPoint,
+        s223:InletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "HTGCOIL.airInlet" ;
+    s223:connectsThrough ex42:00062 ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf ex42:00021 ;
+    s223:pairedConnectionPoint ex42:00023 .
+
+ex42:00023 a s223:ConnectionPoint,
+        s223:OutletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "HTGCOIL.airOutlet" ;
+    s223:connectsThrough ex42:00063 ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf ex42:00021 ;
+    s223:pairedConnectionPoint ex42:00022 .
+
+ex42:00024 a s223:ConnectionPoint,
+        s223:InletConnectionPoint,
+        bob:HotWaterConnectionPoint ;
+    rdfs:label "HTGCOIL.hotWaterInlet" ;
+    s223:hasMedium s223:Water-HotWater ;
+    s223:isConnectionPointOf ex42:00021 ;
+    s223:pairedConnectionPoint ex42:00025 .
+
+ex42:00025 a s223:ConnectionPoint,
+        s223:OutletConnectionPoint,
+        bob:HotWaterConnectionPoint ;
+    rdfs:label "HTGCOIL.hotWaterOutlet" ;
+    s223:hasMedium s223:Water-HotWater ;
+    s223:isConnectionPointOf ex42:00021 ;
+    s223:pairedConnectionPoint ex42:00024 .
+
+ex42:00026 a s223:ObservableProperty,
+        s223:Property,
+        s223:QuantifiableObservableProperty,
+        s223:QuantifiableProperty,
+        bob:Temperature ;
+    rdfs:label "averageSurfaceTemperature" ;
+    qudt:hasQuantityKind qudtqk:Temperature .
+
+ex42:00027 a s223:ObservableProperty,
+        s223:Property,
+        s223:QuantifiableObservableProperty,
+        s223:QuantifiableProperty,
+        bob:Pressure ;
+    rdfs:label "internalPressure" ;
+    qudt:hasQuantityKind qudtqk:Pressure .
+
+ex42:00028 a s223:ObservableProperty,
+        s223:Property,
+        s223:QuantifiableObservableProperty,
+        s223:QuantifiableProperty,
+        bob:Temperature ;
+    rdfs:label "internalTemperature" ;
+    qudt:hasQuantityKind qudtqk:Temperature .
+
+ex42:00029 a s223:Connectable,
+        s223:Equipment,
+        s223:Filter ;
+    rdfs:label "FILTER" ;
+    s223:connected ex42:00013,
+        ex42:00043 ;
+    s223:connectedFrom ex42:00043 ;
+    s223:connectedThrough ex42:00059,
+        ex42:00060 ;
+    s223:connectedTo ex42:00013 ;
+    s223:hasConnectionPoint ex42:00030,
+        ex42:00031 ;
+    bob:airInlet ex42:00030 ;
+    bob:airOutlet ex42:00031 ;
+    rdfs:comment "Filter" .
+
+ex42:00030 a s223:ConnectionPoint,
+        s223:InletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "FILTER.airInlet" ;
+    s223:connectsThrough ex42:00059 ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf ex42:00029 ;
+    s223:pairedConnectionPoint ex42:00031 .
+
+ex42:00031 a s223:ConnectionPoint,
+        s223:OutletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "FILTER.airOutlet" ;
+    s223:connectsThrough ex42:00060 ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf ex42:00029 ;
+    s223:pairedConnectionPoint ex42:00030 .
+
+ex42:00032 a s223:Connectable,
+        s223:Damper,
+        s223:Equipment ;
+    rdfs:label "OADPR" ;
+    s223:connected ex42:00043 ;
+    s223:connectedThrough ex42:00057 ;
+    s223:connectedTo ex42:00043 ;
+    s223:hasConnectionPoint ex42:00033,
+        ex42:00034 ;
+    bob:airInlet ex42:00033 ;
+    bob:airOutlet ex42:00034 ;
+    rdfs:comment "Outdoor air damper" .
+
+ex42:00033 a s223:ConnectionPoint,
+        s223:InletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "OADPR.airInlet" ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf ex42:00032 ;
+    s223:pairedConnectionPoint ex42:00034 .
+
+ex42:00034 a s223:ConnectionPoint,
+        s223:OutletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "OADPR.airOutlet" ;
+    s223:connectsThrough ex42:00057 ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf ex42:00032 ;
+    s223:pairedConnectionPoint ex42:00033 .
+
+ex42:00035 a s223:Connectable,
+        s223:Damper,
+        s223:Equipment ;
+    rdfs:label "MADPR" ;
+    s223:connected ex42:00043,
+        ex42:00047 ;
+    s223:connectedFrom ex42:00047 ;
+    s223:connectedThrough ex42:00058,
+        ex42:00069 ;
+    s223:connectedTo ex42:00043 ;
+    s223:hasConnectionPoint ex42:00036,
+        ex42:00037 ;
+    bob:airInlet ex42:00036 ;
+    bob:airOutlet ex42:00037 ;
+    rdfs:comment "Mixed Air Damper" .
+
+ex42:00036 a s223:ConnectionPoint,
+        s223:InletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "MADPR.airInlet" ;
+    s223:connectsThrough ex42:00069 ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf ex42:00035 ;
+    s223:pairedConnectionPoint ex42:00037 .
+
+ex42:00037 a s223:ConnectionPoint,
+        s223:OutletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "MADPR.airOutlet" ;
+    s223:connectsThrough ex42:00058 ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf ex42:00035 ;
+    s223:pairedConnectionPoint ex42:00036 .
+
+ex42:00038 a s223:Connectable,
+        s223:Damper,
+        s223:Equipment ;
+    rdfs:label "EADPR" ;
+    s223:connected ex42:00047 ;
+    s223:connectedFrom ex42:00047 ;
+    s223:connectedThrough ex42:00067 ;
+    s223:hasConnectionPoint ex42:00039,
+        ex42:00040 ;
+    bob:airInlet ex42:00039 ;
+    bob:airOutlet ex42:00040 ;
+    rdfs:comment "Exhaust Air Damper" .
+
+ex42:00039 a s223:ConnectionPoint,
+        s223:InletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "EADPR.airInlet" ;
+    s223:connectsThrough ex42:00067 ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf ex42:00038 ;
+    s223:pairedConnectionPoint ex42:00040 .
+
+ex42:00040 a s223:ConnectionPoint,
+        s223:OutletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "EADPR.airOutlet" ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf ex42:00038 ;
+    s223:pairedConnectionPoint ex42:00039 .
+
+ex42:00041 a s223:ObservableProperty,
+        s223:Property,
+        s223:QuantifiableObservableProperty,
+        s223:QuantifiableProperty,
+        bob:Temperature ;
+    rdfs:label "observed_property" ;
+    s223:ofMedium s223:Fluid-Air ;
+    qudt:hasQuantityKind qudtqk:Temperature ;
+    qudt:hasUnit unit:DEG_C .
+
+ex42:00042 a s223:Connectable,
+        s223:Equipment,
+        s223:Sensor,
+        s223:TemperatureSensor,
+        bob:AirTemperatureSensor ;
+    rdfs:label "SA-T" ;
+    s223:hasObservationLocation ex42:00052 ;
+    s223:hasProperty ex42:00041 ;
+    s223:observes ex42:00041 ;
+    rdfs:comment "Supply Air Temperature Sensor" .
+
+ex42:00043 a s223:Connectable,
+        s223:Junction ;
+    rdfs:label "MixedAirDuct" ;
+    s223:connected ex42:00029,
+        ex42:00032,
+        ex42:00035 ;
+    s223:connectedFrom ex42:00032,
+        ex42:00035 ;
+    s223:connectedThrough ex42:00057,
+        ex42:00058,
+        ex42:00059 ;
+    s223:connectedTo ex42:00029 ;
+    s223:hasConnectionPoint ex42:00044,
+        ex42:00045,
+        ex42:00046 ;
+    s223:hasMedium s223:Fluid-Air ;
+    rdfs:comment "Mix between return air and outdoor air" .
+
+ex42:00044 a s223:ConnectionPoint,
+        s223:InletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "MixedAirDuct.fromReturnAir" ;
+    s223:connectsThrough ex42:00058 ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf ex42:00043 .
+
+ex42:00045 a s223:ConnectionPoint,
+        s223:InletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "MixedAirDuct.fromOutdoorAir" ;
+    s223:connectsThrough ex42:00057 ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf ex42:00043 .
+
+ex42:00046 a s223:ConnectionPoint,
+        s223:OutletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "MixedAirDuct.toFilter" ;
+    s223:connectsThrough ex42:00059 ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf ex42:00043 .
+
+ex42:00047 a s223:Connectable,
+        s223:Junction ;
+    rdfs:label "ReturnExhaustDuct" ;
+    s223:connected ex42:00002,
+        ex42:00035,
+        ex42:00038 ;
+    s223:connectedFrom ex42:00002 ;
+    s223:connectedThrough ex42:00065,
+        ex42:00067,
+        ex42:00069 ;
+    s223:connectedTo ex42:00035,
+        ex42:00038 ;
+    s223:hasConnectionPoint ex42:00048,
+        ex42:00049,
+        ex42:00050,
+        ex42:00066,
+        ex42:00068 ;
+    s223:hasMedium s223:Fluid-Air ;
+    rdfs:comment "Paths for return or exhaust" .
+
+ex42:00048 a s223:ConnectionPoint,
+        s223:InletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "ReturnExhaustDuct.fromReturn" ;
+    s223:connectsThrough ex42:00065 ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf ex42:00047 .
+
+ex42:00049 a s223:ConnectionPoint,
+        s223:OutletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "ReturnExhaustDuct.toMixedAirDamper" ;
+    s223:connectsThrough ex42:00067 ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf ex42:00047 .
+
+ex42:00050 a s223:ConnectionPoint,
+        s223:OutletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "ReturnExhaustDuct.toExhaustDamper" ;
+    s223:connectsThrough ex42:00069 ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf ex42:00047 .
+
+ex42:00051 a s223:Connectable,
+        s223:Junction ;
+    rdfs:label "SupplyAirDuct" ;
+    s223:connected ex42:00021 ;
+    s223:connectedFrom ex42:00021 ;
+    s223:connectedThrough ex42:00063 ;
+    s223:hasConnectionPoint ex42:00052,
+        ex42:00053 ;
+    s223:hasMedium s223:Fluid-Air ;
+    rdfs:comment "Supply Air Duct" .
+
+ex42:00052 a s223:ConnectionPoint,
+        s223:OutletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "SupplyAirDuct.supplyAir" ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf ex42:00051 .
+
+ex42:00053 a s223:ConnectionPoint,
+        s223:InletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "SupplyAirDuct.fromAHU" ;
+    s223:connectsThrough ex42:00063 ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf ex42:00051 .
+
+ex42:00054 a s223:Connectable,
+        s223:Junction ;
+    rdfs:label "ReturnAirDuct" ;
+    s223:connected ex42:00002 ;
+    s223:connectedThrough ex42:00064 ;
+    s223:connectedTo ex42:00002 ;
+    s223:hasConnectionPoint ex42:00055,
+        ex42:00056 ;
+    s223:hasMedium s223:Fluid-Air ;
+    rdfs:comment "Return Air Duct extracting air from open office" .
+
+ex42:00055 a s223:ConnectionPoint,
+        s223:InletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "ReturnAirDuct.returnAir" ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf ex42:00054 .
+
+ex42:00056 a s223:ConnectionPoint,
+        s223:OutletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "ReturnAirDuct.toReturnFan" ;
+    s223:connectsThrough ex42:00064 ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf ex42:00054 .
+
+ex42:00057 a s223:Connection ;
+    s223:connectsAt ex42:00034,
+        ex42:00045 ;
+    s223:connectsFrom ex42:00032 ;
+    s223:connectsTo ex42:00043 ;
+    s223:hasMedium s223:Fluid-Air .
+
+ex42:00058 a s223:Connection ;
+    s223:connectsAt ex42:00037,
+        ex42:00044 ;
+    s223:connectsFrom ex42:00035 ;
+    s223:connectsTo ex42:00043 ;
+    s223:hasMedium s223:Fluid-Air .
+
+ex42:00059 a s223:Connection ;
+    s223:connectsAt ex42:00030,
+        ex42:00046 ;
+    s223:connectsFrom ex42:00043 ;
+    s223:connectsTo ex42:00029 ;
+    s223:hasMedium s223:Fluid-Air .
+
+ex42:00060 a s223:Connection ;
+    s223:connectsAt ex42:00014,
+        ex42:00031 ;
+    s223:connectsFrom ex42:00029 ;
+    s223:connectsTo ex42:00013 ;
+    s223:hasMedium s223:Fluid-Air .
+
+ex42:00061 a s223:Connection ;
+    s223:connectsAt ex42:00010,
+        ex42:00015 ;
+    s223:connectsFrom ex42:00013 ;
+    s223:connectsTo ex42:00009 ;
+    s223:hasMedium s223:Fluid-Air .
+
+ex42:00062 a s223:Connection ;
+    s223:connectsAt ex42:00011,
+        ex42:00022 ;
+    s223:connectsFrom ex42:00009 ;
+    s223:connectsTo ex42:00021 ;
+    s223:hasMedium s223:Fluid-Air .
+
+ex42:00063 a s223:Connection ;
+    s223:connectsAt ex42:00023,
+        ex42:00053 ;
+    s223:connectsFrom ex42:00021 ;
+    s223:connectsTo ex42:00051 ;
+    s223:hasMedium s223:Fluid-Air .
+
+ex42:00064 a s223:Connection ;
+    s223:connectsAt ex42:00003,
+        ex42:00056 ;
+    s223:connectsFrom ex42:00054 ;
+    s223:connectsTo ex42:00002 ;
+    s223:hasMedium s223:Fluid-Air .
+
+ex42:00065 a s223:Connection ;
+    s223:connectsAt ex42:00004,
+        ex42:00048 ;
+    s223:connectsFrom ex42:00002 ;
+    s223:connectsTo ex42:00047 ;
+    s223:hasMedium s223:Fluid-Air .
+
+ex42:00066 a s223:ConnectionPoint,
+        s223:OutletConnectionPoint ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf ex42:00047 .
+
+ex42:00067 a s223:Connection ;
+    s223:connectsAt ex42:00039,
+        ex42:00049 ;
+    s223:connectsFrom ex42:00047 ;
+    s223:connectsTo ex42:00038 ;
+    s223:hasMedium s223:Fluid-Air .
+
+ex42:00068 a s223:ConnectionPoint,
+        s223:OutletConnectionPoint ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf ex42:00047 .
+
+ex42:00069 a s223:Connection ;
+    s223:connectsAt ex42:00036,
+        ex42:00050 ;
+    s223:connectsFrom ex42:00047 ;
+    s223:connectsTo ex42:00035 ;
+    s223:hasMedium s223:Fluid-Air .
+
+ex42:00070 a s223:Connection ;
+    s223:connectsAt ex42:00005,
+        ex42:00008 ;
+    s223:connectsFrom ex42:00006 ;
+    s223:connectsTo ex42:00002 ;
+    s223:hasMedium s223:AC-600VLL-3Ph-60Hz .
+

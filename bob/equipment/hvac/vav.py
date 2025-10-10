@@ -2,8 +2,7 @@ import logging
 from typing import Dict
 
 from ...connections.air import AirInletConnectionPoint
-from ...core import BOB, S223, BoundaryConnectionPoint, Equipment, System
-from ... import application
+from ...core import BOB, S223, Equipment
 from ...equipment.hvac.damper import Damper
 from ...template import template_update
 
@@ -21,20 +20,8 @@ TerminalUnit_template = {
 }
 
 
-class SingleDuctTerminal(System, application.SingleDuctTerminal):
-    # _class_iri = S223.SingleDuctTerminal
-    airInlet: BoundaryConnectionPoint
-    airOutlet: BoundaryConnectionPoint
-
-    def __init__(self, config: Dict = None, **kwargs):
-        _config = template_update(TerminalUnit_template, config=config)
-        kwargs = {**_config.pop("params", {}), **kwargs}
-        _log.info(f"SingleDuctTerminal.__init__ {_config} {kwargs}")
-        super().__init__(_config, **kwargs)
-
-
 # Generic
-class GenericSingleDuctTerminal(Equipment, application.SingleDuctTerminal):
+class SingleDuctTerminal(Equipment):
     _class_iri = S223.SingleDuctTerminal
     airInlet: AirInletConnectionPoint
     airOutlet: AirInletConnectionPoint

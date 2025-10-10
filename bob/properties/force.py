@@ -8,7 +8,7 @@ from ..core import (
     Medium,
     QuantifiableObservableProperty,
 )
-
+from ..enum import Air
 _namespace = BOB
 
 # all = [HP, Pressure, DifferentialStaticPressure]
@@ -27,6 +27,8 @@ class Nm(QuantifiableObservableProperty):
 class Pressure(QuantifiableObservableProperty):
     hasQuantityKind = QUANTITYKIND.Pressure
 
+class AirPressure(Pressure):
+    ofMedium = Air
 
 class DifferentialStaticPressure(QuantifiableObservableProperty):
     hasQuantityKind = QUANTITYKIND.ForcePerArea

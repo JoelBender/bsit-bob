@@ -1,0 +1,67 @@
+# baseURI: http://data.ashrae.org/standard223/1.0/sample/test_device-006
+# imports: http://data.ashrae.org/standard223/1.0/model/all
+
+@prefix bob: <http://data.ashrae.org/standard223/si-builder#> .
+@prefix ex42: <urn:ex/test_system-007/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix p223: <http://data.ashrae.org/proposal-to-standard223#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix qudtqk: <http://qudt.org/vocab/quantitykind/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix s223: <http://data.ashrae.org/standard223#> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+
+
+
+<http://data.ashrae.org/standard223/1.0/data/test_device-006>
+  a owl:Ontology ;
+  rdfs:isDefinedBy <http://data.ashrae.org/standard223/1.0/sample/test_device-006> ;
+  rdfs:label "test_device-006" ;
+  owl:imports <http://data.ashrae.org/standard223/1.0/model/all> .
+
+ex42:00001 a s223:Connectable,
+        s223:Controller,
+        s223:Equipment,
+        s223:VariableFrequencyDrive ;
+    rdfs:label "MyVFD" ;
+    s223:hasConnectionPoint ex42:00002,
+        ex42:00003 ;
+    s223:hasProperty ex42:00004,
+        ex42:00005 ;
+    rdfs:comment "A VFD for a Big Fan" .
+
+ex42:00002 a s223:ConnectionPoint,
+        s223:InletConnectionPoint,
+        bob:ElectricalConnectionPoint,
+        bob:Electricity_600VLL_3Ph_60HzConnectionPoint ;
+    rdfs:label "MyVFD.electricalInlet" ;
+    s223:hasMedium s223:AC-600VLL-3Ph-60Hz ;
+    s223:isConnectionPointOf ex42:00001 .
+
+ex42:00003 a s223:ConnectionPoint,
+        s223:OutletConnectionPoint,
+        bob:ElectricalConnectionPoint,
+        bob:Electricity_600VLL_3Ph_60HzConnectionPoint ;
+    rdfs:label "MyVFD.electricalOutlet" ;
+    s223:hasMedium s223:AC-600VLL-3Ph-60Hz ;
+    s223:isConnectionPointOf ex42:00001 .
+
+ex42:00004 a s223:ObservableProperty,
+        s223:Property,
+        s223:QuantifiableObservableProperty,
+        s223:QuantifiableProperty,
+        bob:RPM ;
+    rdfs:label "rpm" ;
+    qudt:hasQuantityKind qudtqk:AngularVelocity ;
+    qudt:hasUnit unit:REV-PER-MIN .
+
+ex42:00005 a s223:EnumerableProperty,
+        s223:EnumeratedObservableProperty,
+        s223:ObservableProperty,
+        s223:Property ;
+    rdfs:label "alarm_status" ;
+    s223:hasEnumerationKind p223:EnumerationKind-NormalAlarm .
+

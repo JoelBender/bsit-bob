@@ -24,6 +24,10 @@ class Amps(QuantifiableObservableProperty):
     hasQuantityKind = QUANTITYKIND.ElectricCurrent
     hasUnit = UNIT.A
 
+class ElectricResistance(QuantifiableObservableProperty):
+    _node_iri = P223.Resistance
+    hasQuantityKind = QUANTITYKIND.Resistance
+    hasUnit = UNIT.OHM
 
 class PowerFactor(QuantifiableObservableProperty):
     _node_iri = P223.PowerFactor

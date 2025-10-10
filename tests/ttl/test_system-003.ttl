@@ -1,0 +1,76 @@
+# baseURI: http://data.ashrae.org/standard223/1.0/sample/test_system-003
+# imports: http://data.ashrae.org/standard223/1.0/model/all
+
+@prefix bob: <http://data.ashrae.org/standard223/si-builder#> .
+@prefix ex38: <urn:ex/test_system-003/> .
+@prefix ex42: <urn:ex/test_system-007/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix s223: <http://data.ashrae.org/standard223#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+
+
+
+<http://data.ashrae.org/standard223/1.0/data/test_system-003>
+  a owl:Ontology ;
+  rdfs:isDefinedBy <http://data.ashrae.org/standard223/1.0/sample/test_system-003> ;
+  rdfs:label "test_system-003" ;
+  owl:imports <http://data.ashrae.org/standard223/1.0/model/all> .
+
+ex42:00001 a s223:Connectable,
+        s223:Equipment,
+        ex38:A ;
+    rdfs:label "a" ;
+    s223:connected ex42:00004 ;
+    s223:connectedThrough ex42:00007 ;
+    s223:connectedTo ex42:00004 ;
+    s223:hasConnectionPoint ex42:00002 ;
+    ex38:cOut ex42:00002 .
+
+ex42:00002 a s223:ConnectionPoint,
+        s223:OutletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "a.cOut" ;
+    s223:connectsThrough ex42:00007 ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf ex42:00001 .
+
+ex42:00003 a s223:System,
+        ex38:X ;
+    rdfs:label "x" ;
+    s223:hasBoundaryConnectionPoint ex42:00002 ;
+    ex38:cOut ex42:00002 .
+
+ex42:00004 a s223:Connectable,
+        s223:Equipment,
+        ex38:B ;
+    rdfs:label "b" ;
+    s223:connected ex42:00001 ;
+    s223:connectedFrom ex42:00001 ;
+    s223:connectedThrough ex42:00007 ;
+    s223:hasConnectionPoint ex42:00005 ;
+    ex38:cIn ex42:00005 .
+
+ex42:00005 a s223:ConnectionPoint,
+        s223:InletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "b.cIn" ;
+    s223:connectsThrough ex42:00007 ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf ex42:00004 .
+
+ex42:00006 a s223:System,
+        ex38:Y ;
+    rdfs:label "y" ;
+    s223:hasBoundaryConnectionPoint ex42:00005 ;
+    ex38:cIn ex42:00005 .
+
+ex42:00007 a s223:Connection ;
+    s223:connectsAt ex42:00002,
+        ex42:00005 ;
+    s223:connectsFrom ex42:00001 ;
+    s223:connectsTo ex42:00004 ;
+    s223:hasMedium s223:Fluid-Air .
+

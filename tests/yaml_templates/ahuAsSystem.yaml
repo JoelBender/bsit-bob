@@ -1,0 +1,95 @@
+name: ahu_template
+template_class: System
+params: 
+    label: AHU
+    comment: AHU delivering air to 2 VAV boxes
+junctions:
+    MixedAirDuct: 
+        class: Junction
+        comment: Mix between return air and outdoor air
+        hasMedium: Fluid.Air
+        fromReturnAir: AirInletConnectionPoint
+        fromOutdoorAir: AirInletConnectionPoint
+        toFilter: AirOutletConnectionPoint
+    ReturnExhaustDuct:
+        class: Junction
+        comment: Paths for return or exhaust
+        hasMedium: Fluid.Air
+        fromReturn: AirInletConnectionPoint
+        toMixedAirDamper: AirOutletConnectionPoint
+        toExhaustDamper: AirOutletConnectionPoint
+    SupplyAirDuct:
+        class: Junction
+        comment: Supply Air Duct
+        hasMedium: Fluid.Air
+        supplyAir: AirOutletConnectionPoint
+        fromAHU: AirInletConnectionPoint
+    ReturnAirDuct:
+        class: Junction
+        comment: Return Air Duct extracting air from open office
+        hasMedium: Fluid.Air
+        returnAir: AirInletConnectionPoint
+        toReturnFan: AirOutletConnectionPoint
+sensors:
+    SA-T:
+        class: AirTemperatureSensor
+        comment: Supply Air Temperature Sensor
+        hasUnit: UNIT.DEG_C
+equipment: 
+    RF:
+        class: Fan
+        comment: Return Air Fan
+        electricalInlet: Electricity_600VLL_3Ph_60HzInletConnectionPoint
+        hasRole: Role.Return
+    RF_VFD:
+        class: VFD
+        comment: Return Air Fan VFD
+        electricalInlet: Electricity_600VLL_3Ph_60HzInletConnectionPoint
+        electricalOutlet: Electricity_600VLL_3Ph_60HzOutletConnectionPoint
+    SF:
+        class: Fan
+        comment: Supply Air Fan
+        electricalInlet: Electricity_600VLL_3Ph_60HzInletConnectionPoint
+        hasRole: Role.Supply
+    CLGCOIL:
+        class: ChilledWaterCoil
+        comment: Cooling Coil
+    HTGCOIL:
+        class: HotWaterCoil
+        comment: Heating coil
+    FILTER:
+        class: Filter
+        comment: Filter
+    OADPR:
+        class: Damper
+        comment: Outdoor air damper
+    MADPR:
+        class: Damper
+        comment: Mixed Air Damper
+    EADPR:
+        class: Damper
+        comment: Exhaust Air Damper
+air_connections:
+    - OADPR -> MixedAirDuct.fromOutdoorAir
+    - MADPR -> MixedAirDuct.fromReturnAir
+    - MixedAirDuct -> FILTER
+    - FILTER -> CLGCOIL
+    - CLGCOIL -> SF
+    - SF -> HTGCOIL
+    - HTGCOIL -> SupplyAirDuct.fromAHU
+    - ReturnAirDuct -> RF 
+    - RF -> ReturnExhaustDuct.fromReturn
+    - ReturnExhaustDuct -> EADPR 
+    - ReturnExhaustDuct -> MADPR
+
+electrical_connections:
+    - RF_VFD -> RF
+
+sensors_observation_location:
+    - SA-T -> SupplyAirDuct.supplyAir
+
+boundaries:
+    - OADPR.airInlet
+    - ReturnAirDuct.returnAir
+    - SupplyAirDuct.supplyAir
+    - EADPR.airOutlet

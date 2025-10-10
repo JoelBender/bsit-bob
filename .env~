@@ -1,0 +1,18 @@
+# Directory in which you clones 223Standard
+S223_FOLDER="C:\Semantic\223standard"
+SHACL_HOME="C:\topbraid-validate\shacl-1.4.2"
+# Logging
+BOB_LOG="WARNING"
+BOB_LOG_FILENAME="C:\Semantic\si-builder\log.txt"
+# Example namespace
+BOB_EX="http://example/"
+# Include predicates
+# BOB_INCLUDE=""
+
+# exclude predicates
+#BOB_EXCLUDE=""
+MANDITORY_LABEL=True
+INCLUDE_CNX=True
+INCLUDE_INVERSE=True
+CONNECTION_HAS_MEDIUM=True
+SHOW_INSPECTION_WARNINGS=True

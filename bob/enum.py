@@ -32,22 +32,26 @@ Substance.Soot = Soot = Substance("Soot")
 # ======================================
 #
 Constituent.H2O = H2O = Constituent("H2O", label="H2O")
+Constituent.Vapor_H2O = Vapor_H2O = Constituent("Vapor-H2O", _alt_namespace=P223)
 Constituent.Oil = Oil = Constituent("Oil", label="Oil", _alt_namespace=P223)
 Constituent.Smoke = Smoke = Constituent("Smoke", label="Smoke", _alt_namespace=P223)
 # Gases
 Constituent.Ar = Argon = Constituent("Ar", label="Argon", _alt_namespace=P223)
 Constituent.CO = CO = Constituent("CO", label="Carbon monoxyde")
 Constituent.CO2 = CO2 = Constituent("CO2", label="Carbon dioxyde")
-Constituent.NO2 = NO2 = Constituent("NO2", label="NO2", _alt_namespace=P223)
-Constituent.CH4 = CH4 = Constituent("CH4", label="CH4", _alt_namespace=P223)
+Constituent.NOX = NOx = Constituent("NOX", label="Nitrogen oxides")
+NOx.NO2 = NO2 = NOx("NO2", label="Nitrogen dioxide (NO2)")
+Constituent.CH4 = CH4 = Constituent("CH4", label="CH4")
 Constituent.NH3 = NH3 = Constituent("NH3", label="NH3", _alt_namespace=P223)
-Constituent.H2S = H2S = Constituent("H2S", label="H2S", _alt_namespace=P223)
+Constituent.H2S = H2S = Constituent("H2S", label="H2S")
 Constituent.O2 = O2 = Constituent("O2", label="O2", _alt_namespace=P223)
-Constituent.O3 = O3 = Constituent("O3", label="O3", _alt_namespace=P223)
-Constituent.SO2 = SO2 = Constituent("SO2", label="SO2", _alt_namespace=P223)
+Constituent.O3 = O3 = Constituent("O3", label="O3")
+Constituent.SO2 = SO2 = Constituent("SO2", label="SO2")
 Constituent.N = Nitrogen = Constituent("N", label="Nitrogen", _alt_namespace=P223)
-Constituent.VOC = VOC = Constituent("VOC", label="VOC", _alt_namespace=P223)
-Constituent.Radon = Radon = Constituent("Radon", label="Radon", _alt_namespace=P223)
+Constituent.VOC = VOC = Constituent(
+    "VolatileOrganicCompounds", label="VolatileOrganicCompounds"
+)
+Constituent.Radon = Radon = Constituent("Radon", label="Radon")
 Constituent.R22 = const_R22 = Constituent("R-22", label="R-22", _alt_namespace=P223)
 Constituent.R134A = const_R134A = Constituent(
     "R-134A", label="R-134A", _alt_namespace=P223
@@ -170,19 +174,20 @@ Electricity.Signal = Signal = Electricity("Signal")
 Electricity.OnOffSignal = Electricity.Signal("OnOffSignal", _alt_namespace=P223)
 
 Signal.RS485 = Signal("EIA485")
-Signal.Ethernet = Signal("Ethernet")
+Signal.WiredEthernet = Signal("WiredEthernet")
 Signal.IEC14908 = Signal("IEC14908")
 Signal.USB = USB = Signal("USB")
 Signal.WiFi = Signal("WiFi", _alt_namespace=P223)
 Signal.ModulatedSignal = ModulatedSignal = Signal("Modulated")
 ModulatedSignal.DC0_10 = ModulatedSignal("0-10VDC")
 ModulatedSignal.MA4_20 = ModulatedSignal("4-20mA")
+ModulatedSignal.Resistive = ModulatedSignal("Resistive", _alt_namespace=P223)
 
 
 Mix.PowerAndSignal = PowerAndSignal = Mix("PowerAndSignal", _alt_namespace=P223)
 PowerAndSignal.PoE = PowerAndSignal("PoE", _alt_namespace=P223)
 PowerAndSignal.PoE.add_constituent(Electricity.DC48V)
-PowerAndSignal.PoE.add_constituent(Signal.Ethernet)
+PowerAndSignal.PoE.add_constituent(Signal.WiredEthernet)
 PowerAndSignal.USB = PowerAndSignal("USB", _alt_namespace=P223)
 PowerAndSignal.USB.add_constituent(Electricity.DC5V)
 
@@ -193,6 +198,7 @@ PowerAndSignal.USB.add_constituent(Electricity.DC5V)
 # Air and gases
 Mix.Fluid = Fluid = Mix("Fluid")
 Fluid.Air = Air = Fluid("Air")
+Air.add_constituent(Vapor_H2O)
 Fluid.Oil = Oil = Fluid("Oil")
 Air.CompressedAir = CompressedAir = Air("CompressedAir")
 
@@ -244,6 +250,7 @@ GlycolSolution.GlycolSolution_30Percent = GlycolSolution_30Percent = GlycolSolut
 
 Water.Steam = Steam = Water("Steam")
 
+
 # Light
 Light.Visible = Light("Visible")
 Light.Infrared = Light("Infrared")
@@ -293,8 +300,9 @@ Role.Storage = Storage = Role("Storage", _alt_namespace=P223)
 # ===================
 # Enumeration kinds to create hasValue
 ActiveInactiveEnum = EnumerationKind("ActiveInactive", _alt_namespace=P223)
-AnalogSignalTypeEnum = EnumerationKind("Analog", _alt_namespace=P223)
+AnalogSignalTypeEnum = EnumerationKind("AnalogSignalType", _alt_namespace=P223)
 BinarySignalTypeEnum = EnumerationKind("BinarySignalType", _alt_namespace=P223)
+UniversalSignalTypeEnum = EnumerationKind("UniversalSignalType", _alt_namespace=P223)
 
 Binary = EnumerationKind("Binary")
 Binary.false = Binary("False")
@@ -362,6 +370,42 @@ BinarySignalTypeEnum.DryContact = BinarySignalTypeEnum(
 BinarySignalTypeEnum.Pulse = BinarySignalTypeEnum("Pulse", _alt_namespace=P223)
 BinarySignalTypeEnum.StartStop = BinarySignalTypeEnum("StartStop", _alt_namespace=P223)
 BinarySignalTypeEnum.Incremental = BinarySignalTypeEnum(
+    "Incremental", _alt_namespace=P223
+)
+
+
+UniversalSignalTypeEnum.Unknown = AnalogSignalTypeEnum("Unknown", _alt_namespace=P223)
+UniversalSignalTypeEnum.RTD = AnalogSignalTypeEnum("RTD", _alt_namespace=P223)
+UniversalSignalTypeEnum.Nickel1kRTD = AnalogSignalTypeEnum(
+    "Nickel1kRTD", _alt_namespace=P223
+)
+UniversalSignalTypeEnum.Platinum1kRTD = AnalogSignalTypeEnum(
+    "Platinum1kRTD", _alt_namespace=P223
+)
+UniversalSignalTypeEnum.VDC_0_10 = AnalogSignalTypeEnum("0-10VDC", _alt_namespace=P223)
+UniversalSignalTypeEnum.mA_4_20 = AnalogSignalTypeEnum("4-20mA", _alt_namespace=P223)
+UniversalSignalTypeEnum.NTC10kType3 = AnalogSignalTypeEnum(
+    "NTC10kType3", _alt_namespace=P223
+)
+UniversalSignalTypeEnum.NTC10kType2 = AnalogSignalTypeEnum(
+    "NTC10kType2", _alt_namespace=P223
+)
+UniversalSignalTypeEnum.NTC2250Type2 = AnalogSignalTypeEnum(
+    "NTC2250Type2", _alt_namespace=P223
+)
+UniversalSignalTypeEnum.Resistive = AnalogSignalTypeEnum(
+    "Resistive", _alt_namespace=P223
+)
+
+#
+UniversalSignalTypeEnum.DryContact = BinarySignalTypeEnum(
+    "DryContact", _alt_namespace=P223
+)
+UniversalSignalTypeEnum.Pulse = BinarySignalTypeEnum("Pulse", _alt_namespace=P223)
+UniversalSignalTypeEnum.StartStop = BinarySignalTypeEnum(
+    "StartStop", _alt_namespace=P223
+)
+UniversalSignalTypeEnum.Incremental = BinarySignalTypeEnum(
     "Incremental", _alt_namespace=P223
 )
 
@@ -577,7 +621,7 @@ DCVoltage.DCNegativeVoltage = DCVoltage("DCNegativeVoltage")
 # s223:DCNegativeVoltage-48.0V
 # s223:DCNegativeVoltage-190.0V
 # s223:DCNegativeVoltage-380.0V
-DCVoltage.DCPositiveVoltage = DCVoltage("DCPositiveVoltage")
+DCVoltage.DCPositiveVoltage = DCPositiveVoltage = DCVoltage("DCPositiveVoltage")
 # see also negative voltages above
 DCVoltage.DCZeroVoltage = DCVoltage("DCZeroVoltage")
 

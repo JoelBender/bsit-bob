@@ -1,19 +1,19 @@
 import logging
 from typing import Dict
 
-from ...core import BOB, S223, Equipment, Property
+from ...core import S223, Equipment, Property
 from ...template import configure_relations, template_update
 
 # logging
 _log = logging.getLogger(__name__)
 
-_namespace = BOB
+_namespace = S223
 
 """
  
 __|___|__|___|___|__                                                                                  
-|     Actuator     |------------s223:hasProperty--------(actuates) -> A                                   
-|  s223:Equipment  |------------s223:hasProperty--------(commandedByProperty) -> B
+|     Actuator     |------------s223:actuates-------------------> A (s223:Equipment)                                   
+|  s223:Equipment  |------------s223:actuatedByProperty---------> B (s223:Property)
 |                  |
 |                  |
 |__________________|

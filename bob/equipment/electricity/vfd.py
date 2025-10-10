@@ -1,4 +1,4 @@
-from typing import Dict
+from typing import Dict, Optional
 
 from rdflib import URIRef
 
@@ -35,7 +35,7 @@ vfd_template = {
 class VFD(_VFD):
     _class_iri: URIRef = S223.VariableFrequencyDrive
 
-    def __init__(self, config: Dict = None, **kwargs):
+    def __init__(self, config: Optional[Dict] = None, **kwargs):
         _config = template_update(vfd_template, config)
         kwargs = {**_config.pop("params", {}), **kwargs}
         _log.debug(f"VFD.__init__ {_config} {kwargs}")

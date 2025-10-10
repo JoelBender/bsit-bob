@@ -4,7 +4,6 @@ from typing import Dict
 from rdflib import URIRef
 
 from ...connections.air import (
-    AirBidirectionalConnectionPoint,
     AirInletConnectionPoint,
     AirOutletConnectionPoint,
 )
@@ -45,30 +44,3 @@ class AirHeatExchanger(Equipment):
         configure_relations(self, _relations)
         self.supplyAirOutlet.paired_to(self.supplyAirInlet)
         self.exhaustAirOutlet.paired_to(self.exhaustAirInlet)
-
-
-class Accumulator(Equipment):
-    """
-    Type of heat exchanger that accumulate heat from exhaust air
-    passing through it. Then air flow will switch side. Air will flow
-    so outdoor air will use energy accumulated in the substrat. This cycle
-    will repeat.
-    """
-
-    _class_iri: URIRef = S223.Equipment
-    outdoorSide: AirBidirectionalConnectionPoint
-    indoorSide: AirBidirectionalConnectionPoint
-
-
-class Accumulator4SidesDuct(Equipment):
-    """
-    This is part of the exchanger and allow air to comes in or out of accumulator
-    depending on the position of the pneumatic damper
-    Return and supply are directional, but accumulator 1 and 2 are bidirectional
-    """
-
-    _class_iri: URIRef = S223.Equipment
-    accumulator1Connection: AirBidirectionalConnectionPoint
-    accumulator2Connection: AirBidirectionalConnectionPoint
-    supplyDuctOutlet: AirOutletConnectionPoint
-    returnDuctInlet: AirInletConnectionPoint

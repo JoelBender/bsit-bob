@@ -1,0 +1,160 @@
+# baseURI: http://data.ashrae.org/standard223/1.0/sample/ahu_system_from_class
+# imports: http://data.ashrae.org/standard223/1.0/model/all
+
+@prefix bob: <http://data.ashrae.org/standard223/si-builder#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix qudtqk: <http://qudt.org/vocab/quantitykind/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix s223: <http://data.ashrae.org/standard223#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+
+
+
+<http://data.ashrae.org/standard223/1.0/data/ahu_system_from_class>
+  a owl:Ontology ;
+  rdfs:isDefinedBy <http://data.ashrae.org/standard223/1.0/sample/ahu_system_from_class> ;
+  rdfs:label "ahu_system_from_class" ;
+  owl:imports <http://data.ashrae.org/standard223/1.0/model/all> .
+
+[] a s223:System ;
+    rdfs:label "AHU-2" ;
+    s223:hasMember _:Nad2071f9e7a14b8daac0c1d6dda5d305,
+        _:Nf12df6a10e994c9cb1cd1214adfffec9 ;
+    rdfs:comment "AHU created from class" .
+
+_:N046d67e75d99434593d59691a387e7ab a s223:ConnectionPoint,
+        s223:InletConnectionPoint,
+        bob:ElectricalConnectionPoint ;
+    rdfs:label "Fan-2.electricalInlet" ;
+    s223:cnx _:Nf12df6a10e994c9cb1cd1214adfffec9 ;
+    s223:hasMedium s223:Constituent-Electricity ;
+    s223:isConnectionPointOf _:Nf12df6a10e994c9cb1cd1214adfffec9 .
+
+_:N17de3599c77b442ba9476e6cd22e9668 a s223:ObservableProperty,
+        s223:Property,
+        s223:QuantifiableObservableProperty,
+        s223:QuantifiableProperty,
+        bob:Temperature ;
+    rdfs:label "averageSurfaceTemperature" ;
+    qudt:hasQuantityKind qudtqk:Temperature .
+
+_:N1e8fc8962b96426490b3d0706d4ef7a6 a s223:ConnectionPoint,
+        s223:OutletConnectionPoint,
+        bob:ChilledWaterConnectionPoint ;
+    rdfs:label "ChWCoil-2.chilledWaterOutlet" ;
+    s223:hasMedium s223:Water-ChilledWater ;
+    s223:isConnectionPointOf _:Nad2071f9e7a14b8daac0c1d6dda5d305 ;
+    s223:pairedConnectionPoint _:N794f347303004f3a8a3180771304f822 .
+
+_:N3b4233f71acc4522975e24bad69648e5 a s223:ConnectionPoint,
+        s223:InletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "ChWCoil-2.airInlet" ;
+    s223:cnx _:Nad2071f9e7a14b8daac0c1d6dda5d305 ;
+    s223:connectsThrough _:N7ed8ff2f1a48419e9788768611bf8920 ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf _:Nad2071f9e7a14b8daac0c1d6dda5d305 ;
+    s223:pairedConnectionPoint _:N4e0fb133423a44749d932490acf2014f .
+
+_:N4e0fb133423a44749d932490acf2014f a s223:ConnectionPoint,
+        s223:OutletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "ChWCoil-2.airOutlet" ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf _:Nad2071f9e7a14b8daac0c1d6dda5d305 ;
+    s223:pairedConnectionPoint _:N3b4233f71acc4522975e24bad69648e5 .
+
+_:N66ee1cb57a3348ddb904f8d239cd0eb6 a s223:ConnectionPoint,
+        s223:OutletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "Fan-2.airOutlet" ;
+    s223:cnx _:N7ed8ff2f1a48419e9788768611bf8920 ;
+    s223:connectsThrough _:N7ed8ff2f1a48419e9788768611bf8920 ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf _:Nf12df6a10e994c9cb1cd1214adfffec9 ;
+    s223:pairedConnectionPoint _:Nb18fd7ca58fd4f2d9ed421e0faee2188 .
+
+_:N794f347303004f3a8a3180771304f822 a s223:ConnectionPoint,
+        s223:InletConnectionPoint,
+        bob:ChilledWaterConnectionPoint ;
+    rdfs:label "ChWCoil-2.chilledWaterInlet" ;
+    s223:cnx _:Nad2071f9e7a14b8daac0c1d6dda5d305 ;
+    s223:hasMedium s223:Water-ChilledWater ;
+    s223:isConnectionPointOf _:Nad2071f9e7a14b8daac0c1d6dda5d305 ;
+    s223:pairedConnectionPoint _:N1e8fc8962b96426490b3d0706d4ef7a6 .
+
+_:N7ed8ff2f1a48419e9788768611bf8920 a s223:Connection ;
+    s223:cnx _:N3b4233f71acc4522975e24bad69648e5 ;
+    s223:connectsAt _:N3b4233f71acc4522975e24bad69648e5,
+        _:N66ee1cb57a3348ddb904f8d239cd0eb6 ;
+    s223:connectsFrom _:Nf12df6a10e994c9cb1cd1214adfffec9 ;
+    s223:connectsTo _:Nad2071f9e7a14b8daac0c1d6dda5d305 ;
+    s223:hasMedium s223:Fluid-Air .
+
+_:Nad2071f9e7a14b8daac0c1d6dda5d305 a s223:Coil,
+        s223:Connectable,
+        s223:CoolingCoil,
+        s223:Equipment ;
+    rdfs:label "ChWCoil-2" ;
+    s223:cnx _:N1e8fc8962b96426490b3d0706d4ef7a6,
+        _:N4e0fb133423a44749d932490acf2014f ;
+    s223:connected _:Nf12df6a10e994c9cb1cd1214adfffec9 ;
+    s223:connectedFrom _:Nf12df6a10e994c9cb1cd1214adfffec9 ;
+    s223:connectedThrough _:N7ed8ff2f1a48419e9788768611bf8920 ;
+    s223:hasConnectionPoint _:N1e8fc8962b96426490b3d0706d4ef7a6,
+        _:N3b4233f71acc4522975e24bad69648e5,
+        _:N4e0fb133423a44749d932490acf2014f,
+        _:N794f347303004f3a8a3180771304f822 ;
+    s223:hasProperty _:N17de3599c77b442ba9476e6cd22e9668,
+        _:Nb85745aa7f9c43888534874df6dc633f,
+        _:Nebe88a371de7430f980723d04a475a1a ;
+    s223:hasRole s223:Role-Cooling ;
+    bob:airInlet _:N3b4233f71acc4522975e24bad69648e5 ;
+    bob:airOutlet _:N4e0fb133423a44749d932490acf2014f ;
+    bob:chilledWaterInlet _:N794f347303004f3a8a3180771304f822 ;
+    bob:chilledWaterOutlet _:N1e8fc8962b96426490b3d0706d4ef7a6 ;
+    rdfs:comment "Chilled Water Coil in AHU created from class" .
+
+_:Nb18fd7ca58fd4f2d9ed421e0faee2188 a s223:ConnectionPoint,
+        s223:InletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "Fan-2.airInlet" ;
+    s223:cnx _:Nf12df6a10e994c9cb1cd1214adfffec9 ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf _:Nf12df6a10e994c9cb1cd1214adfffec9 ;
+    s223:pairedConnectionPoint _:N66ee1cb57a3348ddb904f8d239cd0eb6 .
+
+_:Nb85745aa7f9c43888534874df6dc633f a s223:ObservableProperty,
+        s223:Property,
+        s223:QuantifiableObservableProperty,
+        s223:QuantifiableProperty,
+        bob:Pressure ;
+    rdfs:label "internalPressure" ;
+    qudt:hasQuantityKind qudtqk:Pressure .
+
+_:Nebe88a371de7430f980723d04a475a1a a s223:ObservableProperty,
+        s223:Property,
+        s223:QuantifiableObservableProperty,
+        s223:QuantifiableProperty,
+        bob:Temperature ;
+    rdfs:label "internalTemperature" ;
+    qudt:hasQuantityKind qudtqk:Temperature .
+
+_:Nf12df6a10e994c9cb1cd1214adfffec9 a s223:Connectable,
+        s223:Equipment,
+        s223:Fan ;
+    rdfs:label "Fan-2" ;
+    s223:cnx _:N66ee1cb57a3348ddb904f8d239cd0eb6 ;
+    s223:connected _:Nad2071f9e7a14b8daac0c1d6dda5d305 ;
+    s223:connectedThrough _:N7ed8ff2f1a48419e9788768611bf8920 ;
+    s223:connectedTo _:Nad2071f9e7a14b8daac0c1d6dda5d305 ;
+    s223:hasConnectionPoint _:N046d67e75d99434593d59691a387e7ab,
+        _:N66ee1cb57a3348ddb904f8d239cd0eb6,
+        _:Nb18fd7ca58fd4f2d9ed421e0faee2188 ;
+    bob:airInlet _:Nb18fd7ca58fd4f2d9ed421e0faee2188 ;
+    bob:airOutlet _:N66ee1cb57a3348ddb904f8d239cd0eb6 ;
+    rdfs:comment "Fan in AHU created from class" .
+

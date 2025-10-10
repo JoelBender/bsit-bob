@@ -1,0 +1,272 @@
+# baseURI: http://data.ashrae.org/standard223/1.0/sample/test_device-002
+# imports: http://data.ashrae.org/standard223/1.0/model/all
+
+@prefix bob: <http://data.ashrae.org/standard223/si-builder#> .
+@prefix ex42: <urn:ex/test_system-007/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix qudtqk: <http://qudt.org/vocab/quantitykind/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix s223: <http://data.ashrae.org/standard223#> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+
+
+
+<http://data.ashrae.org/standard223/1.0/data/test_device-002>
+  a owl:Ontology ;
+  rdfs:isDefinedBy <http://data.ashrae.org/standard223/1.0/sample/test_device-002> ;
+  rdfs:label "test_device-002" ;
+  owl:imports <http://data.ashrae.org/standard223/1.0/model/all> .
+
+ex42:00001 a s223:Boiler,
+        s223:Connectable,
+        s223:Equipment ;
+    rdfs:label "HWB-1" ;
+    s223:hasConnectionPoint ex42:00002,
+        ex42:00003 ;
+    s223:hasRole s223:Role-Heating ;
+    bob:hotWaterEntering ex42:00003 ;
+    bob:hotWaterLeaving ex42:00002 ;
+    rdfs:comment "Hot Water Boiler" .
+
+ex42:00002 a s223:ConnectionPoint,
+        s223:OutletConnectionPoint,
+        bob:HotWaterConnectionPoint ;
+    rdfs:label "HWB-1.hotWaterLeaving" ;
+    s223:hasMedium s223:Water-HotWater ;
+    s223:isConnectionPointOf ex42:00001 ;
+    s223:pairedConnectionPoint ex42:00003 .
+
+ex42:00003 a s223:ConnectionPoint,
+        s223:InletConnectionPoint,
+        bob:HotWaterConnectionPoint ;
+    rdfs:label "HWB-1.hotWaterEntering" ;
+    s223:hasMedium s223:Water-HotWater ;
+    s223:isConnectionPointOf ex42:00001 ;
+    s223:pairedConnectionPoint ex42:00002 .
+
+ex42:00004 a s223:Coil,
+        s223:Connectable,
+        s223:Equipment,
+        s223:HeatingCoil ;
+    rdfs:label "Hot Water Coil" ;
+    s223:hasConnectionPoint ex42:00005,
+        ex42:00006,
+        ex42:00007,
+        ex42:00008 ;
+    s223:hasProperty ex42:00009,
+        ex42:00010,
+        ex42:00011 ;
+    s223:hasRole s223:Role-Heating ;
+    bob:airInlet ex42:00005 ;
+    bob:airOutlet ex42:00006 ;
+    bob:hotWaterInlet ex42:00007 ;
+    bob:hotWaterOutlet ex42:00008 .
+
+ex42:00005 a s223:ConnectionPoint,
+        s223:InletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "Hot Water Coil.airInlet" ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf ex42:00004 ;
+    s223:pairedConnectionPoint ex42:00006 .
+
+ex42:00006 a s223:ConnectionPoint,
+        s223:OutletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "Hot Water Coil.airOutlet" ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf ex42:00004 ;
+    s223:pairedConnectionPoint ex42:00005 .
+
+ex42:00007 a s223:ConnectionPoint,
+        s223:InletConnectionPoint,
+        bob:HotWaterConnectionPoint ;
+    rdfs:label "Hot Water Coil.hotWaterInlet" ;
+    s223:hasMedium s223:Water-HotWater ;
+    s223:isConnectionPointOf ex42:00004 ;
+    s223:pairedConnectionPoint ex42:00008 .
+
+ex42:00008 a s223:ConnectionPoint,
+        s223:OutletConnectionPoint,
+        bob:HotWaterConnectionPoint ;
+    rdfs:label "Hot Water Coil.hotWaterOutlet" ;
+    s223:hasMedium s223:Water-HotWater ;
+    s223:isConnectionPointOf ex42:00004 ;
+    s223:pairedConnectionPoint ex42:00007 .
+
+ex42:00009 a s223:ObservableProperty,
+        s223:Property,
+        s223:QuantifiableObservableProperty,
+        s223:QuantifiableProperty,
+        bob:Temperature ;
+    rdfs:label "averageSurfaceTemperature" ;
+    qudt:hasQuantityKind qudtqk:Temperature .
+
+ex42:00010 a s223:ObservableProperty,
+        s223:Property,
+        s223:QuantifiableObservableProperty,
+        s223:QuantifiableProperty,
+        bob:Pressure ;
+    rdfs:label "internalPressure" ;
+    qudt:hasQuantityKind qudtqk:Pressure .
+
+ex42:00011 a s223:ObservableProperty,
+        s223:Property,
+        s223:QuantifiableObservableProperty,
+        s223:QuantifiableProperty,
+        bob:Temperature ;
+    rdfs:label "internalTemperature" ;
+    qudt:hasQuantityKind qudtqk:Temperature .
+
+ex42:00012 a s223:Coil,
+        s223:Connectable,
+        s223:CoolingCoil,
+        s223:Equipment ;
+    rdfs:label "Chilled Water Coil" ;
+    s223:hasConnectionPoint ex42:00013,
+        ex42:00014,
+        ex42:00015,
+        ex42:00016 ;
+    s223:hasProperty ex42:00017,
+        ex42:00018,
+        ex42:00019 ;
+    s223:hasRole s223:Role-Cooling ;
+    bob:airInlet ex42:00013 ;
+    bob:airOutlet ex42:00014 ;
+    bob:chilledWaterInlet ex42:00015 ;
+    bob:chilledWaterOutlet ex42:00016 .
+
+ex42:00013 a s223:ConnectionPoint,
+        s223:InletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "Chilled Water Coil.airInlet" ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf ex42:00012 ;
+    s223:pairedConnectionPoint ex42:00014 .
+
+ex42:00014 a s223:ConnectionPoint,
+        s223:OutletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "Chilled Water Coil.airOutlet" ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf ex42:00012 ;
+    s223:pairedConnectionPoint ex42:00013 .
+
+ex42:00015 a s223:ConnectionPoint,
+        s223:InletConnectionPoint,
+        bob:ChilledWaterConnectionPoint ;
+    rdfs:label "Chilled Water Coil.chilledWaterInlet" ;
+    s223:hasMedium s223:Water-ChilledWater ;
+    s223:isConnectionPointOf ex42:00012 ;
+    s223:pairedConnectionPoint ex42:00016 .
+
+ex42:00016 a s223:ConnectionPoint,
+        s223:OutletConnectionPoint,
+        bob:ChilledWaterConnectionPoint ;
+    rdfs:label "Chilled Water Coil.chilledWaterOutlet" ;
+    s223:hasMedium s223:Water-ChilledWater ;
+    s223:isConnectionPointOf ex42:00012 ;
+    s223:pairedConnectionPoint ex42:00015 .
+
+ex42:00017 a s223:ObservableProperty,
+        s223:Property,
+        s223:QuantifiableObservableProperty,
+        s223:QuantifiableProperty,
+        bob:Temperature ;
+    rdfs:label "averageSurfaceTemperature" ;
+    qudt:hasQuantityKind qudtqk:Temperature .
+
+ex42:00018 a s223:ObservableProperty,
+        s223:Property,
+        s223:QuantifiableObservableProperty,
+        s223:QuantifiableProperty,
+        bob:Pressure ;
+    rdfs:label "internalPressure" ;
+    qudt:hasQuantityKind qudtqk:Pressure .
+
+ex42:00019 a s223:ObservableProperty,
+        s223:Property,
+        s223:QuantifiableObservableProperty,
+        s223:QuantifiableProperty,
+        bob:Temperature ;
+    rdfs:label "internalTemperature" ;
+    qudt:hasQuantityKind qudtqk:Temperature .
+
+ex42:00020 a s223:Connectable,
+        s223:ElectricResistanceElement,
+        s223:Equipment ;
+    rdfs:label "Electrical Heating Coil" ;
+    s223:hasConnectionPoint ex42:00021,
+        ex42:00022,
+        ex42:00023 ;
+    s223:hasProperty ex42:00024,
+        ex42:00025,
+        ex42:00026,
+        ex42:00027 ;
+    s223:hasRole s223:Role-Heating ;
+    bob:airInlet ex42:00021 ;
+    bob:airOutlet ex42:00022 .
+
+ex42:00021 a s223:ConnectionPoint,
+        s223:InletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "Electrical Heating Coil.airInlet" ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf ex42:00020 ;
+    s223:pairedConnectionPoint ex42:00022 .
+
+ex42:00022 a s223:ConnectionPoint,
+        s223:OutletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "Electrical Heating Coil.airOutlet" ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf ex42:00020 ;
+    s223:pairedConnectionPoint ex42:00021 .
+
+ex42:00023 a s223:ConnectionPoint,
+        s223:InletConnectionPoint,
+        bob:ElectricalConnectionPoint,
+        bob:Electricity_600VLL_3Ph_60HzConnectionPoint ;
+    rdfs:label "Electrical Heating Coil.electricalInlet" ;
+    s223:hasMedium s223:AC-600VLL-3Ph-60Hz ;
+    s223:isConnectionPointOf ex42:00020 .
+
+ex42:00024 a s223:ObservableProperty,
+        s223:Property,
+        s223:QuantifiableObservableProperty,
+        s223:QuantifiableProperty,
+        bob:Amps ;
+    rdfs:label "amps" ;
+    qudt:hasQuantityKind qudtqk:ElectricCurrent ;
+    qudt:hasUnit unit:A .
+
+ex42:00025 a s223:ObservableProperty,
+        s223:Property,
+        s223:QuantifiableObservableProperty,
+        s223:QuantifiableProperty,
+        bob:ElectricPower,
+        bob:ElectricPowerkW ;
+    rdfs:label "kW" ;
+    qudt:hasQuantityKind qudtqk:ElectricPower ;
+    qudt:hasUnit unit:KiloW .
+
+ex42:00026 a s223:ActuatableProperty,
+        s223:Property,
+        s223:QuantifiableActuatableProperty,
+        s223:QuantifiableProperty,
+        bob:PercentCommand ;
+    rdfs:label "modulation" ;
+    qudt:hasQuantityKind qudtqk:DimensionlessRatio ;
+    qudt:hasUnit unit:PERCENT .
+
+ex42:00027 a s223:ActuatableProperty,
+        s223:EnumerableProperty,
+        s223:EnumeratedActuatableProperty,
+        s223:Property ;
+    rdfs:label "onOffCommand" ;
+    s223:hasEnumerationKind s223:Binary-OnOff .
+

@@ -1,0 +1,51 @@
+# baseURI: http://data.ashrae.org/standard223/1.0/sample/test_property-001
+# imports: http://data.ashrae.org/standard223/1.0/model/all
+
+@prefix ex32: <urn:ex/test_property-001/> .
+@prefix ex42: <urn:ex/test_system-007/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix s223: <http://data.ashrae.org/standard223#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+
+
+
+<http://data.ashrae.org/standard223/1.0/data/test_property-001>
+  a owl:Ontology ;
+  rdfs:isDefinedBy <http://data.ashrae.org/standard223/1.0/sample/test_property-001> ;
+  rdfs:label "test_property-001" ;
+  owl:imports <http://data.ashrae.org/standard223/1.0/model/all> .
+
+ex42:00001 a s223:Property ;
+    s223:hasValue 1 .
+
+ex42:00002 a s223:ActuatableProperty,
+        s223:Property ;
+    s223:hasValue 2 .
+
+ex42:00003 a s223:ObservableProperty,
+        s223:Property ;
+    s223:hasValue "green" .
+
+ex42:00004 a s223:Property,
+        s223:QuantifiableProperty ;
+    s223:hasValue 4.5 ;
+    qudt:hasUnit qudt:DEG_F .
+
+ex42:00005 a s223:ObservableProperty,
+        s223:Property ;
+    rdfs:label "color" ;
+    s223:hasValue "green" .
+
+ex42:00006 a s223:Property,
+        ex32:TestProperty1 ;
+    s223:hasValue 7 .
+
+ex42:00007 a s223:Property,
+        ex32:TestProperty2 ;
+    rdfs:label "test 2" ;
+    s223:hasValue 8 .
+

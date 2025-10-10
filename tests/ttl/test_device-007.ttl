@@ -1,0 +1,102 @@
+# baseURI: http://data.ashrae.org/standard223/1.0/sample/test_device-007
+# imports: http://data.ashrae.org/standard223/1.0/model/all
+
+@prefix bob: <http://data.ashrae.org/standard223/si-builder#> .
+@prefix ex1: <urn:ex/test_device-007/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix s223: <http://data.ashrae.org/standard223#> .
+@prefix schema1: <http://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+
+
+
+<http://data.ashrae.org/standard223/1.0/data/test_device-007>
+  a owl:Ontology ;
+  rdfs:isDefinedBy <http://data.ashrae.org/standard223/1.0/sample/test_device-007> ;
+  rdfs:label "test_device-007" ;
+  owl:imports <http://data.ashrae.org/standard223/1.0/model/all> .
+
+ex1:00001 a s223:Connectable,
+        s223:Equipment,
+        s223:Fan,
+        schema1:Product,
+        schema1:Thing,
+        ex1:MyFan ;
+    rdfs:label "VA-1" ;
+    s223:contains ex1:00005 ;
+    s223:hasConnectionPoint ex1:00002,
+        ex1:00003,
+        ex1:00004 ;
+    bob:airInlet ex1:00002 ;
+    bob:airOutlet ex1:00003 ;
+    schema1:model "BALDOR 5KCF8" ;
+    rdfs:comment "Supply Fan" .
+
+ex1:00002 a s223:ConnectionPoint,
+        s223:InletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "VA-1.airInlet" ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf ex1:00001 ;
+    s223:pairedConnectionPoint ex1:00003 .
+
+ex1:00003 a s223:ConnectionPoint,
+        s223:OutletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "VA-1.airOutlet" ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf ex1:00001 ;
+    s223:pairedConnectionPoint ex1:00002 .
+
+ex1:00004 a s223:ConnectionPoint,
+        s223:InletConnectionPoint,
+        bob:ElectricalConnectionPoint ;
+    rdfs:label "VA-1.electricalInlet" ;
+    s223:hasMedium s223:Constituent-Electricity ;
+    s223:isConnectionPointOf ex1:00001 .
+
+ex1:00005 a s223:Connectable,
+        s223:Equipment ;
+    rdfs:label "VA1-VFD" ;
+    rdfs:comment "VFD for VA-1" .
+
+ex1:00006 a s223:Connectable,
+        s223:Equipment,
+        s223:Fan,
+        schema1:Product,
+        schema1:Thing,
+        ex1:MyFan ;
+    rdfs:label "VA-2" ;
+    s223:hasConnectionPoint ex1:00007,
+        ex1:00008,
+        ex1:00009 ;
+    bob:airInlet ex1:00007 ;
+    bob:airOutlet ex1:00008 ;
+    schema1:model "BALDOR 5KCF8" .
+
+ex1:00007 a s223:ConnectionPoint,
+        s223:InletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "VA-2.airInlet" ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf ex1:00006 ;
+    s223:pairedConnectionPoint ex1:00008 .
+
+ex1:00008 a s223:ConnectionPoint,
+        s223:OutletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "VA-2.airOutlet" ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf ex1:00006 ;
+    s223:pairedConnectionPoint ex1:00007 .
+
+ex1:00009 a s223:ConnectionPoint,
+        s223:InletConnectionPoint,
+        bob:ElectricalConnectionPoint ;
+    rdfs:label "VA-2.electricalInlet" ;
+    s223:hasMedium s223:Constituent-Electricity ;
+    s223:isConnectionPointOf ex1:00006 .
+

@@ -4,11 +4,19 @@ import pkgutil
 import typing as t
 
 import bob
+from .core import UNIT, Substance
+from .enum import Medium, Particulate, Constituent
 
 class_cache = {}
 module_cache = {}
 enum_cache = {}
-
+XREF_CACHE = {
+    "UNIT": UNIT,
+    "Medium": Medium,
+    "Substance": Substance,
+    "Particulate": Particulate,
+    "Constituent": Constituent,
+}
 
 def look_in_cache(name: str = None, cache: dict = None):
     return cache[name] if name in cache else None
@@ -35,7 +43,7 @@ def load_modules(module: t.Type = bob, force: bool = False) -> None:
 def get_class_from_name(classname: str = None, module: t.Type = bob) -> t.Type:
     global class_cache
     global module_cache
-    super = None
+    _super = None
     if not classname:
         raise ValueError("Classname is required")
 
@@ -44,7 +52,19 @@ def get_class_from_name(classname: str = None, module: t.Type = bob) -> t.Type:
         return _existing
 
     if "." in classname:
-        super, classname = classname.split(".")
+        _super, classname = classname.split(".")
+
+        if _super == "UNIT":
+            return UNIT[classname]
+        if _super == "Medium":
+            return getattr(Medium,classname)
+        if _super == "Substance":
+            return getattr(Substance,classname)
+        if _super == "Particulate":
+            return getattr(Particulate,classname)
+        if _super == "Constituent":
+            return getattr(Constituent,classname)
+
     if "|" in classname:
         _module, classname = classname.split("|")
         module = importlib.import_module(_module)
@@ -64,8 +84,8 @@ def get_class_from_name(classname: str = None, module: t.Type = bob) -> t.Type:
 
             if inspect.isclass(obj):
                 if name == classname:
-                    if super is not None:
-                        _key = f"{super}.{classname}"
+                    if _super is not None:
+                        _key = f"{_super}.{classname}"
                     else:
                         _key = classname
                     class_cache[_key] = obj
@@ -73,13 +93,13 @@ def get_class_from_name(classname: str = None, module: t.Type = bob) -> t.Type:
                 else:
                     if name not in class_cache:
                         class_cache[name] = obj
-        if super is not None:
-            if super in enum_cache:
-                _super_class = enum_cache[super]
+        if _super is not None:
+            if _super in enum_cache:
+                _super_class = enum_cache[_super]
                 return getattr(_super_class, classname)
             else:
                 if classname in enum_cache:
                     return enum_cache[classname]
     raise TypeError(
-        f"Class {super} {classname} not found in {module}, cache is {class_cache}"
+        f"Class {_super} {classname} not found in {module}, cache is {class_cache}"
     )

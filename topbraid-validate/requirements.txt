@@ -1,0 +1,9 @@
+html5lib
+rdflib
+pytest
+pyshacl
+ontoenv
+pyvis
+python-dotenv
+pytest-xdist[psutil]
+requests

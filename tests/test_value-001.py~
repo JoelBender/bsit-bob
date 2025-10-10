@@ -1,0 +1,50 @@
+from rdflib import Literal, XSD
+from bob.core import bind_model_namespace, dump, data_graph, schema_graph
+from bob.core import (
+    OutletConnectionPoint,
+    OutletSystemConnectionPoint,
+    InletConnectionPoint,
+    InletSystemConnectionPoint,
+    Equipment,
+    System,
+    Value,
+)
+
+bind_model_namespace("ex", "urn:ex/")
+
+Value()
+
+Value(2)
+
+Value(3.4)
+
+Value("snow")
+Value("snow", lang="en")
+
+Value(True)
+
+Value(Literal(5, datatype=XSD.byte))
+Value(6, datatype=XSD.float)
+
+from bob.core import qudt
+
+Value(7, unit=qudt.DEG_F)
+
+from datetime import datetime, timezone, timedelta
+
+Value(8, hasTimestamp=datetime.now())
+
+Value(9, hasTimestamp=datetime.now(timezone(timedelta(hours=-5))))
+
+print("----- data_graph -----")
+dump(data_graph)
+print("----- schema_graph -----")
+dump(schema_graph)
+
+
+def test_data_graph():
+    print(dump(data_graph))
+
+
+def test_schema_graph():
+    print(dump(schema_graph))

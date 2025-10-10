@@ -62,7 +62,7 @@ class PoESwitch(Equipment):
     An Ethernet Switch
     """
 
-    _class_iri: URIRef = S223.PoESwitch
+    _class_iri: URIRef = S223.PowerOverEthernetSwitch
 
     def __init__(self, config: Dict = None, **kwargs):
         if "ports" in kwargs:

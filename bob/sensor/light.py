@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Dict
 
 
 from bob.properties.states import DaylightDetected
@@ -19,14 +19,14 @@ class DaylightSensor(Sensor):
     # measuresMedium: Medium = Light
     observes: PropertyReference  # visible light level -- units?
 
-    def __init__(self, **kwargs: Any) -> None:
+    def __init__(self, config: Dict[str, Any] = {}, **kwargs: Any) -> None:
         _sensor_kwargs, _property_kwargs = split_kwargs(kwargs)
 
-        super().__init__(**_sensor_kwargs)
-
-        self.observes = DaylightDetected(
-            # isObservedBy=self,
-            label=f"{self.label}.Daylight",
+        observed_property = DaylightDetected(
+            label="observed_property",  # needs more focus
             ofMedium=Light.Visible,
             **_property_kwargs,
-        )
+        )   
+        _sensor_kwargs["observed_property"] = observed_property
+
+        super().__init__(config=config, **_sensor_kwargs)

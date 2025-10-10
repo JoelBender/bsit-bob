@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Dict
 
 
 from ..connections.controlsignal import OnOffSignalOutletConnectionPoint
@@ -7,7 +7,6 @@ from ..core import (
     S223,
     PropertyReference,
 )
-from ..enum import Air
 from ..properties import SmokePresence
 from .sensor import Sensor, split_kwargs
 
@@ -19,7 +18,7 @@ class SmokeDetectionSensor(Sensor):
     observes: PropertyReference  # Temperature
     dryContactOutlet: OnOffSignalOutletConnectionPoint
 
-    def __init__(self, **kwargs: Any) -> None:
+    def __init__(self, config: Dict[str, Any] = {}, **kwargs: Any) -> None:
         _sensor_kwargs, _property_kwargs = split_kwargs(kwargs)
 
         if "hasUnit" not in _property_kwargs:
@@ -31,11 +30,11 @@ class SmokeDetectionSensor(Sensor):
                 "You must provide ofMedium when defining a smoke detection sensor"
             )
 
-        super().__init__(**_sensor_kwargs)
-
-        self.observes = SmokePresence(
-            # isObservedBy=self,
-            label=f"{self.label}.SmokeDetection",
-            ofMedium=Air,
+        observed_prop = SmokePresence(
+            label="observed_property",
             **_property_kwargs,
         )
+        _sensor_kwargs["observed_property"] = observed_prop
+
+        super().__init__(config=config, **_sensor_kwargs)
+

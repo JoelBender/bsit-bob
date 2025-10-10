@@ -1,0 +1,164 @@
+# baseURI: http://data.ashrae.org/standard223/1.0/sample/test_create_from_yaml-004
+# imports: http://data.ashrae.org/standard223/1.0/model/all
+
+@prefix bacnet: <http://data.ashrae.org/bacnet/2020#> .
+@prefix bob: <http://data.ashrae.org/standard223/si-builder#> .
+@prefix ex42: <urn:ex/test_system-007/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix p223: <http://data.ashrae.org/proposal-to-standard223#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix s223: <http://data.ashrae.org/standard223#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+
+
+
+<http://data.ashrae.org/standard223/1.0/data/test_create_from_yaml-004>
+  a owl:Ontology ;
+  rdfs:isDefinedBy <http://data.ashrae.org/standard223/1.0/sample/test_create_from_yaml-004> ;
+  rdfs:label "test_create_from_yaml-004" ;
+  owl:imports <http://data.ashrae.org/standard223/1.0/model/all> .
+
+ex42:00001 a bacnet:Device,
+        s223:Connectable,
+        s223:Controller,
+        s223:Equipment,
+        bob:DynamicEquipment ;
+    rdfs:label "VAVCONTROLLER" ;
+    bacnet:deviceInstance 5204 ;
+    bacnet:hasObject ex42:00015,
+        ex42:00016 ;
+    s223:hasConnectionPoint ex42:00002,
+        ex42:00003,
+        ex42:00004,
+        ex42:00005,
+        ex42:00006,
+        ex42:00007,
+        ex42:00008,
+        ex42:00009,
+        ex42:00010,
+        ex42:00011,
+        ex42:00012,
+        ex42:00013,
+        ex42:00014 ;
+    rdfs:comment "The VAV Box Controllers from our OEM" .
+
+ex42:00002 a s223:ConnectionPoint,
+        s223:InletConnectionPoint,
+        bob:ElectricalConnectionPoint,
+        bob:Electricity_24VLN_1Ph_60HzConnectionPoint ;
+    rdfs:label "VAVCONTROLLER.electricalInlet" ;
+    s223:hasMedium s223:AC-24VLN-1Ph-60Hz ;
+    s223:isConnectionPointOf ex42:00001 .
+
+ex42:00003 a s223:BidirectionalConnectionPoint,
+        s223:ConnectionPoint,
+        bob:RS485ConnectionPoint ;
+    rdfs:label "VAVCONTROLLER.fcbus" ;
+    s223:hasMedium s223:Signal-EIA485 ;
+    s223:isConnectionPointOf ex42:00001 .
+
+ex42:00004 a s223:BidirectionalConnectionPoint,
+        s223:ConnectionPoint,
+        bob:RS485ConnectionPoint ;
+    rdfs:label "VAVCONTROLLER.sabus" ;
+    s223:hasMedium s223:Signal-EIA485 ;
+    s223:isConnectionPointOf ex42:00001 .
+
+ex42:00005 a p223:AnalogInput,
+        s223:ConnectionPoint,
+        s223:InletConnectionPoint,
+        bob:ModulationSignalConnectionPoint ;
+    rdfs:label "VAVCONTROLLER.ui1" ;
+    s223:hasMedium s223:Signal-Modulated ;
+    s223:isConnectionPointOf ex42:00001 .
+
+ex42:00006 a p223:AnalogInput,
+        s223:ConnectionPoint,
+        s223:InletConnectionPoint,
+        bob:ModulationSignalConnectionPoint ;
+    rdfs:label "VAVCONTROLLER.ui2" ;
+    s223:hasMedium s223:Signal-Modulated ;
+    s223:isConnectionPointOf ex42:00001 .
+
+ex42:00007 a p223:AnalogInput,
+        s223:ConnectionPoint,
+        s223:InletConnectionPoint,
+        bob:ModulationSignalConnectionPoint ;
+    rdfs:label "VAVCONTROLLER.ui3" ;
+    s223:hasMedium s223:Signal-Modulated ;
+    s223:isConnectionPointOf ex42:00001 .
+
+ex42:00008 a p223:BinaryInput,
+        s223:ConnectionPoint,
+        s223:InletConnectionPoint,
+        bob:OnOffSignalConnectionPoint ;
+    rdfs:label "VAVCONTROLLER.bi1" ;
+    s223:hasMedium p223:Signal-OnOffSignal ;
+    s223:isConnectionPointOf ex42:00001 .
+
+ex42:00009 a p223:BinaryInput,
+        s223:ConnectionPoint,
+        s223:InletConnectionPoint,
+        bob:OnOffSignalConnectionPoint ;
+    rdfs:label "VAVCONTROLLER.bi2" ;
+    s223:hasMedium p223:Signal-OnOffSignal ;
+    s223:isConnectionPointOf ex42:00001 .
+
+ex42:00010 a p223:BinaryOutput,
+        s223:ConnectionPoint,
+        s223:OutletConnectionPoint,
+        bob:OnOffSignalConnectionPoint ;
+    rdfs:label "VAVCONTROLLER.bo1" ;
+    s223:hasMedium p223:Signal-OnOffSignal ;
+    s223:isConnectionPointOf ex42:00001 .
+
+ex42:00011 a p223:BinaryOutput,
+        s223:ConnectionPoint,
+        s223:OutletConnectionPoint,
+        bob:OnOffSignalConnectionPoint ;
+    rdfs:label "VAVCONTROLLER.bo2" ;
+    s223:hasMedium p223:Signal-OnOffSignal ;
+    s223:isConnectionPointOf ex42:00001 .
+
+ex42:00012 a p223:BinaryOutput,
+        s223:ConnectionPoint,
+        s223:OutletConnectionPoint,
+        bob:OnOffSignalConnectionPoint ;
+    rdfs:label "VAVCONTROLLER.bo3" ;
+    s223:hasMedium p223:Signal-OnOffSignal ;
+    s223:isConnectionPointOf ex42:00001 .
+
+ex42:00013 a p223:AnalogOutput,
+        s223:ConnectionPoint,
+        s223:OutletConnectionPoint,
+        bob:ModulationSignalConnectionPoint ;
+    rdfs:label "VAVCONTROLLER.co1" ;
+    s223:hasMedium s223:Signal-Modulated ;
+    s223:isConnectionPointOf ex42:00001 .
+
+ex42:00014 a p223:AnalogOutput,
+        s223:ConnectionPoint,
+        s223:OutletConnectionPoint,
+        bob:ModulationSignalConnectionPoint ;
+    rdfs:label "VAVCONTROLLER.co2" ;
+    s223:hasMedium s223:Signal-Modulated ;
+    s223:isConnectionPointOf ex42:00001 .
+
+ex42:00015 a bacnet:DeviceObject,
+        bacnet:Object ;
+    rdfs:label "deviceObject" ;
+    bacnet:isObjectOf ex42:00001 ;
+    bacnet:object-identifier "device,5204" ;
+    bacnet:object-type bacnet:ObjectType.device ;
+    bacnet:vendor-identifier "5"^^xsd:nonNegativeInteger .
+
+ex42:00016 a bacnet:AnalogInputObject,
+        bacnet:Object ;
+    rdfs:label "DAVP" ;
+    bacnet:isObjectOf ex42:00001 ;
+    bacnet:object-identifier "analogInput,1094" ;
+    bacnet:object-name "DA-VP" ;
+    bacnet:object-type bacnet:ObjectType.analog-input .
+
