@@ -93,14 +93,14 @@ prefixes = {
     "s223": "http://data.ashrae.org/standard223#",
     "p223": "http://data.ashrae.org/proposal-to-standard223#",
     "scratch": "http://data.ashrae.org/standard223/si-builder/prototype#",
-    "bob": "http://data.ashrae.org/standard223/si-builder#",
+    "bob": "https://github.com/JoelBender/bsit-bob/",
     "ex": "http://example/",
     "g36": "http://data.ashrae.org/standard223/1.0/extension/g36#",
     "qudt": "http://qudt.org/schema/qudt/",
     "qudtqk": "http://qudt.org/vocab/quantitykind/",
     "unit": "http://qudt.org/vocab/unit/",
     "brick": "https://brickschema.org/schema/Brick#",
-    "bacnet": "http://data.ashrae.org/bacnet/2020#",
+    "bacnet": "http://data.ashrae.org/bacnet/2024#",
     "rec": "https://w3id.org/rec/core/",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
@@ -110,7 +110,6 @@ prefixes = {
     "influxdb": "https://brickschema.org/schema/Brick/ref/influxdb#",
     "schema": "http://schema.org/",
 }
-
 
 # options
 MANDITORY_LABEL = os.getenv("MANDITORY_LABEL", "True") == "True"

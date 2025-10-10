@@ -1,33 +1,31 @@
 [project]
-name = "bob"
-version = "0.99.8"
-authors = [
-    {name="Joel Bender", email="jjb5@cornell.edu"},
-    {name="Christian Tremblay", email="christian.tremblay@servisys.com"},
-]
-requires-python = ">=3.11"
-description = "Bob the SI-WG Builder. Tool for building RDF graphs of HVAC systems"
+name = "bsit-bob"
+version = "0.1.1"
+description = "BACnet Semantic Interoperability Toolkit - Bob - Building Model Builder"
 readme = "README.md"
-license = {text = "MIT"}
+requires-python = ">=3.13"
 dependencies = [
-    "rdflib",
+    "pyyaml>=6.0.2",
+    "rdflib>=7.1.4",
 ]
 
 [project.optional-dependencies]
-templates = ["python-dotenv", "pyyaml>=5.4.1"]
-validation = ["pyvis>=0.3.2","click>=8.1.8","python-dotenv"]
-tests = [
-    "black>=25.1.0",
-    "flake8>=7.1.2",
-    "mypy>=1.17.1",
-    "ruff>=0.12.12",
-    "pytest-cov>=6.0.0",
-    "pytest>=4.6.11",
+docs = [
+    "furo>=2025.7.19",
+    "myst-parser>=4.0.1",
+    "sphinx>=8.2.3",
+    "sphinx-autobuild>=2025.8.25",
+    "sphinx-copybutton>=0.5.2",
+    "sphinxcontrib-mermaid>=1.0.0",
 ]
 
-[tool.setuptools.packages.find]
-include = ["bob*"]
-namespaces = false
+# [tool.uv.scripts]
+# docs-build = { cmd = "sphinx-build docs docs/_build/html" }
+# docs-live = { cmd = "sphinx-autobuild docs docs/_build/html --open-browser" }
 
-[tool.pytest.ini_options]
-asyncio_default_fixture_loop_scope = "session"
+[dependency-groups]
+dev = [
+    "pytest>=8.4.2",
+    "ruff>=0.13.0",
+]
+
