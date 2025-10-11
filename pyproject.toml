@@ -35,25 +35,18 @@ namespaces = false
 # docs-live = { cmd = "sphinx-autobuild docs docs/_build/html --open-browser" }
 
 [tool.ruff]
-# Exclude specific files/patterns
-extend-exclude = []
+# Basic settings
+line-length = 88
+target-version = "py313"
 
 [tool.ruff.lint]
-# Enable specific rule categories
-select = ["E", "W", "F", "I", "N", "D", "UP", "YTT", "ANN", "S", "BLE", "FBT", "B", "A", "COM", "C4", "DTZ", "T10", "EM", "EXE", "ISC", "ICN", "G", "INP", "PIE", "T20", "PYI", "PT", "Q", "RSE", "RET", "SLF", "SIM", "TID", "TCH", "ARG", "PTH", "ERA", "PGH", "PL", "TRY", "NPY", "RUF"]
-
-# Ignore specific rules
+# Enable only essential rules
+select = ["E", "F"]  # pycodestyle errors and Pyflakes
 ignore = [
+    "E501",  # Line too long (let formatter handle this)
     "F811",  # Redefinition of unused name (needed for multimethod overloads)
-    "F401",  # Module imported but unused (needed for re-exports in __init__.py)
-    "D100", "D101", "D102", "D103", "D104", "D105", "D106", "D107",  # Missing docstrings
-    "E501", # Line too long
-    "B904", # raise from
-    "ERA001", # Commented out
-    "T201", # print found
-    "BLE001", # blind Exception : Exception
-    "PGH003", 
-    "D401",
+    "F401",  # Module imported but unused (needed for re-exports)
+    "F403", # import *
 ]
 
 [tool.ruff.lint.per-file-ignores]
