@@ -1,11 +1,11 @@
 from pathlib import Path
 
-from .header import ttl_test_header
-
 from bob.core import UNIT, bind_model_namespace, dump
 from bob.sensor.pressure import AirDifferentialStaticPressureSensor
 from bob.space.hvac import HVACSpace
 from bob.space.physical import Building, MechanicalRoom, Room
+
+from .header import ttl_test_header
 
 model_name = Path(__file__).stem
 _namespace = bind_model_namespace("ex", f"urn:ex/{model_name}/")

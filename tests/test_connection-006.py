@@ -1,11 +1,11 @@
 from pathlib import Path
 
-from .header import ttl_test_header
-
 from bob.connections import ChilledWaterConnection
 from bob.core import bind_model_namespace, dump
 from bob.equipment.hvac.coil import ChilledWaterCoil
 from bob.equipment.hvac.fan import Fan
+
+from .header import ttl_test_header
 
 model_name = Path(__file__).stem
 _namespace = bind_model_namespace("ex", f"urn:ex/{model_name}/")

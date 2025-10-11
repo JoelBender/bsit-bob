@@ -2,8 +2,6 @@ from typing import Dict, Optional
 
 from rdflib import URIRef
 
-from ...equipment.electricity import _VFD
-
 from ...connections.electricity import (
     ElectricalInletConnectionPoint,
     ElectricalOutletConnectionPoint,
@@ -13,7 +11,8 @@ from ...core import (
     SCRATCH,
     logging,
 )
-from ...template import template_update, configure_relations
+from ...equipment.electricity import _VFD
+from ...template import configure_relations, template_update
 
 # logging
 _log = logging.getLogger(__name__)
@@ -35,7 +34,7 @@ vfd_template = {
 class VFD(_VFD):
     _class_iri: URIRef = S223.VariableFrequencyDrive
 
-    def __init__(self, config: Optional[Dict] = None, **kwargs):
+    def __init__(self, config: dict | None = None, **kwargs):
         _config = template_update(vfd_template, config)
         kwargs = {**_config.pop("params", {}), **kwargs}
         _log.debug(f"VFD.__init__ {_config} {kwargs}")

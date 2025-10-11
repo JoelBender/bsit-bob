@@ -1,6 +1,5 @@
 from typing import Dict, Optional
 
-
 from bob.properties import PercentCommand
 from bob.properties.electricity import Amps, ElectricPowerkW
 from bob.properties.states import OnOffCommand
@@ -39,7 +38,7 @@ from ...template import template_update
 
 _namespace = BOB
 
-coil_template: Dict[str, Dict] = {
+coil_template: dict[str, dict] = {
     "cp": {},
     "properties": {
         ("averageSurfaceTemperature", Temperature): {},
@@ -57,7 +56,7 @@ class Coil(Equipment):
     modulation: PropertyReference
     onOffCommand: PropertyReference
 
-    def __init__(self, config: Optional[Dict] = None, **kwargs):
+    def __init__(self, config: dict | None = None, **kwargs):
         if config is None:
             config = coil_template.copy()
         config["properties"] = config.get("properties", coil_template["properties"])
@@ -71,7 +70,7 @@ class WaterCoil(Coil):
     waterInlet: WaterInletConnectionPoint
     waterOutlet: WaterOutletConnectionPoint
 
-    def __init__(self, config: Optional[Dict] = None, **kwargs):
+    def __init__(self, config: dict | None = None, **kwargs):
         if config is None:
             config = coil_template.copy()
         config["properties"] = config.get("properties", coil_template["properties"])
@@ -85,7 +84,7 @@ class DXCoolingCoil(Coil):
     refrigerantInlet: RefrigerantInletConnectionPoint
     refrigerantOutlet: RefrigerantOutletConnectionPoint
 
-    def __init__(self, config: Optional[Dict] = None, **kwargs):
+    def __init__(self, config: dict | None = None, **kwargs):
         _config = template_update({}, config)
         kwargs = {**_config.pop("params", {}), **kwargs}
         super().__init__(**{**_config, **kwargs})
@@ -98,7 +97,7 @@ class ChilledWaterCoil(Coil):
     chilledWaterInlet: ChilledWaterInletConnectionPoint
     chilledWaterOutlet: ChilledWaterOutletConnectionPoint
 
-    def __init__(self, config: Optional[Dict] = None, **kwargs):
+    def __init__(self, config: dict | None = None, **kwargs):
         _config = template_update({}, config)
         kwargs = {**_config.pop("params", {}), **kwargs}
         super().__init__(**{**_config, **kwargs})
@@ -111,7 +110,7 @@ class HotWaterCoil(Coil):
     hotWaterInlet: HotWaterInletConnectionPoint
     hotWaterOutlet: HotWaterOutletConnectionPoint
 
-    def __init__(self, config: Optional[Dict] = None, **kwargs):
+    def __init__(self, config: dict | None = None, **kwargs):
         _config = template_update({}, config)
         kwargs = {**_config.pop("params", {}), **kwargs}
         super().__init__(**{**_config, **kwargs})
@@ -126,7 +125,7 @@ class HeatpumpCoil(Coil):
     # airInlet: AirInletConnectionPoint
     # airOutlet: AirOutletConnectionPoint
 
-    def __init__(self, config: Optional[Dict] = None, **kwargs):
+    def __init__(self, config: dict | None = None, **kwargs):
         _config = template_update(coil_template, config)
         kwargs = {**_config.pop("params", {}), **kwargs}
         super().__init__(**{**_config, **kwargs})
@@ -139,7 +138,7 @@ class HeatpumpCoil(Coil):
 
 
 # Electrical Coil
-electricalheating_template: Dict[str, Dict] = {
+electricalheating_template: dict[str, dict] = {
     "cp": {"electricalInlet": Electricity_600VLL_3Ph_60HzInletConnectionPoint},
     "properties": {
         ("amps", Amps): {},
@@ -158,7 +157,7 @@ class ElectricalHeatingCoil(Equipment):
     modulation: PropertyReference
     onOffCommand: PropertyReference
 
-    def __init__(self, config: Optional[Dict] = None, **kwargs):
+    def __init__(self, config: dict | None = None, **kwargs):
         _config = template_update(electricalheating_template, config)
         kwargs = {**_config.pop("params", {}), **kwargs}
         super().__init__(**{**_config, **kwargs})
@@ -167,7 +166,7 @@ class ElectricalHeatingCoil(Equipment):
 
 
 # Electrical Coil
-electricalradiant_template: Dict[str, Dict] = {
+electricalradiant_template: dict[str, dict] = {
     "cp": {"electricalInlet": Electricity_240VLL_1Ph_60HzInletConnectionPoint},
     "properties": {
         ("amps", Amps): {},
@@ -181,7 +180,7 @@ class ElectricalRadiantHeatingCoil(Equipment):
     _class_iri = S223.RadiantHeater
     airContact: AirBidirectionalConnectionPoint
 
-    def __init__(self, config: Optional[Dict] = None, **kwargs):
+    def __init__(self, config: dict | None = None, **kwargs):
         _config = template_update(electricalradiant_template, config)
         kwargs = {**_config.pop("params", {}), **kwargs}
         super().__init__(**{**_config, **kwargs})
@@ -189,7 +188,7 @@ class ElectricalRadiantHeatingCoil(Equipment):
 
 
 # Water heaters
-element_template: Dict[str, Dict] = {
+element_template: dict[str, dict] = {
     "cp": {"electricalInlet": Electricity_240VLL_1Ph_60HzInletConnectionPoint},
     "properties": {
         ("amps", Amps): {},
@@ -204,7 +203,7 @@ class ImmersedResistanceHeaterElement(Equipment):
     _class_iri = S223.ElectricResistanceElement
     fluidContact: WaterBidirectionalConnectionPoint
 
-    def __init__(self, config: Optional[Dict] = None, **kwargs):
+    def __init__(self, config: dict | None = None, **kwargs):
         _config = template_update(element_template, config)
         kwargs = {**_config.pop("params", {}), **kwargs}
         super().__init__(**{**_config, **kwargs})

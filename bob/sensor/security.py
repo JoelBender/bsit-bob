@@ -15,11 +15,11 @@ class IntrusionSensor(Sensor):
     _class_iri = S223.Sensor
     observes: PropertyReference  # OnOffStatus
 
-    def __init__(self, config: Dict[str, Any] = {}, **kwargs: Any) -> None:
+    def __init__(self, config: dict[str, Any] = {}, **kwargs: Any) -> None:
         _sensor_kwargs, _property_kwargs = split_kwargs(kwargs)
 
         observed_prop = OnOffStatus(
-            label="observed_property", **_property_kwargs
+            label="observed_property", **_property_kwargs,
         )
 
         _sensor_kwargs["observed_property"] = observed_prop

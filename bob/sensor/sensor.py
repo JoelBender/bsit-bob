@@ -69,8 +69,7 @@ def define_sensors(config):
 
 
 class Sensor(_Sensor):
-    """
-    An equipment meant to observe a property
+    """An equipment meant to observe a property
     """
 
     _class_iri: URIRef = S223.Sensor
@@ -81,7 +80,7 @@ class Sensor(_Sensor):
     hasObservationLocation: LocationReference
     observes: PropertyReference
 
-    def __init__(self, config: Dict[str, Any] = {}, **kwargs: Any) -> None:
+    def __init__(self, config: dict[str, Any] = {}, **kwargs: Any) -> None:
         _sensor_kwargs, _property_kwargs = split_kwargs(kwargs)
         _observed_prop = _sensor_kwargs.pop("observed_property", None)
         super().__init__(config=config, **_sensor_kwargs)
@@ -92,8 +91,7 @@ class Sensor(_Sensor):
 
     @property
     def observedProperty(self):
-        """
-        When accessing the property, it feels ackward to use sensor.observes
+        """When accessing the property, it feels ackward to use sensor.observes
         The terms fit for assignation...but for retrieval, feel unnatural
         So let's try this shortcut
         """
@@ -105,7 +103,7 @@ class Sensor(_Sensor):
 
         # link the two together
         self._data_graph.add(
-            (self._node_iri, S223.hasObservationLocation, node._node_iri)
+            (self._node_iri, S223.hasObservationLocation, node._node_iri),
         )
         if INCLUDE_INVERSE:
             node.isObservationLocationOf = self  # type: ignore[attr-defined]

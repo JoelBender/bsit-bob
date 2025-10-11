@@ -11,13 +11,15 @@ from ..core import (
 )
 from ..enum import (
     Light,
-    Motion as MotionEnum,
     NormalAlarmEnum,
     Occupancy,
     OnOff,
     Position,
     Smoke,
     YesNoEnum,
+)
+from ..enum import (
+    Motion as MotionEnum,
 )
 
 _namespace = BOB

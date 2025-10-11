@@ -1,5 +1,4 @@
-"""
-Generate doc/equipment.md listing all concrete Equipment classes.
+"""Generate doc/equipment.md listing all concrete Equipment classes.
 
 Usage:
   python tools/gen_equipment_docs.py
@@ -19,8 +18,9 @@ import argparse
 import importlib
 import inspect
 import pkgutil
+from collections.abc import Iterable
 from pathlib import Path
-from typing import Iterable, Optional
+from typing import Optional
 
 
 def iter_equipment_modules() -> Iterable[str]:
@@ -47,9 +47,8 @@ def is_equipment_class(cls, equipment_base) -> bool:
     return True
 
 
-def extract_s223_term(cls) -> Optional[str]:
-    """
-    Attempt to extract the local s223 term name from a _class_iri / class_iri attribute.
+def extract_s223_term(cls) -> str | None:
+    """Attempt to extract the local s223 term name from a _class_iri / class_iri attribute.
     Accepts rdflib URIRef or NamespaceTerm; falls back to string parsing.
     """
     for attr in ("_class_iri", "class_iri", "CLASS_IRI"):
@@ -72,7 +71,7 @@ def extract_s223_term(cls) -> Optional[str]:
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument(
-        "--module-filter", help="Comma separated substrings to include modules"
+        "--module-filter", help="Comma separated substrings to include modules",
     )
     args = ap.parse_args()
     module_filters = []
@@ -122,10 +121,10 @@ def main():
     lines.append("# Built-in Equipment Classes")
     lines.append("")
     lines.append(
-        "Auto-generated list of concrete s223:Equipment subclasses (excluding package __init__ and private/abstract classes)."
+        "Auto-generated list of concrete s223:Equipment subclasses (excluding package __init__ and private/abstract classes).",
     )
     lines.append(
-        "Each entry links to its ASHRAE 223P term on explore.open223.info when a _class_iri was found."
+        "Each entry links to its ASHRAE 223P term on explore.open223.info when a _class_iri was found.",
     )
     lines.append("")
     current_mod = None
@@ -142,7 +141,7 @@ def main():
             lines.append(f"- Summary: {docline}")
         if s223_term:
             lines.append(
-                f"- s223 term: `{s223_term}`  (<https://explore.open223.info/s223/{s223_term}>)"
+                f"- s223 term: `{s223_term}`  (<https://explore.open223.info/s223/{s223_term}>)",
             )
         else:
             lines.append("- s223 term: (not declared via _class_iri)")

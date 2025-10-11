@@ -1,5 +1,4 @@
-"""
-Performs validation of the model/schema and data files in the 223P repository
+"""Performs validation of the model/schema and data files in the 223P repository
 """
 
 import argparse
@@ -35,9 +34,8 @@ def copy_graph(g: Graph) -> Graph:
     return c
 
 
-def test_data_validation(data_file_name: str, schema_file_name: Optional[str] = None):
-    """
-    Validates a graphs in the /data/ folder against the data and model shapes
+def test_data_validation(data_file_name: str, schema_file_name: str | None = None):
+    """Validates a graphs in the /data/ folder against the data and model shapes
 
     WARNS but does not fail the test on a validation error for a shape with sh:Info severity
     """
@@ -200,18 +198,18 @@ def test_data_validation(data_file_name: str, schema_file_name: Optional[str] = 
         # check if there are any sh:resultSeverity sh:Violation predicate/object pairs
         has_violation = len(
             list(
-                report_graph.subjects(predicate=SH.resultSeverity, object=SH.Violation)
-            )
+                report_graph.subjects(predicate=SH.resultSeverity, object=SH.Violation),
+            ),
         )
         conforms = len(
-            list(report_graph.subjects(predicate=SH.conforms, object=Literal(True)))
+            list(report_graph.subjects(predicate=SH.conforms, object=Literal(True))),
         )
         assert (not has_violation) or conforms
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description="Validate a graph against the data and model shapes"
+        description="Validate a graph against the data and model shapes",
     )
 
     # turtle files to load

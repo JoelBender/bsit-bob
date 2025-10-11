@@ -3,7 +3,6 @@ from typing import Dict, Optional
 
 from rdflib import URIRef
 
-
 from ...connections.air import AirInletConnectionPoint, AirOutletConnectionPoint
 from ...connections.electricity import (
     ElectricalInletConnectionPoint,
@@ -26,8 +25,7 @@ fan_template = {"cp": {"electricalInlet": ElectricalInletConnectionPoint}}
 
 
 class Fan(Equipment):
-    """
-    A fan is composed of a blower and an electrical motor
+    """A fan is composed of a blower and an electrical motor
     """
 
     _class_iri: URIRef = S223.Fan
@@ -35,7 +33,7 @@ class Fan(Equipment):
     airInlet: AirInletConnectionPoint
     airOutlet: AirOutletConnectionPoint
 
-    def __init__(self, config: Optional[Dict] = None, **kwargs):
+    def __init__(self, config: dict | None = None, **kwargs):
         _config = template_update(fan_template, config=config)
         kwargs = {**_config.pop("params", {}), **kwargs}
         _log.info(f"Fan.__init__ {_config} {kwargs}")

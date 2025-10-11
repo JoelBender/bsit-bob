@@ -2,8 +2,6 @@ from typing import Dict, Optional
 
 from rdflib import URIRef
 
-from ...functions import Function
-
 from ...core import (
     P223,
     S223,
@@ -11,7 +9,7 @@ from ...core import (
     data_graph,
     logging,
 )
-
+from ...functions import Function
 from ...template import template_update
 
 # logging
@@ -22,20 +20,19 @@ _namespace = P223
 
 # empty, because other equipments can be defined as controller
 # and I don't want them to inherit from example properties
-controller_template: Dict[str, Dict[str, Dict]] = {
+controller_template: dict[str, dict[str, dict]] = {
     "cp": {},
     "properties": {},
 }
 
 class Controller(Equipment):
-    """
-    A controller executes function blocks and connect to other Equipment
+    """A controller executes function blocks and connect to other Equipment
     through different connection points (AI, AO, BI, BO)
     """
 
     _class_iri: URIRef = S223.Controller
 
-    def __init__(self, config: Optional[Dict] = None, **kwargs):
+    def __init__(self, config: dict | None = None, **kwargs):
         _config = template_update(controller_template, config=config)
         kwargs = {**_config.pop("params", {}), **kwargs}
         _log.debug(f"Controller.__init__ {_config} {kwargs}")

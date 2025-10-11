@@ -1,9 +1,9 @@
 from pathlib import Path
 
-from .header import ttl_test_header
-
-from bob.core import Equipment, Junction, bind_model_namespace, dump
 from bob.connections.air import AirInletConnectionPoint
+from bob.core import Equipment, Junction, bind_model_namespace, dump
+
+from .header import ttl_test_header
 
 model_name = Path(__file__).stem
 _namespace = bind_model_namespace("ex", f"urn:ex/{model_name}/")
@@ -14,8 +14,7 @@ class Thing(Equipment):
 
 
 def test_junction_mapsTo(bob_fixture):
-    """
-    Make a thing that has two component things that have their inputs coming
+    """Make a thing that has two component things that have their inputs coming
     from a junction, the junction is mapped to the container input.
     """
     x = Thing(label="x")

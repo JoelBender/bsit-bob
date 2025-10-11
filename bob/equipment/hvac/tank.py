@@ -23,7 +23,7 @@ class Tank(Equipment):
     fluidTemperature: Temperature
     internalPressure: Pressure
 
-    def __init__(self, config: Optional[Dict] = None, **kwargs):
+    def __init__(self, config: dict | None = None, **kwargs):
         _config = template_update({}, config=config)
         kwargs = {**_config.pop("params", {}), **kwargs}
         super().__init__(**_config, **kwargs)

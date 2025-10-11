@@ -22,7 +22,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", type=Path, required=True, help="Output TTL path")
     args = ap.parse_args()
-    
+
     example_code()
 
     ttl_path = args.out

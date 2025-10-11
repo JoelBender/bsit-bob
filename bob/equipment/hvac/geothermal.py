@@ -30,7 +30,7 @@ class GeothermalWell(Equipment):
     waterInlet: WaterInletConnectionPoint
     waterOutlet: WaterOutletConnectionPoint
 
-    def __init__(self, config: Optional[Dict] = None, **kwargs):
+    def __init__(self, config: dict | None = None, **kwargs):
         _config = template_update({}, config=config)
         kwargs = {**_config.pop("params", {}), **kwargs}
         _relations = _config.pop("relations", [])

@@ -9,6 +9,7 @@ from ..core import (
     QuantifiableObservableProperty,
 )
 from ..enum import Air
+
 _namespace = BOB
 
 # all = [HP, Pressure, DifferentialStaticPressure]
@@ -37,5 +38,5 @@ class DifferentialStaticPressure(QuantifiableObservableProperty):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self._data_graph.add(
-            (self._node_iri, QUDT.isDeltaQuantity, Literal(True, datatype=XSD.boolean))
+            (self._node_iri, QUDT.isDeltaQuantity, Literal(True, datatype=XSD.boolean)),
         )

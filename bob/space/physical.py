@@ -1,5 +1,4 @@
-"""
-Physical Space subclasses, see also Real Estate Core.
+"""Physical Space subclasses, see also Real Estate Core.
 """
 
 from ..core import BOB, PhysicalSpace

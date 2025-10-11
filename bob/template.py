@@ -5,8 +5,7 @@ import typing as t
 import warnings
 from pathlib import Path
 
-
-from .core import Connection, ConnectionPoint, Equipment, System, BOB
+from .core import BOB, Connection, ConnectionPoint, Equipment, System
 from .introspection import get_class_from_name
 
 # Optional rich import
@@ -43,12 +42,11 @@ def print_console(msg, style=None, panel=False):
 
 
 def template_update(
-    base: t.Dict = {},
-    config: t.Optional[t.Dict] = None,
-    bases: t.Optional[t.List] = None,
+    base: dict = {},
+    config: dict | None = None,
+    bases: list | None = None,
 ):
-    """
-    This utility allows to preserve module templates from
+    """This utility allows to preserve module templates from
     undesired modification during creation of Equipment.
 
     Usage :
@@ -75,19 +73,18 @@ def template_update(
             merge_dict(_d1, config)
         return _d1
 
-    else:
-        _d = copy.deepcopy(base)
-        if config:
-            merge_dict(_d, config)
-        return _d
+    _d = copy.deepcopy(base)
+    if config:
+        merge_dict(_d, config)
+    return _d
 
 
-def get_instance(container: t.Union[Equipment, System], blob: str):
+def get_instance(container: Equipment | System, blob: str):
     # print('Looking for : ', container, blob)
     if "[" in blob:
         matches = re.findall(r'\[["\'](.*?)["\']\]', blob)  # sub-equipment
         property_match = re.search(
-            r"\.(?P<property>\w+)$", blob
+            r"\.(?P<property>\w+)$", blob,
         )  # property => .something
         thing = container[matches.pop(0)]  # type: ignore
 
@@ -107,17 +104,16 @@ def get_instance(container: t.Union[Equipment, System], blob: str):
             return (thing, property_name)  # in case thing_property is None
         # print(thing, None)
         return (thing, None)
-    else:
-        _key = blob.split(".")[1]
-        # try:
-        thing = getattr(container, _key)
-        # except AttributeError:
-        #    thing = container[_key]
-        # print(thing, _key)
-        return (thing, _key)  # in case thing is None
+    _key = blob.split(".")[1]
+    # try:
+    thing = getattr(container, _key)
+    # except AttributeError:
+    #    thing = container[_key]
+    # print(thing, _key)
+    return (thing, _key)  # in case thing is None
 
 
-def configure_boundaries(container: System, boundaries: t.List[str]):
+def configure_boundaries(container: System, boundaries: list[str]):
     if len(boundaries) > 0:
         print_console("[green]Configuring boundaries[/green]")
     for _target in boundaries:
@@ -138,7 +134,7 @@ def configure_boundaries(container: System, boundaries: t.List[str]):
 
 
 def configure_relations(
-    container: t.Union[Equipment, System], relations: t.List[t.Tuple[str, str, str]]
+    container: Equipment | System, relations: list[tuple[str, str, str]],
 ):
     if len(relations) > 0:
         print_console("[green]Configuring relations[/green]")
@@ -158,7 +154,7 @@ def configure_relations(
                 source = source_element[source_key]
             except KeyError:
                 raise AttributeError(
-                    f"Source {source_key} not found in {source_element}"
+                    f"Source {source_key} not found in {source_element}",
                 )
 
         if target_key is None:
@@ -166,19 +162,17 @@ def configure_relations(
         else:
             target = getattr(target_element, target_key, None)
 
-        if target is None and isinstance(target_element, Connection):
-            target = target_element
-        elif target is None and isinstance(target_element, ConnectionPoint):
+        if (target is None and isinstance(target_element, Connection)) or (target is None and isinstance(target_element, ConnectionPoint)):
             target = target_element
         elif target is None:
             print_console(
-                f"[yellow]Target {target_key} not found in {target_element}[/yellow]"
+                f"[yellow]Target {target_key} not found in {target_element}[/yellow]",
             )
             try:
                 target = target_element[target_key]
             except KeyError:
                 raise AttributeError(
-                    f"Target {target_key} not found in {target_element}"
+                    f"Target {target_key} not found in {target_element}",
                 )
 
         print_console(f"{source} [green]{operator}[/green] {target}")
@@ -222,7 +216,7 @@ def configure_relations(
 
 
 class SystemFromTemplate(System):
-    def __init__(self, config: t.Dict = {}, **kwargs):
+    def __init__(self, config: dict = {}, **kwargs):
         _label = kwargs.get("label", config.get("params", {}).get("label"))
         print_console(
             f"[bold blue]Creating System {_label}[/bold blue]",
@@ -254,7 +248,7 @@ class SystemFromTemplate(System):
         self.__class__ = DynamicClass
 
         print_console(
-            f"Instanciating as {[klass.__name__ for klass in required_class]}"
+            f"Instanciating as {[klass.__name__ for klass in required_class]}",
         )
         DynamicClass.__init__(self, _config, **kwargs)  # type: ignore
         print_console("[green]✔ System created.[/green]")
@@ -263,7 +257,7 @@ class SystemFromTemplate(System):
 
 
 class EquipmentFromTemplate(Equipment):
-    def __init__(self, config: t.Dict = {}, **kwargs):
+    def __init__(self, config: dict = {}, **kwargs):
         print_console(
             f"[bold blue]Creating Equipment {config['params']['label']}[/bold blue]",
             panel=True,
@@ -290,29 +284,28 @@ class EquipmentFromTemplate(Equipment):
         )
         self.__class__ = DynamicClass
         print_console(
-            f"Instanciating as {[klass.__name__ for klass in required_class]}"
+            f"Instanciating as {[klass.__name__ for klass in required_class]}",
         )
         DynamicClass.__init__(self, _config, **kwargs)  # type: ignore
         print_console("[green]✔ Equipment created.[/green]")
         configure_relations(self, _relations)
 
 
-def config_from_yaml(yaml_file: t.Union[str, Path, t.Dict] = ""):
+def config_from_yaml(yaml_file: str | Path | dict = ""):
     if _YAML_AVAILABLE is False:
         raise RuntimeError(
-            "PyYAML is not installed. Install with `pip install .[yaml]` or `pip install bob[yaml]`."
+            "PyYAML is not installed. Install with `pip install .[yaml]` or `pip install bob[yaml]`.",
         )
     if yaml_file == "":
         raise FileNotFoundError("No YAML file provided")
+    if isinstance(yaml_file, dict):
+        yaml_content = yaml_file
     else:
-        if isinstance(yaml_file, dict):
-            yaml_content = yaml_file
-        else:
-            yaml_file = Path(yaml_file)
-            if not yaml_file.is_file():
-                raise FileNotFoundError(f"YAML file {yaml_file} not found")
-            with open(yaml_file, "r") as file:
-                yaml_content = yaml.safe_load(file)
+        yaml_file = Path(yaml_file)
+        if not yaml_file.is_file():
+            raise FileNotFoundError(f"YAML file {yaml_file} not found")
+        with open(yaml_file) as file:
+            yaml_content = yaml.safe_load(file)
     # those values will be taken as-is
     _text_values = [
         "label",
@@ -359,22 +352,22 @@ def config_from_yaml(yaml_file: t.Union[str, Path, t.Dict] = ""):
                 package = value.pop("package", None)
                 if package is None:
                     raise KeyError(
-                        f"params_{class_name} must have a 'package' key to be imported"
+                        f"params_{class_name} must have a 'package' key to be imported",
                     )
                 try:
                     module = importlib.import_module(package)
                     getattr(module, class_name)
                 except ImportError as e:
                     raise ImportError(
-                        f"Could not import package '{package}' for params_{class_name}: {e}, parameters not supported."
+                        f"Could not import package '{package}' for params_{class_name}: {e}, parameters not supported.",
                     )
                 _dict["params"].update(value)  # type: ignore
     except ImportError as e:
         warnings.warn(
-            f"Could not import parameters from YAML file: {e}. Parameters will not be applied."
+            f"Could not import parameters from YAML file: {e}. Parameters will not be applied.",
         )
 
-    def define_entities(entities: t.Optional[dict] = None, entities_category: t.Optional[str] = None):
+    def define_entities(entities: dict | None = None, entities_category: str | None = None):
         if entities is None:
             return
         _dict[entities_category] = {}  # type: ignore
@@ -399,7 +392,7 @@ def config_from_yaml(yaml_file: t.Union[str, Path, t.Dict] = ""):
                     entity_class = get_class_from_name(entity_params.pop("class"))
                 except KeyError:
                     raise KeyError(
-                        f"Entity {entity_name} in {entities_category} does not have a 'class' key"
+                        f"Entity {entity_name} in {entities_category} does not have a 'class' key",
                     )
 
                 # If no exception, we can define the entity
@@ -433,11 +426,11 @@ def config_from_yaml(yaml_file: t.Union[str, Path, t.Dict] = ""):
     if from_catalog is not None:
         # console.print("[green]Importing entities from catalog[/green]")
         catalog_module, catalog_lookup_function = yaml_content.get(
-            "catalog_source", ""
+            "catalog_source", "",
         ).split("|")
         importlib.import_module(catalog_module)
         get_template = getattr(
-            importlib.import_module(catalog_module), catalog_lookup_function
+            importlib.import_module(catalog_module), catalog_lookup_function,
         )
 
         for entity_name, entity_params in from_catalog.items():
@@ -453,9 +446,9 @@ def config_from_yaml(yaml_file: t.Union[str, Path, t.Dict] = ""):
                 # maybe it's a file
                 if not Path(_template).is_file():
                     raise FileNotFoundError(
-                        f"Template {entity_name} not found in catalog {catalog_module}"
+                        f"Template {entity_name} not found in catalog {catalog_module}",
                     )
-                elif Path(_template).is_file():
+                if Path(_template).is_file():
                     with open(Path(_template)) as _template_file:
                         template = yaml.safe_load(_template_file)
                 else:
@@ -471,16 +464,16 @@ def config_from_yaml(yaml_file: t.Union[str, Path, t.Dict] = ""):
 
                 if "System" in _template_config["template_class"]:
                     _dict["equipment"][(entity_label, SystemFromTemplate)] = {  # type: ignore
-                        "config": _template_config
+                        "config": _template_config,
                     }
                 else:
                     _dict["equipment"][(entity_label, EquipmentFromTemplate)] = {  # type: ignore
-                        "config": _template_config
+                        "config": _template_config,
                     }
 
             except KeyError:
                 raise KeyError(
-                    f"Entity {entity_name} in equipment_from_catalog does not have a 'template' key"
+                    f"Entity {entity_name} in equipment_from_catalog does not have a 'template' key",
                 )
     define_entities(bacnet, "bacnet")
     define_entities(functions, "functions")
@@ -515,8 +508,7 @@ def config_from_yaml(yaml_file: t.Union[str, Path, t.Dict] = ""):
         # print(parse_sub(_a), operator, parse_sub(_b))
 
     def add_reference_to_relation_dict(line, operator, separator=","):
-        """
-        References are using properties which are accessed using the square brackets
+        """References are using properties which are accessed using the square brackets
         instead of the dot notation.
         In the template, we are using " / " to separate the property name
         from the object name.
@@ -526,7 +518,7 @@ def config_from_yaml(yaml_file: t.Union[str, Path, t.Dict] = ""):
         line = line.replace("(", "").replace(")", "").strip()
         _a, _b = line.split(separator)
         _dict["relations"].append(
-            (parse_sub_properties(_a), operator, parse_sub_properties(_b))
+            (parse_sub_properties(_a), operator, parse_sub_properties(_b)),
         )
         # print(parse_sub(_a), operator, parse_sub(_b))
 

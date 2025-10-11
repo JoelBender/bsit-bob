@@ -1,6 +1,5 @@
 from typing import Any, Dict
 
-
 from ..core import (
     BOB,
     S223,
@@ -19,7 +18,7 @@ class VoltageSensor(Sensor):
     hasMinRange: PropertyReference  # type: ignore[assignment]
     hasMaxRange: PropertyReference  # type: ignore[assignment]
 
-    def __init__(self, config: Dict[str, Any] = {}, **kwargs: Any) -> None:
+    def __init__(self, config: dict[str, Any] = {}, **kwargs: Any) -> None:
         _sensor_kwargs, _property_kwargs = split_kwargs(kwargs)
 
         if "ofMedium" not in _property_kwargs:
@@ -43,7 +42,7 @@ class CurrentSensor(Sensor):
     hasMinRange: PropertyReference  # type: ignore[assignment]
     hasMaxRange: PropertyReference  # type: ignore[assignment]
 
-    def __init__(self, config: Dict[str, Any] = {}, **kwargs: Any) -> None:
+    def __init__(self, config: dict[str, Any] = {}, **kwargs: Any) -> None:
         _sensor_kwargs, _property_kwargs = split_kwargs(kwargs)
 
         if "ofMedium" not in _property_kwargs:
@@ -61,7 +60,7 @@ class DryContactSensor(Sensor):
     _class_iri = S223.Sensor
     observes: PropertyReference
 
-    def __init__(self, config: Dict[str, Any] = {}, **kwargs: Any) -> None:
+    def __init__(self, config: dict[str, Any] = {}, **kwargs: Any) -> None:
         _sensor_kwargs, _property_kwargs = split_kwargs(kwargs)
 
         if "ofMedium" not in _property_kwargs:

@@ -1,18 +1,19 @@
 from typing import Any, TypeAlias
+
 from .core import Constituent as _Constituent
 
 # Define the constituent type with all dynamic attributes
 class ConstituentType(_Constituent):
     def __getattr__(self, name: str) -> Any: ...  # Catch-all for dynamic attributes
-    
+
     # Water and vapor
     H2O: Any
     Vapor_H2O: Any
-    
+
     # Oils and particles
     Oil: Any
     Smoke: Any
-    
+
     # Gases
     Ar: Any  # Argon
     CO: Any  # Carbon monoxide
@@ -27,13 +28,13 @@ class ConstituentType(_Constituent):
     N: Any  # Nitrogen
     VOC: Any  # Volatile Organic Compounds
     Radon: Any
-    
+
     # Refrigerants
     R22: Any
     R134A: Any
     R410A: Any
     R32: Any
-    
+
     # Other
     Glycol: Any
 
@@ -49,7 +50,7 @@ class ElectricityType(_Constituent):
     # Base types
     AC: Any
     DC: Any
-    
+
     # AC voltage types - all dynamically created
     AC10000VLL_1Ph_60Hz: Any
     AC10000VLL_3Ph_60Hz: Any
@@ -133,7 +134,7 @@ class ElectricityType(_Constituent):
     AC6600VLL_3810VLN_1Ph_60Hz: Any
     AC6600VLL_3810VLN_3Ph_60Hz: Any
     AC6600VLL_3Ph_60Hz: Any
-    
+
     # DC voltage types
     DC12V: Any
     DC24V: Any
@@ -141,7 +142,7 @@ class ElectricityType(_Constituent):
     DC48V: Any
     DC5V: Any
     DC6V: Any
-    
+
     # Other electrical types
     Earth: Any
     Neutral: Any
@@ -150,7 +151,7 @@ class ElectricityType(_Constituent):
 
 # Instance declarations for mypy - use Any to bypass type checking for dynamic attributes
 Constituent: Any
-EM: Any  
+EM: Any
 Electricity: Any
 Numerical: Any
 Particulate: Any
@@ -183,33 +184,35 @@ RF: Any
 Signal: Any
 
 # Additional enum classes that are imported by various modules
-Motion: TypeAlias = Any
-NormalAlarmEnum: TypeAlias = Any
-Occupancy: TypeAlias = Any
-OnOff: TypeAlias = Any
-Position: TypeAlias = Any
-YesNoEnum: TypeAlias = Any
-Air: TypeAlias = Any
-Medium: TypeAlias = Any  # Medium type imported from core
-Fluid: TypeAlias = Any
-GlycolSolution_15Percent: TypeAlias = Any
-GlycolSolution_30Percent: TypeAlias = Any
-Water: TypeAlias = Any
-NaturalGas: TypeAlias = Any
-Refrigerant: TypeAlias = Any
-ProtocolEnum: TypeAlias = Any
-PowerAndSignal: TypeAlias = Any
-AnalogSignalTypeEnum: TypeAlias = Any
-BinarySignalTypeEnum: TypeAlias = Any
-ModulatedSignal: TypeAlias = Any
-ElectricalPhaseIdentifier: TypeAlias = Any
+type Motion = Any
+type NormalAlarmEnum = Any
+type Occupancy = Any
+type OnOff = Any
+type Position = Any
+type YesNoEnum = Any
+type Air = Any
+type Medium = Any  # Medium type imported from core
+type Fluid = Any
+type GlycolSolution_15Percent = Any
+type GlycolSolution_30Percent = Any
+type Water = Any
+type NaturalGas = Any
+type Refrigerant = Any
+type ProtocolEnum = Any
+type PowerAndSignal = Any
+type AnalogSignalTypeEnum = Any
+type BinarySignalTypeEnum = Any
+type ModulatedSignal = Any
+type ElectricalPhaseIdentifier = Any
 
 # Additional enumeration classes
 class Role:
     """Role enumeration for equipment and systems"""
+
     def __getattr__(self, name: str) -> Any: ...
 
 class Light:
     """Light enumeration"""
+
     Visible: Any
     def __getattr__(self, name: str) -> Any: ...

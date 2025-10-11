@@ -1,11 +1,5 @@
 from typing import Dict, Optional
 
-from ...producer.causality import Causality
-from ...properties.electricity import Amps
-from ...properties.ratio import PercentCommand
-from ...properties.states import OnOffCommand, OnOffStatus
-
-from ...enum import Electricity
 from ...connections import electricity as elec_cnx
 from ...connections.controlsignal import OnOffSignalOutletConnectionPoint
 from ...core import (
@@ -13,6 +7,11 @@ from ...core import (
     P223,
     Equipment,
 )
+from ...enum import Electricity
+from ...producer.causality import Causality
+from ...properties.electricity import Amps
+from ...properties.ratio import PercentCommand
+from ...properties.states import OnOffCommand, OnOffStatus
 from ...properties.time import Hour
 from ...sensor.electricity import CurrentSensor
 from ...template import template_update
@@ -40,7 +39,7 @@ class Switch(Equipment):
     onOffStatus: OnOffStatus
     onOffCommand: OnOffCommand
 
-    def __init__(self, config: Optional[Dict] = None, **kwargs):
+    def __init__(self, config: dict | None = None, **kwargs):
         _config = template_update(switch_template, config)
         kwargs = {**_config.pop("params", {}), **kwargs}
 
@@ -48,8 +47,7 @@ class Switch(Equipment):
 
 
 class SinglePoleSwitch(Switch):
-    """
-    One inlet and one outlet
+    """One inlet and one outlet
     hasMaxRange = current max of switch
     A rule could check inlet and outlet are same class
     """
@@ -69,7 +67,7 @@ class SinglePoleSwitch(Switch):
         ),
     }
 
-    def __init__(self, config: Optional[Dict] = None, **kwargs):
+    def __init__(self, config: dict | None = None, **kwargs):
         _config = template_update(switch_template, config)
         if config:
             _config.update(config)
@@ -90,8 +88,7 @@ current_relay_template = {
 
 
 class CurrentRelay(Equipment):
-    """
-    Current detection Equipment that gives a OnOff status by the action
+    """Current detection Equipment that gives a OnOff status by the action
     of a dry contact when electricity is detected.
 
     This serves as motor status sensor
@@ -100,7 +97,7 @@ class CurrentRelay(Equipment):
 
     _class_iri = P223.CurrentRelay
 
-    def __init__(self, config: Optional[Dict] = None, **kwargs):
+    def __init__(self, config: dict | None = None, **kwargs):
         _config = template_update(current_relay_template, config)
         kwargs = {**_config.pop("params", {}), **kwargs}
 
@@ -125,8 +122,7 @@ class CurrentRelay(Equipment):
 
 
 class TimerSwitch(SinglePoleSwitch):
-    """
-    Manuel switch with integrated timer
+    """Manuel switch with integrated timer
     Typically used for exhaust fan in bathrooms for example
     """
 
@@ -134,7 +130,7 @@ class TimerSwitch(SinglePoleSwitch):
     onOffStatus: OnOffStatus
     onOffCommand: OnOffCommand
 
-    def __init__(self, config: Optional[Dict] = None, **kwargs):
+    def __init__(self, config: dict | None = None, **kwargs):
         _config = template_update(current_relay_template, config)
         kwargs = {**_config.pop("params", {}), **kwargs}
         _delay = kwargs.pop("delay") if "delay" in kwargs else None
@@ -145,18 +141,17 @@ class TimerSwitch(SinglePoleSwitch):
 
 
 class DimmableSwitch(SinglePoleSwitch):
-    """
-    Manuel dimmable switch
+    """Manuel dimmable switch
 
     """
 
-    def __init__(self, config: Optional[Dict] = None, **kwargs):
+    def __init__(self, config: dict | None = None, **kwargs):
         _config = template_update(current_relay_template, config)
         kwargs = {**_config.pop("params", {}), **kwargs}
         _dimmer_command = (
             kwargs.pop("dimmer_command") if "dimmer_command" in kwargs else 0
         )
         _config["properties"][("dimmer_command", PercentCommand)] = {
-            "hasValue": _dimmer_command
+            "hasValue": _dimmer_command,
         }
         super().__init__(**{**_config, **kwargs})

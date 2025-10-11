@@ -18,7 +18,7 @@ class ParticulateSensor(Sensor):
     _class_iri = S223.ParticulateSensor
     observes: PropertyReference  # ParticulateCount
 
-    def __init__(self, config: Dict[str, Any] = {}, **kwargs: Any) -> None:
+    def __init__(self, config: dict[str, Any] = {}, **kwargs: Any) -> None:
         _sensor_kwargs, _property_kwargs = split_kwargs(kwargs)
 
         observed_prop = ParticulateCount(
@@ -38,7 +38,7 @@ class UltraFineParticulateSensor(ParticulateSensor):
     comment = "Ultra Fine Particulate Sensor"
 
     # measuresSubstance: Substance = PM1_0
-    def __init__(self, config: Dict[str, Any] = {}, **kwargs):
+    def __init__(self, config: dict[str, Any] = {}, **kwargs):
         super().__init__(ofSubstance=Particulate.PM1_0, config=config, **kwargs)
 
 
@@ -48,7 +48,7 @@ class FineParticulateSensor(ParticulateSensor):
     comment = "Fine Particulate Sensor"
 
     # measuresSubstance: Substance = PM2_5
-    def __init__(self, config: Dict[str, Any] = {}, **kwargs):
+    def __init__(self, config: dict[str, Any] = {}, **kwargs):
         super().__init__(ofSubstance=Particulate.PM2_5, config=config, **kwargs)
 
 
@@ -58,5 +58,5 @@ class CoarseParticulateSensor(ParticulateSensor):
     comment = "Coarse Particulate Sensor"
 
     # measuresSubstance: Substance = PM10_0
-    def __init__(self, config: Dict[str, Any] = {}, **kwargs):
+    def __init__(self, config: dict[str, Any] = {}, **kwargs):
         super().__init__(ofSubstance=Particulate.PM10_0, config=config, **kwargs)

@@ -1,7 +1,5 @@
 from pathlib import Path
 
-from .header import ttl_test_header
-
 from bob import core
 from bob.connections.air import AirInletConnectionPoint, AirOutletConnectionPoint
 from bob.core import (
@@ -13,6 +11,8 @@ from bob.core import (
     dump,
 )
 from bob.enum import Air
+
+from .header import ttl_test_header
 
 model_name = Path(__file__).stem
 _namespace = bind_model_namespace("ex", f"urn:ex/{model_name}/")

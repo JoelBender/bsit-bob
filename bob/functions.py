@@ -1,12 +1,11 @@
-"""
-Function Blocks
+"""Function Blocks
 """
 
 from __future__ import annotations
 
 import logging
 from datetime import datetime
-from typing import Any, Dict, Union, Optional
+from typing import Any, Dict, Optional, Union
 
 from rdflib import URIRef  # type: ignore
 
@@ -15,8 +14,8 @@ from .core import (
     S223,
     Property,
     PropertyReference,
-    data_graph,
     _Function,
+    data_graph,
 )
 from .template import template_update
 
@@ -80,8 +79,7 @@ class G36DigitalOutput(FunctionOutput):
 
 
 class Function(_Function):
-    """
-    Function blocks are black boxes representing a sequence or an
+    """Function blocks are black boxes representing a sequence or an
     algorithm. Function blocks use inputs and produce outputs that are
     related to observable and actuatable properties.
     Functions are executed by a s223:Contoller.
@@ -94,12 +92,12 @@ class Function(_Function):
 
     _class_iri: URIRef = S223.Function
 
-    def __init__(self, config: Optional[Dict] = None, **kwargs):
+    def __init__(self, config: dict | None = None, **kwargs):
         _config = template_update({}, config=config)
         kwargs = {**_config.pop("params", {}), **kwargs}
         _log.debug(f"Function.__init__ {kwargs}")
-        self.inputs: Dict[str, Any] = {}
-        self.outputs: Dict[str, Any] = {}
+        self.inputs: dict[str, Any] = {}
+        self.outputs: dict[str, Any] = {}
 
         if not self._resolved:
             self._resolve_annotations()
@@ -131,10 +129,9 @@ class Function(_Function):
                                 self.hasOutput(prop, attr=attr)
 
     def __setattr__(
-        self, attr: str, value: Any, klass: Optional[Union[FunctionInput, FunctionOutput, type[FunctionInput], type[FunctionOutput]]] = None
+        self, attr: str, value: Any, klass: type[FunctionInput | FunctionOutput] | FunctionInput | FunctionOutput | None = None,
     ) -> None:
-        """
-        .
+        """.
         """
         super().__setattr__(attr, value)
         # A property can be use as a function input on multiple functions, so we
@@ -158,7 +155,7 @@ class Function(_Function):
     def hasInput(
         self,
         prop: Property,
-        attr: Union[str, None] = None, 
+        attr: str | None = None,
         klass: type[FunctionInput] = FunctionInput,
     ) -> FunctionInput:
         label = f"{prop.label}" if attr is None else attr
@@ -169,7 +166,7 @@ class Function(_Function):
     def hasOutput(
         self,
         prop: Property,
-        attr: Union[str, None] = None, 
+        attr: str | None = None,
         klass: type[FunctionOutput] = FunctionOutput,
     ) -> FunctionOutput:
         label = f"{prop.label}" if attr is None else attr

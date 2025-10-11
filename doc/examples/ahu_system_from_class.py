@@ -3,9 +3,9 @@ from pathlib import Path
 
 from header import ttl_test_header
 
-from bob.core import data_graph, dump, System
-from bob.equipment.hvac.fan import Fan
+from bob.core import System, data_graph, dump
 from bob.equipment.hvac.coil import ChilledWaterCoil
+from bob.equipment.hvac.fan import Fan
 
 model_name = Path(__file__).stem
 
@@ -14,7 +14,7 @@ def example_code():
     fan = Fan(label="Fan-2", comment="Fan in AHU created from class")
     chilledWaterCoil = ChilledWaterCoil(label="ChWCoil-2", comment="Chilled Water Coil in AHU created from class")
     fan >> chilledWaterCoil
-    ahu > fan 
+    ahu > fan
     ahu > chilledWaterCoil
 
 

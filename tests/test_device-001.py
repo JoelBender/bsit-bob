@@ -1,20 +1,20 @@
 from pathlib import Path
 
-from .header import ttl_test_header
-
 from bob.core import Equipment, Property, bind_model_namespace, dump
+
+from .header import ttl_test_header
 
 model_name = Path(__file__).stem
 _namespace = bind_model_namespace("ex", f"urn:ex/{model_name}/")
 
 
 def test_create_Equipment(bob_fixture):
-    d1 = Equipment(label="d1") #noqa F841
+    d1 = Equipment(label="d1")
 
     class TestEquipment2(Equipment):
         pass
 
-    d2 = TestEquipment2(label="d2") #noqa F841
+    d2 = TestEquipment2(label="d2")
 
     class TestProperty(Property):
         pass

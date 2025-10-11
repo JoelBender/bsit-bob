@@ -10,7 +10,7 @@ from ...core import (
     Equipment,
 )
 from ...enum import Role
-from ...template import template_update, configure_relations
+from ...template import configure_relations, template_update
 
 _namespace = BOB
 
@@ -22,7 +22,7 @@ class Boiler(Equipment):
     hotWaterLeaving: HotWaterOutletConnectionPoint
     hotWaterEntering: HotWaterInletConnectionPoint
 
-    def __init__(self, config: Optional[Dict] = None, **kwargs):
+    def __init__(self, config: dict | None = None, **kwargs):
         _config = template_update({}, config=config)
         kwargs = {**_config.pop("params", {}), **kwargs}
         _relations = _config.pop("relations", [])

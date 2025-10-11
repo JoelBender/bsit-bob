@@ -1,12 +1,12 @@
 from pathlib import Path
 
-from .header import ttl_test_header
-
 from bob.connections.air import AirConnection
 from bob.core import bind_model_namespace, dump
 from bob.equipment.hvac.fan import Fan
 from bob.space.hvac import HVACSpace, HVACZone
 from bob.space.physical import Building, Floor, MechanicalRoom, Office
+
+from .header import ttl_test_header
 
 model_name = Path(__file__).stem
 _namespace = bind_model_namespace("ex", f"urn:ex/{model_name}/")
@@ -55,7 +55,7 @@ def test_junction_or_connection(bob_fixture):
     supply_plenum >> office2_hvac.ductAirInlet
 
     return_plenum = AirConnection(
-        label="RETURN-AIR", comment="Air returns from zone here"
+        label="RETURN-AIR", comment="Air returns from zone here",
     )
     office1_hvac.ductAirOutlet >> return_plenum
     office2_hvac.ductAirOutlet >> return_plenum

@@ -1,7 +1,6 @@
 import logging
 from typing import Dict, Optional
 
-
 from bob.properties.network import Mbit_per_seconds
 
 from ...connections.electricity import Electricity_120VLN_1Ph_60HzInletConnectionPoint
@@ -33,13 +32,12 @@ internet = EthernetConnection(label="internet")
 
 
 class EthernetFirewall(Equipment):
-    """
-    An Ethernet Firewall with wan and lan ports
+    """An Ethernet Firewall with wan and lan ports
     """
 
     _class_iri = P223.EthernetFirewall
 
-    def __init__(self, config: Optional[Dict] = None, **kwargs):
+    def __init__(self, config: dict | None = None, **kwargs):
         if "wan_ports" in kwargs:
             _number_of_wanports = int(kwargs.pop("wan_ports"))
         else:

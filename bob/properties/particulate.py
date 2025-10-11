@@ -3,8 +3,8 @@ from ..core import (
     QUANTITYKIND,
     UNIT,
     Medium,
-    Substance,
     QuantifiableObservableProperty,
+    Substance,
 )
 
 _namespace = P223

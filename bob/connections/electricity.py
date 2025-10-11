@@ -53,13 +53,13 @@ class Electricity_10000VLL_1Ph_60HzConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_10000VLL_1Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_10000VLL_1Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_10000VLL_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_10000VLL_1Ph_60HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_10000VLL_1Ph_60HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_10000VLL_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -78,13 +78,13 @@ class Electricity_10000VLL_3Ph_60HzConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_10000VLL_3Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_10000VLL_3Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_10000VLL_3Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_10000VLL_3Ph_60HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_10000VLL_3Ph_60HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_10000VLL_3Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -103,7 +103,7 @@ class Electricity_10000VLL_5770VLN_1Ph_60HzConnectionPoint(ElectricalConnectionP
 
 
 class Electricity_10000VLL_5770VLN_1Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_10000VLL_5770VLN_1Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_10000VLL_5770VLN_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
@@ -129,7 +129,7 @@ class Electricity_10000VLL_5770VLN_3Ph_60HzConnectionPoint(ElectricalConnectionP
 
 
 class Electricity_10000VLL_5770VLN_3Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_10000VLL_5770VLN_3Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_10000VLL_5770VLN_3Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
@@ -155,13 +155,13 @@ class Electricity_110VLN_1Ph_50HzConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_110VLN_1Ph_50HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_110VLN_1Ph_50HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_110VLN_1Ph_50HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_110VLN_1Ph_50HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_110VLN_1Ph_50HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_110VLN_1Ph_50HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -176,13 +176,13 @@ class Electricity_120VLN_1Ph_60HzConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_120VLN_1Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_120VLN_1Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_120VLN_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_120VLN_1Ph_60HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_120VLN_1Ph_60HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_120VLN_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -201,13 +201,13 @@ class Electricity_127VLN_1Ph_50HzConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_127VLN_1Ph_50HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_127VLN_1Ph_50HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_127VLN_1Ph_50HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_127VLN_1Ph_50HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_127VLN_1Ph_50HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_127VLN_1Ph_50HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -226,13 +226,13 @@ class Electricity_139VLN_1Ph_50HzConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_139VLN_1Ph_50HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_139VLN_1Ph_50HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_139VLN_1Ph_50HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_139VLN_1Ph_50HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_139VLN_1Ph_50HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_139VLN_1Ph_50HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -251,13 +251,13 @@ class Electricity_1730VLN_1Ph_60HzConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_1730VLN_1Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_1730VLN_1Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_1730VLN_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_1730VLN_1Ph_60HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_1730VLN_1Ph_60HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_1730VLN_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -276,13 +276,13 @@ class Electricity_1900VLN_1Ph_60HzConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_1900VLN_1Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_1900VLN_1Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_1900VLN_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_1900VLN_1Ph_60HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_1900VLN_1Ph_60HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_1900VLN_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -301,13 +301,13 @@ class Electricity_190VLL_110VLN_1Ph_50HzConnectionPoint(ElectricalConnectionPoin
 
 
 class Electricity_190VLL_110VLN_1Ph_50HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_190VLL_110VLN_1Ph_50HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_190VLL_110VLN_1Ph_50HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_190VLL_110VLN_1Ph_50HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_190VLL_110VLN_1Ph_50HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_190VLL_110VLN_1Ph_50HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -326,13 +326,13 @@ class Electricity_190VLL_110VLN_3Ph_50HzConnectionPoint(ElectricalConnectionPoin
 
 
 class Electricity_190VLL_110VLN_3Ph_50HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_190VLL_110VLN_3Ph_50HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_190VLL_110VLN_3Ph_50HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_190VLL_110VLN_3Ph_50HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_190VLL_110VLN_3Ph_50HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_190VLL_110VLN_3Ph_50HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -351,13 +351,13 @@ class Electricity_190VLL_1Ph_50HzConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_190VLL_1Ph_50HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_190VLL_1Ph_50HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_190VLL_1Ph_50HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_190VLL_1Ph_50HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_190VLL_1Ph_50HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_190VLL_1Ph_50HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -376,13 +376,13 @@ class Electricity_190VLL_3Ph_50HzConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_190VLL_3Ph_50HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_190VLL_3Ph_50HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_190VLL_3Ph_50HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_190VLL_3Ph_50HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_190VLL_3Ph_50HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_190VLL_3Ph_50HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -401,13 +401,13 @@ class Electricity_208VLL_120VLN_1Ph_60HzConnectionPoint(ElectricalConnectionPoin
 
 
 class Electricity_208VLL_120VLN_1Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_208VLL_120VLN_1Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_208VLL_120VLN_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_208VLL_120VLN_1Ph_60HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_208VLL_120VLN_1Ph_60HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_208VLL_120VLN_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -426,13 +426,13 @@ class Electricity_208VLL_120VLN_3Ph_60HzConnectionPoint(ElectricalConnectionPoin
 
 
 class Electricity_208VLL_120VLN_3Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_208VLL_120VLN_3Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_208VLL_120VLN_3Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_208VLL_120VLN_3Ph_60HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_208VLL_120VLN_3Ph_60HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_208VLL_120VLN_3Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -451,13 +451,13 @@ class Electricity_208VLL_1Ph_60HzConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_208VLL_1Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_208VLL_1Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_208VLL_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_208VLL_1Ph_60HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_208VLL_1Ph_60HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_208VLL_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -476,13 +476,13 @@ class Electricity_208VLL_3Ph_60HzConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_208VLL_3Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_208VLL_3Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_208VLL_3Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_208VLL_3Ph_60HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_208VLL_3Ph_60HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_208VLL_3Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -501,13 +501,13 @@ class Electricity_219VLN_1Ph_60HzConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_219VLN_1Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_219VLN_1Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_219VLN_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_219VLN_1Ph_60HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_219VLN_1Ph_60HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_219VLN_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -526,13 +526,13 @@ class Electricity_220VLL_127VLN_1Ph_50HzConnectionPoint(ElectricalConnectionPoin
 
 
 class Electricity_220VLL_127VLN_1Ph_50HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_220VLL_127VLN_1Ph_50HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_220VLL_127VLN_1Ph_50HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_220VLL_127VLN_1Ph_50HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_220VLL_127VLN_1Ph_50HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_220VLL_127VLN_1Ph_50HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -551,13 +551,13 @@ class Electricity_220VLL_127VLN_3Ph_50HzConnectionPoint(ElectricalConnectionPoin
 
 
 class Electricity_220VLL_127VLN_3Ph_50HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_220VLL_127VLN_3Ph_50HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_220VLL_127VLN_3Ph_50HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_220VLL_127VLN_3Ph_50HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_220VLL_127VLN_3Ph_50HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_220VLL_127VLN_3Ph_50HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -576,13 +576,13 @@ class Electricity_220VLL_1Ph_50HzConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_220VLL_1Ph_50HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_220VLL_1Ph_50HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_220VLL_1Ph_50HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_220VLL_1Ph_50HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_220VLL_1Ph_50HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_220VLL_1Ph_50HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -601,13 +601,13 @@ class Electricity_220VLL_3Ph_50HzConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_220VLL_3Ph_50HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_220VLL_3Ph_50HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_220VLL_3Ph_50HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_220VLL_3Ph_50HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_220VLL_3Ph_50HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_220VLL_3Ph_50HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -626,13 +626,13 @@ class Electricity_231VLN_1Ph_50HzConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_231VLN_1Ph_50HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_231VLN_1Ph_50HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_231VLN_1Ph_50HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_231VLN_1Ph_50HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_231VLN_1Ph_50HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_231VLN_1Ph_50HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -651,13 +651,13 @@ class Electricity_2400VLN_1Ph_60HzConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_2400VLN_1Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_2400VLN_1Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_2400VLN_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_2400VLN_1Ph_60HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_2400VLN_1Ph_60HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_2400VLN_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -676,13 +676,13 @@ class Electricity_240VLL_120VLN_1Ph_60HzConnectionPoint(ElectricalConnectionPoin
 
 
 class Electricity_240VLL_120VLN_1Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_240VLL_120VLN_1Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_240VLL_120VLN_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_240VLL_120VLN_1Ph_60HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_240VLL_120VLN_1Ph_60HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_240VLL_120VLN_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -701,13 +701,13 @@ class Electricity_240VLL_139VLN_1Ph_50HzConnectionPoint(ElectricalConnectionPoin
 
 
 class Electricity_240VLL_139VLN_1Ph_50HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_240VLL_139VLN_1Ph_50HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_240VLL_139VLN_1Ph_50HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_240VLL_139VLN_1Ph_50HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_240VLL_139VLN_1Ph_50HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_240VLL_139VLN_1Ph_50HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -726,13 +726,13 @@ class Electricity_240VLL_139VLN_3Ph_50HzConnectionPoint(ElectricalConnectionPoin
 
 
 class Electricity_240VLL_139VLN_3Ph_50HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_240VLL_139VLN_3Ph_50HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_240VLL_139VLN_3Ph_50HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_240VLL_139VLN_3Ph_50HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_240VLL_139VLN_3Ph_50HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_240VLL_139VLN_3Ph_50HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -751,13 +751,13 @@ class Electricity_240VLL_1Ph_50HzConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_240VLL_1Ph_50HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_240VLL_1Ph_50HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_240VLL_1Ph_50HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_240VLL_1Ph_50HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_240VLL_1Ph_50HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_240VLL_1Ph_50HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -776,13 +776,13 @@ class Electricity_240VLL_1Ph_60HzConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_240VLL_1Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_240VLL_1Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_240VLL_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_240VLL_1Ph_60HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_240VLL_1Ph_60HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_240VLL_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -797,7 +797,7 @@ class Electricity_240VLL_208VLN_120VLN_1Ph_60HzConnection(ElectricalConnection):
 
 
 class Electricity_240VLL_208VLN_120VLN_1Ph_60HzConnectionPoint(
-    ElectricalConnectionPoint
+    ElectricalConnectionPoint,
 ):
     hasMedium = Electricity.AC240VLL_208VLN_120VLN_1Ph_60Hz
 
@@ -826,7 +826,7 @@ class Electricity_240VLL_208VLN_120VLN_3Ph_60HzConnection(ElectricalConnection):
 
 
 class Electricity_240VLL_208VLN_120VLN_3Ph_60HzConnectionPoint(
-    ElectricalConnectionPoint
+    ElectricalConnectionPoint,
 ):
     hasMedium = Electricity.AC240VLL_208VLN_120VLN_3Ph_60Hz
 
@@ -859,13 +859,13 @@ class Electricity_240VLL_3Ph_50HzConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_240VLL_3Ph_50HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_240VLL_3Ph_50HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_240VLL_3Ph_50HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_240VLL_3Ph_50HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_240VLL_3Ph_50HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_240VLL_3Ph_50HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -884,13 +884,13 @@ class Electricity_240VLL_3Ph_60HzConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_240VLL_3Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_240VLL_3Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_240VLL_3Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_240VLL_3Ph_60HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_240VLL_3Ph_60HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_240VLL_3Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -909,13 +909,13 @@ class Electricity_240VLN_1Ph_50HzConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_240VLN_1Ph_50HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_240VLN_1Ph_50HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_240VLN_1Ph_50HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_240VLN_1Ph_50HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_240VLN_1Ph_50HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_240VLN_1Ph_50HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -934,13 +934,13 @@ class Electricity_24VLN_1Ph_50HzConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_24VLN_1Ph_50HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_24VLN_1Ph_50HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_24VLN_1Ph_50HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_24VLN_1Ph_50HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_24VLN_1Ph_50HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_24VLN_1Ph_50HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -959,13 +959,13 @@ class Electricity_24VLN_1Ph_60HzConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_24VLN_1Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_24VLN_1Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_24VLN_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_24VLN_1Ph_60HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_24VLN_1Ph_60HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_24VLN_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -984,13 +984,13 @@ class Electricity_277VLN_1Ph_60HzConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_277VLN_1Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_277VLN_1Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_277VLN_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_277VLN_1Ph_60HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_277VLN_1Ph_60HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_277VLN_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -1009,13 +1009,13 @@ class Electricity_3000VLL_1730VLN_1Ph_60HzConnectionPoint(ElectricalConnectionPo
 
 
 class Electricity_3000VLL_1730VLN_1Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_3000VLL_1730VLN_1Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_3000VLL_1730VLN_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_3000VLL_1730VLN_1Ph_60HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_3000VLL_1730VLN_1Ph_60HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_3000VLL_1730VLN_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -1034,13 +1034,13 @@ class Electricity_3000VLL_1730VLN_3Ph_60HzConnectionPoint(ElectricalConnectionPo
 
 
 class Electricity_3000VLL_1730VLN_3Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_3000VLL_1730VLN_3Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_3000VLL_1730VLN_3Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_3000VLL_1730VLN_3Ph_60HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_3000VLL_1730VLN_3Ph_60HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_3000VLL_1730VLN_3Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -1059,13 +1059,13 @@ class Electricity_3000VLL_1Ph_60HzConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_3000VLL_1Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_3000VLL_1Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_3000VLL_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_3000VLL_1Ph_60HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_3000VLL_1Ph_60HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_3000VLL_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -1084,13 +1084,13 @@ class Electricity_3000VLL_3Ph_60HzConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_3000VLL_3Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_3000VLL_3Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_3000VLL_3Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_3000VLL_3Ph_60HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_3000VLL_3Ph_60HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_3000VLL_3Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -1109,13 +1109,13 @@ class Electricity_3300VLL_1900VLN_1Ph_60HzConnectionPoint(ElectricalConnectionPo
 
 
 class Electricity_3300VLL_1900VLN_1Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_3300VLL_1900VLN_1Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_3300VLL_1900VLN_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_3300VLL_1900VLN_1Ph_60HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_3300VLL_1900VLN_1Ph_60HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_3300VLL_1900VLN_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -1134,13 +1134,13 @@ class Electricity_3300VLL_1900VLN_3Ph_60HzConnectionPoint(ElectricalConnectionPo
 
 
 class Electricity_3300VLL_1900VLN_3Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_3300VLL_1900VLN_3Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_3300VLL_1900VLN_3Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_3300VLL_1900VLN_3Ph_60HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_3300VLL_1900VLN_3Ph_60HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_3300VLL_1900VLN_3Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -1159,13 +1159,13 @@ class Electricity_3300VLL_1Ph_60HzConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_3300VLL_1Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_3300VLL_1Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_3300VLL_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_3300VLL_1Ph_60HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_3300VLL_1Ph_60HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_3300VLL_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -1184,13 +1184,13 @@ class Electricity_3300VLL_3Ph_60HzConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_3300VLL_3Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_3300VLL_3Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_3300VLL_3Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_3300VLL_3Ph_60HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_3300VLL_3Ph_60HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_3300VLL_3Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -1209,13 +1209,13 @@ class Electricity_3460VLN_1Ph_60HzConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_3460VLN_1Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_3460VLN_1Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_3460VLN_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_3460VLN_1Ph_60HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_3460VLN_1Ph_60HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_3460VLN_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -1234,13 +1234,13 @@ class Electricity_347VLN_1Ph_60HzConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_347VLN_1Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_347VLN_1Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_347VLN_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_347VLN_1Ph_60HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_347VLN_1Ph_60HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_347VLN_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -1259,13 +1259,13 @@ class Electricity_380VLL_1Ph_60HzConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_380VLL_1Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_380VLL_1Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_380VLL_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_380VLL_1Ph_60HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_380VLL_1Ph_60HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_380VLL_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -1284,13 +1284,13 @@ class Electricity_380VLL_219VLN_1Ph_60HzConnectionPoint(ElectricalConnectionPoin
 
 
 class Electricity_380VLL_219VLN_1Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_380VLL_219VLN_1Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_380VLL_219VLN_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_380VLL_219VLN_1Ph_60HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_380VLL_219VLN_1Ph_60HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_380VLL_219VLN_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -1309,13 +1309,13 @@ class Electricity_380VLL_219VLN_3Ph_60HzConnectionPoint(ElectricalConnectionPoin
 
 
 class Electricity_380VLL_219VLN_3Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_380VLL_219VLN_3Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_380VLL_219VLN_3Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_380VLL_219VLN_3Ph_60HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_380VLL_219VLN_3Ph_60HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_380VLL_219VLN_3Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -1334,13 +1334,13 @@ class Electricity_380VLL_3Ph_60HzConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_380VLL_3Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_380VLL_3Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_380VLL_3Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_380VLL_3Ph_60HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_380VLL_3Ph_60HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_380VLL_3Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -1359,13 +1359,13 @@ class Electricity_3810VLN_1Ph_60HzConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_3810VLN_1Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_3810VLN_1Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_3810VLN_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_3810VLN_1Ph_60HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_3810VLN_1Ph_60HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_3810VLN_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -1384,13 +1384,13 @@ class Electricity_400VLL_1Ph_50HzConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_400VLL_1Ph_50HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_400VLL_1Ph_50HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_400VLL_1Ph_50HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_400VLL_1Ph_50HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_400VLL_1Ph_50HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_400VLL_1Ph_50HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -1409,13 +1409,13 @@ class Electricity_400VLL_231VLN_1Ph_50HzConnectionPoint(ElectricalConnectionPoin
 
 
 class Electricity_400VLL_231VLN_1Ph_50HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_400VLL_231VLN_1Ph_50HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_400VLL_231VLN_1Ph_50HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_400VLL_231VLN_1Ph_50HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_400VLL_231VLN_1Ph_50HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_400VLL_231VLN_1Ph_50HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -1434,13 +1434,13 @@ class Electricity_400VLL_231VLN_3Ph_50HzConnectionPoint(ElectricalConnectionPoin
 
 
 class Electricity_400VLL_231VLN_3Ph_50HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_400VLL_231VLN_3Ph_50HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_400VLL_231VLN_3Ph_50HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_400VLL_231VLN_3Ph_50HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_400VLL_231VLN_3Ph_50HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_400VLL_231VLN_3Ph_50HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -1459,13 +1459,13 @@ class Electricity_400VLL_3Ph_50HzConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_400VLL_3Ph_50HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_400VLL_3Ph_50HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_400VLL_3Ph_50HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_400VLL_3Ph_50HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_400VLL_3Ph_50HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_400VLL_3Ph_50HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -1484,13 +1484,13 @@ class Electricity_415VLL_1Ph_50HzConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_415VLL_1Ph_50HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_415VLL_1Ph_50HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_415VLL_1Ph_50HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_415VLL_1Ph_50HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_415VLL_1Ph_50HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_415VLL_1Ph_50HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -1509,13 +1509,13 @@ class Electricity_415VLL_240VLN_1Ph_50HzConnectionPoint(ElectricalConnectionPoin
 
 
 class Electricity_415VLL_240VLN_1Ph_50HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_415VLL_240VLN_1Ph_50HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_415VLL_240VLN_1Ph_50HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_415VLL_240VLN_1Ph_50HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_415VLL_240VLN_1Ph_50HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_415VLL_240VLN_1Ph_50HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -1534,13 +1534,13 @@ class Electricity_415VLL_240VLN_3Ph_50HzConnectionPoint(ElectricalConnectionPoin
 
 
 class Electricity_415VLL_240VLN_3Ph_50HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_415VLL_240VLN_3Ph_50HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_415VLL_240VLN_3Ph_50HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_415VLL_240VLN_3Ph_50HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_415VLL_240VLN_3Ph_50HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_415VLL_240VLN_3Ph_50HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -1559,13 +1559,13 @@ class Electricity_415VLL_3Ph_50HzConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_415VLL_3Ph_50HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_415VLL_3Ph_50HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_415VLL_3Ph_50HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_415VLL_3Ph_50HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_415VLL_3Ph_50HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_415VLL_3Ph_50HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -1584,13 +1584,13 @@ class Electricity_4160VLL_1Ph_60HzConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_4160VLL_1Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_4160VLL_1Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_4160VLL_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_4160VLL_1Ph_60HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_4160VLL_1Ph_60HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_4160VLL_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -1609,13 +1609,13 @@ class Electricity_4160VLL_2400VLN_1Ph_60HzConnectionPoint(ElectricalConnectionPo
 
 
 class Electricity_4160VLL_2400VLN_1Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_4160VLL_2400VLN_1Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_4160VLL_2400VLN_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_4160VLL_2400VLN_1Ph_60HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_4160VLL_2400VLN_1Ph_60HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_4160VLL_2400VLN_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -1634,13 +1634,13 @@ class Electricity_4160VLL_2400VLN_3Ph_60HzConnectionPoint(ElectricalConnectionPo
 
 
 class Electricity_4160VLL_2400VLN_3Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_4160VLL_2400VLN_3Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_4160VLL_2400VLN_3Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_4160VLL_2400VLN_3Ph_60HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_4160VLL_2400VLN_3Ph_60HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_4160VLL_2400VLN_3Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -1659,13 +1659,13 @@ class Electricity_4160VLL_3Ph_60HzConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_4160VLL_3Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_4160VLL_3Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_4160VLL_3Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_4160VLL_3Ph_60HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_4160VLL_3Ph_60HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_4160VLL_3Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -1684,13 +1684,13 @@ class Electricity_480VLL_1Ph_60HzConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_480VLL_1Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_480VLL_1Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_480VLL_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_480VLL_1Ph_60HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_480VLL_1Ph_60HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_480VLL_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -1709,13 +1709,13 @@ class Electricity_480VLL_277VLN_1Ph_60HzConnectionPoint(ElectricalConnectionPoin
 
 
 class Electricity_480VLL_277VLN_1Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_480VLL_277VLN_1Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_480VLL_277VLN_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_480VLL_277VLN_1Ph_60HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_480VLL_277VLN_1Ph_60HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_480VLL_277VLN_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -1734,13 +1734,13 @@ class Electricity_480VLL_277VLN_3Ph_60HzConnectionPoint(ElectricalConnectionPoin
 
 
 class Electricity_480VLL_277VLN_3Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_480VLL_277VLN_3Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_480VLL_277VLN_3Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_480VLL_277VLN_3Ph_60HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_480VLL_277VLN_3Ph_60HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_480VLL_277VLN_3Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -1759,13 +1759,13 @@ class Electricity_480VLL_3Ph_60HzConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_480VLL_3Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_480VLL_3Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_480VLL_3Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_480VLL_3Ph_60HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_480VLL_3Ph_60HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_480VLL_3Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -1784,13 +1784,13 @@ class Electricity_5770VLN_1Ph_60HzConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_5770VLN_1Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_5770VLN_1Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_5770VLN_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_5770VLN_1Ph_60HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_5770VLN_1Ph_60HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_5770VLN_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -1809,13 +1809,13 @@ class Electricity_6000VLL_1Ph_60HzConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_6000VLL_1Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_6000VLL_1Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_6000VLL_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_6000VLL_1Ph_60HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_6000VLL_1Ph_60HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_6000VLL_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -1834,13 +1834,13 @@ class Electricity_6000VLL_3460VLN_1Ph_60HzConnectionPoint(ElectricalConnectionPo
 
 
 class Electricity_6000VLL_3460VLN_1Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_6000VLL_3460VLN_1Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_6000VLL_3460VLN_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_6000VLL_3460VLN_1Ph_60HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_6000VLL_3460VLN_1Ph_60HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_6000VLL_3460VLN_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -1859,13 +1859,13 @@ class Electricity_6000VLL_3460VLN_3Ph_60HzConnectionPoint(ElectricalConnectionPo
 
 
 class Electricity_6000VLL_3460VLN_3Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_6000VLL_3460VLN_3Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_6000VLL_3460VLN_3Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_6000VLL_3460VLN_3Ph_60HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_6000VLL_3460VLN_3Ph_60HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_6000VLL_3460VLN_3Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -1884,13 +1884,13 @@ class Electricity_6000VLL_3Ph_60HzConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_6000VLL_3Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_6000VLL_3Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_6000VLL_3Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_6000VLL_3Ph_60HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_6000VLL_3Ph_60HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_6000VLL_3Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -1909,13 +1909,13 @@ class Electricity_600VLL_1Ph_60HzConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_600VLL_1Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_600VLL_1Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_600VLL_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_600VLL_1Ph_60HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_600VLL_1Ph_60HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_600VLL_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -1934,13 +1934,13 @@ class Electricity_600VLL_347VLN_1Ph_60HzConnectionPoint(ElectricalConnectionPoin
 
 
 class Electricity_600VLL_347VLN_1Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_600VLL_347VLN_1Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_600VLL_347VLN_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_600VLL_347VLN_1Ph_60HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_600VLL_347VLN_1Ph_60HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_600VLL_347VLN_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -1959,13 +1959,13 @@ class Electricity_600VLL_347VLN_3Ph_60HzConnectionPoint(ElectricalConnectionPoin
 
 
 class Electricity_600VLL_347VLN_3Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_600VLL_347VLN_3Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_600VLL_347VLN_3Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_600VLL_347VLN_3Ph_60HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_600VLL_347VLN_3Ph_60HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_600VLL_347VLN_3Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -1984,13 +1984,13 @@ class Electricity_600VLL_3Ph_60HzConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_600VLL_3Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_600VLL_3Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_600VLL_3Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_600VLL_3Ph_60HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_600VLL_3Ph_60HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_600VLL_3Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -2009,13 +2009,13 @@ class Electricity_6600VLL_1Ph_60HzConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_6600VLL_1Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_6600VLL_1Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_6600VLL_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_6600VLL_1Ph_60HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_6600VLL_1Ph_60HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_6600VLL_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -2034,13 +2034,13 @@ class Electricity_6600VLL_3810VLN_1Ph_60HzConnectionPoint(ElectricalConnectionPo
 
 
 class Electricity_6600VLL_3810VLN_1Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_6600VLL_3810VLN_1Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_6600VLL_3810VLN_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_6600VLL_3810VLN_1Ph_60HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_6600VLL_3810VLN_1Ph_60HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_6600VLL_3810VLN_1Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -2059,13 +2059,13 @@ class Electricity_6600VLL_3810VLN_3Ph_60HzConnectionPoint(ElectricalConnectionPo
 
 
 class Electricity_6600VLL_3810VLN_3Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_6600VLL_3810VLN_3Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_6600VLL_3810VLN_3Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_6600VLL_3810VLN_3Ph_60HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_6600VLL_3810VLN_3Ph_60HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_6600VLL_3810VLN_3Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -2084,13 +2084,13 @@ class Electricity_6600VLL_3Ph_60HzConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_6600VLL_3Ph_60HzInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_6600VLL_3Ph_60HzConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_6600VLL_3Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_6600VLL_3Ph_60HzOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_6600VLL_3Ph_60HzConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_6600VLL_3Ph_60HzConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -2109,13 +2109,13 @@ class Electricity_12VConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_12VInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_12VConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_12VConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_12VOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_12VConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_12VConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -2134,13 +2134,13 @@ class Electricity_24VConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_24VInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_24VConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_24VConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_24VOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_24VConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_24VConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -2159,13 +2159,13 @@ class Electricity_380VConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_380VInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_380VConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_380VConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_380VOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_380VConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_380VConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -2184,13 +2184,13 @@ class Electricity_48VConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_48VInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_48VConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_48VConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_48VOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_48VConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_48VConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -2209,13 +2209,13 @@ class Electricity_5VConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_5VInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_5VConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_5VConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_5VOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_5VConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_5VConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -2234,12 +2234,12 @@ class Electricity_6VConnectionPoint(ElectricalConnectionPoint):
 
 
 class Electricity_6VInletConnectionPoint(
-    ElectricalInletConnectionPoint, Electricity_6VConnectionPoint
+    ElectricalInletConnectionPoint, Electricity_6VConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Electricity_6VOutletConnectionPoint(
-    ElectricalOutletConnectionPoint, Electricity_6VConnectionPoint
+    ElectricalOutletConnectionPoint, Electricity_6VConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint

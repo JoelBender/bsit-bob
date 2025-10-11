@@ -1,13 +1,12 @@
 from typing import Dict, Optional
 
-
 from ...connections.air import AirInletConnectionPoint, AirOutletConnectionPoint
 from ...core import BOB, S223, Equipment, PropertyReference
 from ...template import configure_relations, template_update
 
 _namespace = BOB
 
-filter_template: Dict[str, Dict] = {}
+filter_template: dict[str, dict] = {}
 
 
 class Filter(Equipment):
@@ -19,7 +18,7 @@ class Filter(Equipment):
     differentialPressure: PropertyReference
     alarmStatus: PropertyReference
 
-    def __init__(self, config: Optional[Dict] = None, **kwargs):
+    def __init__(self, config: dict | None = None, **kwargs):
         _config = template_update(filter_template, config=config)
         kwargs = {**_config.pop("params", {}), **kwargs}
         _relations = _config.pop("relations", [])

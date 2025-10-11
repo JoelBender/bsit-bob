@@ -1,14 +1,14 @@
 from pathlib import Path
 
-from .header import ttl_test_header
-
 from bob.core import (
     bind_model_namespace,
-    dump,
     data_graph,
+    dump,
     schema_graph,
 )
-from bob.equipment.network.switch import PoESwitch, EthernetSwitch
+from bob.equipment.network.switch import EthernetSwitch, PoESwitch
+
+from .header import ttl_test_header
 
 model_name = Path(__file__).stem
 _namespace = bind_model_namespace("ex", f"urn:ex/{model_name}/")

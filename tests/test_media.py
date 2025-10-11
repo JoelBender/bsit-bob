@@ -1,14 +1,20 @@
 from pathlib import Path
 
-from .header import ttl_test_header
 from rdflib import Literal
+
 from bob import core
-from bob.core import bind_model_namespace, dump, data_graph, schema_graph
-
-
-from bob.core import Substance, Medium
-from bob.enum import Constituent, Air, Fluid, Argon, CO2, Nitrogen, O2
+from bob.core import (
+    Medium,
+    Substance,
+    bind_model_namespace,
+    data_graph,
+    dump,
+    schema_graph,
+)
+from bob.enum import CO2, O2, Air, Argon, Constituent, Fluid, Nitrogen
 from bob.sensor.gas import CO2Sensor
+
+from .header import ttl_test_header
 
 model_name = Path(__file__).stem
 _namespace = bind_model_namespace("ex", f"urn:ex/{model_name}/")
@@ -52,13 +58,13 @@ def test_create_a_co2_sensor(bob_fixture):
 
 
 def test_dump_test_media_model(bob_fixture):
-    co4 = Constituent("CO4", label="Carbon QuatriOxide, yeah, it's fake") #noqa F841
+    co4 = Constituent("CO4", label="Carbon QuatriOxide, yeah, it's fake")
     myair = Air("Air", label="Air, the stuff we breathe")
     myair.add_constituent(Nitrogen)
     myair.add_constituent(O2)
     myair.add_constituent(Argon)
     myair.add_constituent(CO2)
-    s = CO2Sensor(label="CO2 Sensor") #noqa F841
+    s = CO2Sensor(label="CO2 Sensor")
     # dump the result
     dump(
         data_graph,

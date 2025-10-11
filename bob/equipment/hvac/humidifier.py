@@ -7,7 +7,7 @@ from ...connections.liquid import (
     SteamInletConnectionPoint,
     SteamOutletConnectionPoint,
     WaterInletConnectionPoint,
-    WaterOutletConnectionPoint
+    WaterOutletConnectionPoint,
 )
 from ...core import BOB, S223, Equipment
 

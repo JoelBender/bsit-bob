@@ -47,8 +47,7 @@ def type_locals(g: Graph, n) -> set[str]:
 
 
 def shape_attrs_for(g: Graph, n) -> dict[str, str]:
-    """
-    Shape rules:
+    """Shape rules:
     - s223:Property (and subclasses) -> circle
     - s223:ConnectionPoint (and subclasses) -> diamond (lozenge)
     - default -> box
@@ -113,7 +112,7 @@ def graph_to_dot(g: Graph) -> str:
         attrs = shape_attrs_for(g, n)
         # Build attributes string
         attr_str = ", ".join(
-            [f'label="{nlabel}"'] + [f'{k}="{v}"' for k, v in attrs.items()]
+            [f'label="{nlabel}"'] + [f'{k}="{v}"' for k, v in attrs.items()],
         )
         lines.append(f"  {nid} [{attr_str}];")
 
@@ -130,7 +129,7 @@ def graph_to_dot(g: Graph) -> str:
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument(
-        "--in-dir", type=Path, required=True, help="Folder containing TTL files"
+        "--in-dir", type=Path, required=True, help="Folder containing TTL files",
     )
     ap.add_argument("--out-dir", type=Path, required=True, help="Folder to write SVGs")
     args = ap.parse_args()

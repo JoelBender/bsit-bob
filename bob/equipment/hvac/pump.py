@@ -1,7 +1,5 @@
 from typing import Dict, Optional
 
-
-
 from ...connections.electricity import (
     Electricity_600VLL_3Ph_60HzInletConnectionPoint,
 )
@@ -29,7 +27,7 @@ class Pump(Equipment):
     onOffStatus: PropertyReference
     onOffCommand: PropertyReference
 
-    def __init__(self, config: Optional[Dict] = None, **kwargs):
+    def __init__(self, config: dict | None = None, **kwargs):
         _config = template_update(pump_template, config=config)
         kwargs = {**_config.pop("params", {}), **kwargs}
         _log.debug(f"Fan.__init__ {_config} {kwargs}")

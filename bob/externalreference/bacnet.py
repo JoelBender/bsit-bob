@@ -4,7 +4,12 @@ from typing import Any
 
 from rdflib import Literal
 
-from ..core import S223, ExternalReference, bind_namespace, prefixes  # type: ignore[attr-defined]
+from ..core import (  # type: ignore[attr-defined]
+    S223,
+    ExternalReference,
+    bind_namespace,
+    prefixes,
+)
 
 # logging
 _log = logging.getLogger(__name__)
@@ -13,7 +18,7 @@ _log = logging.getLogger(__name__)
 BACNET = bind_namespace("bacnet", prefixes["bacnet"])
 
 url_pattern = re.compile(
-    "^bacnet:[/][/]([0-9]+)?[/]([A-Za-z0-9-]+),([1-9][0-9]*)(?:[/]([A-Za-z0-9-]+)(?:[/]([1-9][0-9]*))?)?$"
+    "^bacnet:[/][/]([0-9]+)?[/]([A-Za-z0-9-]+),([1-9][0-9]*)(?:[/]([A-Za-z0-9-]+)(?:[/]([1-9][0-9]*))?)?$",
 )
 
 
@@ -91,10 +96,9 @@ class BACnetExternalReference(ExternalReference):
                 if property_identifier.isdigit():
                     raise NotImplementedError("integer property identifiers")  # TODO
                     kwargs["propertyIdentifier"] = int(property_identifier)
-                else:
-                    kwargs["propertyIdentifier"] = BACNET[
-                        "PropertyIdentifier." + property_identifier
-                    ]
+                kwargs["propertyIdentifier"] = BACNET[
+                    "PropertyIdentifier." + property_identifier
+                ]
             elif property_identifier is None:
                 kwargs["propertyIdentifier"] = BACNET[
                     "PropertyIdentifier.present-value"

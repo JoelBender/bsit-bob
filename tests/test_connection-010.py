@@ -1,19 +1,19 @@
 from pathlib import Path
 
-from .header import ttl_test_header
-
-from bob.core import (
-    Equipment,
-    bind_model_namespace,
-    dump,
-    data_graph,
-    schema_graph,
-)
 from bob.connections.liquid import (
     Glycol15PercentInletConnectionPoint,
     Glycol15PercentOutletConnectionPoint,
 )
+from bob.core import (
+    Equipment,
+    bind_model_namespace,
+    data_graph,
+    dump,
+    schema_graph,
+)
 from bob.equipment.hvac.pump import Pump
+
+from .header import ttl_test_header
 
 model_name = Path(__file__).stem
 _namespace = bind_model_namespace("ex", f"urn:ex/{model_name}/")

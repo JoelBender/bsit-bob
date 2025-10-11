@@ -1,6 +1,5 @@
-"""
-BSIT Bob Testing
+"""BSIT Bob Testing
 ----------------
 """
 
-from . import test__template  # noqa: F401
+from . import test__template

@@ -8,7 +8,7 @@ from ..core import (
     Connection,
     ConnectionPoint,
     InletConnectionPoint,
-    OutletConnectionPoint
+    OutletConnectionPoint,
 )
 from ..enum import Electricity, ModulatedSignal
 
@@ -34,7 +34,7 @@ class OnOffSignalInletConnectionPoint(InletConnectionPoint, OnOffSignalConnectio
 
 
 class OnOffSignalOutletConnectionPoint(
-    OutletConnectionPoint, OnOffSignalConnectionPoint
+    OutletConnectionPoint, OnOffSignalConnectionPoint,
 ):
     _class_iri = P223.BinaryOutput
 
@@ -56,13 +56,13 @@ class ModulationSignalConnectionPoint(ConnectionPoint):
 
 
 class ModulationSignalInletConnectionPoint(
-    InletConnectionPoint, ModulationSignalConnectionPoint
+    InletConnectionPoint, ModulationSignalConnectionPoint,
 ):
     _class_iri = P223.AnalogInput
 
 
 class ModulationSignalOutletConnectionPoint(
-    OutletConnectionPoint, ModulationSignalConnectionPoint
+    OutletConnectionPoint, ModulationSignalConnectionPoint,
 ):
     _class_iri = P223.AnalogOutput
 
@@ -80,13 +80,13 @@ class Modulated_0_10V_ConnectionPoint(ConnectionPoint):
 
 
 class Modulated_0_10V_InletConnectionPoint(
-    InletConnectionPoint, ModulationSignalConnectionPoint
+    InletConnectionPoint, ModulationSignalConnectionPoint,
 ):
     _class_iri = P223.AnalogInput
 
 
 class Modulated_0_10V_OutletConnectionPoint(
-    OutletConnectionPoint, ModulationSignalConnectionPoint
+    OutletConnectionPoint, ModulationSignalConnectionPoint,
 ):
     _class_iri = P223.AnalogOutput
 
@@ -104,13 +104,13 @@ class Modulated_4_20mA_ConnectionPoint(ConnectionPoint):
 
 
 class Modulated_4_20mA_InletConnectionPoint(
-    InletConnectionPoint, ModulationSignalConnectionPoint
+    InletConnectionPoint, ModulationSignalConnectionPoint,
 ):
     _class_iri = P223.AnalogInput
 
 
 class Modulated_4_20mA_OutletConnectionPoint(
-    OutletConnectionPoint, ModulationSignalConnectionPoint
+    OutletConnectionPoint, ModulationSignalConnectionPoint,
 ):
     _class_iri = P223.AnalogOutput
 
@@ -128,12 +128,12 @@ class ResistiveSignalConnectionPoint(ConnectionPoint):
 
 
 class ResistiveSignalInletConnectionPoint(
-    InletConnectionPoint, ResistiveSignalConnectionPoint
+    InletConnectionPoint, ResistiveSignalConnectionPoint,
 ):
     _class_iri = P223.ResistiveInput
 
 
 class ResistiveSignalOutletConnectionPoint(
-    OutletConnectionPoint, ResistiveSignalConnectionPoint
+    OutletConnectionPoint, ResistiveSignalConnectionPoint,
 ):
     _class_iri = P223.ResistiveOutput

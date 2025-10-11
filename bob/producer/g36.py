@@ -25,8 +25,7 @@ _namespace = G36
 
 
 class G36Sequence(Function):
-    """
-    This function is a subclass of a Function Block kept
+    """This function is a subclass of a Function Block kept
     in the namespace of G36.
 
     In Guideline 36, models present the notion of AI, AO, BI, BO
@@ -84,7 +83,7 @@ class G36VAVCoolingOnly(G36Sequence):
     unoccupiedHtgSetpoint: TemperatureSetpoint
     unoccupiedClgSetpoint: TemperatureSetpoint
 
-    def __init__(self, config: Optional[Dict] = None, **kwargs):
+    def __init__(self, config: dict | None = None, **kwargs):
         _config = template_update({}, config=config)
         kwargs = {**_config.pop("params", {}), **kwargs}
         _log.debug(f"G36VAVCoolingOnly.__init__ {_config} {kwargs}")

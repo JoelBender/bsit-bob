@@ -1,5 +1,4 @@
-"""
-Generate doc/glossary.md from ASHRAE 223P RDF (core.ttl, equipment.ttl).
+"""Generate doc/glossary.md from ASHRAE 223P RDF (core.ttl, equipment.ttl).
 
 Usage (from repo root):
   python tools/gen_glossary_from_rdf.py --models-dir "d:/0Programmes/Ashrae/223standard/models"
@@ -10,8 +9,8 @@ If --models-dir is omitted, it tries ../../223standard/models relative to this r
 from __future__ import annotations
 
 import argparse
+from collections.abc import Iterable
 from pathlib import Path
-from typing import Iterable
 
 from rdflib import RDFS, Graph, Namespace, URIRef
 
@@ -107,7 +106,7 @@ def write_glossary(g: Graph, out_path: Path) -> None:
     lines.append("# Glossary (ASHRAE 223P terms)")
     lines.append("")
     lines.append(
-        "This glossary is generated from the ASHRAE 223P RDF (core.ttl, equipment.ttl)."
+        "This glossary is generated from the ASHRAE 223P RDF (core.ttl, equipment.ttl).",
     )
     lines.append("Links point to explore.open223.info for the canonical term page.")
     lines.append("")

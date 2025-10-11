@@ -1,6 +1,5 @@
 from typing import Any, Dict
 
-
 from ..connections.controlsignal import OnOffSignalOutletConnectionPoint
 from ..core import (
     BOB,
@@ -18,16 +17,16 @@ class SmokeDetectionSensor(Sensor):
     observes: PropertyReference  # Temperature
     dryContactOutlet: OnOffSignalOutletConnectionPoint
 
-    def __init__(self, config: Dict[str, Any] = {}, **kwargs: Any) -> None:
+    def __init__(self, config: dict[str, Any] = {}, **kwargs: Any) -> None:
         _sensor_kwargs, _property_kwargs = split_kwargs(kwargs)
 
         if "hasUnit" not in _property_kwargs:
             raise ValueError(
-                "You must provide hasUnit when defining a smoke detection sensor"
+                "You must provide hasUnit when defining a smoke detection sensor",
             )
         if "ofMedium" not in _property_kwargs:
             raise ValueError(
-                "You must provide ofMedium when defining a smoke detection sensor"
+                "You must provide ofMedium when defining a smoke detection sensor",
             )
 
         observed_prop = SmokePresence(

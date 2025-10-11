@@ -1,4 +1,5 @@
 from typing import Dict
+
 from rdflib import Literal
 
 from bob.properties import ElectricPowerkW
@@ -17,7 +18,7 @@ class Transformer(Equipment):
     hasPower: ElectricPowerkW
     label: Literal  # Explicit type annotation for mypy
 
-    def __init__(self, config: Dict = {}, **kwargs):
+    def __init__(self, config: dict = {}, **kwargs):
         kwargs = {**config.get("params", {}), **kwargs}
         _electricalInlet = kwargs.pop("electricalInlet")
         _electricalOutlet = kwargs.pop("electricalOutlet")
@@ -25,10 +26,10 @@ class Transformer(Equipment):
         super().__init__(**kwargs)
 
         self.electricalInlet = _electricalInlet(
-            self, label=f"{self.label}.electricalInlet"
+            self, label=f"{self.label}.electricalInlet",
         )
         self.electricalOutlet = _electricalOutlet(
-            self, label=f"{self.label}.electricalOutlet"
+            self, label=f"{self.label}.electricalOutlet",
         )
 
 class CircuitBreaker(Equipment):
@@ -37,6 +38,6 @@ class CircuitBreaker(Equipment):
     # electricalOutlet: ElectricalOutletConnectionPoint
 
 
-    def __init__(self, config: Dict = {}, **kwargs):
+    def __init__(self, config: dict = {}, **kwargs):
         kwargs = {**config.get("params", {}), **kwargs}
         super().__init__(**kwargs)

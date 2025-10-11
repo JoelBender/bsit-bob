@@ -37,11 +37,11 @@ class ParticleCounter(Equipment):
     airInlet: AirInletConnectionPoint
     airOutlet: AirOutletConnectionPoint
 
-    def __init__(self, config: Optional[Dict] = None, **kwargs):
+    def __init__(self, config: dict | None = None, **kwargs):
         if config is None:
             config = particlecounter_template.copy()
         config["properties"] = config.get(
-            "properties", particlecounter_template["properties"]
+            "properties", particlecounter_template["properties"],
         )
         kwargs = {**config.get("params", {}), **kwargs}  # type: ignore[dict-item]
         super().__init__(**config, **kwargs)  # type: ignore[misc]

@@ -32,8 +32,7 @@ _namespace = BOB
 
 
 class Valve(Equipment):
-    """
-    Base class for a valve. Must be subclassed to provide inlet and outlet
+    """Base class for a valve. Must be subclassed to provide inlet and outlet
     depending on configuration
     """
 
@@ -45,8 +44,7 @@ class Valve(Equipment):
 
 
 class TwoWayValve(Valve):
-    """
-    Two-way valve have 1 inlet and 1 outlet
+    """Two-way valve have 1 inlet and 1 outlet
     """
 
     _class_iri: URIRef = S223.TwoWayValve
@@ -55,7 +53,7 @@ class TwoWayValve(Valve):
     is_open: PropertyReference
     is_closed: PropertyReference
 
-    def __init__(self, config: Optional[Dict] = None, **kwargs):
+    def __init__(self, config: dict | None = None, **kwargs):
         _config = template_update({}, config=config)
         kwargs = {**_config.pop("params", {}), **kwargs}
         _relations = _config.pop("relations", [])
@@ -68,8 +66,7 @@ class TwoWayValve(Valve):
 
 
 class ThreeWayValveDiverting(Valve):
-    """
-    A diverting valve has 1 inlet and 2 outlets
+    """A diverting valve has 1 inlet and 2 outlets
     """
 
     _class_iri = S223.ThreeWayValve
@@ -77,7 +74,7 @@ class ThreeWayValveDiverting(Valve):
     fluidOutletA: WaterOutletConnectionPoint
     fluidOutletB: WaterOutletConnectionPoint
 
-    def __init__(self, config: Optional[Dict] = None, **kwargs):
+    def __init__(self, config: dict | None = None, **kwargs):
         _config = template_update({}, config=config)
         kwargs = {**_config.pop("params", {}), **kwargs}
         _relations = _config.pop("relations", [])
@@ -91,8 +88,7 @@ class ThreeWayValveDiverting(Valve):
 
 
 class ThreeWayValveMixing(Valve):
-    """
-    A mixing valve has 2 inlet and 1 outlet
+    """A mixing valve has 2 inlet and 1 outlet
     """
 
     _class_iri: URIRef = S223.ThreeWayValve
@@ -100,7 +96,7 @@ class ThreeWayValveMixing(Valve):
     fluidInletB: WaterInletConnectionPoint
     fluidOutlet: WaterOutletConnectionPoint
 
-    def __init__(self, config: Optional[Dict] = None, **kwargs):
+    def __init__(self, config: dict | None = None, **kwargs):
         _config = template_update({}, config=config)
         kwargs = {**_config.pop("params", {}), **kwargs}
         _relations = _config.pop("relations", [])
@@ -118,7 +114,7 @@ class NaturalGasValve(Valve):
     naturalGasInlet: NaturalGasInletConnectionPoint
     naturalGasOutlet: NaturalGasOutletConnectionPoint
 
-    def __init__(self, config: Optional[Dict] = None, **kwargs):
+    def __init__(self, config: dict | None = None, **kwargs):
         _config = template_update({}, config=config)
         kwargs = {**_config.pop("params", {}), **kwargs}
         _relations = _config.pop("relations", [])
@@ -132,7 +128,7 @@ class PneumaticValve(Valve):
     compressedAirInlet: CompressedAirInletConnectionPoint
     compressedAirOutlet: CompressedAirOutletConnectionPoint
 
-    def __init__(self, config: Optional[Dict] = None, **kwargs):
+    def __init__(self, config: dict | None = None, **kwargs):
         _config = template_update({}, config=config)
         kwargs = {**_config.pop("params", {}), **kwargs}
         _relations = _config.pop("relations", [])
@@ -146,7 +142,7 @@ class ExpansionValve(Valve):
     portA: RefrigerantBidirectionalConnectionPoint
     portB: RefrigerantBidirectionalConnectionPoint
 
-    def __init__(self, config: Optional[Dict] = None, **kwargs):
+    def __init__(self, config: dict | None = None, **kwargs):
         _config = template_update({}, config=config)
         kwargs = {**_config.pop("params", {}), **kwargs}
         _relations = _config.pop("relations", [])
@@ -166,7 +162,7 @@ class ReversingValve(Valve):
     refrigerantOutdoorCoilPort: RefrigerantBidirectionalConnectionPoint
     position: PropertyReference
 
-    def __init__(self, config: Optional[Dict] = None, **kwargs):
+    def __init__(self, config: dict | None = None, **kwargs):
         _config = template_update({}, config=config)
         kwargs = {**_config.pop("params", {}), **kwargs}
         _relations = _config.pop("relations", [])

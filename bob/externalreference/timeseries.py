@@ -1,4 +1,4 @@
-from ..core import S223, P223, Node, ExternalReference  # type: ignore[attr-defined]
+from ..core import P223, S223, ExternalReference, Node  # type: ignore[attr-defined]
 
 _namespace = P223
 

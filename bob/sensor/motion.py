@@ -1,6 +1,5 @@
 from typing import Any, Dict
 
-
 from bob.functions import Function
 from bob.properties.ratio import Percent
 from bob.properties.states import OnOffStatus
@@ -10,7 +9,8 @@ from ..core import (
     PropertyReference,
 )
 from ..enum import Light
-from ..properties import Count, MotionDetection as Motion
+from ..properties import Count
+from ..properties import MotionDetection as Motion
 from .sensor import Sensor, split_kwargs
 
 _namespace = S223
@@ -25,7 +25,7 @@ class OccupantMotionSensor(OccupancySensor):
     # measuresMedium: Medium = Light
     observes: PropertyReference  # Movement
 
-    def __init__(self, config: Dict[str, Any] = {}, **kwargs: Any) -> None:
+    def __init__(self, config: dict[str, Any] = {}, **kwargs: Any) -> None:
         _sensor_kwargs, _property_kwargs = split_kwargs(kwargs)
 
         observes_prop = Motion(
@@ -43,7 +43,7 @@ class OccupantCounterSensor(OccupancySensor):
     # measuresMedium: Medium = Light
     occupantCount = Count
 
-    def __init__(self, config: Dict[str, Any] = {}, **kwargs: Any) -> None:
+    def __init__(self, config: dict[str, Any] = {}, **kwargs: Any) -> None:
         _sensor_kwargs, _property_kwargs = split_kwargs(kwargs)
 
         observed_property = Count(
@@ -65,7 +65,7 @@ class OccupantPresenceSensor(OccupancySensor):
     # measuresMedium: Medium = Light
     observes: PropertyReference  # Intrusion...good for Windows and doors
 
-    def __init__(self, config: Dict[str, Any] = {}, **kwargs: Any) -> None:
+    def __init__(self, config: dict[str, Any] = {}, **kwargs: Any) -> None:
         _sensor_kwargs, _measure_kwargs = split_kwargs(kwargs)
 
         observed_prop = OnOffStatus(
@@ -81,7 +81,7 @@ class PositionSensor(Sensor):
     _class_iri = S223.Sensor
     observes: PropertyReference  # Movement
 
-    def __init__(self, config: Dict[str, Any] = {}, **kwargs: Any) -> None:
+    def __init__(self, config: dict[str, Any] = {}, **kwargs: Any) -> None:
         _sensor_kwargs, _property_kwargs = split_kwargs(kwargs)
 
         observed_property = Percent(

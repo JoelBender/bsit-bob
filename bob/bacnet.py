@@ -1,5 +1,4 @@
-"""
-This module contains just enough of the BACnet object model to help build
+"""This module contains just enough of the BACnet object model to help build
 example models.  A complete description of BACnet objects and properties is
 beyond the scope of this project.
 """
@@ -7,17 +6,17 @@ beyond the scope of this project.
 from __future__ import annotations
 
 import logging
-from typing import List
+from typing import Any, List
 
-from typing import Any
 from rdflib import Literal, URIRef
 
-from .core import (
+from .core import (  # type: ignore[attr-defined]
     INCLUDE_INVERSE,
     ConnectionPoint,
     Node,
+    bind_namespace,
+    prefixes,
 )
-from .core import bind_namespace, prefixes  # type: ignore[attr-defined]
 from .equipment.control.controller import Controller
 from .externalreference.bacnet import BACnetExternalReference
 from .multimethods import multimethod
@@ -58,31 +57,29 @@ class Object(Node):
 
     @property
     def presentValue(self) -> BACnetExternalReference:
-        """
-        Creates the present-value reference on demand to be used for a property.
+        """Creates the present-value reference on demand to be used for a property.
         Cache it in case there are multiple references.
         """
         if getattr(self, "_present_value", None) is None:
             self._present_value = BACnetExternalReference(
-                f"bacnet://{self._device.deviceInstance}/{self.objectIdentifier}/present-value"
+                f"bacnet://{self._device.deviceInstance}/{self.objectIdentifier}/present-value",
             )
             self._data_graph.add(
-                (self._node_iri, BACNET.hasProperty, self._present_value._node_iri)
+                (self._node_iri, BACNET.hasProperty, self._present_value._node_iri),
             )
         return self._present_value
 
     @property
     def relinquishDefault(self) -> BACnetExternalReference:
-        """
-        Creates the relinquish-default reference on demand to be used for a property.
+        """Creates the relinquish-default reference on demand to be used for a property.
         Cache it in case there are multiple references.
         """
         if getattr(self, "_relinquish_default", None) is None:
             self._relinquish_default = BACnetExternalReference(
-                f"bacnet://{self._device.deviceInstance}/{self.objectIdentifier}/relinquish-default"
+                f"bacnet://{self._device.deviceInstance}/{self.objectIdentifier}/relinquish-default",
             )
             self._data_graph.add(
-                (self._node_iri, BACNET.hasProperty, self._relinquish_default._node_iri)
+                (self._node_iri, BACNET.hasProperty, self._relinquish_default._node_iri),
             )
         return self._relinquish_default
 
@@ -115,12 +112,12 @@ def contains_mm(device_: Device, object_: Object) -> None:
 
     if INCLUDE_INVERSE:
         device_._data_graph.add(
-            (object_._node_iri, BACNET.isObjectOf, device_._node_iri)
+            (object_._node_iri, BACNET.isObjectOf, device_._node_iri),
         )
 
 
 @multimethod
-def contains_mm(device_: Device, object_list: List[Object]) -> None:  # type: ignore[no-redef]
+def contains_mm(device_: Device, object_list: list[Object]) -> None:  # type: ignore[no-redef]
     """Device > [ Object, ... ]"""
     _log.info(f"device {device_} contains object list {object_list}")
 
@@ -149,7 +146,7 @@ def connect_mm(object1_: Object, object2_: Object) -> None:  # type: ignore[no-r
 
     # add it to the graph
     object1_._data_graph.add(
-        (object1_._node_iri, BACNET.PeerToPeer, object2_._node_iri)
+        (object1_._node_iri, BACNET.PeerToPeer, object2_._node_iri),
     )
 
     # if INCLUDE_INVERSE:

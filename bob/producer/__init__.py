@@ -1,5 +1,4 @@
-"""
-Producers
+"""Producers
 
 This is an adaptation of the S223 Function Blocks
 """
@@ -39,10 +38,11 @@ _namespace = BOB
 
 
 class _Producer(Container, Node):
-    "Producer base class to prevent circular reference"
+    """Producer base class to prevent circular reference"""
+
     _class_iri: URIRef = P223.Producer
 
-    def __init__(self, config: Dict[str, Any] = {}, *args, **kwargs: Any) -> None:
+    def __init__(self, config: dict[str, Any] = {}, *args, **kwargs: Any) -> None:
         _log.debug(f"Producer.__init__ {config} {args} {kwargs}")
 
         # if there are "params" in the configuation, use those as defaults for
@@ -67,8 +67,8 @@ class _Producer(Container, Node):
                 if issubclass(attr_value, ConnectionPoint):
                     # Beware here... _Producer are function Block so...FB in and out only....
                     _config["cp"] = (
-                        {**_config["cp"], **{attr_name: kwargs.pop(attr_name)}}
-                        if "cp" in _config.keys()
+                        {**_config["cp"], attr_name: kwargs.pop(attr_name)}
+                        if "cp" in _config
                         else {attr_name: kwargs.pop(attr_name)}
                     )
 
@@ -123,7 +123,7 @@ class ProducerInput(Node):
 
     def __init__(self, function_block: Producer, **kwargs: Any) -> None:
         _log.debug(
-            f"ProducerInput({self.__class__.__name__}).__init__ {function_block} {kwargs}"
+            f"ProducerInput({self.__class__.__name__}).__init__ {function_block} {kwargs}",
         )
 
         super().__init__(**kwargs)
@@ -147,7 +147,7 @@ class ProducerOutput(Node):
 
     def __init__(self, function_block: Producer, **kwargs: Any) -> None:
         _log.debug(
-            f"ProducerOutput({self.__class__.__name__}).__init__ {function_block} {kwargs}"
+            f"ProducerOutput({self.__class__.__name__}).__init__ {function_block} {kwargs}",
         )
 
         super().__init__(**kwargs)
@@ -183,13 +183,13 @@ class ProducerOutput(Node):
 
 @multimethod
 def connect_mm(
-    output_connector: ProducerOutput, input_connector: ProducerInput
+    output_connector: ProducerOutput, input_connector: ProducerInput,
 ) -> None:
     """ProducerOutput >> ProducerInput"""
     _log.info(f"connect from {output_connector} to {input_connector}")
 
     data_graph.add(
-        (output_connector._node_iri, S223.connect, input_connector._node_iri)
+        (output_connector._node_iri, S223.connect, input_connector._node_iri),
     )
 
 
@@ -260,8 +260,7 @@ class G36DigitalOutput(FunctionOutput):
 
 
 class Producer(_Producer):
-    """
-    Producers are black boxes representing causality.
+    """Producers are black boxes representing causality.
     Their inputs are causes and they produce an effect on a property
     It is very similar to a function, but it is meant to show the relation
     between an input and an output of something not-driven by an algorithm.
@@ -271,7 +270,7 @@ class Producer(_Producer):
 
     _class_iri: URIRef = P223.Producer
 
-    def __init__(self, config: Optional[Dict] = None, **kwargs):
+    def __init__(self, config: dict | None = None, **kwargs):
         _config = template_update({}, config=config)
         kwargs = {**_config.pop("params", {}), **kwargs}
 
@@ -283,7 +282,7 @@ class Producer(_Producer):
         _log.debug("    - continue Producer.__init__")
 
         # pull out the inputs and outputs
-        connector_inits: Dict[str, Any] = {}
+        connector_inits: dict[str, Any] = {}
         for attr_name, attr_type in self._nodes.items():  # type: ignore[attr-defined]
             if inspect.isclass(attr_type) and (attr_name in kwargs):
                 if issubclass(attr_type, (ProducerInput, ProducerOutput)):

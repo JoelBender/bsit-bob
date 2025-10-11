@@ -1,8 +1,10 @@
 import logging
 import os
 import sys
-from bob.core import clear
+
 import pytest
+
+from bob.core import clear
 
 print("======================", sys.path)
 
@@ -26,16 +28,16 @@ def bob_fixture(request):
 
     params = {}
     params["nonconforming_samples_directory"] = os.path.join(
-        os.getcwd(), "samples", "nonconforming"
+        os.getcwd(), "samples", "nonconforming",
     )
     params["conforming_samples_directory"] = os.path.join(
-        os.getcwd(), "samples", "conforming"
+        os.getcwd(), "samples", "conforming",
     )
     params["samples_ttl_directory"] = os.path.join(
-        os.getcwd(), "samples", "nonconforming", "ttl"
+        os.getcwd(), "samples", "nonconforming", "ttl",
     )
     params["g36_directory"] = os.path.join(os.getcwd(), "G36")
     params["g36_ttl_directory"] = os.path.join(os.getcwd(), "G36", "ttl")
     params["root_directory"] = os.path.join(os.getcwd())
-    yield params
+    return params
     # teardown

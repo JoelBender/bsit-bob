@@ -4,8 +4,9 @@ import pkgutil
 import typing as t
 
 import bob
+
 from .core import UNIT, Substance
-from .enum import Medium, Particulate, Constituent
+from .enum import Constituent, Medium, Particulate
 
 class_cache: dict[str, type] = {}
 module_cache: dict[str, list[str]] = {}
@@ -24,11 +25,11 @@ def look_in_cache(name: str | None = None, cache: dict | None = None):
     return cache[name] if name in cache else None
 
 
-def get_modules_from(package_name: str) -> t.List[str]:
+def get_modules_from(package_name: str) -> list[str]:
     package = importlib.import_module(package_name)
     modules = []
     for importer, modname, ispkg in pkgutil.walk_packages(
-        package.__path__, package.__name__ + "."
+        package.__path__, package.__name__ + ".",
     ):
         modules.append(modname)
     return modules
@@ -92,16 +93,14 @@ def get_class_from_name(classname: str | None = None, module = bob) -> t.Any:
                         _key = classname
                     class_cache[_key] = obj
                     return obj  # type: ignore
-                else:
-                    if name not in class_cache:
-                        class_cache[name] = obj
+                if name not in class_cache:
+                    class_cache[name] = obj
         if _super is not None:
             if _super in enum_cache:
                 _super_class = enum_cache[_super]
                 return getattr(_super_class, classname)  # type: ignore
-            else:
-                if classname in enum_cache:
-                    return enum_cache[classname]  # type: ignore
+            if classname in enum_cache:
+                return enum_cache[classname]  # type: ignore
     raise TypeError(
-        f"Class {_super} {classname} not found in {module}, cache is {class_cache}"
+        f"Class {_super} {classname} not found in {module}, cache is {class_cache}",
     )

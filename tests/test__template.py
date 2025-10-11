@@ -1,21 +1,21 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
-"""
-Test Module Template
+"""Test Module Template
 --------------------
 """
 
 import logging
 import unittest
-from typing import Any, Callable
+from collections.abc import Callable
+from typing import Any
 
 LOGGER = logging.getLogger(__name__)
 
 
 def setup_module() -> None:
     """This function is called once at the beginning of all of the tests
-    in this module."""
+    in this module.
+    """
     LOGGER.debug("setup_module")  # type: ignore[attr-defined]
 
 
@@ -43,23 +43,27 @@ class TestCaseTemplate(unittest.TestCase):
     @classmethod
     def setup_class(cls) -> None:
         """This function is called once before the test case is instantiated
-        for each of the tests."""
+        for each of the tests.
+        """
         LOGGER.debug("setup_class")
 
     @classmethod
     def teardown_class(cls) -> None:
         """This function is called once at the end after the last instance
-        of the test case has been abandon."""
+        of the test case has been abandon.
+        """
         LOGGER.debug("teardown_class")
 
     def setup_method(self, method: Callable[..., Any]) -> None:
         """This function is called before each test method is called as is
-        given a reference to the test method."""
+        given a reference to the test method.
+        """
         LOGGER.debug("setup_method %r", method)
 
     def teardown_method(self, method: Callable[..., Any]) -> None:
         """This function is called after each test method has been called and
-        is given a reference to the test method."""
+        is given a reference to the test method.
+        """
         LOGGER.debug("teardown_method %r", method)
 
     def test_something(self) -> None:

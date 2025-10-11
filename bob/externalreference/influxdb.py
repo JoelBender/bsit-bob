@@ -1,6 +1,7 @@
-from ..core import BOB, bind_namespace, prefixes, Node  # type: ignore[attr-defined]
-from .timeseries import TimeSeriesReference
 from rdflib import Literal
+
+from ..core import BOB, Node, bind_namespace, prefixes  # type: ignore[attr-defined]
+from .timeseries import TimeSeriesReference
 
 _namespace = BOB
 
@@ -8,8 +9,7 @@ INFLUXDB = bind_namespace("influxdb", prefixes["influxdb"])
 
 
 class InfluxDBServer(Node):
-    """
-    InfluxDB server
+    """InfluxDB server
     """
 
     _class_iri = INFLUXDB.InfluxdbServer
@@ -52,7 +52,7 @@ class InfluxDBReferenceV2(_InfluxDBReference):
     def __init__(self, server=None, bucket=None, measurement=None, **kwargs) -> None:
         if not isinstance(server, InfluxDBServer):
             raise TypeError(
-                f"server must be an InfluxDBServer instance, got {type(server)}"
+                f"server must be an InfluxDBServer instance, got {type(server)}",
             )
         if bucket is None or measurement is None:
             raise ValueError("bucket and measurement are required")
@@ -68,7 +68,7 @@ class InfluxDBReferenceV3(_InfluxDBReference):
     def __init__(self, server=None, database=None, table=None, **kwargs) -> None:
         if not isinstance(server, InfluxDBServer):
             raise TypeError(
-                f"server must be an InfluxDBServer instance, got {type(database)}"
+                f"server must be an InfluxDBServer instance, got {type(database)}",
             )
         if table is None or database is None:
             raise ValueError("table and database are required")

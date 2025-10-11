@@ -3,8 +3,8 @@ from __future__ import annotations
 import argparse
 import os
 import shutil
+from collections.abc import Iterable
 from pathlib import Path
-from typing import Iterable
 
 
 def find_figures(src_roots: Iterable[Path]) -> list[Path]:
@@ -43,10 +43,10 @@ def main():
         help="Destination folder inside docs (e.g., doc/_static/s223_figures)",
     )
     ap.add_argument(
-        "--s223-folder", type=Path, default=None, help="Path to Standard_223 folder"
+        "--s223-folder", type=Path, default=None, help="Path to Standard_223 folder",
     )
     ap.add_argument(
-        "--s223-dir", type=Path, default=None, help="Path to 223standard repo root"
+        "--s223-dir", type=Path, default=None, help="Path to 223standard repo root",
     )
     ap.add_argument(
         "--load-dotenv",
@@ -83,7 +83,7 @@ def main():
     figures = find_figures(roots)
     if not figures:
         print(
-            "[s223] No publication figures found. Check S223_FOLDER/S223_FOLDER in .env."
+            "[s223] No publication figures found. Check S223_FOLDER/S223_FOLDER in .env.",
         )
         return
 

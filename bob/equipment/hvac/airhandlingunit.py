@@ -1,9 +1,7 @@
 import logging
 
-
-from ...core import BOB, S223, Equipment
 from ...connections.air import AirInletConnectionPoint, AirOutletConnectionPoint
-
+from ...core import BOB, S223, Equipment
 
 # logging
 _log = logging.getLogger(__name__)

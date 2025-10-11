@@ -1,24 +1,25 @@
-"""
-Lofty - Real Estate Core Schema Classes for Bob
+"""Lofty - Real Estate Core Schema Classes for Bob
 """
 
 from bob.core import (
-    bind_namespace,
     Node as _Node,
+)
+from bob.core import (
     PhysicalSpace as _PhysicalSpace,
+)
+from bob.core import (
+    bind_namespace,
 )
 
 _namespace = REC = bind_namespace("rec", "https://w3id.org/rec#")
 
 
 class Asset(_Node):
-    """
-    Something which is placed inside of a building, but is not an integral
+    """Something which is placed inside of a building, but is not an integral
     part of that building's structure; e.g., furniture, equipment,
     systems, etc.
     """
 
-    pass
 
 
 class ArchitecturalAsset(Asset):
@@ -178,8 +179,7 @@ class WasteBasket(Furniture):
 
 
 class Collection(_Node):
-    """
-    An administrative grouping of entities that are adressed and treated
+    """An administrative grouping of entities that are adressed and treated
     as a unit for some purpose. These entities may have some spatial
     arrangement (e.g., an apartment is typically contiguous) but that is
     not a requirement (see, e.g., a distributed campus consisting of
@@ -187,7 +187,6 @@ class Collection(_Node):
     determined by the 'includes' field on a specific subclass.
     """
 
-    pass
 
 
 class Apartment(Collection):
@@ -195,15 +194,13 @@ class Apartment(Collection):
 
 
 class Campus(Collection):
-    """
-    A campus represents a collection of location entities. The constituent
+    """A campus represents a collection of location entities. The constituent
     locations may have differing legal ownership and utilization purposes,
     but they are generally perceived as a coherent unit or sub-region
     within a city or other region. E.g., a university campus, a hospital
     campus, a corporate campus, etc.
     """
 
-    pass
 
 
 class EquipmentCollection(Collection):
@@ -215,61 +212,49 @@ class FurnitureCollection(Collection):
 
 
 class Portfolio(Collection):
-    """
-    A portfolio is a grouping of buildings, sites, apartments, campuses,
+    """A portfolio is a grouping of buildings, sites, apartments, campuses,
     etc. that share some business-relevant commonality, e.g., are managed
     by the same company, are rented out to the same tenant, share
     utilization or legal definition (industrial vs commercial), etc.
     """
 
-    pass
 
 
 class Premises(Collection):
-    """
-    A premises is an administrative grouping of spaces that are used for
+    """A premises is an administrative grouping of spaces that are used for
     some commercial or industrial purpose by a real estate holder or
     tenant. E.g, a suite of offices, a shop, or an industrial workshop.
     """
 
-    pass
 
 
 class RealEstate(Collection):
-    """
-    The legal/administrative representation of some lands and/or
+    """The legal/administrative representation of some lands and/or
     buildings. I.e., "Fastighet" (Swedish), "Ejendom" (Denmark), etc.
     """
 
-    pass
 
 
 class Space(_PhysicalSpace):
-    """
-    A contiguous part of the physical world that contains or can contain
+    """A contiguous part of the physical world that contains or can contain
     sub-spaces. E.g., a Region can contain many Sites, which in turn can
     contain many Buildings.
     """
 
-    pass
 
 
 class Architecture(Space):
-    """
-    A designed/landscaped (or potentially designed/landscaped) part of the
+    """A designed/landscaped (or potentially designed/landscaped) part of the
     physical world that has a 3D spatial extent. E.g., a building site, a
     building, levels within the building, rooms, etc.
     """
 
-    pass
 
 
 class Building(Architecture):
-    """
-    A confined building structure.
+    """A confined building structure.
     """
 
-    pass
 
 
 class Hospital(Building):
@@ -293,11 +278,9 @@ class VirtualBuilding(Building):
 
 
 class Level(Architecture):
-    """
-    The level of a building, a.k.a. storey, floor, etc.
+    """The level of a building, a.k.a. storey, floor, etc.
     """
 
-    pass
 
 
 class BasementLevel(Level):
@@ -685,11 +668,9 @@ class Workshop(Room):
 
 
 class Site(Architecture):
-    """
-    A piece of land upon which zero or more buildings may be situated.
+    """A piece of land upon which zero or more buildings may be situated.
     """
 
-    pass
 
 
 class SubBuilding(Architecture):
@@ -697,13 +678,11 @@ class SubBuilding(Architecture):
 
 
 class Zone(Architecture):
-    """
-    A sub-zone within or outside of a building defined to support some
+    """A sub-zone within or outside of a building defined to support some
     technology and/or use, e.g., an HVAC zone, a parking space, a security
     zone, etc.
     """
 
-    pass
 
 
 class AccessControlZone(Zone):
@@ -715,13 +694,11 @@ class HVACZone(Zone):
 
 
 class OccupancyZone(Zone):
-    """
-    Occupancy Zone is a spatial area where devices are monitoring or
+    """Occupancy Zone is a spatial area where devices are monitoring or
     reporting on the concept of Occupancy (motion sensors, people
     counters, cameras, etc.)
     """
 
-    pass
 
 
 class ParkingSpace(Zone):
@@ -733,13 +710,11 @@ class Workspace(Zone):
 
 
 class Region(Space):
-    """
-    An administrative geospatial unit larger than the individual real
+    """An administrative geospatial unit larger than the individual real
     estate. For instance, "Lombary", "North America", "The Back Bay",
     "Elnätsområde Syd", etc.
     """
 
-    pass
 
 
 class Information(_Node):
@@ -747,27 +722,23 @@ class Information(_Node):
 
 
 class ArchitectureArea(Information):
-    """
-    Describes business-relevant area measurements typically associated
+    """Describes business-relevant area measurements typically associated
     with architected spaces. As the exact requirements on these
     measurements will vary from case to case or jurisdiction to
     jurisdiction, subclassing and specializing this definition is
     encouraged.
     """
 
-    pass
 
 
 class ArchitectureCapacity(Information):
-    """
-    Describes business-relevant capacity measurements typically associated
+    """Describes business-relevant capacity measurements typically associated
     with architected spaces. As the exact requirements on these
     measurements will vary from case to case or jurisdiction to
     jurisdiction, subclassing and specializing this definition is
     encouraged.
     """
 
-    pass
 
 
 class Document(Information):
@@ -775,13 +746,11 @@ class Document(Information):
 
 
 class LeaseContract(Document):
-    """
-    Formal document that identifies the Tenant and the leased asset or
+    """Formal document that identifies the Tenant and the leased asset or
     property; states lease term and fee (rent), and detailed terms and
     conditions of the lease agreement.
     """
 
-    pass
 
 
 class Geometry(Information):
@@ -805,22 +774,18 @@ class Polygon(Geometry):
 
 
 class Georeference(Information):
-    """
-    A georeference creates a relationship between a local coordinate
+    """A georeference creates a relationship between a local coordinate
     system into a geographic coordinate system.
     """
 
-    pass
 
 
 class Geotransform(Georeference):
-    """
-    A transform following GDAL's Affine Transform that transforms a local
+    """A transform following GDAL's Affine Transform that transforms a local
     coordinate into a WGS84 coordinate. Created from Ground Control Points
     (GCP) using GDAL's GCPsToGeotransform method.
     """
 
-    pass
 
 
 class PointOfInterest(Information):
@@ -852,197 +817,149 @@ class WorkOrder(ServiceObject):
 
 
 class ICTEquipment:
-    """
-    Equipment and devices that are part of a building's ICT
+    """Equipment and devices that are part of a building's ICT
     infrastructure.
     """
 
-    pass
 
 
 class AudioVisualEquipment(ICTEquipment):
-    """
-    Audio visual equipment.
+    """Audio visual equipment.
     """
 
-    pass
 
 
 class Controller(ICTEquipment):
-    """
-    Controller.
+    """Controller.
     """
 
-    pass
 
 
 class BACnetController(Controller):
-    """
-    BACnet controller.
+    """BACnet controller.
     """
 
-    pass
 
 
 class ModbusController(Controller):
-    """
-    Modbus controller.
+    """Modbus controller.
     """
 
-    pass
 
 
 class DataNetworkEquipment(ICTEquipment):
-    """
-    Data network equipment.
+    """Data network equipment.
     """
 
-    pass
 
 
 class EthernetPort(DataNetworkEquipment):
-    """
-    Ethernet port.
+    """Ethernet port.
     """
 
-    pass
 
 
 class EthernetSwitch(DataNetworkEquipment):
-    """
-    Ethernet switch.
+    """Ethernet switch.
     """
 
-    pass
 
 
 class NetworkRouter(DataNetworkEquipment):
-    """
-    Network router.
+    """Network router.
     """
 
-    pass
 
 
 class NetworkSecurityEquipment(DataNetworkEquipment):
-    """
-    Network security equipment.
+    """Network security equipment.
     """
 
-    pass
 
 
 class WirelessAccessPoint(DataNetworkEquipment):
-    """
-    Wireless access point.
+    """Wireless access point.
     """
 
-    pass
 
 
 class Gateway(ICTEquipment):
-    """
-    Gateway.
+    """Gateway.
     """
 
-    pass
 
 
 class ICTHardware(ICTEquipment):
-    """
-    ICT hardware.
+    """ICT hardware.
     """
 
-    pass
 
 
 class Server(ICTHardware):
-    """
-    Server.
+    """Server.
     """
 
-    pass
 
 
 class ITRack(ICTEquipment):
-    """
-    IT rack.
+    """IT rack.
     """
 
-    pass
 
 
 class SensorEquipment(ICTEquipment):
-    """
-    Sensor equipment.
+    """Sensor equipment.
     """
 
-    pass
 
 
 class DaylightSensorEquipment(SensorEquipment):
-    """
-    Daylight sensor.
+    """Daylight sensor.
     """
 
-    pass
 
 
 class IAQSensorEquipment(SensorEquipment):
-    """
-    Indoor air quality sensor.
+    """Indoor air quality sensor.
     """
 
-    pass
 
 
 class LeakDetectorEquipment(SensorEquipment):
-    """
-    Leak detector.
+    """Leak detector.
     """
 
-    pass
 
 
 class OccupancySensorEquipment(SensorEquipment):
-    """
-    Occupancy sensor.
+    """Occupancy sensor.
     """
 
-    pass
 
 
 class PeopleCountSensorEquipment(SensorEquipment):
-    """
-    People count sensor.
+    """People count sensor.
     """
 
-    pass
 
 
 class ThermostatEquipment(SensorEquipment):
-    """
-    Thermostat.
+    """Thermostat.
     """
 
-    pass
 
 
 class VibrationSensorEquipment(SensorEquipment):
-    """
-    Vibration sensor.
+    """Vibration sensor.
     """
 
-    pass
 
 
 class BuildingElement(_Node):
-    """
-    A part that constitutes a piece of a building's structural makeup.
+    """A part that constitutes a piece of a building's structural makeup.
     E.g., Facade, Wall, Slab, Roof, etc.
     """
 
-    pass
 
 
 class Balcony(BuildingElement):
@@ -1070,15 +987,13 @@ class WallInner(Wall):
 
 
 class Event(_Node):
-    """
-    A temporally indexed entity, e.g., an observation, a lease, a
+    """A temporally indexed entity, e.g., an observation, a lease, a
     construction project, etc. Can be instantaneous (timestamp property
     assigned) or have temporal extent (start and end properties assigned).
     Subclasses may define specific behaviour and requirements, e.g., on
     spatial indexing, agent participation, etc.
     """
 
-    pass
 
 
 class ElevatorTrip(Event):
@@ -1090,8 +1005,7 @@ class Lease(Event):
 
 
 class PointEvent(Event):
-    """
-    An event emanating from or targeting a Point; e.g., an individual
+    """An event emanating from or targeting a Point; e.g., an individual
     Observation from a Sensor point, or an Actuation sent to a Command
     point. In other terms, the Points indicate the capability of some
     Space or Equipment to emit or accept data, while this class represents
@@ -1100,7 +1014,6 @@ class PointEvent(Event):
     but are rather forwarded to some C&C system or time series database.
     """
 
-    pass
 
 
 class ActuationEvent(PointEvent):
@@ -1140,12 +1053,10 @@ class AreaObservation(ObservationEvent):
 
 
 class BooleanValueObservation(ObservationEvent):
-    """
-    Generic xsd:boolean value observation that is not specific to any
+    """Generic xsd:boolean value observation that is not specific to any
     particular QUDT quantitykind or unit.
     """
 
-    pass
 
 
 class CapacitanceObservation(ObservationEvent):
@@ -1169,12 +1080,10 @@ class DistanceObservation(ObservationEvent):
 
 
 class DoubleValueObservation(ObservationEvent):
-    """
-    Generic xsd:double value observation that is not specific to any
+    """Generic xsd:double value observation that is not specific to any
     particular QUDT quantitykind or unit.
     """
 
-    pass
 
 
 class ElectricChargeObservation(ObservationEvent):
@@ -1206,12 +1115,10 @@ class InductanceObservation(ObservationEvent):
 
 
 class IntegerValueObservation(ObservationEvent):
-    """
-    Generic xsd:int value observation that is not specific to any
+    """Generic xsd:int value observation that is not specific to any
     particular QUDT quantitykind or unit.
     """
 
-    pass
 
 
 class LengthObservation(ObservationEvent):
@@ -1295,23 +1202,19 @@ class VolumeObservation(ObservationEvent):
 
 
 class Agent(_Node):
-    """
-    The human, group, or machine that consumes or acts upon an object or
+    """The human, group, or machine that consumes or acts upon an object or
     data. This higher-level grouping allows properties that are shared
     among its subclasses (Person, Organization, ....) to be anchored in
     one joint place, on the Agent class.
     """
 
-    pass
 
 
 class Organization(Agent):
-    """
-    An organization of any sort (e.g., a business, association, project,
+    """An organization of any sort (e.g., a business, association, project,
     consortium, tribe, etc.)
     """
 
-    pass
 
 
 class Company(Organization):
@@ -1323,8 +1226,6 @@ class Department(Organization):
 
 
 class Person(Agent):
-    """
-    A natural person (i.e., an individual human being).
+    """A natural person (i.e., an individual human being).
     """
 
-    pass

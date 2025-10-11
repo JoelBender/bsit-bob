@@ -62,7 +62,7 @@ class ElectricPower(QuantifiableObservableProperty):
         if not ("hasUnit" in kwargs and kwargs["hasUnit"] in self._supported_units):
             _unit = kwargs["hasUnit"] if "hasUnit" in kwargs else "None"
             raise ValueError(
-                f"You must provide hasUnit when defining {self}. This unit must be one of those types : {self._supported_units}. You provided {_unit}"
+                f"You must provide hasUnit when defining {self}. This unit must be one of those types : {self._supported_units}. You provided {_unit}",
             )
         super().__init__(*args, **kwargs)
 
@@ -77,7 +77,7 @@ class ElectricApparentPower(QuantifiableObservableProperty):
         if not ("hasUnit" in kwargs and kwargs["hasUnit"] in self._supported_units):
             _unit = kwargs["hasUnit"] if "hasUnit" in kwargs else "None"
             raise ValueError(
-                f"You must provide hasUnit when defining {self}. This unit must be one of those types : {self._supported_units}. You provided {_unit}"
+                f"You must provide hasUnit when defining {self}. This unit must be one of those types : {self._supported_units}. You provided {_unit}",
             )
         super().__init__(*args, **kwargs)
 
@@ -92,7 +92,7 @@ class ElectricReactivePower(QuantifiableObservableProperty):
         if not ("hasUnit" in kwargs and kwargs["hasUnit"] in self._supported_units):
             _unit = kwargs["hasUnit"] if "hasUnit" in kwargs else "None"
             raise ValueError(
-                f"You must provide hasUnit when defining {self}. This unit must be one of those types : {self._supported_units}. You provided {_unit}"
+                f"You must provide hasUnit when defining {self}. This unit must be one of those types : {self._supported_units}. You provided {_unit}",
             )
         super().__init__(*args, **kwargs)
 
@@ -129,7 +129,7 @@ class ElectricEnergy(QuantifiableObservableProperty):
         if not ("hasUnit" in kwargs and kwargs["hasUnit"] in self._supported_units):
             _unit = kwargs["hasUnit"] if "hasUnit" in kwargs else "None"
             raise ValueError(
-                f"You must provide hasUnit when defining {self}. This unit must be one of those types : {self._supported_units}. You provided {_unit}"
+                f"You must provide hasUnit when defining {self}. This unit must be one of those types : {self._supported_units}. You provided {_unit}",
             )
         super().__init__(*args, **kwargs)
 
@@ -144,7 +144,7 @@ class ElectricApparentEnergy(QuantifiableObservableProperty):
         if not ("hasUnit" in kwargs and kwargs["hasUnit"] in self._supported_units):
             _unit = kwargs["hasUnit"] if "hasUnit" in kwargs else "None"
             raise ValueError(
-                f"You must provide hasUnit when defining {self}. This unit must be one of those types : {self._supported_units}. You provided {_unit}"
+                f"You must provide hasUnit when defining {self}. This unit must be one of those types : {self._supported_units}. You provided {_unit}",
             )
         super().__init__(*args, **kwargs)
 
@@ -159,6 +159,6 @@ class ElectricReactiveEnergy(QuantifiableObservableProperty):
         if not ("hasUnit" in kwargs and kwargs["hasUnit"] in self._supported_units):
             _unit = kwargs["hasUnit"] if "hasUnit" in kwargs else "None"
             raise ValueError(
-                f"You must provide hasUnit when defining {self}. This unit must be one of those types : {self._supported_units}. You provided {_unit}"
+                f"You must provide hasUnit when defining {self}. This unit must be one of those types : {self._supported_units}. You provided {_unit}",
             )
         super().__init__(*args, **kwargs)

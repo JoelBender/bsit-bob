@@ -55,8 +55,7 @@ gasmonitor_template = {
 
 
 class GasMonitor(Equipment):
-    """
-    Gas monitor that contains 1 or more gas sensors
+    """Gas monitor that contains 1 or more gas sensors
     """
 
     _class_iri: URIRef = P223.GasMonitor
@@ -65,11 +64,11 @@ class GasMonitor(Equipment):
 
     alarmStatus: PropertyReference
 
-    def __init__(self, config: Optional[Dict] = None, **kwargs):
+    def __init__(self, config: dict | None = None, **kwargs):
         if config is None:
             config = gasmonitor_template.copy()
         config["properties"] = config.get(
-            "properties", gasmonitor_template["properties"]
+            "properties", gasmonitor_template["properties"],
         )
         kwargs = {**config.get("params", {}), **kwargs}  # type: ignore[dict-item]
         super().__init__(**config, **kwargs)  # type: ignore[misc]

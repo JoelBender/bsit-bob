@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 
-"""
-Merge Graphs
+"""Merge Graphs
 
 Load in a collection of Turtle files, optionally run an inference engine,
 optionally remove OWL import statements, and save the results as a Turtle file.

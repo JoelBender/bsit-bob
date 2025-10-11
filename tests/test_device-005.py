@@ -1,10 +1,10 @@
 from pathlib import Path
 
-from .header import ttl_test_header
-
 from bob.connections.electricity import ElectricalInletConnectionPoint
 from bob.core import Equipment, bind_model_namespace, dump
 from bob.equipment.hvac.fan import Fan
+
+from .header import ttl_test_header
 
 model_name = Path(__file__).stem
 _namespace = bind_model_namespace("ex", f"urn:ex/{model_name}/")
@@ -20,11 +20,11 @@ def test_create_fan(bob_fixture):
         "sensors": {},
         "equipment": {("VA1-VFD", Equipment): {"comment": "VFD for VA-1"}},
     }
-    fan1 = Fan( #noqa F841
+    fan1 = Fan(
         config=_config,
     )
 
-    fan2 = Fan( #noqa F841
+    fan2 = Fan(
         label="VA-2",
         electricalInlet=ElectricalInletConnectionPoint,
     )

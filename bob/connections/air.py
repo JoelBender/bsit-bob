@@ -60,12 +60,12 @@ class CompressedAirConnectionPoint(ConnectionPoint):
 
 
 class CompressedAirInletConnectionPoint(
-    CompressedAirConnectionPoint, InletConnectionPoint
+    CompressedAirConnectionPoint, InletConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class CompressedAirOutletConnectionPoint(
-    CompressedAirConnectionPoint, OutletConnectionPoint
+    CompressedAirConnectionPoint, OutletConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint

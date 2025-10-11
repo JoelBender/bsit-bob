@@ -86,7 +86,7 @@ def collect_multimethods():
             for mname, meth in inspect.getmembers(obj, inspect.isfunction):
                 if hasattr(meth, "register") and hasattr(meth, "dispatch"):
                     REPORT.append(
-                        f"- singledispatchmethod: {modname}.{obj.__name__}.{mname}()"
+                        f"- singledispatchmethod: {modname}.{obj.__name__}.{mname}()",
                     )
 
 
@@ -94,7 +94,7 @@ def main():
     REPORT.clear()
     REPORT.append("# Operators (Implementation Map)\n")
     REPORT.append(
-        "This page is generated from the codebase. It lists operator overloads (dunder methods) and multimethods used by si-builder to simplify modeling.\n"
+        "This page is generated from the codebase. It lists operator overloads (dunder methods) and multimethods used by si-builder to simplify modeling.\n",
     )
     for modname in iter_bob_modules():
         collect_dunders(modname)

@@ -1,9 +1,10 @@
-from typing import Any, Set, Dict, Optional, TypeAlias
 import logging
+from typing import Any, Dict, Optional, Set, TypeAlias
+
 from rdflib import Graph, URIRef
 
 # Export logging explicitly
-__all__ = ['logging', 'URIRef', 'Graph', 'Node', 'Property', 'Equipment', 'EnumerationKind', 'ConnectionPoint']
+__all__ = ["ConnectionPoint", "EnumerationKind", "Equipment", "Graph", "Node", "Property", "URIRef", "logging"]
 
 # Base Node class
 class Node:
@@ -78,8 +79,8 @@ class _Function(Node):
     def _resolve_annotations(self) -> None: ...
 
 class Function(_Function):
-    inputs: Dict[str, Any]
-    outputs: Dict[str, Any]
+    inputs: dict[str, Any]
+    outputs: dict[str, Any]
     def __init__(self, **kwargs: Any) -> None: ...
     def hasInput(self, *args: Any, **kwargs: Any) -> Any: ...
     def hasOutput(self, *args: Any, **kwargs: Any) -> Any: ...
@@ -113,7 +114,7 @@ class Container(Node):
 
 class Connectable(Node):
     _class_iri: URIRef
-    _connection_points: Dict[str, ConnectionPoint]
+    _connection_points: dict[str, ConnectionPoint]
     def __init__(self, **kwargs: Any) -> None: ...
 
 class Equipment(Container, Connectable):
@@ -135,9 +136,9 @@ class Junction(Connectable):
     def __init__(self, **kwargs: Any) -> None: ...
 
 class System(Container):
-    hasRole: Set[Any]
-    _boundary_connection_points: Set[Any]
-    _serves_zones: Dict[str, Any]
+    hasRole: set[Any]
+    _boundary_connection_points: set[Any]
+    _serves_zones: dict[str, Any]
     def __init__(self, **kwargs: Any) -> None: ...
 
 class Connection(Node):
@@ -148,11 +149,11 @@ class Connection(Node):
 # EnumerationKind and related classes
 class EnumerationKind(Node):
     _name: str
-    _parent: Optional[EnumerationKind]
-    _children: Set[EnumerationKind]
-    _constituents: Set[Any]
-    composedOf: Set[Any]
-    
+    _parent: EnumerationKind | None
+    _children: set[EnumerationKind]
+    _constituents: set[Any]
+    composedOf: set[Any]
+
     def __init__(self, name: str, *args: Any, **kwargs: Any) -> None: ...
     def __call__(self, name: str, *, _alt_namespace: Any = None, **kwargs: Any) -> EnumerationKind: ...
     def __getattr__(self, name: str) -> Any: ...  # Allow dynamic attribute access
@@ -169,10 +170,10 @@ class MediumType(EnumerationKind):
     ThermalContact: Any
 
 class RoleType(EnumerationKind):
-    pass
+    ...
 
 class DomainType(EnumerationKind):
-    pass
+    ...
 
 # The actual Constituent class that inherits from EnumerationKind
 class Constituent(EnumerationKind):
@@ -197,9 +198,9 @@ data_graph: Graph
 schema_graph: Graph
 
 # Variables that are dynamically created
-Medium: TypeAlias = Any  # Type alias for medium instances
-Substance: TypeAlias = Any  # Type alias for substance instances  
-Domain: TypeAlias = Any  # Type alias for domain instances
+type Medium = Any  # Type alias for medium instances
+type Substance = Any  # Type alias for substance instances
+type Domain = Any  # Type alias for domain instances
 
 # Medium instances
 Mix: Any  # Medium instance defined as Medium("Mix")

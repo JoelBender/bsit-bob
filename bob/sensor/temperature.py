@@ -6,9 +6,9 @@ from ..core import (
     BOB,
     QUANTITYKIND,
     S223,
+    UNIT,
     PropertyReference,
     Setpoint,
-    UNIT,
 )
 from ..enum import Air, Water
 from ..properties import Temperature
@@ -27,7 +27,7 @@ class TemperatureSensor(Sensor):
     _class_iri = S223.TemperatureSensor
     observes: PropertyReference  # Temperature
 
-    def __init__(self, config: Dict[str, Any] = {}, **kwargs: Any) -> None:
+    def __init__(self, config: dict[str, Any] = {}, **kwargs: Any) -> None:
         _sensor_kwargs, _property_kwargs = split_kwargs(kwargs)
 
         if "hasUnit" not in _property_kwargs:
@@ -37,9 +37,9 @@ class TemperatureSensor(Sensor):
             #)
         if "ofMedium" not in _property_kwargs:
             raise ValueError(
-                "You must provide ofMedium when defining a temperature sensor"
+                "You must provide ofMedium when defining a temperature sensor",
             )
-        
+
         observed_prop = Temperature(
             # isObservedBy=self,
             label="observed_property",
@@ -48,14 +48,14 @@ class TemperatureSensor(Sensor):
 
         _sensor_kwargs["observed_property"] = observed_prop
 
-        super().__init__(config=config, **_sensor_kwargs)        
+        super().__init__(config=config, **_sensor_kwargs)
 
 
 class AirTemperatureSensor(TemperatureSensor):
-    def __init__(self, config: Dict[str, Any] = {},**kwargs):
+    def __init__(self, config: dict[str, Any] = {},**kwargs):
         super().__init__(config=config, ofMedium=Air, **kwargs)
 
 
 class WaterTemperatureSensor(TemperatureSensor):
-    def __init__(self, config: Dict[str, Any] = {}, **kwargs):
+    def __init__(self, config: dict[str, Any] = {}, **kwargs):
         super().__init__(config=config,ofMedium=Water, **kwargs)

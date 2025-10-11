@@ -38,7 +38,7 @@ class LightInletZoneConnectionPoint(LightZoneConnectionPoint, InletZoneConnectio
 
 
 class LightOutletZoneConnectionPoint(
-    LightZoneConnectionPoint, OutletZoneConnectionPoint
+    LightZoneConnectionPoint, OutletZoneConnectionPoint,
 ):
     _class_iri = BOB.OutletZoneConnectionPoint
 
@@ -53,13 +53,13 @@ class LightVisibleConnectionPoint(ConnectionPoint):
 
 
 class LightVisibleInletConnectionPoint(
-    LightVisibleConnectionPoint, InletConnectionPoint
+    LightVisibleConnectionPoint, InletConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class LightVisibleOutletConnectionPoint(
-    LightVisibleConnectionPoint, OutletConnectionPoint
+    LightVisibleConnectionPoint, OutletConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -70,12 +70,12 @@ class LightVisibleZoneConnectionPoint(ZoneConnectionPoint):
 
 
 class LightVisibleInletZoneConnectionPoint(
-    LightVisibleZoneConnectionPoint, InletZoneConnectionPoint
+    LightVisibleZoneConnectionPoint, InletZoneConnectionPoint,
 ):
     _class_iri = BOB.InletZoneConnectionPoint
 
 
 class LightVisibleOutletZoneConnectionPoint(
-    LightVisibleZoneConnectionPoint, OutletZoneConnectionPoint
+    LightVisibleZoneConnectionPoint, OutletZoneConnectionPoint,
 ):
     _class_iri = BOB.OutletZoneConnectionPoint

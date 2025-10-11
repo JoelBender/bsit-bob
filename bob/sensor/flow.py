@@ -2,7 +2,6 @@ from typing import Any, Dict
 
 from rdflib import URIRef
 
-
 from ..core import (
     BOB,
     QUANTITYKIND,
@@ -27,7 +26,7 @@ class FlowSensor(Sensor):
     _class_iri = S223.Sensor
     observes: PropertyReference  # Flow
 
-    def __init__(self, config: Dict[str, Any] = {}, **kwargs: Any) -> None:
+    def __init__(self, config: dict[str, Any] = {}, **kwargs: Any) -> None:
         _sensor_kwargs, _property_kwargs = split_kwargs(kwargs)
 
         observed_prop = Flow(
@@ -43,7 +42,7 @@ class AirFlowSensor(FlowSensor):
     _class_iri = S223.Sensor
 
     # typical unit : hasUnit=UNIT["FT3-PER-MIN"]
-    def __init__(self, config: Dict[str, Any] = {}, **kwargs: Any) -> None:
+    def __init__(self, config: dict[str, Any] = {}, **kwargs: Any) -> None:
         super().__init__(config=config, ofMedium=Air, **kwargs)
 
 
@@ -51,5 +50,5 @@ class WaterFlowSensor(FlowSensor):
     _class_iri = S223.Sensor
 
     # typical unit : hasUnit=UNIT["GAL_UK-PER-MIN"]
-    def __init__(self, config: Dict[str, Any] = {}, **kwargs: Any) -> None:
+    def __init__(self, config: dict[str, Any] = {}, **kwargs: Any) -> None:
         super().__init__(config=config, ofMedium=Water, **kwargs)

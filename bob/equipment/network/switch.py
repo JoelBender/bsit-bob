@@ -32,13 +32,12 @@ ethernet_switch_template = {
 
 
 class EthernetSwitch(Equipment):
-    """
-    An Ethernet Switch
+    """An Ethernet Switch
     """
 
     _class_iri: URIRef = S223.EthernetSwitch
 
-    def __init__(self, config: Optional[Dict] = None, **kwargs):
+    def __init__(self, config: dict | None = None, **kwargs):
         if "ports" in kwargs:
             _number_of_ports = int(kwargs.pop("ports"))
         else:
@@ -58,13 +57,12 @@ class EthernetSwitch(Equipment):
 
 
 class PoESwitch(Equipment):
-    """
-    An Ethernet Switch
+    """An Ethernet Switch
     """
 
     _class_iri: URIRef = S223.PowerOverEthernetSwitch
 
-    def __init__(self, config: Optional[Dict] = None, **kwargs):
+    def __init__(self, config: dict | None = None, **kwargs):
         if "ports" in kwargs:
             _number_of_ports = int(kwargs.pop("ports"))
         else:

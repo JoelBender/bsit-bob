@@ -1,15 +1,14 @@
 from typing import Dict, Optional
 
-from ...equipment.electricity import _MotorStarter
-from ...properties.states import OnOffCommand
-
 from ...connections import electricity as elec_cnx
 from ...core import (
     BOB,
     P223,
     logging,
 )
-from ...template import template_update, configure_relations
+from ...equipment.electricity import _MotorStarter
+from ...properties.states import OnOffCommand
+from ...template import configure_relations, template_update
 
 # logging
 _log = logging.getLogger(__name__)
@@ -30,8 +29,7 @@ electric_starter_template = {
 
 
 class MotorStarter(_MotorStarter):
-    """
-    Motor starter
+    """Motor starter
     This Equipment provides command and status for an electrical
     Equipment like a fan or a pump
 
@@ -39,7 +37,7 @@ class MotorStarter(_MotorStarter):
 
     _class_iri = P223.MotorStarter
 
-    def __init__(self, config: Optional[Dict] = None, **kwargs):
+    def __init__(self, config: dict | None = None, **kwargs):
         _config = template_update(electric_starter_template, config)
         kwargs = {**_config.pop("params", {}), **kwargs}
         _log.debug(f"MotorStarter.__init__ {_config} {kwargs}")

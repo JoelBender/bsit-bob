@@ -1,8 +1,9 @@
 from pathlib import Path
 
+from bob.core import UNIT, Property, bind_model_namespace, dump
 from bob.functions import Function, FunctionInput, FunctionOutput
 from bob.properties.temperature import Temperature
-from bob.core import UNIT, Property, bind_model_namespace, dump
+
 from .header import ttl_test_header
 
 model_name = Path(__file__).stem
@@ -10,8 +11,7 @@ _namespace = bind_model_namespace("ex", f"urn:ex/{model_name}/")
 
 
 def test_function_creation(bob_fixture):
-    """
-    Create a thing `x` with an outlet connection point and two things `y` and
+    """Create a thing `x` with an outlet connection point and two things `y` and
     `z` with inlets.  Connect the outlet of `x` to the junction with one
     connection and the junction to both inlets each with their own connection.
     """
@@ -33,8 +33,7 @@ def test_function_creation(bob_fixture):
     dump(filename=f"tests/ttl/{model_name}.ttl", header=ttl_test_header(model_name))
 
 def test_function_declaration(bob_fixture):
-    """
-    Create a function with inputs and outputs.
+    """Create a function with inputs and outputs.
     """
     class MyFunction(Function):
         _class_iri = _namespace.Function

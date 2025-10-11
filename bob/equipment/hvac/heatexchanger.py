@@ -35,7 +35,7 @@ class AirHeatExchanger(Equipment):
     exhaustAirInlet: AirInletConnectionPoint
     exhaustAirOutlet: AirOutletConnectionPoint
 
-    def __init__(self, config: Optional[Dict] = None, **kwargs):
+    def __init__(self, config: dict | None = None, **kwargs):
         _config = template_update({}, config=config)
         kwargs = {**_config.pop("params", {}), **kwargs}
         _log.info(f"AirHeatExchanger.__init__ {_config} {kwargs}")

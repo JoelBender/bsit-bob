@@ -11,7 +11,8 @@ import inspect
 import itertools
 import logging
 from collections import Counter
-from typing import Any, Callable, Dict, List, Set, Tuple, Union, get_origin
+from collections.abc import Callable
+from typing import Any, Dict, List, Set, Tuple, Union, get_origin
 
 __all__ = ["multimethod"]
 
@@ -21,7 +22,7 @@ _log = logging.getLogger("multimethods")
 _log.addHandler(logging.NullHandler())
 
 # Maps function.__name__ -> _MultiMethod object.
-_multi_registry: Dict[str, _MultiMethod] = {}
+_multi_registry: dict[str, _MultiMethod] = {}
 
 
 class _MultiMethod:
@@ -29,9 +30,9 @@ class _MultiMethod:
 
     name: str
     argc: int
-    types: Set[type]
-    typemap: Dict[Tuple[type, ...], Callable[..., Any]]
-    funcs: List[Callable[..., Any]]
+    types: set[type]
+    typemap: dict[tuple[type, ...], Callable[..., Any]]
+    funcs: list[Callable[..., Any]]
     invocations: Counter
 
     def __init__(self, name: str) -> None:
@@ -54,7 +55,7 @@ class _MultiMethod:
         # pad the list of types with None if there aren't enough
         if len(types) > self.argc:
             raise RuntimeError(f"too many parameters, expecting {self.argc}")
-        elif len(types) < self.argc:
+        if len(types) < self.argc:
             types.extend([type(None)] * (self.argc - len(types)))
         _log.debug("    - types: %r", types)
 
@@ -64,14 +65,14 @@ class _MultiMethod:
                     parm_subtypes = set(elem.__class__ for elem in args[i])
 
                     # make an ordered dict of the first subtype __mro__
-                    top_mro = {s: None for s in parm_subtypes.pop().__mro__}
+                    top_mro = dict.fromkeys(parm_subtypes.pop().__mro__)
 
                     # keep the classes in the top_mro that are in each of
                     # the other parm_subtypes __mro__
                     for cls in parm_subtypes:
                         top_mro = {s: None for s in top_mro if s in cls.__mro__}
 
-                    types[i] = List[next(iter(top_mro))]  # type: ignore[index,misc]
+                    types[i] = list[next(iter(top_mro))]  # type: ignore[index,misc]
 
         types_tuple = tuple(types)
         _log.debug("    - types_tuple: %r", types_tuple)
@@ -127,7 +128,7 @@ class _MultiMethod:
 
                 if inspect.isclass(parm_type):
                     types_with_subclasses.append(
-                        [parm_type] + all_subclasses(parm_type)
+                        [parm_type] + all_subclasses(parm_type),
                     )
 
                 elif parm_origin is Union:
@@ -135,7 +136,7 @@ class _MultiMethod:
                     for parm_subtype in parm_type.__args__:
                         if not inspect.isclass(parm_subtype):
                             raise TypeError(
-                                f"parameter {parameter.name} subtype: {parm_subtype!r}"
+                                f"parameter {parameter.name} subtype: {parm_subtype!r}",
                             )
                         parm_types.add(parm_subtype)
                         parm_types.update(all_subclasses(parm_subtype))
@@ -146,18 +147,18 @@ class _MultiMethod:
                     parm_subtype = parm_type.__args__[0]
                     if not inspect.isclass(parm_subtype):
                         raise TypeError(
-                            f"parameter {parameter.name} subtype: {parm_subtype!r}"
+                            f"parameter {parameter.name} subtype: {parm_subtype!r}",
                         )
 
-                    parm_types = set([List[parm_subtype]])
+                    parm_types = set([list[parm_subtype]])
                     for more_subtypes in all_subclasses(parm_subtype):
-                        parm_types.add(List[more_subtypes])
+                        parm_types.add(list[more_subtypes])
 
                     types_with_subclasses.append(parm_types)
 
                 else:
                     raise TypeError(
-                        f"parameter {parameter.name}: {parm_type!r} {parm_origin!r}"
+                        f"parameter {parameter.name}: {parm_type!r} {parm_origin!r}",
                     )
 
             for type_tuple in itertools.product(*types_with_subclasses):
@@ -173,11 +174,11 @@ class _MultiMethod:
 
             if types_tuple not in self.typemap:
                 raise RuntimeError(
-                    "%s previous calls no longer mapped: %s", self.name, types_tuple
+                    "%s previous calls no longer mapped: %s", self.name, types_tuple,
                 )
             if self.typemap[types_tuple] is not method:
                 raise RuntimeError(
-                    "%s previous calls new method: %s", self.name, types_tuple
+                    "%s previous calls new method: %s", self.name, types_tuple,
                 )
 
 
@@ -193,12 +194,12 @@ def multimethod(func: Callable[..., Any]) -> _MultiMethod:
     return mm
 
 
-def all_subclasses(cls: type) -> List[type]:
+def all_subclasses(cls: type) -> list[type]:
     """Returns a list of *all* subclasses of cls, recursively."""
     if not hasattr(cls, "__subclasses__"):
         return []
 
-    subclasses: List[type] = cls.__subclasses__()
+    subclasses: list[type] = cls.__subclasses__()
     for subcls in cls.__subclasses__():
         subclasses.extend(all_subclasses(subcls))
     return subclasses
@@ -214,7 +215,7 @@ def new_class(cls: type) -> None:
             if inspect.isclass(mm_type):
                 if issubclass(cls, mm_type):
                     _log.debug(
-                        "    - %s ding: %r is a subclass of %r", fn_name, cls, mm_type
+                        "    - %s ding: %r is a subclass of %r", fn_name, cls, mm_type,
                     )
                     ding = True
                     break

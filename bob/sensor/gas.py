@@ -12,10 +12,9 @@ from ..core import (
     PropertyReference,
     Setpoint,
 )
-from ..enum import Constituent
+from ..enum import Constituent, NOx
 from ..properties import GasConcentration
 from .sensor import Sensor, split_kwargs
-from ..enum import NOx
 
 _namespace = BOB
 
@@ -38,15 +37,15 @@ class GasConcentrationSensor(Sensor):
     hasMinRange: PropertyReference  # type: ignore[assignment]
     hasMaxRange: PropertyReference  # type: ignore[assignment]
 
-    def __init__(self, config: Dict[str, Any] = {}, **kwargs: Any) -> None:
+    def __init__(self, config: dict[str, Any] = {}, **kwargs: Any) -> None:
         _sensor_kwargs, _property_kwargs = split_kwargs(kwargs)
         print(f"{_sensor_kwargs = }, {_property_kwargs = }")
 
         if "ofSubstance" not in _property_kwargs:
             raise ValueError(
-                "You must provide ofSubstance when defining a gas concentration sensor"
+                "You must provide ofSubstance when defining a gas concentration sensor",
             )
-        
+
         observed_prop = GasConcentration(
             label="observed_property",  # needs more focus
             hasUnit=UNIT.PPM,
@@ -63,7 +62,7 @@ class CO2Sensor(GasConcentrationSensor):
     hasMinRange: PropertyReference
     hasMaxRange: PropertyReference
 
-    def __init__(self, config: Dict[str, Any] = {}, **kwargs):
+    def __init__(self, config: dict[str, Any] = {}, **kwargs):
         # _sensor_kwargs, _property_kwargs = split_kwargs(kwargs)
         super().__init__(config=config, ofSubstance=Constituent.CO2, **kwargs)
 
@@ -74,7 +73,7 @@ class COSensor(GasConcentrationSensor):
     hasMinRange: PropertyReference
     hasMaxRange: PropertyReference
 
-    def __init__(self, config: Dict[str, Any] = {}, **kwargs):
+    def __init__(self, config: dict[str, Any] = {}, **kwargs):
         # _sensor_kwargs, _property_kwargs = split_kwargs(kwargs)
         super().__init__(config=config, ofSubstance=Constituent.CO, **kwargs)
 
@@ -85,7 +84,7 @@ class NO2Sensor(GasConcentrationSensor):
     hasMinRange: PropertyReference
     hasMaxRange: PropertyReference
 
-    def __init__(self, config: Dict[str, Any] = {}, **kwargs):
+    def __init__(self, config: dict[str, Any] = {}, **kwargs):
         # _sensor_kwargs, _property_kwargs = split_kwargs(kwargs)
         super().__init__(config=config, ofSubstance=NOx.NO2, **kwargs)
 
@@ -96,6 +95,6 @@ class CH4Sensor(GasConcentrationSensor):
     hasMinRange: PropertyReference
     hasMaxRange: PropertyReference
 
-    def __init__(self, config: Dict[str, Any] = {}, **kwargs):
+    def __init__(self, config: dict[str, Any] = {}, **kwargs):
         # _sensor_kwargs, _property_kwargs = split_kwargs(kwargs)
         super().__init__(config=config, ofSubstance=Constituent.CH4, **kwargs)
