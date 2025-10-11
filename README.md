@@ -3,10 +3,16 @@
 Build ASHRAE 223P–compliant models using YAML and Python. si-builder emits RDF (Turtle) and aligns key concepts with RealEstateCore.
 
 Install
+
 ```bash
-git clone https://bas-im.emcs.cornell.edu/223/si-builder.git
-cd si-builder
-pip install .
+% mkdir my-building
+% cd my-building
+% uv init --python 3.13
+Initialized project `my-building`
+% uv add bsit-bob
+# or uv pip install ".[tests,validation,templates,doc]", choose what you need
+Using CPython 3.13.1
+Creating virtual environment at: .venv
 ```
 
 Verify import
