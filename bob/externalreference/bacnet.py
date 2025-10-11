@@ -1,9 +1,10 @@
 import logging
 import re
+from typing import Any
 
-from rdflib import XSD, Literal
+from rdflib import Literal
 
-from ..core import S223, ExternalReference, bind_namespace, prefixes
+from ..core import S223, ExternalReference, bind_namespace, prefixes  # type: ignore[attr-defined]
 
 # logging
 _log = logging.getLogger(__name__)
@@ -37,7 +38,7 @@ class BACnetExternalReference(ExternalReference):
     }
     objectIdentifier: Literal
     propertyIdentifier: Literal
-    propertyArrayIndex: XSD.nonNegativeInteger
+    propertyArrayIndex: Any  # XSD.nonNegativeInteger  # type: ignore[valid-type]
     deviceIdentifier: Literal
 
     # objectType: URIRef

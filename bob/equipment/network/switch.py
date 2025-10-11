@@ -1,5 +1,5 @@
 import logging
-from typing import Dict
+from typing import Dict, Optional
 
 from rdflib import URIRef
 
@@ -38,7 +38,7 @@ class EthernetSwitch(Equipment):
 
     _class_iri: URIRef = S223.EthernetSwitch
 
-    def __init__(self, config: Dict = None, **kwargs):
+    def __init__(self, config: Optional[Dict] = None, **kwargs):
         if "ports" in kwargs:
             _number_of_ports = int(kwargs.pop("ports"))
         else:
@@ -51,10 +51,10 @@ class EthernetSwitch(Equipment):
         for i, each in enumerate(range(_number_of_ports)):
             _config["cp"][f"port{i}"] = EthernetBidirectionalConnectionPoint
         kwargs = {**_config.get("params", {}), **kwargs}
-        super().__init__(_config, **kwargs)
+        super().__init__(**_config, **kwargs)  # type: ignore[misc]
         for k, v in self._connection_points.items():
             if isinstance(v, EthernetBidirectionalConnectionPoint):
-                v.data_rate = Mbit_per_seconds(_data_rate)
+                v.data_rate = Mbit_per_seconds(_data_rate)  # type: ignore[call-arg]
 
 
 class PoESwitch(Equipment):
@@ -64,7 +64,7 @@ class PoESwitch(Equipment):
 
     _class_iri: URIRef = S223.PowerOverEthernetSwitch
 
-    def __init__(self, config: Dict = None, **kwargs):
+    def __init__(self, config: Optional[Dict] = None, **kwargs):
         if "ports" in kwargs:
             _number_of_ports = int(kwargs.pop("ports"))
         else:
@@ -77,7 +77,7 @@ class PoESwitch(Equipment):
         for i, each in enumerate(range(_number_of_ports)):
             _config["cp"][f"port{i}"] = PoEBidirectionalConnectionPoint
         kwargs = {**_config.get("params", {}), **kwargs}
-        super().__init__(_config, **kwargs)
+        super().__init__(**_config, **kwargs)  # type: ignore[misc]
         for k, v in self._connection_points.items():
             if isinstance(v, EthernetBidirectionalConnectionPoint):
-                v.data_rate = Mbit_per_seconds(_data_rate)
+                v.data_rate = Mbit_per_seconds(_data_rate)  # type: ignore[call-arg]

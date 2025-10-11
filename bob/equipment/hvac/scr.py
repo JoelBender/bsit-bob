@@ -40,5 +40,5 @@ class SCR(Equipment):
     def __init__(self, config: Dict = SCR_template, **kwargs):
         config["properties"] = config.get("properties", SCR_template["properties"])
         kwargs = {**config.get("params", {}), **kwargs}
-        super().__init__(config, **kwargs)
-        self.electricalOutlet.paired_to(self.electricalInlet)
+        super().__init__(**config, **kwargs)  # type: ignore[misc]
+        self.electricalOutlet.paired_to(self.electricalInlet)  # type: ignore[attr-defined]

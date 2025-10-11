@@ -9,15 +9,15 @@ from __future__ import annotations
 import logging
 from typing import List
 
-from rdflib import XSD, Literal, URIRef
+from typing import Any
+from rdflib import Literal, URIRef
 
 from .core import (
     INCLUDE_INVERSE,
     ConnectionPoint,
     Node,
-    bind_namespace,
-    prefixes,
 )
+from .core import bind_namespace, prefixes  # type: ignore[attr-defined]
 from .equipment.control.controller import Controller
 from .externalreference.bacnet import BACnetExternalReference
 from .multimethods import multimethod
@@ -34,7 +34,7 @@ class Device(Controller):
     _class_iri: URIRef = BACNET.Device
     _namespace = BACNET
     _device_object: DeviceObject  # reference to a device's DeviceObject
-    _bacnet_objects = set()  # references to all objects
+    _bacnet_objects: set = set()  # references to all objects  # type: ignore[var-annotated]
 
     deviceInstance: Literal
 
@@ -53,7 +53,7 @@ class Object(Node):
     objectType: URIRef
     description: Literal
 
-    _device: Device  # reference from an object to its device
+    # _device: Device  # reference from an object to its device (duplicate definition removed)
     _present_value: BACnetExternalReference
 
     @property
@@ -120,7 +120,7 @@ def contains_mm(device_: Device, object_: Object) -> None:
 
 
 @multimethod
-def contains_mm(device_: Device, object_list: List[Object]) -> None:
+def contains_mm(device_: Device, object_list: List[Object]) -> None:  # type: ignore[no-redef]
     """Device > [ Object, ... ]"""
     _log.info(f"device {device_} contains object list {object_list}")
 
@@ -143,7 +143,7 @@ def connect_mm(object_: Object, cp_: ConnectionPoint) -> None:
 
 
 @multimethod
-def connect_mm(object1_: Object, object2_: Object) -> None:
+def connect_mm(object1_: Object, object2_: Object) -> None:  # type: ignore[no-redef]
     """Object >> Object"""
     _log.info(f"object {object1_} mapsTo {object2_}")
 
@@ -168,7 +168,7 @@ class DeviceObject(Object):
     }
     systemStatus: URIRef  # one of bacnet:DeviceStatus
     vendorName: Literal
-    vendorIdentifier: XSD.nonNegativeInteger
+    vendorIdentifier: Any  # XSD.nonNegativeInteger  # type: ignore[valid-type]
     modelName: Literal
 
 

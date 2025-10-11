@@ -22,7 +22,7 @@ _namespace = P223
 
 # empty, because other equipments can be defined as controller
 # and I don't want them to inherit from example properties
-controller_template = {
+controller_template: Dict[str, Dict[str, Dict]] = {
     "cp": {},
     "properties": {},
 }
@@ -40,7 +40,7 @@ class Controller(Equipment):
         kwargs = {**_config.pop("params", {}), **kwargs}
         _log.debug(f"Controller.__init__ {_config} {kwargs}")
 
-        super().__init__(_config, **kwargs)
+        super().__init__(**{**_config, **kwargs})
 
     def executes(self, function_block: Function):
         _log.debug(f"Controller {self._node_iri} executes  {function_block._node_iri}")

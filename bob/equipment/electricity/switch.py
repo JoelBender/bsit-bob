@@ -1,4 +1,4 @@
-from typing import Dict
+from typing import Dict, Optional
 
 from ...producer.causality import Causality
 from ...properties.electricity import Amps
@@ -40,11 +40,11 @@ class Switch(Equipment):
     onOffStatus: OnOffStatus
     onOffCommand: OnOffCommand
 
-    def __init__(self, config: Dict = None, **kwargs):
+    def __init__(self, config: Optional[Dict] = None, **kwargs):
         _config = template_update(switch_template, config)
-        kwargs = {**_config.get("params", {}), **kwargs}
+        kwargs = {**_config.pop("params", {}), **kwargs}
 
-        super().__init__(_config, **kwargs)
+        super().__init__(**{**_config, **kwargs})
 
 
 class SinglePoleSwitch(Switch):
@@ -69,7 +69,7 @@ class SinglePoleSwitch(Switch):
         ),
     }
 
-    def __init__(self, config: Dict = None, **kwargs):
+    def __init__(self, config: Optional[Dict] = None, **kwargs):
         _config = template_update(switch_template, config)
         if config:
             _config.update(config)
@@ -78,9 +78,9 @@ class SinglePoleSwitch(Switch):
             _electricalInlet, _electricalOutlet = self._cross_ref[str(_voltage)]
             _config["cp"]["electricalInlet"] = _electricalInlet
             _config["cp"]["electricalOutlet"] = _electricalOutlet
-        kwargs = {**_config.get("params", {}), **kwargs}
+        kwargs = {**_config.pop("params", {}), **kwargs}
 
-        super().__init__(_config, **kwargs)
+        super().__init__(**{**_config, **kwargs})
 
 
 current_relay_template = {
@@ -100,7 +100,7 @@ class CurrentRelay(Equipment):
 
     _class_iri = P223.CurrentRelay
 
-    def __init__(self, config: Dict = None, **kwargs):
+    def __init__(self, config: Optional[Dict] = None, **kwargs):
         _config = template_update(current_relay_template, config)
         kwargs = {**_config.pop("params", {}), **kwargs}
 
@@ -108,18 +108,18 @@ class CurrentRelay(Equipment):
 
         _label = kwargs["label"]
 
-        super().__init__(_config, **kwargs)
+        super().__init__(**{**_config, **kwargs})
 
         sensor = CurrentSensor(
             label="currentSensor",
             ofMedium=Electricity,
         )
         # sensor % _hasObservationLocation
-        self > sensor
+        self > sensor  # type: ignore
         status_producer = Causality(label="statusProducer")
         status_producer.cause_input << sensor.observedProperty
-        status_producer.effect_output >> self["onOffStatus"]
-        self > status_producer
+        status_producer.effect_output >> self["onOffStatus"]  # type: ignore
+        self > status_producer  # type: ignore
         # self["onOffStatus"] += RunStatus
         # self.dryContact += RunStatus
 
@@ -134,14 +134,14 @@ class TimerSwitch(SinglePoleSwitch):
     onOffStatus: OnOffStatus
     onOffCommand: OnOffCommand
 
-    def __init__(self, config: Dict = None, **kwargs):
+    def __init__(self, config: Optional[Dict] = None, **kwargs):
         _config = template_update(current_relay_template, config)
         kwargs = {**_config.pop("params", {}), **kwargs}
         _delay = kwargs.pop("delay") if "delay" in kwargs else None
 
         if _delay:
             _config["properties"][("delay", Hour)] = {"hasValue": _delay}
-        super().__init__(_config, **kwargs)
+        super().__init__(**{**_config, **kwargs})
 
 
 class DimmableSwitch(SinglePoleSwitch):
@@ -150,7 +150,7 @@ class DimmableSwitch(SinglePoleSwitch):
 
     """
 
-    def __init__(self, config: Dict = None, **kwargs):
+    def __init__(self, config: Optional[Dict] = None, **kwargs):
         _config = template_update(current_relay_template, config)
         kwargs = {**_config.pop("params", {}), **kwargs}
         _dimmer_command = (
@@ -159,4 +159,4 @@ class DimmableSwitch(SinglePoleSwitch):
         _config["properties"][("dimmer_command", PercentCommand)] = {
             "hasValue": _dimmer_command
         }
-        super().__init__(_config, **kwargs)
+        super().__init__(**{**_config, **kwargs})

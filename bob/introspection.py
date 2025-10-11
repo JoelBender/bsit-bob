@@ -7,9 +7,9 @@ import bob
 from .core import UNIT, Substance
 from .enum import Medium, Particulate, Constituent
 
-class_cache = {}
-module_cache = {}
-enum_cache = {}
+class_cache: dict[str, type] = {}
+module_cache: dict[str, list[str]] = {}
+enum_cache: dict[str, type] = {}
 XREF_CACHE = {
     "UNIT": UNIT,
     "Medium": Medium,
@@ -18,7 +18,9 @@ XREF_CACHE = {
     "Constituent": Constituent,
 }
 
-def look_in_cache(name: str = None, cache: dict = None):
+def look_in_cache(name: str | None = None, cache: dict | None = None):
+    if name is None or cache is None:
+        return None
     return cache[name] if name in cache else None
 
 
@@ -32,7 +34,7 @@ def get_modules_from(package_name: str) -> t.List[str]:
     return modules
 
 
-def load_modules(module: t.Type = bob, force: bool = False) -> None:
+def load_modules(module = bob, force: bool = False) -> None:
     global class_cache
     global module_cache
     # print(f"Loading modules {module}")
@@ -40,7 +42,7 @@ def load_modules(module: t.Type = bob, force: bool = False) -> None:
         module_cache[module.__name__] = get_modules_from(module.__name__)
 
 
-def get_class_from_name(classname: str = None, module: t.Type = bob) -> t.Type:
+def get_class_from_name(classname: str | None = None, module = bob) -> t.Any:
     global class_cache
     global module_cache
     _super = None
@@ -55,19 +57,19 @@ def get_class_from_name(classname: str = None, module: t.Type = bob) -> t.Type:
         _super, classname = classname.split(".")
 
         if _super == "UNIT":
-            return UNIT[classname]
+            return UNIT[classname]  # type: ignore
         if _super == "Medium":
-            return getattr(Medium,classname)
+            return getattr(Medium,classname)  # type: ignore
         if _super == "Substance":
-            return getattr(Substance,classname)
+            return getattr(Substance,classname)  # type: ignore
         if _super == "Particulate":
-            return getattr(Particulate,classname)
+            return getattr(Particulate,classname)  # type: ignore
         if _super == "Constituent":
-            return getattr(Constituent,classname)
+            return getattr(Constituent,classname)  # type: ignore
 
     if "|" in classname:
         _module, classname = classname.split("|")
-        module = importlib.import_module(_module)
+        module = importlib.import_module(_module)  # type: ignore
     load_modules(module)
     for each in module_cache[module.__name__]:
         try:
@@ -89,17 +91,17 @@ def get_class_from_name(classname: str = None, module: t.Type = bob) -> t.Type:
                     else:
                         _key = classname
                     class_cache[_key] = obj
-                    return obj
+                    return obj  # type: ignore
                 else:
                     if name not in class_cache:
                         class_cache[name] = obj
         if _super is not None:
             if _super in enum_cache:
                 _super_class = enum_cache[_super]
-                return getattr(_super_class, classname)
+                return getattr(_super_class, classname)  # type: ignore
             else:
                 if classname in enum_cache:
-                    return enum_cache[classname]
+                    return enum_cache[classname]  # type: ignore
     raise TypeError(
         f"Class {_super} {classname} not found in {module}, cache is {class_cache}"
     )

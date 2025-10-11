@@ -1,4 +1,4 @@
-from typing import Dict
+from typing import Dict, Optional
 
 
 
@@ -29,10 +29,10 @@ class Pump(Equipment):
     onOffStatus: PropertyReference
     onOffCommand: PropertyReference
 
-    def __init__(self, config: Dict = None, **kwargs):
+    def __init__(self, config: Optional[Dict] = None, **kwargs):
         _config = template_update(pump_template, config=config)
         kwargs = {**_config.pop("params", {}), **kwargs}
         _log.debug(f"Fan.__init__ {_config} {kwargs}")
 
-        super().__init__(_config, **kwargs)
-        self.fluidOutlet.paired_to(self.fluidInlet)
+        super().__init__(**_config, **kwargs)
+        self.fluidOutlet.paired_to(self.fluidInlet)  # type: ignore

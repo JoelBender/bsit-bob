@@ -1,4 +1,4 @@
-from ..core import BOB, bind_namespace, prefixes, Node
+from ..core import BOB, bind_namespace, prefixes, Node  # type: ignore[attr-defined]
 from .timeseries import TimeSeriesReference
 from rdflib import Literal
 

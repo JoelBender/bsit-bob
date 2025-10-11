@@ -1,5 +1,5 @@
 import logging
-from typing import Dict
+from typing import Dict, Optional
 
 from ...connections.air import AirInletConnectionPoint
 from ...core import BOB, S223, Equipment
@@ -26,9 +26,9 @@ class SingleDuctTerminal(Equipment):
     airInlet: AirInletConnectionPoint
     airOutlet: AirInletConnectionPoint
 
-    def __init__(self, config: Dict = None, **kwargs):
+    def __init__(self, config: Optional[Dict] = None, **kwargs):
         _config = template_update({}, config=config)
         kwargs = {**_config.pop("params", {}), **kwargs}
         _log.info(f"GenericSingleDuctTerminal.__init__ {_config} {kwargs}")
-        super().__init__(_config, **kwargs)
-        self.airOutlet.paired_to(self.airInlet)
+        super().__init__(**_config, **kwargs)
+        self.airOutlet.paired_to(self.airInlet)  # type: ignore

@@ -19,13 +19,13 @@ try:
     console = Console()
 except ImportError:
     _RICH_AVAILABLE = False
-    rich_print = print
-    console = None
-    Panel = None
+    rich_print = print  # type: ignore
+    console = None  # type: ignore
+    Panel = None  # type: ignore
 
 
 try:
-    import yaml
+    import yaml  # type: ignore
     _YAML_AVAILABLE = True
 
 except ImportError:
@@ -89,7 +89,7 @@ def get_instance(container: t.Union[Equipment, System], blob: str):
         property_match = re.search(
             r"\.(?P<property>\w+)$", blob
         )  # property => .something
-        thing = container[matches.pop(0)]
+        thing = container[matches.pop(0)]  # type: ignore
 
         for each in matches:
             thing = thing[each]
@@ -269,7 +269,7 @@ class EquipmentFromTemplate(Equipment):
             panel=True,
             style="bold blue",
         )
-        required_class: t.Iterable[t.Any] = (
+        required_class: t.Any = (
             config.pop("template_class") if "template_class" in config else Equipment
         )
         _config = template_update(config)
@@ -350,7 +350,7 @@ def config_from_yaml(yaml_file: t.Union[str, Path, t.Dict] = ""):
 
     # boundaries = yaml_content.get("boundaries", None)
 
-    _dict["params"] = {"label": label, "comment": comment}
+    _dict["params"] = {"label": label, "comment": comment}  # type: ignore
     # Schema.org parameters treated as kwargs
     try:
         for key, value in yaml_content.items():
@@ -368,16 +368,16 @@ def config_from_yaml(yaml_file: t.Union[str, Path, t.Dict] = ""):
                     raise ImportError(
                         f"Could not import package '{package}' for params_{class_name}: {e}, parameters not supported."
                     )
-                _dict["params"].update(value)
+                _dict["params"].update(value)  # type: ignore
     except ImportError as e:
         warnings.warn(
             f"Could not import parameters from YAML file: {e}. Parameters will not be applied."
         )
 
-    def define_entities(entities: dict = None, entities_category: str = None):
+    def define_entities(entities: t.Optional[dict] = None, entities_category: t.Optional[str] = None):
         if entities is None:
             return
-        _dict[entities_category] = {}
+        _dict[entities_category] = {}  # type: ignore
         if entities_category == "cp":
             # if len(entities.items()) > 0:
             #    console.rule(f"[bold yellow]Defining {entities_category}[/bold yellow]")
@@ -404,7 +404,7 @@ def config_from_yaml(yaml_file: t.Union[str, Path, t.Dict] = ""):
 
                 # If no exception, we can define the entity
                 else:
-                    _dict[entities_category][(entity_label, entity_class)] = {}
+                    _dict[entities_category][(entity_label, entity_class)] = {}  # type: ignore
                     # console.print(f"    {entity_label} [green]:[/green] {entity_class}")
 
                     for _name, _class_or_value in entity_params.items():
@@ -414,7 +414,7 @@ def config_from_yaml(yaml_file: t.Union[str, Path, t.Dict] = ""):
                             else get_class_from_name(_class_or_value)
                         )
                         # Here maybe I could look for hasattr in the class to check if the attribute exists and use its value
-                        _dict[entities_category][(entity_label, entity_class)][
+                        _dict[entities_category][(entity_label, entity_class)][  # type: ignore
                             _name
                         ] = _value
                         # console.print(f"        {_name} [green]:[/green] {_value}")
@@ -470,11 +470,11 @@ def config_from_yaml(yaml_file: t.Union[str, Path, t.Dict] = ""):
                 _template_config = config_from_yaml(template)
 
                 if "System" in _template_config["template_class"]:
-                    _dict["equipment"][(entity_label, SystemFromTemplate)] = {
+                    _dict["equipment"][(entity_label, SystemFromTemplate)] = {  # type: ignore
                         "config": _template_config
                     }
                 else:
-                    _dict["equipment"][(entity_label, EquipmentFromTemplate)] = {
+                    _dict["equipment"][(entity_label, EquipmentFromTemplate)] = {  # type: ignore
                         "config": _template_config
                     }
 
@@ -573,5 +573,5 @@ def config_from_yaml(yaml_file: t.Union[str, Path, t.Dict] = ""):
     boundaries = yaml_content.get("boundaries", [])
     for _boundary in boundaries:
         # add_to_relation_dict(_boundary, "|", separator=" -> ")
-        _dict["boundaries"].append(f"self | {parse_sub(_boundary)}")
+        _dict["boundaries"].append(f"self | {parse_sub(_boundary)}")  # type: ignore
     return _dict

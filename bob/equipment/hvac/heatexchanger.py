@@ -1,5 +1,5 @@
 import logging
-from typing import Dict
+from typing import Dict, Optional
 
 from rdflib import URIRef
 
@@ -35,12 +35,12 @@ class AirHeatExchanger(Equipment):
     exhaustAirInlet: AirInletConnectionPoint
     exhaustAirOutlet: AirOutletConnectionPoint
 
-    def __init__(self, config: Dict = None, **kwargs):
+    def __init__(self, config: Optional[Dict] = None, **kwargs):
         _config = template_update({}, config=config)
         kwargs = {**_config.pop("params", {}), **kwargs}
         _log.info(f"AirHeatExchanger.__init__ {_config} {kwargs}")
         _relations = _config.pop("relations", [])
-        super().__init__(_config, **kwargs)
+        super().__init__(**_config, **kwargs)
         configure_relations(self, _relations)
-        self.supplyAirOutlet.paired_to(self.supplyAirInlet)
-        self.exhaustAirOutlet.paired_to(self.exhaustAirInlet)
+        self.supplyAirOutlet.paired_to(self.supplyAirInlet)  # type: ignore
+        self.exhaustAirOutlet.paired_to(self.exhaustAirInlet)  # type: ignore

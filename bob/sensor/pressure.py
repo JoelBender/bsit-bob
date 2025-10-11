@@ -63,7 +63,7 @@ class DifferentialStaticPressureSensor(Sensor):
         self._data_graph.add(
             (self._node_iri, S223.hasReferenceLocation, reference_location._node_iri)
         )
-        self.hasReferenceLocation = reference_location
+        self.hasReferenceLocation = reference_location  # type: ignore[assignment]
 
     def add_hasObservationLocation(self, node: Union[Tuple[Node, Node], Node]) -> None:
         """
@@ -80,7 +80,7 @@ class DifferentialStaticPressureSensor(Sensor):
                     observation_location._node_iri,
                 )
             )
-            self.hasObservationLocation = observation_location
+            self.hasObservationLocation = observation_location  # type: ignore[assignment]
             self.add_hasReferenceLocation(reference_location)
         elif self.hasObservationLocation is not None:
             self.add_hasReferenceLocation(node)
@@ -101,29 +101,29 @@ class AirDifferentialStaticPressureSensor(DifferentialStaticPressureSensor):
         super().__init__(config=config, **_sensor_kwargs)
         self.differential_static_pressure = DifferentialStaticPressure(
             ofMedium=Air,
-            label=f"{self.label}.DifferentialStaticPressure",
+            label=f"{self.label}.DifferentialStaticPressure",  # type: ignore[attr-defined]
             **_property_kwargs,
         )
         self.observation_pressure = Pressure(
             ofMedium=Air,
-            label=f"{self.label}.ObservationPressure",
+            label=f"{self.label}.ObservationPressure",  # type: ignore[attr-defined]
             **_property_kwargs,
         )
         self.reference_pressure = Pressure(
             ofMedium=Air,
-            label=f"{self.label}.ReferencePressure",
+            label=f"{self.label}.ReferencePressure",  # type: ignore[attr-defined]
             **_property_kwargs,
         )
 
         diff_function = Function(
             label="differential calculation", comment="Will output High minus Low"
         )
-        self > diff_function
+        self > diff_function  # type: ignore[operator]
         diff_function.hasInput(self.observation_pressure)
         diff_function.hasInput(self.reference_pressure)
         diff_function.hasOutput(self.differential_static_pressure)
 
-        self.observes = self.differential_static_pressure
+        self.observes = self.differential_static_pressure  # type: ignore[assignment]
 
 
 class WaterDifferentialStaticPressureSensor(DifferentialStaticPressureSensor):
@@ -134,26 +134,26 @@ class WaterDifferentialStaticPressureSensor(DifferentialStaticPressureSensor):
         super().__init__(config=config, **_sensor_kwargs)
         self.differential_static_pressure = DifferentialStaticPressure(
             ofMedium=Water,
-            label=f"{self.label}.DifferentialStaticPressure",
+            label=f"{self.label}.DifferentialStaticPressure",  # type: ignore[attr-defined]
             **_property_kwargs,
         )
         self.observation_pressure = Pressure(
             ofMedium=Water,
-            label=f"{self.label}.ObservationPressure",
+            label=f"{self.label}.ObservationPressure",  # type: ignore[attr-defined]
             **_property_kwargs,
         )
         self.reference_pressure = Pressure(
             ofMedium=Water,
-            label=f"{self.label}.ReferencePressure",
+            label=f"{self.label}.ReferencePressure",  # type: ignore[attr-defined]
             **_property_kwargs,
         )
 
         diff_function = Function(
             label="differential calculation", comment="Will output High minus Low"
         )
-        self > diff_function
+        self > diff_function  # type: ignore[operator]
         diff_function.hasInput(self.observation_pressure)
         diff_function.hasInput(self.reference_pressure)
         diff_function.hasOutput(self.differential_static_pressure)
 
-        self.observes = self.differential_static_pressure
+        self.observes = self.differential_static_pressure  # type: ignore[assignment]

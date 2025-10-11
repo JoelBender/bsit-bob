@@ -1,4 +1,4 @@
-from typing import Dict
+from typing import Dict, Optional
 
 from ...connections.liquid import (
     HotWaterInletConnectionPoint,
@@ -22,11 +22,11 @@ class Boiler(Equipment):
     hotWaterLeaving: HotWaterOutletConnectionPoint
     hotWaterEntering: HotWaterInletConnectionPoint
 
-    def __init__(self, config: Dict = None, **kwargs):
+    def __init__(self, config: Optional[Dict] = None, **kwargs):
         _config = template_update({}, config=config)
         kwargs = {**_config.pop("params", {}), **kwargs}
         _relations = _config.pop("relations", [])
-        super().__init__(_config, **kwargs)
+        super().__init__(**_config, **kwargs)
         configure_relations(self, _relations)
-        self += Role.Heating
-        self.hotWaterLeaving.paired_to(self.hotWaterEntering)
+        self += Role.Heating  # type: ignore
+        self.hotWaterLeaving.paired_to(self.hotWaterEntering)  # type: ignore

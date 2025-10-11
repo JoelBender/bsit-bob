@@ -22,7 +22,7 @@ class Transformer(Equipment):
         _electricalInlet = kwargs.pop("electricalInlet")
         _electricalOutlet = kwargs.pop("electricalOutlet")
 
-        super().__init__(config, **kwargs)
+        super().__init__(**kwargs)
 
         self.electricalInlet = _electricalInlet(
             self, label=f"{self.label}.electricalInlet"
@@ -39,4 +39,4 @@ class CircuitBreaker(Equipment):
 
     def __init__(self, config: Dict = {}, **kwargs):
         kwargs = {**config.get("params", {}), **kwargs}
-        super().__init__(config, **kwargs)
+        super().__init__(**kwargs)

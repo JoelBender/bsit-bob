@@ -6,7 +6,7 @@ from __future__ import annotations
 
 import logging
 from datetime import datetime
-from typing import Any, AnyStr, Dict, Union
+from typing import Any, Dict, Union, Optional
 
 from rdflib import URIRef  # type: ignore
 
@@ -94,12 +94,12 @@ class Function(_Function):
 
     _class_iri: URIRef = S223.Function
 
-    def __init__(self, config: Dict = None, **kwargs):
+    def __init__(self, config: Optional[Dict] = None, **kwargs):
         _config = template_update({}, config=config)
         kwargs = {**_config.pop("params", {}), **kwargs}
         _log.debug(f"Function.__init__ {kwargs}")
-        self.inputs = {}
-        self.outputs = {}
+        self.inputs: Dict[str, Any] = {}
+        self.outputs: Dict[str, Any] = {}
 
         if not self._resolved:
             self._resolve_annotations()
@@ -131,7 +131,7 @@ class Function(_Function):
                                 self.hasOutput(prop, attr=attr)
 
     def __setattr__(
-        self, attr: str, value: Any, klass: Union[FunctionInput, FunctionOutput] = None
+        self, attr: str, value: Any, klass: Optional[Union[FunctionInput, FunctionOutput, type[FunctionInput], type[FunctionOutput]]] = None
     ) -> None:
         """
         .
@@ -158,27 +158,29 @@ class Function(_Function):
     def hasInput(
         self,
         prop: Property,
-        attr: AnyStr = None, 
-        klass: FunctionInput = FunctionInput,
-    ) -> None:
+        attr: Union[str, None] = None, 
+        klass: type[FunctionInput] = FunctionInput,
+    ) -> FunctionInput:
         label = f"{prop.label}" if attr is None else attr
         function_input_ref = klass(prop, function=self, label=label)
         self.__setattr__(label, function_input_ref, klass=klass)
+        return function_input_ref
 
     def hasOutput(
         self,
         prop: Property,
-        attr: AnyStr = None, 
-        klass: FunctionOutput = FunctionOutput,
-    ) -> None:
+        attr: Union[str, None] = None, 
+        klass: type[FunctionOutput] = FunctionOutput,
+    ) -> FunctionOutput:
         label = f"{prop.label}" if attr is None else attr
         function_output_ref = klass(prop, function=self, label=label)
         self.__setattr__(label, function_output_ref, klass=klass)
+        return function_output_ref
 
     #   Convenience methods for hasInput and hasOutput for retro-compatibility
     #   with the old FunctionInput and FunctionOutput classes
     def uses(self, *args, **kwargs) -> FunctionInput:
-        self.hasInput(*args, **kwargs)
+        return self.hasInput(*args, **kwargs)
 
     def produces(self, *args, **kwargs) -> FunctionOutput:
-        self.hasOutput(*args, **kwargs)
+        return self.hasOutput(*args, **kwargs)

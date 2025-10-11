@@ -1,4 +1,4 @@
-from typing import Dict
+from typing import Dict, Optional
 
 from rdflib import URIRef
 
@@ -43,12 +43,14 @@ class AirCompressor(Compressor):
     # This will come from a sensor, but accessible from here
     outputPressure: PropertyReference
 
-    def __init__(self, config: Dict = compressor_template, **kwargs):
+    def __init__(self, config: Optional[Dict] = None, **kwargs):
+        if config is None:
+            config = compressor_template.copy()
         config["properties"] = config.get(
             "properties", compressor_template["properties"]
         )
-        kwargs = {**config.get("params", {}), **kwargs}
-        super().__init__(config, **kwargs)
+        kwargs = {**config.get("params", {}), **kwargs}  # type: ignore[dict-item]
+        super().__init__(**config, **kwargs)  # type: ignore[misc]
 
 
 class RefrigerationGasCompressor(Compressor):
@@ -63,13 +65,15 @@ class RefrigerationGasCompressor(Compressor):
     dischargePressure: PropertyReference
     succionPressure: PropertyReference
 
-    def __init__(self, config: Dict = compressor_template, **kwargs):
+    def __init__(self, config: Optional[Dict] = None, **kwargs):
+        if config is None:
+            config = compressor_template.copy()
         config["properties"] = config.get(
             "properties", compressor_template["properties"]
         )
-        kwargs = {**config.get("params", {}), **kwargs}
-        super().__init__(config, **kwargs)
-        self.dischargePort.paired_to(self.returnPort)
+        kwargs = {**config.get("params", {}), **kwargs}  # type: ignore[dict-item]
+        super().__init__(**config, **kwargs)  # type: ignore[misc]
+        self.dischargePort.paired_to(self.returnPort)  # type: ignore
 
     def set_gas_type(self, gas: Refrigerant):
-        self.set_medium(["returnPort", "dischargePort"], gas)
+        self.set_medium(["returnPort", "dischargePort"], gas)  # type: ignore

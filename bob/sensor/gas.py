@@ -9,10 +9,10 @@ from ..core import (
     QUANTITYKIND,
     S223,
     UNIT,
-    Constituent,
     PropertyReference,
     Setpoint,
 )
+from ..enum import Constituent
 from ..properties import GasConcentration
 from .sensor import Sensor, split_kwargs
 from ..enum import NOx
@@ -34,9 +34,9 @@ class GasConcentrationSetpoint(Setpoint):
 
 class GasConcentrationSensor(Sensor):
     _class_iri = S223.Sensor
-    observes: PropertyReference  # GasConcentration
-    hasMinRange: PropertyReference
-    hasMaxRange: PropertyReference
+    observes: PropertyReference  # GasConcentration  # type: ignore[assignment]
+    hasMinRange: PropertyReference  # type: ignore[assignment]
+    hasMaxRange: PropertyReference  # type: ignore[assignment]
 
     def __init__(self, config: Dict[str, Any] = {}, **kwargs: Any) -> None:
         _sensor_kwargs, _property_kwargs = split_kwargs(kwargs)

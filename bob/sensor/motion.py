@@ -10,7 +10,7 @@ from ..core import (
     PropertyReference,
 )
 from ..enum import Light
-from ..properties import Count, Motion
+from ..properties import Count, MotionDetection as Motion
 from .sensor import Sensor, split_kwargs
 
 _namespace = S223
@@ -30,7 +30,7 @@ class OccupantMotionSensor(OccupancySensor):
 
         observes_prop = Motion(
             label="observed_property",  # needs more focus
-            ofMedium=Light.Infrared,
+            ofMedium=Light.Infrared,  # type: ignore[attr-defined]
             **_property_kwargs,
         )
         _sensor_kwargs["observed_property"] = observes_prop
@@ -56,7 +56,7 @@ class OccupantCounterSensor(OccupancySensor):
 
         counter = Function(label="Counting Function From Sensor")
         counter.hasInput(self.observedProperty)
-        counter.hasOutput(self.occupantCount)
+        counter.hasOutput(self.occupantCount)  # type: ignore[arg-type]
 
 
 # TODO : NOPE.... should observe something and produce a presence property

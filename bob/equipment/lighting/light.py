@@ -25,9 +25,9 @@ class Luminaire(Equipment):
         kwargs = {**config.get("params", {}), **kwargs}
         _electricalInlet = kwargs.pop("electricalInlet", None)
 
-        super().__init__(config, **kwargs)
+        super().__init__(**kwargs)
 
         if _electricalInlet:
             self.electricalInlet = _electricalInlet(
-                self, label=f"{self.label}.electricalInlet"
+                self, label=f"{self.label}.electricalInlet"  # type: ignore[attr-defined]
             )

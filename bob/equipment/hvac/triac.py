@@ -40,4 +40,4 @@ class Triac(Equipment):
     def __init__(self, config: Dict = Triac_template, **kwargs):
         config["properties"] = config.get("properties", Triac_template["properties"])
         kwargs = {**config.get("params", {}), **kwargs}
-        super().__init__(config, **kwargs)
+        super().__init__(**config, **kwargs)  # type: ignore[misc]

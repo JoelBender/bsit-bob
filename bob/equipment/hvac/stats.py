@@ -1,4 +1,4 @@
-from typing import Dict
+from typing import Dict, Optional
 
 from rdflib import URIRef
 
@@ -68,13 +68,17 @@ class MechanicalOnOffThermostat(Thermostat):
     and the temperature read by the sensor inside the thermostat
     """
 
-    def __init__(self, config: Dict = MechanicalOnOffThermostat_template, **kwargs):
+    def __init__(self, config: Optional[Dict] = None, **kwargs):
+        if config is None:
+            config = MechanicalOnOffThermostat_template.copy()
         config["properties"] = config.get(
             "properties", MechanicalOnOffThermostat_template["properties"]
         )
-        kwargs = {**config.get("params", {}), **kwargs}
-        super().__init__(config, **kwargs)
-        self.temperature = self["temperature_sensor"].observedProperty
+        params = config.pop("params", {})
+        if isinstance(params, dict):
+            kwargs = {**params, **kwargs}
+        super().__init__(**config, **kwargs)
+        self.temperature = self["temperature_sensor"].observedProperty  # type: ignore
 
 
 MechanicalModulatingThermostat_template = {
@@ -103,13 +107,17 @@ class MechanicalModulatingThermostat(Thermostat):
     """
 
     def __init__(
-        self, config: Dict = MechanicalModulatingThermostat_template, **kwargs
+        self, config: Optional[Dict] = None, **kwargs
     ):
+        if config is None:
+            config = MechanicalModulatingThermostat_template.copy()
         config["properties"] = config.get(
             "properties", MechanicalModulatingThermostat_template["properties"]
         )
-        kwargs = {**config.get("params", {}), **kwargs}
-        super().__init__(config, **kwargs)
+        params = config.pop("params", {})
+        if isinstance(params, dict):
+            kwargs = {**params, **kwargs}
+        super().__init__(**config, **kwargs)
 
 
 NetworkThermostat_template = {
@@ -135,12 +143,16 @@ class NetworkThermostat(Thermostat):
     ex. TEC3000
     """
 
-    def __init__(self, config: Dict = NetworkThermostat_template, **kwargs):
+    def __init__(self, config: Optional[Dict] = None, **kwargs):
+        if config is None:
+            config = NetworkThermostat_template.copy()
         config["properties"] = config.get(
             "properties", NetworkThermostat_template["properties"]
         )
-        kwargs = {**config.get("params", {}), **kwargs}
-        super().__init__(config, **kwargs)
+        params = config.pop("params", {})
+        if isinstance(params, dict):
+            kwargs = {**params, **kwargs}
+        super().__init__(**config, **kwargs)
 
 
 NetworkRoomSensor_template = {
@@ -164,12 +176,16 @@ class NetworkRoomSensor(Equipment):
 
     _class_iri: URIRef = P223.NetworkRoomSensor
 
-    def __init__(self, config: Dict = NetworkRoomSensor_template, **kwargs):
+    def __init__(self, config: Optional[Dict] = None, **kwargs):
+        if config is None:
+            config = NetworkRoomSensor_template.copy()
         config["properties"] = config.get(
             "properties", NetworkRoomSensor_template["properties"]
         )
-        kwargs = {**config.get("params", {}), **kwargs}
-        super().__init__(config, **kwargs)
+        params = config.pop("params", {})
+        if isinstance(params, dict):
+            kwargs = {**params, **kwargs}
+        super().__init__(**config, **kwargs)
 
 
 HighStaticPressureStat_template = {
@@ -186,12 +202,16 @@ HighStaticPressureStat_template = {
 
 # Pressure
 class HighStaticPressureStat(Pressurestat):
-    def __init__(self, config: Dict = HighStaticPressureStat_template, **kwargs):
+    def __init__(self, config: Optional[Dict] = None, **kwargs):
+        if config is None:
+            config = HighStaticPressureStat_template.copy()
         config["properties"] = config.get(
             "properties", HighStaticPressureStat_template["properties"]
         )
-        kwargs = {**config.get("params", {}), **kwargs}
-        super().__init__(config, **kwargs)
+        params = config.pop("params", {})
+        if isinstance(params, dict):
+            kwargs = {**params, **kwargs}
+        super().__init__(**config, **kwargs)
 
 
 flowswitch_template = {
@@ -210,9 +230,15 @@ class FlowSwitch(Equipment):
 
     _class_iri: URIRef = P223.Flowswitch
 
-    def __init__(self, config: Dict = flowswitch_template, **kwargs):
+    def __init__(self, config: Optional[Dict] = None, **kwargs):
+        if config is None:
+            config = flowswitch_template.copy()
         config["properties"] = config.get(
             "properties", flowswitch_template["properties"]
         )
-        kwargs = {**config.get("params", {}), **kwargs}
-        super().__init__(config, **kwargs)
+        params = config.pop("params", {})
+        if isinstance(params, dict):
+            kwargs = {**params, **kwargs}
+        super().__init__(**config, **kwargs)
+
+

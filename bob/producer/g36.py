@@ -1,5 +1,5 @@
 import logging
-from typing import Dict
+from typing import Dict, Optional
 
 from ..core import (
     G36,
@@ -84,7 +84,7 @@ class G36VAVCoolingOnly(G36Sequence):
     unoccupiedHtgSetpoint: TemperatureSetpoint
     unoccupiedClgSetpoint: TemperatureSetpoint
 
-    def __init__(self, config: Dict = None, **kwargs):
+    def __init__(self, config: Optional[Dict] = None, **kwargs):
         _config = template_update({}, config=config)
         kwargs = {**_config.pop("params", {}), **kwargs}
         _log.debug(f"G36VAVCoolingOnly.__init__ {_config} {kwargs}")

@@ -87,8 +87,8 @@ class Sensor(_Sensor):
         super().__init__(config=config, **_sensor_kwargs)
         if _observed_prop:
             self.observes = _observed_prop
-            self.add_property(_observed_prop)
-            self["observed_property"] = _observed_prop
+            self.add_property(_observed_prop)  # type: ignore[attr-defined]
+            self["observed_property"] = _observed_prop  # type: ignore[index]
 
     @property
     def observedProperty(self):
@@ -108,8 +108,8 @@ class Sensor(_Sensor):
             (self._node_iri, S223.hasObservationLocation, node._node_iri)
         )
         if INCLUDE_INVERSE:
-            node.isObservationLocationOf = self
-        self.hasObservationLocation = node
+            node.isObservationLocationOf = self  # type: ignore[attr-defined]
+        self.hasObservationLocation = node  # type: ignore[assignment]
 
     def __mod__(self, other: Node) -> Node:
         """This sensor measurementLocation taken from some other node."""

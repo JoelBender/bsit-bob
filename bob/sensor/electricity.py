@@ -15,9 +15,9 @@ _namespace = BOB
 
 class VoltageSensor(Sensor):
     _class_iri = S223.Sensor
-    observes: PropertyReference
-    hasMinRange: PropertyReference
-    hasMaxRange: PropertyReference
+    observes: PropertyReference  # type: ignore[assignment]
+    hasMinRange: PropertyReference  # type: ignore[assignment]
+    hasMaxRange: PropertyReference  # type: ignore[assignment]
 
     def __init__(self, config: Dict[str, Any] = {}, **kwargs: Any) -> None:
         _sensor_kwargs, _property_kwargs = split_kwargs(kwargs)
@@ -39,9 +39,9 @@ class VoltageSensor(Sensor):
 
 class CurrentSensor(Sensor):
     _class_iri = S223.Sensor
-    observes: PropertyReference
-    hasMinRange: PropertyReference
-    hasMaxRange: PropertyReference
+    observes: PropertyReference  # type: ignore[assignment]
+    hasMinRange: PropertyReference  # type: ignore[assignment]
+    hasMaxRange: PropertyReference  # type: ignore[assignment]
 
     def __init__(self, config: Dict[str, Any] = {}, **kwargs: Any) -> None:
         _sensor_kwargs, _property_kwargs = split_kwargs(kwargs)
