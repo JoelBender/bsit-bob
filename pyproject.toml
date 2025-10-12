@@ -10,7 +10,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-templates = ["python-dotenv", "pyyaml>=5.4.1"]
+templates = ["python-dotenv", "pyyaml>=5.4.1", "rich"]
 validation = ["pyvis>=0.3.2","click>=8.1.8","python-dotenv"]
 tests = [
     "black>=25.1.0",
@@ -55,4 +55,3 @@ ignore = [
 "bob/producer/__init__.py" = ["F811", "F401"]
 "bob/properties/__init__.py" = ["F401"]
 "test_*.py" = ["F841"]  # Unused variables in tests
-
