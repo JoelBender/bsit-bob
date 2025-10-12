@@ -70,25 +70,25 @@ bacnet:DeviceObject a rdfs:Class,
             sh:datatype xsd:string ;
             sh:path bacnet:vendor-identifier ],
         [ a sh:PropertyShape ;
-            sh:path bacnet:object-type ],
+            sh:path bacnet:vendor-name ],
         [ a sh:PropertyShape ;
-            sh:path bacnet:model-name ],
+            sh:path bacnet:object-type ],
         [ a sh:PropertyShape ;
             sh:path bacnet:system-status ],
         [ a sh:PropertyShape ;
-            sh:path bacnet:vendor-name ] .
+            sh:path bacnet:model-name ] .
 
 bacnet:Object a rdfs:Class,
         sh:NodeShape ;
     rdfs:label "bob.bacnet.Object" ;
     sh:property [ a sh:PropertyShape ;
-            sh:path bacnet:object-identifier ],
-        [ a sh:PropertyShape ;
-            sh:path bacnet:description ],
-        [ a sh:PropertyShape ;
             sh:path bacnet:object-type ],
         [ a sh:PropertyShape ;
-            sh:path bacnet:object-name ] .
+            sh:path bacnet:object-name ],
+        [ a sh:PropertyShape ;
+            sh:path bacnet:object-identifier ],
+        [ a sh:PropertyShape ;
+            sh:path bacnet:description ] .
 
 bacnet:description a rdf:Property .
 
@@ -253,9 +253,9 @@ ex23:Function a rdfs:Class,
     sh:property [ a sh:PropertyShape ;
             sh:path ex23:output1 ],
         [ a sh:PropertyShape ;
-            sh:path ex23:input2 ],
+            sh:path ex23:input1 ],
         [ a sh:PropertyShape ;
-            sh:path ex23:input1 ] .
+            sh:path ex23:input2 ] .
 
 ex23:input1 a rdf:Property .
 
@@ -1320,11 +1320,11 @@ scratch:GasMonitor a rdfs:Class,
     rdfs:subClassOf s223:Connectable,
         s223:Equipment ;
     sh:property [ a sh:PropertyShape ;
+            sh:path ex19:alarmStatus ],
+        [ a sh:PropertyShape ;
             sh:path ex19:airOutletExhaust ],
         [ a sh:PropertyShape ;
-            sh:path ex19:airInletSupply ],
-        [ a sh:PropertyShape ;
-            sh:path ex19:alarmStatus ] .
+            sh:path ex19:airInletSupply ] .
 
 scratch:ParticleCounter a rdfs:Class,
         sh:NodeShape ;
@@ -1335,9 +1335,9 @@ scratch:ParticleCounter a rdfs:Class,
     rdfs:subClassOf s223:Connectable,
         s223:Equipment ;
     sh:property [ a sh:PropertyShape ;
-            sh:path ex18:airInlet ],
+            sh:path ex18:airOutlet ],
         [ a sh:PropertyShape ;
-            sh:path ex18:airOutlet ] .
+            sh:path ex18:airInlet ] .
 
 influxdb:InfluxdbReference a rdfs:Class,
         sh:NodeShape ;
@@ -1347,17 +1347,17 @@ influxdb:InfluxdbReference a rdfs:Class,
     rdfs:subClassOf s223:ExternalReference,
         influxdb:InfluxdbReference ;
     sh:property [ a sh:PropertyShape ;
-            sh:path influxdb:bucket ],
-        [ a sh:PropertyShape ;
-            sh:path influxdb:measurement ],
-        [ a sh:PropertyShape ;
-            sh:path influxdb:database ],
-        [ a sh:PropertyShape ;
-            sh:path influxdb:tag ],
+            sh:path influxdb:InfluxdbServer ],
         [ a sh:PropertyShape ;
             sh:path influxdb:table ],
         [ a sh:PropertyShape ;
-            sh:path influxdb:InfluxdbServer ] .
+            sh:path influxdb:measurement ],
+        [ a sh:PropertyShape ;
+            sh:path influxdb:bucket ],
+        [ a sh:PropertyShape ;
+            sh:path influxdb:database ],
+        [ a sh:PropertyShape ;
+            sh:path influxdb:tag ] .
 
 influxdb:InfluxdbServer a rdf:Property,
         rdfs:Class,
@@ -1366,13 +1366,13 @@ influxdb:InfluxdbServer a rdf:Property,
     rdfs:comment """InfluxDB server
     """ ;
     sh:property [ a sh:PropertyShape ;
-            sh:path influxdb:influxdbTokenLocation ],
+            sh:path influxdb:influxdbAuthenticationMethod ],
+        [ a sh:PropertyShape ;
+            sh:path influxdb:organization ],
         [ a sh:PropertyShape ;
             sh:path influxdb:url ],
         [ a sh:PropertyShape ;
-            sh:path influxdb:influxdbAuthenticationMethod ],
-        [ a sh:PropertyShape ;
-            sh:path influxdb:organization ] .
+            sh:path influxdb:influxdbTokenLocation ] .
 
 bob:AirConnectionPoint a rdfs:Class,
         sh:NodeShape ;
@@ -1464,10 +1464,10 @@ bob:EthernetConnectionPoint a rdfs:Class,
     rdfs:label "bob.connections.network.EthernetConnectionPoint" ;
     rdfs:subClassOf s223:ConnectionPoint ;
     sh:property [ a sh:PropertyShape ;
+            sh:path p223:data_rate ],
+        [ a sh:PropertyShape ;
             sh:class s223:EnumerationKind ;
             sh:path p223:hasProtocol ],
-        [ a sh:PropertyShape ;
-            sh:path p223:data_rate ],
         [ a sh:PropertyShape ;
             sh:path p223:VLAN ] .
 
@@ -1503,52 +1503,52 @@ bob:HVACSpace a rdfs:Class,
     rdfs:subClassOf s223:Connectable,
         s223:DomainSpace ;
     sh:property [ a sh:PropertyShape ;
-            sh:path bob:co2 ],
+            sh:path bob:co ],
         [ a sh:PropertyShape ;
-            sh:path bob:temperature ],
+            sh:path bob:humidity ],
         [ a sh:PropertyShape ;
             sh:path bob:temperature_setpoint ],
         [ a sh:PropertyShape ;
-            sh:path bob:doors ],
+            sh:path bob:radiantHeating ],
+        [ a sh:PropertyShape ;
+            sh:path bob:ductAirOutlet ],
         [ a sh:PropertyShape ;
             sh:path bob:ductAirInlet ],
         [ a sh:PropertyShape ;
-            sh:path bob:radiantCooling ],
+            sh:path bob:temperature ],
         [ a sh:PropertyShape ;
-            sh:path bob:no2 ],
+            sh:path bob:airChangePerHour ],
+        [ a sh:PropertyShape ;
+            sh:path bob:doors ],
         [ a sh:PropertyShape ;
             sh:path bob:airTransfer ],
         [ a sh:PropertyShape ;
             sh:path bob:occupancy ],
         [ a sh:PropertyShape ;
-            sh:path bob:airChangePerHour ],
-        [ a sh:PropertyShape ;
             sh:path bob:windows ],
         [ a sh:PropertyShape ;
-            sh:path bob:ductAirOutlet ],
+            sh:path bob:radiantCooling ],
         [ a sh:PropertyShape ;
-            sh:path bob:humidity ],
+            sh:path bob:no2 ],
         [ a sh:PropertyShape ;
-            sh:path bob:co ],
-        [ a sh:PropertyShape ;
-            sh:path bob:radiantHeating ] .
+            sh:path bob:co2 ] .
 
 bob:HVACZone a rdfs:Class,
         sh:NodeShape ;
     rdfs:label "bob.space.hvac.HVACZone" ;
     rdfs:subClassOf s223:Zone ;
     sh:property [ a sh:PropertyShape ;
-            sh:path bob:airOutlet ],
+            sh:path bob:temperature ],
         [ a sh:PropertyShape ;
-            sh:path bob:occupancy ],
-        [ a sh:PropertyShape ;
-            sh:path bob:co2 ],
+            sh:path bob:airInlet ],
         [ a sh:PropertyShape ;
             sh:path bob:temperature_setpoint ],
         [ a sh:PropertyShape ;
-            sh:path bob:temperature ],
+            sh:path bob:co2 ],
         [ a sh:PropertyShape ;
-            sh:path bob:airInlet ] .
+            sh:path bob:airOutlet ],
+        [ a sh:PropertyShape ;
+            sh:path bob:occupancy ] .
 
 bob:HotWaterConnectionPoint a rdfs:Class,
         sh:NodeShape ;
@@ -1617,9 +1617,9 @@ bob:PoEConnectionPoint a rdfs:Class,
     rdfs:label "bob.connections.network.PoEConnectionPoint" ;
     rdfs:subClassOf s223:ConnectionPoint ;
     sh:property [ a sh:PropertyShape ;
-            sh:path bob:VLAN ],
-        [ a sh:PropertyShape ;
             sh:path p223:data_rate ],
+        [ a sh:PropertyShape ;
+            sh:path bob:VLAN ],
         [ a sh:PropertyShape ;
             sh:class s223:EnumerationKind ;
             sh:path p223:hasProtocol ] .
@@ -1682,13 +1682,13 @@ bob:ZoneConnectionPoint a rdfs:Class,
     """ ;
     rdfs:subClassOf bob:ZoneConnectionPoint ;
     sh:property [ a sh:PropertyShape ;
+            sh:path bob:mapsTo ],
+        [ a sh:PropertyShape ;
             sh:class s223:EnumerationKind ;
             sh:path s223:hasMedium ],
         [ a sh:PropertyShape ;
             sh:path bob:isZoneConnectionPointOf ],
         [ a sh:PropertyShape ;
             sh:class s223:EnumerationKind ;
-            sh:path s223:hasMedium ],
-        [ a sh:PropertyShape ;
-            sh:path bob:mapsTo ] .
+            sh:path s223:hasMedium ] .
 

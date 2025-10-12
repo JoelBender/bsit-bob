@@ -10,8 +10,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-templates = ["python-dotenv", "pyyaml>=5.4.1", "rich"]
-validation = ["pyvis>=0.3.2","click>=8.1.8","python-dotenv"]
+templates = ["python-dotenv", "pyyaml>=5.4.1", "rich"] # soon si-modeler and si-templates
 tests = [
     "black>=25.1.0",
     "flake8>=7.1.2",
