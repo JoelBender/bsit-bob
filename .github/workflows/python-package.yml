@@ -28,13 +28,11 @@ jobs:
       - name: Install the project ${{ matrix.python-version }}
         run: uv sync --locked --all-extras --dev
       - name: Ruff linter ${{ matrix.python-version }}
-        run: 
-          uv pip install ruff
-          ruff check .
+        run: uv pip install ruff
+        run: ruff check .
       - name: Mypy type check
-        run: 
-          uv pip install mypy 
-          mypy bob/
+        run: uv pip install mypy 
+        run: mypy bob/
       - name: Run tests
         # For example, using `pytest`
         run: uv run pytest tests
