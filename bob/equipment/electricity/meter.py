@@ -254,7 +254,7 @@ class ThreePhaseElectricalMeter(Equipment):
             v["ofMedium"] = _medium
 
         kwargs = {**_config.pop("params", {}), **kwargs}
-        super().__init__(**{**_config, **kwargs})
+        super().__init__(config=_config, **kwargs)
 
     def set_measurement_location(self, node: Node | None = None):
         self.set_voltage_measurement_location(node)

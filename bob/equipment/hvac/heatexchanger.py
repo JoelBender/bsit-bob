@@ -40,7 +40,7 @@ class AirHeatExchanger(Equipment):
         kwargs = {**_config.pop("params", {}), **kwargs}
         _log.info(f"AirHeatExchanger.__init__ {_config} {kwargs}")
         _relations = _config.pop("relations", [])
-        super().__init__(**_config, **kwargs)
+        super().__init__(config=_config, **kwargs)
         configure_relations(self, _relations)
         self.supplyAirOutlet.paired_to(self.supplyAirInlet)  # type: ignore
         self.exhaustAirOutlet.paired_to(self.exhaustAirInlet)  # type: ignore

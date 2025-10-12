@@ -32,5 +32,5 @@ class Pump(Equipment):
         kwargs = {**_config.pop("params", {}), **kwargs}
         _log.debug(f"Fan.__init__ {_config} {kwargs}")
 
-        super().__init__(**_config, **kwargs)
+        super().__init__(config=_config, **kwargs)
         self.fluidOutlet.paired_to(self.fluidInlet)  # type: ignore

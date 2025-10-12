@@ -57,7 +57,7 @@ class TwoWayValve(Valve):
         _config = template_update({}, config=config)
         kwargs = {**_config.pop("params", {}), **kwargs}
         _relations = _config.pop("relations", [])
-        super().__init__(**_config, **kwargs)
+        super().__init__(config=_config, **kwargs)
         configure_relations(self, _relations)
         self.fluidOutlet.paired_to(self.fluidInlet)  # type: ignore
 
@@ -78,7 +78,7 @@ class ThreeWayValveDiverting(Valve):
         _config = template_update({}, config=config)
         kwargs = {**_config.pop("params", {}), **kwargs}
         _relations = _config.pop("relations", [])
-        super().__init__(**_config, **kwargs)
+        super().__init__(config=_config, **kwargs)
         configure_relations(self, _relations)
         self.fluidOutletA.paired_to(self.fluidInletAB)  # type: ignore
         self.fluidOutletB.paired_to(self.fluidInletAB)  # type: ignore
@@ -100,7 +100,7 @@ class ThreeWayValveMixing(Valve):
         _config = template_update({}, config=config)
         kwargs = {**_config.pop("params", {}), **kwargs}
         _relations = _config.pop("relations", [])
-        super().__init__(**_config, **kwargs)
+        super().__init__(config=_config, **kwargs)
         configure_relations(self, _relations)
         self.fluidOutlet.paired_to(self.fluidInletA)  # type: ignore
         self.fluidOutlet.paired_to(self.fluidInletB)  # type: ignore
@@ -118,7 +118,7 @@ class NaturalGasValve(Valve):
         _config = template_update({}, config=config)
         kwargs = {**_config.pop("params", {}), **kwargs}
         _relations = _config.pop("relations", [])
-        super().__init__(**_config, **kwargs)
+        super().__init__(config=_config, **kwargs)
         configure_relations(self, _relations)
         self.naturalGasOutlet.paired_to(self.naturalGasInlet)  # type: ignore
 
@@ -132,7 +132,7 @@ class PneumaticValve(Valve):
         _config = template_update({}, config=config)
         kwargs = {**_config.pop("params", {}), **kwargs}
         _relations = _config.pop("relations", [])
-        super().__init__(**_config, **kwargs)
+        super().__init__(config=_config, **kwargs)
         configure_relations(self, _relations)
         self.compressedAirOutlet.paired_to(self.compressedAirInlet)  # type: ignore
 
@@ -146,7 +146,7 @@ class ExpansionValve(Valve):
         _config = template_update({}, config=config)
         kwargs = {**_config.pop("params", {}), **kwargs}
         _relations = _config.pop("relations", [])
-        super().__init__(**_config, **kwargs)
+        super().__init__(config=_config, **kwargs)
         configure_relations(self, _relations)
         self.portB.paired_to(self.portA)  # type: ignore
 
@@ -166,7 +166,7 @@ class ReversingValve(Valve):
         _config = template_update({}, config=config)
         kwargs = {**_config.pop("params", {}), **kwargs}
         _relations = _config.pop("relations", [])
-        super().__init__(**_config, **kwargs)
+        super().__init__(config=_config, **kwargs)
         configure_relations(self, _relations)
         # self.refrigerantLowPressureOutlet.paired_to(self.refrigerantHighPressureInlet)
 

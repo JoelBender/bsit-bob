@@ -30,5 +30,5 @@ class SingleDuctTerminal(Equipment):
         _config = template_update({}, config=config)
         kwargs = {**_config.pop("params", {}), **kwargs}
         _log.info(f"GenericSingleDuctTerminal.__init__ {_config} {kwargs}")
-        super().__init__(**_config, **kwargs)
+        super().__init__(config=_config, **kwargs)
         self.airOutlet.paired_to(self.airInlet)  # type: ignore

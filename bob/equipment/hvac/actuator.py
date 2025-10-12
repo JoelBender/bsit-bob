@@ -30,7 +30,7 @@ class Actuator(Equipment):
         kwargs = {**_config.pop("params", {}), **kwargs}
         _log.info(f"Actuator.__init__ {_config} {kwargs}")
         _relations = _config.pop("relations", [])
-        super().__init__(**_config, **kwargs)
+        super().__init__(config=_config, **kwargs)
         configure_relations(self, _relations)
 
     def actuatedby(self, actuatedby: Property):

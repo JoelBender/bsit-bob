@@ -166,8 +166,7 @@ ex42:00015 a bacnet:DeviceObject,
     rdfs:label "deviceObject" ;
     bacnet:isObjectOf ex42:00001 ;
     bacnet:object-identifier "device,5204" ;
-    bacnet:object-type bacnet:ObjectType.device ;
-    bacnet:vendor-identifier "5"^^xsd:nonNegativeInteger .
+    bacnet:object-type bacnet:ObjectType.device .
 
 ex42:00016 a bacnet:AnalogInputObject,
         bacnet:Object ;

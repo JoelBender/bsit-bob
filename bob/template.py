@@ -223,7 +223,7 @@ class SystemFromTemplate(System):
             panel=True,
             style="bold blue",
         )
-        required_class = (
+        required_class: t.Iterable[t.Any] = (
             config.pop("template_class") if "template_class" in config else [System]
         )
 
@@ -263,8 +263,8 @@ class EquipmentFromTemplate(Equipment):
             panel=True,
             style="bold blue",
         )
-        required_class: t.Any = (
-            config.pop("template_class") if "template_class" in config else Equipment
+        required_class: t.Iterable[t.Any] = (
+            config.pop("template_class") if "template_class" in config else [Equipment]
         )
         _config = template_update(config)
         kwargs = {**_config.pop("params", {}), **kwargs}

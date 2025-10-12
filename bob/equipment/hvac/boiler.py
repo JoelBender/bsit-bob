@@ -26,7 +26,7 @@ class Boiler(Equipment):
         _config = template_update({}, config=config)
         kwargs = {**_config.pop("params", {}), **kwargs}
         _relations = _config.pop("relations", [])
-        super().__init__(**_config, **kwargs)
+        super().__init__(config=_config, **kwargs)
         configure_relations(self, _relations)
         self += Role.Heating  # type: ignore
         self.hotWaterLeaving.paired_to(self.hotWaterEntering)  # type: ignore

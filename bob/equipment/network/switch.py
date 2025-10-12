@@ -50,7 +50,7 @@ class EthernetSwitch(Equipment):
         for i, each in enumerate(range(_number_of_ports)):
             _config["cp"][f"port{i}"] = EthernetBidirectionalConnectionPoint
         kwargs = {**_config.get("params", {}), **kwargs}
-        super().__init__(**_config, **kwargs)  # type: ignore[misc]
+        super().__init__(config=_config, **kwargs)  # type: ignore[misc]
         for k, v in self._connection_points.items():
             if isinstance(v, EthernetBidirectionalConnectionPoint):
                 v.data_rate = Mbit_per_seconds(_data_rate)  # type: ignore[call-arg]
@@ -75,7 +75,7 @@ class PoESwitch(Equipment):
         for i, each in enumerate(range(_number_of_ports)):
             _config["cp"][f"port{i}"] = PoEBidirectionalConnectionPoint
         kwargs = {**_config.get("params", {}), **kwargs}
-        super().__init__(**_config, **kwargs)  # type: ignore[misc]
+        super().__init__(config=_config, **kwargs)  # type: ignore[misc]
         for k, v in self._connection_points.items():
             if isinstance(v, EthernetBidirectionalConnectionPoint):
                 v.data_rate = Mbit_per_seconds(_data_rate)  # type: ignore[call-arg]

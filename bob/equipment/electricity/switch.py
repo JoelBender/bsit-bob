@@ -43,7 +43,7 @@ class Switch(Equipment):
         _config = template_update(switch_template, config)
         kwargs = {**_config.pop("params", {}), **kwargs}
 
-        super().__init__(**{**_config, **kwargs})
+        super().__init__(config=_config, **kwargs)
 
 
 class SinglePoleSwitch(Switch):
@@ -78,7 +78,7 @@ class SinglePoleSwitch(Switch):
             _config["cp"]["electricalOutlet"] = _electricalOutlet
         kwargs = {**_config.pop("params", {}), **kwargs}
 
-        super().__init__(**{**_config, **kwargs})
+        super().__init__(config=_config, **kwargs)
 
 
 current_relay_template = {
@@ -105,7 +105,7 @@ class CurrentRelay(Equipment):
 
         _label = kwargs["label"]
 
-        super().__init__(**{**_config, **kwargs})
+        super().__init__(config=_config, **kwargs)
 
         sensor = CurrentSensor(
             label="currentSensor",
@@ -137,7 +137,7 @@ class TimerSwitch(SinglePoleSwitch):
 
         if _delay:
             _config["properties"][("delay", Hour)] = {"hasValue": _delay}
-        super().__init__(**{**_config, **kwargs})
+        super().__init__(config=_config, **kwargs)
 
 
 class DimmableSwitch(SinglePoleSwitch):
@@ -154,4 +154,4 @@ class DimmableSwitch(SinglePoleSwitch):
         _config["properties"][("dimmer_command", PercentCommand)] = {
             "hasValue": _dimmer_command,
         }
-        super().__init__(**{**_config, **kwargs})
+        super().__init__(config=_config, **kwargs)

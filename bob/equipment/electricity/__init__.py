@@ -1,5 +1,5 @@
 from bob.core import P223, S223, Property
-from bob.equipment.actuator import Actuator
+from bob.equipment.hvac.actuator import Actuator
 from bob.equipment.control.controller import Controller
 
 _namespace = S223

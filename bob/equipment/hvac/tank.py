@@ -26,7 +26,7 @@ class Tank(Equipment):
     def __init__(self, config: dict | None = None, **kwargs):
         _config = template_update({}, config=config)
         kwargs = {**_config.pop("params", {}), **kwargs}
-        super().__init__(**_config, **kwargs)
+        super().__init__(config=_config, **kwargs)
         self.fluidOutlet.paired_to(self.fluidInlet)  # type: ignore
 
     def set_fluid_type(self, fluid: Fluid = Water):

@@ -37,7 +37,7 @@ class Controller(Equipment):
         kwargs = {**_config.pop("params", {}), **kwargs}
         _log.debug(f"Controller.__init__ {_config} {kwargs}")
 
-        super().__init__(**{**_config, **kwargs})
+        super().__init__(config=_config, **kwargs)
 
     def executes(self, function_block: Function):
         _log.debug(f"Controller {self._node_iri} executes  {function_block._node_iri}")

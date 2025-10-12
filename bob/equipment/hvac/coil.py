@@ -61,7 +61,7 @@ class Coil(Equipment):
             config = coil_template.copy()
         config["properties"] = config.get("properties", coil_template["properties"])
         kwargs = {**config.pop("params", {}), **kwargs}
-        super().__init__(**{**config, **kwargs})
+        super().__init__(config=config, **kwargs)
         self.airOutlet.paired_to(self.airInlet)  # type: ignore
 
 
@@ -75,7 +75,7 @@ class WaterCoil(Coil):
             config = coil_template.copy()
         config["properties"] = config.get("properties", coil_template["properties"])
         kwargs = {**config.pop("params", {}), **kwargs}
-        super().__init__(**{**config, **kwargs})
+        super().__init__(config=config, **kwargs)
         self.waterOutlet.paired_to(self.waterInlet)  # type: ignore
 
 
@@ -87,7 +87,7 @@ class DXCoolingCoil(Coil):
     def __init__(self, config: dict | None = None, **kwargs):
         _config = template_update({}, config)
         kwargs = {**_config.pop("params", {}), **kwargs}
-        super().__init__(**{**_config, **kwargs})
+        super().__init__(config=_config, **kwargs)
         self += Role.Cooling  # type: ignore
         self.refrigerantOutlet.paired_to(self.refrigerantInlet)  # type: ignore
 
@@ -100,7 +100,7 @@ class ChilledWaterCoil(Coil):
     def __init__(self, config: dict | None = None, **kwargs):
         _config = template_update({}, config)
         kwargs = {**_config.pop("params", {}), **kwargs}
-        super().__init__(**{**_config, **kwargs})
+        super().__init__(config=_config, **kwargs)
         self += Role.Cooling  # type: ignore
         self.chilledWaterOutlet.paired_to(self.chilledWaterInlet)  # type: ignore
 
@@ -113,7 +113,7 @@ class HotWaterCoil(Coil):
     def __init__(self, config: dict | None = None, **kwargs):
         _config = template_update({}, config)
         kwargs = {**_config.pop("params", {}), **kwargs}
-        super().__init__(**{**_config, **kwargs})
+        super().__init__(config=_config, **kwargs)
         self += Role.Heating  # type: ignore
         self.hotWaterOutlet.paired_to(self.hotWaterInlet)  # type: ignore
 
@@ -128,7 +128,7 @@ class HeatpumpCoil(Coil):
     def __init__(self, config: dict | None = None, **kwargs):
         _config = template_update(coil_template, config)
         kwargs = {**_config.pop("params", {}), **kwargs}
-        super().__init__(**{**_config, **kwargs})
+        super().__init__(config=_config, **kwargs)
         self += Role.Heating  # type: ignore
         self += Role.Cooling  # type: ignore
         self.gasPortB.paired_to(self.gasPortA)  # type: ignore
@@ -160,7 +160,7 @@ class ElectricalHeatingCoil(Equipment):
     def __init__(self, config: dict | None = None, **kwargs):
         _config = template_update(electricalheating_template, config)
         kwargs = {**_config.pop("params", {}), **kwargs}
-        super().__init__(**{**_config, **kwargs})
+        super().__init__(config=_config, **kwargs)
         self += Role.Heating  # type: ignore
         self.airOutlet.paired_to(self.airInlet)  # type: ignore
 
@@ -183,7 +183,7 @@ class ElectricalRadiantHeatingCoil(Equipment):
     def __init__(self, config: dict | None = None, **kwargs):
         _config = template_update(electricalradiant_template, config)
         kwargs = {**_config.pop("params", {}), **kwargs}
-        super().__init__(**{**_config, **kwargs})
+        super().__init__(config=_config, **kwargs)
         self += Role.Heating  # type: ignore
 
 
@@ -206,5 +206,5 @@ class ImmersedResistanceHeaterElement(Equipment):
     def __init__(self, config: dict | None = None, **kwargs):
         _config = template_update(element_template, config)
         kwargs = {**_config.pop("params", {}), **kwargs}
-        super().__init__(**{**_config, **kwargs})
+        super().__init__(config=_config, **kwargs)
         self += Role.Heating  # type: ignore

@@ -6,7 +6,7 @@ beyond the scope of this project.
 from __future__ import annotations
 
 import logging
-from typing import Any, List
+from typing import Union, List
 
 from rdflib import Literal, URIRef
 
@@ -165,7 +165,7 @@ class DeviceObject(Object):
     }
     systemStatus: URIRef  # one of bacnet:DeviceStatus
     vendorName: Literal
-    vendorIdentifier: Any  # XSD.nonNegativeInteger  # type: ignore[valid-type]
+    vendorIdentifier: Union[str, int]  # XSD.nonNegativeInteger  # type: ignore[valid-type]
     modelName: Literal
 
 
