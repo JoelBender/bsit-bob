@@ -45,19 +45,19 @@ Web tools::
 
 Will output a TTL file like this, along with lots of other statements::
 
-   @prefix bob: <http://data.ashrae.org/standard223/si-builder#> .
-   @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-   @prefix s223: <http://data.ashrae.org/standard223#> .
+    @prefix bob: <http://data.ashrae.org/standard223/si-builder#> .
+    @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+    @prefix s223: <http://data.ashrae.org/standard223#> .
 
-   _:bee9 a s223:Connectable,
-        s223:Equipment,
-        s223:Fan ;
-      rdfs:label "F1" ;
-      s223:hasConnectionPoint _:b598,
-        _:bd78,
-        _:b2ed ;
-      bob:airInlet _:bd78 ;
-      bob:airOutlet _:b2ed .
+    _:bee9 a s223:Connectable,
+          s223:Equipment,
+          s223:Fan ;
+        rdfs:label "F1" ;
+        s223:hasConnectionPoint _:b598,
+          _:bd78,
+          _:b2ed ;
+        bob:airInlet _:bd78 ;
+        bob:airOutlet _:b2ed .
 
 
 ```{toctree}
