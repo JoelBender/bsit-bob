@@ -29,9 +29,11 @@ jobs:
         run: uv sync --locked --all-extras --dev
       - name: Ruff linter ${{ matrix.python-version }}
         run: uv pip install ruff
+      - name: Ruff linter run
         run: ruff check .
-      - name: Mypy type check
+      - name: Mypy type check install
         run: uv pip install mypy 
+      - name: Mypy type check run
         run: mypy bob/
       - name: Run tests
         # For example, using `pytest`
