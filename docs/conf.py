@@ -65,7 +65,7 @@ def setup(app):
 project = "si-builder"
 author = "ASHRAE 223P contributors"
 copyright = f"{datetime.now():%Y}, {author}"
-release = ""  # set to package version if desired
+release = "0.1.2"  # set to package version if desired
 
 # -- General configuration
 extensions = [
