@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+
+<html :class="{'dark': darkMode === 'dark' || (darkMode === 'system' &amp;&amp; window.matchMedia('(prefers-color-scheme: dark)').matches)}" class="scroll-smooth" data-content_root="./" lang="en" x-data="{ darkMode: localStorage.getItem('darkMode') || localStorage.setItem('darkMode', 'system'), activeSection: '' }" x-init="$watch('darkMode', val =&gt; localStorage.setItem('darkMode', val))">
+<head>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta charset="utf-8"/>
+<meta content="white" media="(prefers-color-scheme: light)" name="theme-color"/>
+<meta content="black" media="(prefers-color-scheme: dark)" name="theme-color"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>10. Enumerations (enum.py) and 223P vocab alignment | si-builder  documentation</title>
+<meta content="10. Enumerations (enum.py) and 223P vocab alignment | si-builder  documentation" property="og:title"/>
+<meta content="10. Enumerations (enum.py) and 223P vocab alignment | si-builder  documentation" name="twitter:title"/>
+<link href="_static/pygments.css?v=e72c8e07" rel="stylesheet" type="text/css"/>
+<link href="_static/theme.css?v=42baaae4" rel="stylesheet" type="text/css"/>
+<link href="search.html" rel="search" title="Search"/>
+<link href="genindex.html" rel="index" title="Index"/>
+<link href="basics.html" rel="next" title="11. Basics: Equipment, Systems, Spaces"/>
+<link href="core.html" rel="prev" title="9. Core API: nodes, graphs, and serialization"/>
+<script>
+    <!-- Prevent Flash of wrong theme -->
+      const userPreference = localStorage.getItem('darkMode');
+      let mode;
+      if (userPreference === 'dark' || window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        mode = 'dark';
+        document.documentElement.classList.add('dark');
+      } else {
+        mode = 'light';
+      }
+      if (!userPreference) {localStorage.setItem('darkMode', mode)}
+    </script>
+</head>
+<body :class="{ 'overflow-hidden': showSidebar }" @scroll.window="showScrollTop = pageYOffset &gt; 100" class="min-h-screen font-sans antialiased bg-background text-foreground" x-data="{ showSidebar: false, showScrollTop: false }">
+<div @click.self="showSidebar = false" class="fixed inset-0 z-50 overflow-hidden bg-background/80 backdrop-blur-sm md:hidden" x-cloak="" x-show="showSidebar"></div><div class="relative flex flex-col min-h-screen" id="page"><a class="absolute top-0 left-0 z-[100] block bg-background p-4 text-xl transition -translate-x-full opacity-0 focus:translate-x-0 focus:opacity-100" href="#content">
+      Skip to content
+    </a><header class="sticky top-0 z-40 w-full border-b shadow-sm border-border supports-backdrop-blur:bg-background/60 bg-background/95 backdrop-blur"><div class="container flex items-center h-14">
+<div class="hidden mr-4 md:flex">
+<a class="flex items-center mr-6" href="index.html"><span class="hidden font-bold sm:inline-block text-clip whitespace-nowrap">si-builder  documentation</span>
+</a></div><button @click="showSidebar = true" class="inline-flex items-center justify-center h-10 px-0 py-2 mr-2 text-base font-medium transition-colors rounded-md hover:text-accent-foreground hover:bg-transparent md:hidden" type="button">
+<svg aria-hidden="true" fill="currentColor" height="24" viewbox="0 96 960 960" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M152.587 825.087q-19.152 0-32.326-13.174t-13.174-32.326q0-19.152 13.174-32.326t32.326-13.174h440q19.152 0 32.326 13.174t13.174 32.326q0 19.152-13.174 32.326t-32.326 13.174h-440Zm0-203.587q-19.152 0-32.326-13.174T107.087 576q0-19.152 13.174-32.326t32.326-13.174h320q19.152 0 32.326 13.174T518.087 576q0 19.152-13.174 32.326T472.587 621.5h-320Zm0-203.587q-19.152 0-32.326-13.174t-13.174-32.326q0-19.152 13.174-32.326t32.326-13.174h440q19.152 0 32.326 13.174t13.174 32.326q0 19.152-13.174 32.326t-32.326 13.174h-440ZM708.913 576l112.174 112.174q12.674 12.674 12.674 31.826t-12.674 31.826Q808.413 764.5 789.261 764.5t-31.826-12.674l-144-144Q600 594.391 600 576t13.435-31.826l144-144q12.674-12.674 31.826-12.674t31.826 12.674q12.674 12.674 12.674 31.826t-12.674 31.826L708.913 576Z"></path>
+</svg>
+<span class="sr-only">Toggle navigation menu</span>
+</button>
+<div class="flex items-center justify-between flex-1 space-x-2 sm:space-x-4 md:justify-end">
+<div class="flex-1 w-full md:w-auto md:flex-none"><form @keydown.k.window.meta="$refs.search.focus()" action="search.html" class="relative flex items-center group" id="searchbox" method="get">
+<input aria-label="Search the docs" class="inline-flex items-center font-medium transition-colors bg-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ring-offset-background border border-input hover:bg-accent focus:bg-accent hover:text-accent-foreground focus:text-accent-foreground hover:placeholder-accent-foreground py-2 px-4 relative h-9 w-full justify-start rounded-[0.5rem] text-sm text-muted-foreground sm:pr-12 md:w-40 lg:w-64" id="search-input" name="q" placeholder="Search ..." type="search" x-ref="search"/>
+<kbd class="pointer-events-none absolute right-1.5 top-2 hidden h-5 select-none text-muted-foreground items-center gap-1 rounded border border-border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex group-hover:bg-accent group-hover:text-accent-foreground">
+<span class="text-xs">⌘</span>
+    K
+  </kbd>
+</form>
+</div>
+<nav class="flex items-center space-x-1">
+<button @click="darkMode = darkMode === 'light' ? 'dark' : 'light'" aria-label="Color theme switcher" class="relative inline-flex items-center justify-center px-0 text-sm font-medium transition-colors rounded-md hover:bg-accent hover:text-accent-foreground h-9 w-9" type="button">
+<svg class="absolute transition-all scale-100 rotate-0 dark:-rotate-90 dark:scale-0" fill="currentColor" height="24" viewbox="0 96 960 960" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M480 685q45.456 0 77.228-31.772Q589 621.456 589 576q0-45.456-31.772-77.228Q525.456 467 480 467q-45.456 0-77.228 31.772Q371 530.544 371 576q0 45.456 31.772 77.228Q434.544 685 480 685Zm0 91q-83 0-141.5-58.5T280 576q0-83 58.5-141.5T480 376q83 0 141.5 58.5T680 576q0 83-58.5 141.5T480 776ZM80 621.5q-19.152 0-32.326-13.174T34.5 576q0-19.152 13.174-32.326T80 530.5h80q19.152 0 32.326 13.174T205.5 576q0 19.152-13.174 32.326T160 621.5H80Zm720 0q-19.152 0-32.326-13.174T754.5 576q0-19.152 13.174-32.326T800 530.5h80q19.152 0 32.326 13.174T925.5 576q0 19.152-13.174 32.326T880 621.5h-80Zm-320-320q-19.152 0-32.326-13.174T434.5 256v-80q0-19.152 13.174-32.326T480 130.5q19.152 0 32.326 13.174T525.5 176v80q0 19.152-13.174 32.326T480 301.5Zm0 720q-19.152 0-32.326-13.17Q434.5 995.152 434.5 976v-80q0-19.152 13.174-32.326T480 850.5q19.152 0 32.326 13.174T525.5 896v80q0 19.152-13.174 32.33-13.174 13.17-32.326 13.17ZM222.174 382.065l-43-42Q165.5 327.391 166 308.239t13.174-33.065q13.435-13.674 32.587-13.674t32.065 13.674l42.239 43q12.674 13.435 12.555 31.706-.12 18.272-12.555 31.946-12.674 13.674-31.445 13.413-18.772-.261-32.446-13.174Zm494 494.761-42.239-43q-12.674-13.435-12.674-32.087t12.674-31.565Q686.609 756.5 705.38 757q18.772.5 32.446 13.174l43 41.761Q794.5 824.609 794 843.761t-13.174 33.065Q767.391 890.5 748.239 890.5t-32.065-13.674Zm-42-494.761Q660.5 369.391 661 350.62q.5-18.772 13.174-32.446l41.761-43Q728.609 261.5 747.761 262t33.065 13.174q13.674 13.435 13.674 32.587t-13.674 32.065l-43 42.239q-13.435 12.674-31.706 12.555-18.272-.12-31.946-12.555Zm-495 494.761Q165.5 863.391 165.5 844.239t13.674-32.065l43-42.239q13.435-12.674 32.087-12.674t31.565 12.674Q299.5 782.609 299 801.38q-.5 18.772-13.174 32.446l-41.761 43Q231.391 890.5 212.239 890t-33.065-13.174ZM480 576Z"></path>
+</svg>
+<svg class="absolute transition-all scale-0 rotate-90 dark:rotate-0 dark:scale-100" fill="currentColor" height="24" viewbox="0 96 960 960" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M480 936q-151 0-255.5-104.5T120 576q0-138 90-239.5T440 218q25-3 39 18t-1 44q-17 26-25.5 55t-8.5 61q0 90 63 153t153 63q31 0 61.5-9t54.5-25q21-14 43-1.5t19 39.5q-14 138-117.5 229T480 936Zm0-80q88 0 158-48.5T740 681q-20 5-40 8t-40 3q-123 0-209.5-86.5T364 396q0-20 3-40t8-40q-78 32-126.5 102T200 576q0 116 82 198t198 82Zm-10-270Z"></path>
+</svg>
+</button>
+</nav>
+</div>
+</div>
+</header>
+<div class="flex-1"><div class="container flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10"><aside :aria-hidden="!showSidebar" :class="{ 'translate-x-0': showSidebar }" class="fixed inset-y-0 left-0 md:top-14 z-50 md:z-30 bg-background md:bg-transparent transition-all duration-100 -translate-x-full md:translate-x-0 ml-0 p-6 md:p-0 md:-ml-2 md:h-[calc(100vh-3.5rem)] w-5/6 md:w-full shrink-0 overflow-y-auto border-r border-border md:sticky" id="left-sidebar">
+<a class="!justify-start text-sm md:!hidden bg-background" href="index.html"><span class="font-bold text-clip whitespace-nowrap">si-builder  documentation</span>
+</a>
+<div class="relative overflow-hidden md:overflow-auto my-4 md:my-0 h-[calc(100vh-8rem)] md:h-auto">
+<div class="overflow-y-auto h-full w-full relative pr-6"><nav class="table w-full min-w-full my-6 lg:my-8">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html#installation">2. Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="environment.html">3. Environment configuration (.env)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="subclass.html">4. Subclasses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="schema-graph.html">5. Schema Graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic_properties.html">6. Properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic_connections.html">7. Connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="more-connections.html">8. More Connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core.html">9. Core API: nodes, graphs, and serialization</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">10. Enumerations (enum.py) and 223P vocab alignment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basics.html">11. Basics: Equipment, Systems, Spaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="syntax-operators.html">12. Syntax and Shorthand Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="syntax.html">13. YAML Syntax Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connections.html">14. Built-in Connection Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="junctions-and-boundaries.html">15. Junctions and Boundaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sensors-and-observation.html">16. Sensors and Observation Locations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sensors-and-observation.html#observation-location-operator">17. Observation location operator (%)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controllers-and-bacnet.html">18. Controllers and BACnet Profiles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">19. Internal vs External References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="systems-vs-equipment.html">20. Systems vs Equipment (and mapsTo)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="equipment.html">21. Built-in Equipment Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spaces.html">22. Built-in PhysicalSpace Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="properties.html">23. Built-in Property Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="externalreferences.html">24. Built-in ExternalReference Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="templates-and-catalog.html">25. Templates and Catalog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="templates-and-catalog.html#templates-authoring-building-and-helpers-template-py">26. Templates: authoring, building, and helpers (template.py)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validation-and-export.html">27. Validation and Export</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples-from-tests.html">28. Worked Examples from tests/</a></li>
+<li class="toctree-l1"><a class="reference internal" href="operators-implementation.html">29. Operators (Implementation Map)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="operators-implementation.html#multimethods-and-singledispatch">30. Multimethods and singledispatch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">31. Glossary (ASHRAE 223P terms)</a></li>
+</ul>
+</nav>
+</div>
+</div>
+<button @click="showSidebar = false" class="absolute md:hidden right-4 top-4 rounded-sm opacity-70 transition-opacity hover:opacity-100" type="button">
+<svg class="h-4 w-4" fill="currentColor" height="24" stroke="none" viewbox="0 96 960 960" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M480 632 284 828q-11 11-28 11t-28-11q-11-11-11-28t11-28l196-196-196-196q-11-11-11-28t11-28q11-11 28-11t28 11l196 196 196-196q11-11 28-11t28 11q11 11 11 28t-11 28L536 576l196 196q11 11 11 28t-11 28q-11 11-28 11t-28-11L480 632Z"></path>
+</svg>
+</button>
+</aside>
+<main class="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
+<div class="w-full min-w-0 mx-auto">
+<nav aria-label="breadcrumbs" class="flex items-center mb-4 space-x-1 text-sm text-muted-foreground">
+<a class="overflow-hidden text-ellipsis whitespace-nowrap hover:text-foreground" href="index.html">
+<span class="hidden md:inline">si-builder  documentation</span>
+<svg aria-label="Home" class="md:hidden" fill="currentColor" height="18" stroke="none" viewbox="0 96 960 960" width="18" xmlns="http://www.w3.org/2000/svg">
+<path d="M240 856h120V616h240v240h120V496L480 316 240 496v360Zm-80 80V456l320-240 320 240v480H520V696h-80v240H160Zm320-350Z"></path>
+</svg>
+</a>
+<div class="mr-1">/</div><span aria-current="page" class="font-medium text-foreground overflow-hidden text-ellipsis whitespace-nowrap"><span class="section-number">10. </span>Enumerations (enum.py) and 223P vocab alignment</span>
+</nav>
+<div id="content" role="main">
+<section id="enumerations-enum-py-and-223p-vocab-alignment">
+<h1><span class="section-number">10. </span>Enumerations (enum.py) and 223P vocab alignment<a class="headerlink" href="#enumerations-enum-py-and-223p-vocab-alignment" title="Link to this heading">¶</a></h1>
+<p>si-builder’s enum.py defines typed vocabularies that align with ASHRAE 223P vocabularies. These map to s223 terms and are serialized as IRIs in the model.</p>
+<section id="implementation-details-from-the-223p-vocab">
+<h2><span class="section-number">10.1. </span>Implementation details from the 223P vocab<a class="headerlink" href="#implementation-details-from-the-223p-vocab" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#implementation-details-from-the-223p-vocab'">¶</a></h2>
+<section id="enumerationkind">
+<h3><span class="section-number">10.1.1. </span>EnumerationKind<a class="headerlink" href="#enumerationkind" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#enumerationkind'">¶</a></h3>
+<ul class="simple">
+<li><p>s223:EnumerationKind is the base for vocabularies like Medium, Domain, Role, Signal.</p></li>
+<li><p>Concrete vocabularies are subclasses of EnumerationKind (e.g., s223:Medium, s223:Domain, s223:Role, s223:Signal).</p></li>
+<li><p>Individual enumeration values are instances of these vocabularies and carry rdfs:label and rdfs:comment.</p></li>
+</ul>
+</section>
+<section id="medium">
+<h3><span class="section-number">10.1.2. </span>Medium<a class="headerlink" href="#medium" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#medium'">¶</a></h3>
+<ul class="simple">
+<li><p>s223:Medium categorizes carriers such as Air, Water, Steam, Refrigerant.</p></li>
+<li><p>Typical usage: s223:hasMedium points from s223:Connection to a s223:Medium instance (e.g., Fluid.Air, Water.ChilledWater).</p></li>
+</ul>
+</section>
+<section id="domain">
+<h3><span class="section-number">10.1.3. </span>Domain<a class="headerlink" href="#domain" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#domain'">¶</a></h3>
+<ul class="simple">
+<li><p>s223:Domain tags elements with modeling domains (HVAC, Electrical, Networking, …).</p></li>
+<li><p>Used via properties like s223:hasDomain in templates or roles/aspects.</p></li>
+</ul>
+</section>
+<section id="role">
+<h3><span class="section-number">10.1.4. </span>Role<a class="headerlink" href="#role" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#role'">¶</a></h3>
+<ul class="simple">
+<li><p>s223:Role captures functional roles (Supply, Return, Cooling, Heating, …).</p></li>
+<li><p>Attached via s223:hasRole to equipment or sensors where applicable.</p></li>
+</ul>
+</section>
+<section id="mix-substance-constituent-for-media-composition">
+<h3><span class="section-number">10.1.5. </span>Mix, Substance, Constituent (for media composition)<a class="headerlink" href="#mix-substance-constituent-for-media-composition" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#mix-substance-constituent-for-media-composition'">¶</a></h3>
+<ul class="simple">
+<li><p>s223:Mix and s223:Substance allow composition of media (e.g., Refrigerants).</p></li>
+<li><p>Composition is expressed with constituent relationships including fractions and units when defined.</p></li>
+</ul>
+</section>
+<section id="signal-electrical-and-io">
+<h3><span class="section-number">10.1.6. </span>Signal (electrical and IO)<a class="headerlink" href="#signal-electrical-and-io" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#signal-electrical-and-io'">¶</a></h3>
+<ul class="simple">
+<li><p>s223:Signal is a vocabulary for data/communication carriers (RS485, Ethernet, WiFi, …).</p></li>
+<li><p>s223:ModulatedSignal is a specialization (sub-vocabulary) of s223:Signal for analog modulation families (e.g., DC0_10, MA4_20).</p></li>
+<li><p>Modulated signal variants are instances of s223:ModulatedSignal and have precise labels/comments describing their ranges.</p></li>
+</ul>
+</section>
+</section>
+<section id="open223-term-links">
+<h2><span class="section-number">10.2. </span>Open223 term links<a class="headerlink" href="#open223-term-links" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#open223-term-links'">¶</a></h2>
+<ul class="simple">
+<li><p>Medium: <a class="reference external" href="https://explore.open223.info/s223/Medium" rel="nofollow noopener">s223:Medium<svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a></p></li>
+<li><p>Domain: <a class="reference external" href="https://explore.open223.info/s223/Domain" rel="nofollow noopener">s223:Domain<svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a></p></li>
+<li><p>Role: <a class="reference external" href="https://explore.open223.info/s223/Role" rel="nofollow noopener">s223:Role<svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a></p></li>
+<li><p>Signal: <a class="reference external" href="https://explore.open223.info/s223/Signal" rel="nofollow noopener">s223:Signal<svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a></p></li>
+<li><p>ModulatedSignal: <a class="reference external" href="https://explore.open223.info/s223/ModulatedSignal" rel="nofollow noopener">s223:ModulatedSignal<svg fill="currentColor" height="1em" stroke="none" viewbox="0 96 960 960" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M188 868q-11-11-11-28t11-28l436-436H400q-17 0-28.5-11.5T360 336q0-17 11.5-28.5T400 296h320q17 0 28.5 11.5T760 336v320q0 17-11.5 28.5T720 696q-17 0-28.5-11.5T680 656V432L244 868q-11 11-28 11t-28-11Z"></path></svg></a></p></li>
+</ul>
+</section>
+<section id="how-enum-py-maps-to-s223">
+<h2><span class="section-number">10.3. </span>How enum.py maps to s223<a class="headerlink" href="#how-enum-py-maps-to-s223" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#how-enum-py-maps-to-s223'">¶</a></h2>
+<ul class="simple">
+<li><p>Each top-level family (Medium, Domain, Role, Signal) corresponds to the s223 class of the same name (subclass of EnumerationKind).</p></li>
+<li><p>Members are created as individuals with:</p>
+<ul>
+<li><p>rdf:type = that s223 class (e.g., s223:Medium)</p></li>
+<li><p>rdfs:label set from the Python name (humanized) or explicit label</p></li>
+<li><p>Optional rdfs:comment carried through when provided</p></li>
+</ul>
+</li>
+<li><p>Nested families reflect vocab specialization:</p>
+<ul>
+<li><p>Signal.ModulatedSignal corresponds to s223:ModulatedSignal (a specialization of s223:Signal).</p></li>
+<li><p>Members like Signal.ModulatedSignal.DC0_10 and Signal.ModulatedSignal.MA4_20 are instances of s223:ModulatedSignal with precise labels.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="examples">
+<h2><span class="section-number">10.4. </span>Examples<a class="headerlink" href="#examples" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#examples'">¶</a></h2>
+<section id="medium-on-a-connection">
+<h3><span class="section-number">10.4.1. </span>Medium on a connection<a class="headerlink" href="#medium-on-a-connection" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#medium-on-a-connection'">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="kn">from</span><span class="w"> </span><span class="nn">bob.enum</span><span class="w"> </span><span class="kn">import</span> <span class="n">Fluid</span><span class="p">,</span> <span class="n">Water</span>
+</span><span id="line-2"><span class="kn">from</span><span class="w"> </span><span class="nn">bob.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">Connection</span>
+</span><span id="line-3">
+</span><span id="line-4"><span class="n">cnx</span> <span class="o">=</span> <span class="n">Connection</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">"SA-conn"</span><span class="p">)</span>
+</span><span id="line-5"><span class="n">cnx</span><span class="o">.</span><span class="n">hasMedium</span> <span class="o">=</span> <span class="n">Fluid</span><span class="o">.</span><span class="n">Air</span>          <span class="c1"># rdf:type s223:Medium, used by s223:hasMedium</span>
+</span><span id="line-6"><span class="n">chw</span> <span class="o">=</span> <span class="n">Connection</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">"CHW-conn"</span><span class="p">)</span>
+</span><span id="line-7"><span class="n">chw</span><span class="o">.</span><span class="n">hasMedium</span> <span class="o">=</span> <span class="n">Water</span><span class="o">.</span><span class="n">ChilledWater</span>
+</span></code></pre></div>
+</div>
+</section>
+<section id="domains-and-roles-on-equipment">
+<h3><span class="section-number">10.4.2. </span>Domains and roles on equipment<a class="headerlink" href="#domains-and-roles-on-equipment" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#domains-and-roles-on-equipment'">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="kn">from</span><span class="w"> </span><span class="nn">bob.enum</span><span class="w"> </span><span class="kn">import</span> <span class="n">Domain</span><span class="p">,</span> <span class="n">Role</span>
+</span><span id="line-2"><span class="kn">from</span><span class="w"> </span><span class="nn">bob.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">Equipment</span>
+</span><span id="line-3">
+</span><span id="line-4"><span class="n">ahu</span> <span class="o">=</span> <span class="n">Equipment</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">"AHU-1"</span><span class="p">)</span>
+</span><span id="line-5"><span class="n">ahu</span><span class="o">.</span><span class="n">hasDomain</span> <span class="o">=</span> <span class="n">Domain</span><span class="o">.</span><span class="n">HVAC</span>        <span class="c1"># s223:hasDomain HVAC</span>
+</span><span id="line-6"><span class="n">ahu</span> <span class="o">+=</span> <span class="n">Role</span><span class="o">.</span><span class="n">Supply</span>                 <span class="c1"># s223:hasRole Supply</span>
+</span><span id="line-7"><span class="n">ahu</span> <span class="o">+=</span> <span class="n">Role</span><span class="o">.</span><span class="n">Cooling</span>
+</span></code></pre></div>
+</div>
+</section>
+<section id="signals-and-modulated-signals">
+<h3><span class="section-number">10.4.3. </span>Signals and modulated signals<a class="headerlink" href="#signals-and-modulated-signals" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#signals-and-modulated-signals'">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="kn">from</span><span class="w"> </span><span class="nn">bob.enum</span><span class="w"> </span><span class="kn">import</span> <span class="n">Signal</span>
+</span><span id="line-2">
+</span><span id="line-3"><span class="n">fieldbus</span> <span class="o">=</span> <span class="n">Signal</span><span class="o">.</span><span class="n">RS485</span>            <span class="c1"># instance of s223:Signal (EIA-485)</span>
+</span><span id="line-4"><span class="n">analog</span> <span class="o">=</span> <span class="n">Signal</span><span class="o">.</span><span class="n">ModulatedSignal</span><span class="o">.</span><span class="n">DC0_10</span>  <span class="c1"># instance of s223:ModulatedSignal (0–10 VDC)</span>
+</span><span id="line-5"><span class="n">current</span> <span class="o">=</span> <span class="n">Signal</span><span class="o">.</span><span class="n">ModulatedSignal</span><span class="o">.</span><span class="n">MA4_20</span> <span class="c1"># 4–20 mA analog signal</span>
+</span></code></pre></div>
+</div>
+</section>
+</section>
+<section id="notes">
+<h2><span class="section-number">10.5. </span>Notes<a class="headerlink" href="#notes" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#notes'">¶</a></h2>
+<ul class="simple">
+<li><p>All enum members serialize as resources (not literals). Labels/comments originate from the 223P vocab and are preserved in the graph.</p></li>
+<li><p>Use Open223 links above for canonical definitions and descriptions sourced from the standard.</p></li>
+</ul>
+</section>
+</section>
+</div></div><aside class="hidden text-sm xl:block" id="right-sidebar">
+<div class="sticky top-16 -mt-10 max-h-[calc(100vh-5rem)] overflow-y-auto pt-6 space-y-2"><p class="font-medium">On this page</p>
+<ul>
+<li><a :data-current="activeSection === '#implementation-details-from-the-223p-vocab'" class="reference internal" href="#implementation-details-from-the-223p-vocab">10.1. Implementation details from the 223P vocab</a><ul>
+<li><a :data-current="activeSection === '#enumerationkind'" class="reference internal" href="#enumerationkind">10.1.1. EnumerationKind</a></li>
+<li><a :data-current="activeSection === '#medium'" class="reference internal" href="#medium">10.1.2. Medium</a></li>
+<li><a :data-current="activeSection === '#domain'" class="reference internal" href="#domain">10.1.3. Domain</a></li>
+<li><a :data-current="activeSection === '#role'" class="reference internal" href="#role">10.1.4. Role</a></li>
+<li><a :data-current="activeSection === '#mix-substance-constituent-for-media-composition'" class="reference internal" href="#mix-substance-constituent-for-media-composition">10.1.5. Mix, Substance, Constituent (for media composition)</a></li>
+<li><a :data-current="activeSection === '#signal-electrical-and-io'" class="reference internal" href="#signal-electrical-and-io">10.1.6. Signal (electrical and IO)</a></li>
+</ul>
+</li>
+<li><a :data-current="activeSection === '#open223-term-links'" class="reference internal" href="#open223-term-links">10.2. Open223 term links</a></li>
+<li><a :data-current="activeSection === '#how-enum-py-maps-to-s223'" class="reference internal" href="#how-enum-py-maps-to-s223">10.3. How enum.py maps to s223</a></li>
+<li><a :data-current="activeSection === '#examples'" class="reference internal" href="#examples">10.4. Examples</a><ul>
+<li><a :data-current="activeSection === '#medium-on-a-connection'" class="reference internal" href="#medium-on-a-connection">10.4.1. Medium on a connection</a></li>
+<li><a :data-current="activeSection === '#domains-and-roles-on-equipment'" class="reference internal" href="#domains-and-roles-on-equipment">10.4.2. Domains and roles on equipment</a></li>
+<li><a :data-current="activeSection === '#signals-and-modulated-signals'" class="reference internal" href="#signals-and-modulated-signals">10.4.3. Signals and modulated signals</a></li>
+</ul>
+</li>
+<li><a :data-current="activeSection === '#notes'" class="reference internal" href="#notes">10.5. Notes</a></li>
+</ul>
+</div>
+</aside>
+</main>
+</div>
+</div><footer class="py-6 border-t border-border md:py-0">
+<div class="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
+<div class="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0">
+<p class="text-sm leading-loose text-center text-muted-foreground md:text-left">© 2025, ASHRAE 223P contributors Built with <a class="font-medium underline underline-offset-4" href="https://www.sphinx-doc.org" rel="noreferrer">Sphinx 8.2.3</a></p>
+</div>
+</div>
+</footer>
+</div><button :class="{'opacity-0 invisible' : !showScrollTop}" @click="window.scrollTo({top: 0, behavior: 'smooth'})" class="fixed bottom-8 right-8 p-2 z-10 rounded-sm bg-gray-700 text-xs text-white transition-all duration-1000 hover:bg-gray-950 focus:bg-gray-950" id="scrolltop" x-cloak="">
+<svg aria-hidden="true" class="inline fill-current mb-[2px]" height="14" viewbox="0 96 960 960" width="14" xmlns="http://www.w3.org/2000/svg">
+<path d="M450 896V370L202 618l-42-42 320-320 320 320-42 42-248-248v526h-60Z"></path>
+</svg>
+  Back to top
+</button>
+<script src="_static/documentation_options.js?v=5929fcd5"></script>
+<script src="_static/doctools.js?v=9bcbadda"></script>
+<script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+<script defer="defer" src="_static/theme.js?v=073f68d9"></script>
+</body>
+</html>

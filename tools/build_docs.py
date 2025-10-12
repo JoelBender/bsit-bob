@@ -19,7 +19,7 @@ def run(cmd: list[str], cwd: Path, warn_only: bool = False, label: str = "") -> 
 
 def main():
     repo = Path(__file__).resolve().parents[1]
-    doc = repo / "doc"
+    doc = repo / "docs"
 
     # Load .env (optional)
     try:

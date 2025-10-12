@@ -1,0 +1,17 @@
+digraph G {
+  graph [rankdir="LR"];
+  node [fontsize=10];
+  edge [fontsize=9];
+  n_f3e8c0989f [label="Constituent-Electricity", shape="box"];
+  n_9c802b4b77 [label="Fluid-Air", shape="box"];
+  n_9f4ea3e6a9 [label="SF-1", shape="box"];
+  n_b1c28d0ad7 [label="SF-1.airInlet", shape="diamond"];
+  n_948b178dba [label="SF-1.airOutlet", shape="diamond"];
+  n_0456a23a69 [label="SF-1.electricalInlet", shape="diamond"];
+  n_9f4ea3e6a9 -> n_0456a23a69 [label="hasConnectionPoint"];
+  n_9f4ea3e6a9 -> n_948b178dba [label="hasConnectionPoint"];
+  n_b1c28d0ad7 -> n_9c802b4b77 [label="hasMedium"];
+  n_0456a23a69 -> n_f3e8c0989f [label="hasMedium"];
+  n_9f4ea3e6a9 -> n_b1c28d0ad7 [label="hasConnectionPoint"];
+  n_948b178dba -> n_9c802b4b77 [label="hasMedium"];
+}
