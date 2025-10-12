@@ -38,6 +38,7 @@ ex42:00002 a bacnet:DeviceObject,
     bacnet:object-identifier "device,5204" ;
     bacnet:object-name "CGM-2-004" ;
     bacnet:object-type bacnet:ObjectType.device ;
+    bacnet:vendor-identifier 5 ;
     bacnet:vendor-name "Unknown" .
 
 ex42:00003 a bacnet:AnalogInputObject,

@@ -612,6 +612,8 @@ ex42:00049 a s223:ConnectionPoint,
         s223:OutletConnectionPoint,
         bob:AirConnectionPoint ;
     rdfs:label "ReturnExhaustDuct.toMixedAirDamper" ;
+    s223:cnx ex42:00078 ;
+    s223:connectsThrough ex42:00078 ;
     s223:hasMedium s223:Fluid-Air ;
     s223:isConnectionPointOf ex42:00047 .
 
@@ -843,8 +845,6 @@ ex42:00074 a s223:Connection ;
 
 ex42:00075 a s223:ConnectionPoint,
         s223:OutletConnectionPoint ;
-    s223:cnx ex42:00078 ;
-    s223:connectsThrough ex42:00078 ;
     s223:hasMedium s223:Fluid-Air ;
     s223:isConnectionPointOf ex42:00047 .
 
@@ -864,7 +864,7 @@ ex42:00077 a s223:ConnectionPoint,
 ex42:00078 a s223:Connection ;
     s223:cnx ex42:00036 ;
     s223:connectsAt ex42:00036,
-        ex42:00075 ;
+        ex42:00049 ;
     s223:connectsFrom ex42:00047 ;
     s223:connectsTo ex42:00035 ;
     s223:hasMedium s223:Fluid-Air .

@@ -674,14 +674,32 @@ class Node(metaclass=NodeMetaclass):
                     cls._schema_graph.add((sh_property, SH.datatype, attr_type))
 
             elif attr_origin in (Any, dict, set, list, Union, list, set, dict):
-                if SHOW_INSPECTION_WARNINGS:
-                    warnings.warn(
-                        f"class {cls}, attribute {attr}: inspection not supported {attr_type}",
-                    )
-
-                cls._nodes[attr] = attr_type
-                cls._attr_uriref[attr] = attr_uriref
-                cls._schema_graph.add((attr_uriref, RDF.type, RDF.Property))
+                # Gracefully accept simple scalar Unions as datatypes (map to Literal)
+                handled = False
+                if attr_origin is Union:
+                    try:
+                        from typing import get_args as _get_args
+                        union_args = _get_args(attr_type)
+                    except Exception:
+                        union_args = ()
+                    # If all union args are simple scalars, record as a datatype property
+                    if union_args and all(
+                        a in (str, int, float, bool) for a in union_args
+                    ):
+                        cls._datatypes[attr] = Literal  # type: ignore[assignment]
+                        cls._attr_uriref[attr] = attr_uriref
+                        cls._schema_graph.add((attr_uriref, RDF.type, RDF.Property))
+                        if sh_property:
+                            cls._schema_graph.add((sh_property, SH.datatype, XSD.string))
+                        handled = True
+                if not handled:
+                    if SHOW_INSPECTION_WARNINGS:
+                        warnings.warn(
+                            f"class {cls}, attribute {attr}: inspection not supported {attr_type}",
+                        )
+                    cls._nodes[attr] = attr_type
+                    cls._attr_uriref[attr] = attr_uriref
+                    cls._schema_graph.add((attr_uriref, RDF.type, RDF.Property))
 
             elif inspect.isclass(attr_type):
                 cls._nodes[attr] = attr_type
