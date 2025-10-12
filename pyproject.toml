@@ -1,6 +1,6 @@
 [project]
 name = "bsit-bob"
-version = "0.1.1"
+version = "0.1.2"
 description = "BACnet Semantic Interoperability Toolkit - Bob - Building Model Builder"
 readme = "README.md"
 requires-python = ">=3.13"
@@ -22,7 +22,9 @@ tests = [
 
 doc =["sphinx",
     "myst_parser",
-    "sphinxawesome_theme"
+    "sphinxawesome_theme",
+    "sphinx-copybutton",
+    "sphinxcontrib-mermaid",
 ]
 
 [tool.setuptools.packages.find]
