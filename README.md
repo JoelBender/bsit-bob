@@ -1,5 +1,7 @@
 # SI-Builder
 
+[![Build status](https://github.com/ChristianTremblay/bsit-bob/blob/main/.github/workflows/python-package.yml?branch=main&label=build&style=flat-square)](https://github.com/ChristianTremblay/bsit-bob)
+
 Build ASHRAE 223P–compliant models using YAML and Python. si-builder emits RDF (Turtle) and aligns key concepts with RealEstateCore.
 
 Install
