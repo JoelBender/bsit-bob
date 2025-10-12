@@ -73,6 +73,7 @@ extensions = [
     "sphinx.ext.autosectionlabel",
     "sphinx.ext.intersphinx",
     "sphinx.ext.extlinks",
+    "sphinxcontrib.mermaid",
 ]
 
 # Recognize Markdown (MyST) and reStructuredText
