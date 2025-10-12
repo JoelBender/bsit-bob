@@ -59,6 +59,8 @@ Will output a TTL file like this, along with lots of other statements::
         bob:airInlet _:bd78 ;
         bob:airOutlet _:b2ed .
 
+Table of Content
+----------------
 
 ```{toctree}
 :maxdepth: 2
