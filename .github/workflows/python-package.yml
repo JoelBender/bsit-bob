@@ -32,7 +32,7 @@ jobs:
       - name: Mypy type check install
         run: uv pip install mypy 
       - name: Mypy type check run
-        run: mypy bob/
+        run: uv run mypy bob/
       - name: Run tests
         # For example, using `pytest`
         run: uv run pytest tests
