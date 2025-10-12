@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en"
+      data-content_root="./"
+      x-data="{ darkMode: localStorage.getItem('darkMode') || localStorage.setItem('darkMode', 'system'), activeSection: '' }"
+      x-init="$watch('darkMode', val => localStorage.setItem('darkMode', val))"
+      class="scroll-smooth"
+      :class="{'dark': darkMode === 'dark' || (darkMode === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)}"
+>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="white" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="black" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>26. Templates and Catalog | si-builder  documentation</title>
+    <meta property="og:title" content="26. Templates and Catalog | si-builder  documentation" />
+    <meta name="twitter:title" content="26. Templates and Catalog | si-builder  documentation" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=e72c8e07" />
+      <link rel="stylesheet" type="text/css" href="_static/theme.css?v=42baaae4" />
+        <link rel="search" title="Search" href="search.html" />
+        <link rel="index" title="Index" href="genindex.html" />
+          <link rel="next" title="28. Validation and Export" href="validation-and-export.html" />
+          <link rel="prev" title="25. Built-in ExternalReference Classes" href="externalreferences.html" />
+
+    <script>
+    <!-- Prevent Flash of wrong theme -->
+      const userPreference = localStorage.getItem('darkMode');
+      let mode;
+      if (userPreference === 'dark' || window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        mode = 'dark';
+        document.documentElement.classList.add('dark');
+      } else {
+        mode = 'light';
+      }
+      if (!userPreference) {localStorage.setItem('darkMode', mode)}
+    </script>
+</head>
+  <body x-data="{ showSidebar: false, showScrollTop: false }" class="min-h-screen font-sans antialiased bg-background text-foreground" :class="{ 'overflow-hidden': showSidebar }"@scroll.window="showScrollTop = pageYOffset > 100">
+    <div x-cloak x-show="showSidebar" class="fixed inset-0 z-50 overflow-hidden bg-background/80 backdrop-blur-sm md:hidden" @click.self="showSidebar = false"></div><div id="page" class="relative flex flex-col min-h-screen"><a href="#content" class="absolute top-0 left-0 z-[100] block bg-background p-4 text-xl transition -translate-x-full opacity-0 focus:translate-x-0 focus:opacity-100">
+      Skip to content
+    </a><header
+  class="sticky top-0 z-40 w-full border-b shadow-sm border-border supports-backdrop-blur:bg-background/60 bg-background/95 backdrop-blur"><div class="container flex items-center h-14">
+    <div class="hidden mr-4 md:flex">
+      <a href="index.html" class="flex items-center mr-6"><span class="hidden font-bold sm:inline-block text-clip whitespace-nowrap">si-builder  documentation</span>
+      </a></div><button
+      class="inline-flex items-center justify-center h-10 px-0 py-2 mr-2 text-base font-medium transition-colors rounded-md hover:text-accent-foreground hover:bg-transparent md:hidden"
+      type="button" @click="showSidebar = true">
+      <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 96 960 960" aria-hidden="true"
+        fill="currentColor">
+        <path
+          d="M152.587 825.087q-19.152 0-32.326-13.174t-13.174-32.326q0-19.152 13.174-32.326t32.326-13.174h440q19.152 0 32.326 13.174t13.174 32.326q0 19.152-13.174 32.326t-32.326 13.174h-440Zm0-203.587q-19.152 0-32.326-13.174T107.087 576q0-19.152 13.174-32.326t32.326-13.174h320q19.152 0 32.326 13.174T518.087 576q0 19.152-13.174 32.326T472.587 621.5h-320Zm0-203.587q-19.152 0-32.326-13.174t-13.174-32.326q0-19.152 13.174-32.326t32.326-13.174h440q19.152 0 32.326 13.174t13.174 32.326q0 19.152-13.174 32.326t-32.326 13.174h-440ZM708.913 576l112.174 112.174q12.674 12.674 12.674 31.826t-12.674 31.826Q808.413 764.5 789.261 764.5t-31.826-12.674l-144-144Q600 594.391 600 576t13.435-31.826l144-144q12.674-12.674 31.826-12.674t31.826 12.674q12.674 12.674 12.674 31.826t-12.674 31.826L708.913 576Z" />
+      </svg>
+      <span class="sr-only">Toggle navigation menu</span>
+    </button>
+    <div class="flex items-center justify-between flex-1 space-x-2 sm:space-x-4 md:justify-end">
+      <div class="flex-1 w-full md:w-auto md:flex-none"><form id="searchbox"
+      action="search.html"
+      method="get"
+      class="relative flex items-center group"
+      @keydown.k.window.meta="$refs.search.focus()">
+  <input x-ref="search"
+          name="q"
+          id="search-input"
+          type="search"
+          aria-label="Search the docs"
+          placeholder="Search ..."
+          class="inline-flex items-center font-medium transition-colors bg-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ring-offset-background border border-input hover:bg-accent focus:bg-accent hover:text-accent-foreground focus:text-accent-foreground hover:placeholder-accent-foreground py-2 px-4 relative h-9 w-full justify-start rounded-[0.5rem] text-sm text-muted-foreground sm:pr-12 md:w-40 lg:w-64" />
+  <kbd class="pointer-events-none absolute right-1.5 top-2 hidden h-5 select-none text-muted-foreground items-center gap-1 rounded border border-border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex group-hover:bg-accent group-hover:text-accent-foreground">
+    <span class="text-xs">⌘</span>
+    K
+  </kbd>
+</form>
+      </div>
+      <nav class="flex items-center space-x-1">
+        <button @click="darkMode = darkMode === 'light' ? 'dark' : 'light'"
+          class="relative inline-flex items-center justify-center px-0 text-sm font-medium transition-colors rounded-md hover:bg-accent hover:text-accent-foreground h-9 w-9"
+          type="button"
+          aria-label="Color theme switcher">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 96 960 960" fill="currentColor"
+            class="absolute transition-all scale-100 rotate-0 dark:-rotate-90 dark:scale-0">
+            <path
+              d="M480 685q45.456 0 77.228-31.772Q589 621.456 589 576q0-45.456-31.772-77.228Q525.456 467 480 467q-45.456 0-77.228 31.772Q371 530.544 371 576q0 45.456 31.772 77.228Q434.544 685 480 685Zm0 91q-83 0-141.5-58.5T280 576q0-83 58.5-141.5T480 376q83 0 141.5 58.5T680 576q0 83-58.5 141.5T480 776ZM80 621.5q-19.152 0-32.326-13.174T34.5 576q0-19.152 13.174-32.326T80 530.5h80q19.152 0 32.326 13.174T205.5 576q0 19.152-13.174 32.326T160 621.5H80Zm720 0q-19.152 0-32.326-13.174T754.5 576q0-19.152 13.174-32.326T800 530.5h80q19.152 0 32.326 13.174T925.5 576q0 19.152-13.174 32.326T880 621.5h-80Zm-320-320q-19.152 0-32.326-13.174T434.5 256v-80q0-19.152 13.174-32.326T480 130.5q19.152 0 32.326 13.174T525.5 176v80q0 19.152-13.174 32.326T480 301.5Zm0 720q-19.152 0-32.326-13.17Q434.5 995.152 434.5 976v-80q0-19.152 13.174-32.326T480 850.5q19.152 0 32.326 13.174T525.5 896v80q0 19.152-13.174 32.33-13.174 13.17-32.326 13.17ZM222.174 382.065l-43-42Q165.5 327.391 166 308.239t13.174-33.065q13.435-13.674 32.587-13.674t32.065 13.674l42.239 43q12.674 13.435 12.555 31.706-.12 18.272-12.555 31.946-12.674 13.674-31.445 13.413-18.772-.261-32.446-13.174Zm494 494.761-42.239-43q-12.674-13.435-12.674-32.087t12.674-31.565Q686.609 756.5 705.38 757q18.772.5 32.446 13.174l43 41.761Q794.5 824.609 794 843.761t-13.174 33.065Q767.391 890.5 748.239 890.5t-32.065-13.674Zm-42-494.761Q660.5 369.391 661 350.62q.5-18.772 13.174-32.446l41.761-43Q728.609 261.5 747.761 262t33.065 13.174q13.674 13.435 13.674 32.587t-13.674 32.065l-43 42.239q-13.435 12.674-31.706 12.555-18.272-.12-31.946-12.555Zm-495 494.761Q165.5 863.391 165.5 844.239t13.674-32.065l43-42.239q13.435-12.674 32.087-12.674t31.565 12.674Q299.5 782.609 299 801.38q-.5 18.772-13.174 32.446l-41.761 43Q231.391 890.5 212.239 890t-33.065-13.174ZM480 576Z" />
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 96 960 960" fill="currentColor"
+            class="absolute transition-all scale-0 rotate-90 dark:rotate-0 dark:scale-100">
+            <path
+              d="M480 936q-151 0-255.5-104.5T120 576q0-138 90-239.5T440 218q25-3 39 18t-1 44q-17 26-25.5 55t-8.5 61q0 90 63 153t153 63q31 0 61.5-9t54.5-25q21-14 43-1.5t19 39.5q-14 138-117.5 229T480 936Zm0-80q88 0 158-48.5T740 681q-20 5-40 8t-40 3q-123 0-209.5-86.5T364 396q0-20 3-40t8-40q-78 32-126.5 102T200 576q0 116 82 198t198 82Zm-10-270Z" />
+          </svg>
+        </button>
+      </nav>
+    </div>
+  </div>
+</header>
+
+    <div class="flex-1"><div class="container flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10"><aside id="left-sidebar"
+  class="fixed inset-y-0 left-0 md:top-14 z-50 md:z-30 bg-background md:bg-transparent transition-all duration-100 -translate-x-full md:translate-x-0 ml-0 p-6 md:p-0 md:-ml-2 md:h-[calc(100vh-3.5rem)] w-5/6 md:w-full shrink-0 overflow-y-auto border-r border-border md:sticky"
+  :aria-hidden="!showSidebar" :class="{ 'translate-x-0': showSidebar }">
+
+    <a href="index.html" class="!justify-start text-sm md:!hidden bg-background"><span class="font-bold text-clip whitespace-nowrap">si-builder  documentation</span>
+    </a>
+
+    <div class="relative overflow-hidden md:overflow-auto my-4 md:my-0 h-[calc(100vh-8rem)] md:h-auto">
+      <div class="overflow-y-auto h-full w-full relative pr-6"><nav class="table w-full min-w-full my-6 lg:my-8">
+  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">1. Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html#installation">2. Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="environment.html">3. Environment configuration (.env)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="namespaces.html">4. Namespaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="subclass.html">5. Subclasses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="schema-graph.html">6. Schema Graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic_properties.html">7. Properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic_connections.html">8. Connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="more-connections.html">9. More Connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core.html">10. Core API: nodes, graphs, and serialization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="enum.html">11. Enumerations (enum.py) and 223P vocab alignment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basics.html">12. Basics: Equipment, Systems, Spaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="syntax-operators.html">13. Syntax and Shorthand Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="syntax.html">14. YAML Syntax Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connections.html">15. Built-in Connection Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="junctions-and-boundaries.html">16. Junctions and Boundaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sensors-and-observation.html">17. Sensors and Observation Locations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sensors-and-observation.html#observation-location-operator">18. Observation location operator (%)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controllers-and-bacnet.html">19. Controllers and BACnet Profiles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">20. Internal vs External References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="systems-vs-equipment.html">21. Systems vs Equipment (and mapsTo)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="equipment.html">22. Built-in Equipment Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spaces.html">23. Built-in PhysicalSpace Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="properties.html">24. Built-in Property Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="externalreferences.html">25. Built-in ExternalReference Classes</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">26. Templates and Catalog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#templates-authoring-building-and-helpers-template-py">27. Templates: authoring, building, and helpers (template.py)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validation-and-export.html">28. Validation and Export</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples-from-tests.html">29. Worked Examples from tests/</a></li>
+<li class="toctree-l1"><a class="reference internal" href="operators-implementation.html">30. Operators (Implementation Map)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="operators-implementation.html#multimethods-and-singledispatch">31. Multimethods and singledispatch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">32. Glossary (ASHRAE 223P terms)</a></li>
+</ul>
+
+</nav>
+      </div>
+    </div>
+    <button type="button" @click="showSidebar = false"
+      class="absolute md:hidden right-4 top-4 rounded-sm opacity-70 transition-opacity hover:opacity-100">
+      <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 96 960 960" fill="currentColor"
+        stroke="none" class="h-4 w-4">
+        <path
+          d="M480 632 284 828q-11 11-28 11t-28-11q-11-11-11-28t11-28l196-196-196-196q-11-11-11-28t11-28q11-11 28-11t28 11l196 196 196-196q11-11 28-11t28 11q11 11 11 28t-11 28L536 576l196 196q11 11 11 28t-11 28q-11 11-28 11t-28-11L480 632Z" />
+      </svg>
+    </button>
+  </aside>
+        <main class="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
+<div class="w-full min-w-0 mx-auto">
+<nav aria-label="breadcrumbs"
+     class="flex items-center mb-4 space-x-1 text-sm text-muted-foreground">
+  <a class="overflow-hidden text-ellipsis whitespace-nowrap hover:text-foreground"
+     href="index.html">
+    <span class="hidden md:inline">si-builder  documentation</span>
+    <svg xmlns="http://www.w3.org/2000/svg"
+         height="18"
+         width="18"
+         viewBox="0 96 960 960"
+         aria-label="Home"
+         fill="currentColor"
+         stroke="none"
+         class="md:hidden">
+      <path d="M240 856h120V616h240v240h120V496L480 316 240 496v360Zm-80 80V456l320-240 320 240v480H520V696h-80v240H160Zm320-350Z" />
+    </svg>
+  </a>
+  
+<div class="mr-1">/</div><span aria-current="page"
+        class="font-medium text-foreground overflow-hidden text-ellipsis whitespace-nowrap"><span class="section-number">26. </span>Templates and Catalog</span>
+</nav>
+
+    <div id="content" role="main">
+      <section id="templates-and-catalog">
+<h1><span class="section-number">26. </span>Templates and Catalog<a class="headerlink" href="#templates-and-catalog" title="Link to this heading">¶</a></h1>
+<p>Catalog source</p>
+<ul class="simple">
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">catalog_source:</span> <span class="pre">si_templates|get_template</span></code> to load catalog items.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">from_catalog</span></code> pulls reusable blocks (sensors, controllers, packages).</p></li>
+</ul>
+<p>Example: Using from_catalog for sensors</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="nt">from_catalog</span><span class="p">:</span>
+</span><span id="line-2"><span class="w">  </span><span class="nt">STG</span><span class="p">:</span>
+</span><span id="line-3"><span class="w">    </span><span class="nt">template</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">generic.sensor.rtd</span>
+</span><span id="line-4"><span class="w">    </span><span class="nt">hasUnit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">UNIT.DEG_C</span>
+</span><span id="line-5"><span class="w">  </span><span class="nt">TPD</span><span class="p">:</span>
+</span><span id="line-6"><span class="w">    </span><span class="nt">template</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">differential_pressure</span>
+</span><span id="line-7"><span class="w">    </span><span class="nt">hasUnit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">UNIT.PA</span>
+</span></code></pre></div>
+</div>
+<p>Programmatic instantiation</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="kn">from</span><span class="w"> </span><span class="nn">bob.template</span><span class="w"> </span><span class="kn">import</span> <span class="n">config_from_yaml</span>
+</span><span id="line-2"><span class="kn">from</span><span class="w"> </span><span class="nn">scratch.schemaorg</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProductGroupFromTemplate</span>
+</span><span id="line-3">
+</span><span id="line-4"><span class="n">config</span> <span class="o">=</span> <span class="n">config_from_yaml</span><span class="p">(</span><span class="s2">&quot;ahu.yaml&quot;</span><span class="p">)</span>
+</span><span id="line-5"><span class="n">ahu</span> <span class="o">=</span> <span class="n">ProductGroupFromTemplate</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;SYSTEM_1&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+</div>
+<p>When to create custom templates</p>
+<ul class="simple">
+<li><p>Missing CPs (e.g., VFD modulation/status).</p></li>
+<li><p>Multi-sensor “equipment” with IO CPs (RTD, 0-10V, 4-20mA).</p></li>
+<li><p>Assemblies (e.g., Humidifier with controller and auxiliaries).</p></li>
+</ul>
+<p>Expose CPs via controller_mapsTo only if external layer needs them.</p>
+<p>See also</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="sensors-and-observation.html"><span class="std std-doc">Sensors and Observation Locations</span></a></p></li>
+</ul>
+</section>
+<section id="templates-authoring-building-and-helpers-template-py">
+<h1><span class="section-number">27. </span>Templates: authoring, building, and helpers (template.py)<a class="headerlink" href="#templates-authoring-building-and-helpers-template-py" title="Link to this heading">¶</a></h1>
+<p>This page explains how YAML templates are parsed and built by si-builder, and documents the helper functions in template.py.</p>
+<p>Overview</p>
+<ul class="simple">
+<li><p>Parse YAML into a normalized config dict: config_from_yaml(yaml_path)</p></li>
+<li><p>Instantiate a System or Equipment from that config:</p>
+<ul>
+<li><p>SystemFromTemplate(config, label=…) for template_class: System</p></li>
+<li><p>EquipmentFromTemplate(config, label=…) for template_class: Equipment</p></li>
+</ul>
+</li>
+<li><p>Relations and boundaries are then applied to create connections, references, etc.</p></li>
+<li><p>Serialize the result with dump(data_graph, filename=…); see core.md</p></li>
+</ul>
+<p>Create from YAML</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="kn">from</span><span class="w"> </span><span class="nn">bob.template</span><span class="w"> </span><span class="kn">import</span> <span class="n">config_from_yaml</span><span class="p">,</span> <span class="n">SystemFromTemplate</span>
+</span><span id="line-2"><span class="kn">from</span><span class="w"> </span><span class="nn">bob.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">data_graph</span><span class="p">,</span> <span class="n">dump</span>
+</span><span id="line-3">
+</span><span id="line-4"><span class="n">cfg</span> <span class="o">=</span> <span class="n">config_from_yaml</span><span class="p">(</span><span class="s2">&quot;doc/examples/ahu_system.yaml&quot;</span><span class="p">)</span>
+</span><span id="line-5"><span class="n">ahu</span> <span class="o">=</span> <span class="n">SystemFromTemplate</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">cfg</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;AHU-1&quot;</span><span class="p">)</span>
+</span><span id="line-6">
+</span><span id="line-7"><span class="n">dump</span><span class="p">(</span><span class="n">data_graph</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;build/ahu_system.ttl&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+</div>
+<p>YAML structure (quick reference)</p>
+<ul class="simple">
+<li><p>name: Template identifier</p></li>
+<li><p>template_class: System | Equipment | [List of mixin classes]</p></li>
+<li><p>params: label, comment, plus optional params_XYZ blocks</p></li>
+<li><p>cp: Connection points (name: ClassName)</p></li>
+<li><p>equipment, properties, sensors, connections, junctions: nested entities</p></li>
+<li><p><domain>_connections: directional links using the single arrow operator “-&gt;”</p></li>
+<li><p>sensors_observation_location: Sensor -&gt; Target mappings</p></li>
+<li><p>boundaries: expose internal CPs at the System boundary</p></li>
+<li><p>*_references: internal/external references using “-&gt;”</p></li>
+<li><p>*_executes, functions_inputs, functions_outputs: function wiring using “-&gt;”</p></li>
+<li><p>from_catalog (+ catalog_source): reuse templates from catalog modules</p></li>
+</ul>
+<p>Important: one YAML operator “-&gt;”</p>
+<ul class="simple">
+<li><p>YAML uses only “-&gt;” to keep authoring simple (see syntax.md)</p></li>
+<li><p>The section name determines the semantic: connectivity, mapsTo, executes, IO, references, etc.</p></li>
+</ul>
+<p>Top-level example</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ahu_system</span>
+</span><span id="line-2"><span class="nt">template_class</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">System</span>
+</span><span id="line-3"><span class="nt">params</span><span class="p">:</span>
+</span><span id="line-4"><span class="w">  </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;AHU-1&quot;</span>
+</span><span id="line-5">
+</span><span id="line-6"><span class="nt">cp</span><span class="p">:</span>
+</span><span id="line-7"><span class="w">  </span><span class="nt">supplyAir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AirOutletConnectionPoint</span>
+</span><span id="line-8"><span class="w">  </span><span class="nt">mixedAir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AirInletConnectionPoint</span>
+</span><span id="line-9">
+</span><span id="line-10"><span class="nt">equipment</span><span class="p">:</span>
+</span><span id="line-11"><span class="w">  </span><span class="nt">SF</span><span class="p">:</span>
+</span><span id="line-12"><span class="w">    </span><span class="nt">class</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Fan</span>
+</span><span id="line-13"><span class="w">    </span><span class="nt">cp</span><span class="p">:</span>
+</span><span id="line-14"><span class="w">      </span><span class="nt">airInlet</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AirInletConnectionPoint</span>
+</span><span id="line-15"><span class="w">      </span><span class="nt">airOutlet</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AirOutletConnectionPoint</span>
+</span><span id="line-16"><span class="w">  </span><span class="nt">Coil</span><span class="p">:</span>
+</span><span id="line-17"><span class="w">    </span><span class="nt">class</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ChilledWaterCoil</span>
+</span><span id="line-18"><span class="w">    </span><span class="nt">cp</span><span class="p">:</span>
+</span><span id="line-19"><span class="w">      </span><span class="nt">airInlet</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AirInletConnectionPoint</span>
+</span><span id="line-20"><span class="w">      </span><span class="nt">airOutlet</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AirOutletConnectionPoint</span>
+</span><span id="line-21">
+</span><span id="line-22"><span class="nt">air_connections</span><span class="p">:</span>
+</span><span id="line-23"><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SF.airOutlet -&gt; Coil.airInlet</span>
+</span><span id="line-24">
+</span><span id="line-25"><span class="nt">boundaries</span><span class="p">:</span>
+</span><span id="line-26"><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SF.airOutlet -&gt; supplyAir</span>
+</span></code></pre></div>
+</div>
+<p>How parsing works (config_from_yaml)</p>
+<ul class="simple">
+<li><p>Resolves class names to Python classes with get_class_from_name(“Fan”), etc.</p></li>
+<li><p>Collects entities into categories:</p>
+<ul>
+<li><p>“equipment”, “properties”, “sensors”, “connections”, “junctions”, “cp”</p></li>
+</ul>
+</li>
+<li><p>Keeps plain-text values for known text fields (label, comment, hasValue, …)</p></li>
+<li><p>Handles params_XYZ sections:</p>
+<ul>
+<li><p>Keys like params_Product from an external package let you pass additional kwargs if the class is importable (package must be provided)</p></li>
+</ul>
+</li>
+<li><p>Supports from_catalog:</p>
+<ul>
+<li><p>Provide catalog_source: “module.path|function_name”</p></li>
+<li><p>from_catalog: { Alias: { template: “NameOrPath”, addon: “addon.yaml” } }</p></li>
+<li><p>Catalog entries are embedded as nested EquipmentFromTemplate or SystemFromTemplate</p></li>
+</ul>
+</li>
+</ul>
+<p>Building the model</p>
+<ul class="simple">
+<li><p>SystemFromTemplate(config, **kwargs)</p>
+<ul>
+<li><p>Determines the dynamic class from template_class (can be a list of mixins)</p></li>
+<li><p>Applies params into constructor kwargs</p></li>
+<li><p>Instantiates nested entities and CPs</p></li>
+<li><p>Applies relations and boundaries (see below)</p></li>
+</ul>
+</li>
+<li><p>EquipmentFromTemplate(config, **kwargs)</p>
+<ul>
+<li><p>Same pattern for Equipment templates</p></li>
+</ul>
+</li>
+</ul>
+<p>Relations and boundaries application</p>
+<ul class="simple">
+<li><p>configure_relations(container, relations)</p>
+<ul>
+<li><p>After parsing, relations are normalized into tuples: (source, operator, target)</p></li>
+<li><p>Supported operators (internally):</p>
+<ul>
+<li><p>“&gt;&gt;”, “&lt;&lt;”: connectivity (Python uses <strong>rshift</strong>/<strong>lshift</strong>)</p></li>
+<li><p>“mapsTo”: CP boundary mapping</p></li>
+<li><p>“&#64;”: references (external/internal)</p></li>
+<li><p>“%”: observation location (Sensor % Target)</p></li>
+<li><p>“executes”, “hasInput”, “hasOutput”: function wiring</p></li>
+<li><p>“=”: assignment of an attribute</p></li>
+</ul>
+</li>
+<li><p>In YAML you only write “-&gt;”; parser maps by section name:</p>
+<ul>
+<li><p>*_connections: “-&gt;” -&gt; “&gt;&gt;”</p></li>
+<li><p>*mapsTo: “-&gt;” -&gt; “mapsTo”</p></li>
+<li><p>*_executes: “-&gt;” -&gt; “executes”</p></li>
+<li><p>functions_inputs: “-&gt;” -&gt; “hasInput”</p></li>
+<li><p>functions_outputs: “-&gt;” -&gt; “hasOutput”</p></li>
+<li><p>*_references: “-&gt;” -&gt; “&#64;”</p></li>
+<li><p>sensors_observation_location uses “%” (Sensor -&gt; Target in YAML)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>configure_boundaries(container, boundaries)</p>
+<ul>
+<li><p>boundaries entries are normalized and applied as: system | internal_cp</p></li>
+</ul>
+</li>
+</ul>
+<p>Helper functions (template.py)</p>
+<ul class="simple">
+<li><p>print_console(msg, style=None, panel=False)</p>
+<ul>
+<li><p>Optional rich console output if rich is installed; falls back to print</p></li>
+</ul>
+</li>
+<li><p>template_update(base: dict = {}, config: dict = None, bases: list = None)</p>
+<ul>
+<li><p>Deep-merge helper to compose a user config on top of a base template</p></li>
+<li><p>Supports merging two bases via bases=[base1, base2] then overlay config</p></li>
+</ul>
+</li>
+<li><p>get_instance(container, blob: str)</p>
+<ul>
+<li><p>Resolves expressions created by the parser, e.g.:</p>
+<ul>
+<li><p>“self[‘SF’].airOutlet” or “self[‘AHU’][‘Coil’].airInlet”</p></li>
+</ul>
+</li>
+<li><p>Returns (object, attribute_name) or (object, None) if the expression points directly to an object</p></li>
+</ul>
+</li>
+<li><p>configure_relations(container, relations)</p>
+<ul>
+<li><p>Iterates normalized relations and invokes the corresponding Python operators/methods</p></li>
+</ul>
+</li>
+<li><p>configure_boundaries(container, boundaries)</p>
+<ul>
+<li><p>Applies System | ConnectionPoint for boundary exposure</p></li>
+</ul>
+</li>
+</ul>
+<p>Dynamic classes (template_class)</p>
+<ul class="simple">
+<li><p>template_class may be a single class name or a list of classes</p></li>
+<li><p>At instantiation, template code creates a Dynamic<ClassA>_<ClassB>… that inherits from the requested class list plus the base (System or Equipment)</p></li>
+<li><p>This lets you add explicit types (e.g., align with schema.org or REC) without writing dedicated Python classes</p></li>
+</ul>
+<p>Catalogs (external libraries)</p>
+<ul>
+<li><p>Catalogs are published Python packages that expose validated templates for reuse.</p></li>
+<li><p>Purpose</p>
+<ul class="simple">
+<li><p>Provide ready-to-use, validated Systems and Equipment (complex assemblies and simple parts).</p></li>
+<li><p>Include both generic variants (e.g., generic Sensor, Pump, VFD) and manufacturer-specific models (with brand/model metadata).</p></li>
+<li><p>Enable consistency across projects and reduce authoring time.</p></li>
+</ul>
+</li>
+<li><p>Quality and validation</p>
+<ul class="simple">
+<li><p>Catalog authors can ship tests and SHACL validations; consumers get versioned, reusable building blocks.</p></li>
+<li><p>Pin catalog package versions to ensure reproducibility.</p></li>
+</ul>
+</li>
+<li><p>Referencing catalogs in YAML</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="nt">catalog_source</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;vendor_catalog.templates|get_template&quot;</span>
+</span><span id="line-2"><span class="nt">from_catalog</span><span class="p">:</span>
+</span><span id="line-3"><span class="w">  </span><span class="nt">MyPump</span><span class="p">:</span>
+</span><span id="line-4"><span class="w">    </span><span class="nt">template</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;PUMP_Inline_3in&quot;</span><span class="w">   </span><span class="c1"># or a YAML path inside the package</span>
+</span><span id="line-5"><span class="w">    </span><span class="nt">addon</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;overrides.yaml&quot;</span><span class="w">       </span><span class="c1"># optional overlay for local changes</span>
+</span></code></pre></div>
+</div>
+<ul class="simple">
+<li><p>catalog_source points to a callable returning catalog entries.</p></li>
+<li><p>from_catalog entries become nested Systems/Equipment in your template.</p></li>
+</ul>
+</li>
+<li><p>Generic vs manufacturer-specific</p>
+<ul class="simple">
+<li><p>Generic: pump, VFD, temperatureSensor with standard CPs/properties.</p></li>
+<li><p>Manufacturer-specific: include brand/model/sku and datasheet links; CPs and properties match the product.</p></li>
+</ul>
+</li>
+<li><p>schema.org enrichment (optional)</p>
+<ul class="simple">
+<li><p>Basic schema.org support can be layered via external packages (e.g., si-modeler).</p></li>
+<li><p>Catalog templates may add schema.org annotations (Product, Brand, model, sku) through mixins or params blocks.</p></li>
+<li><p>si-builder’s dynamic class composition lets catalogs mix in such types without changes to si-builder.</p></li>
+</ul>
+</li>
+</ul>
+<p>Catalog reuse</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="nt">catalog_source</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;my_project.catalog|get_template&quot;</span>
+</span><span id="line-2"><span class="nt">from_catalog</span><span class="p">:</span>
+</span><span id="line-3"><span class="w">  </span><span class="nt">FanModule</span><span class="p">:</span>
+</span><span id="line-4"><span class="w">    </span><span class="nt">template</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;SF_basic&quot;</span>
+</span><span id="line-5"><span class="w">    </span><span class="nt">addon</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;overrides.yaml&quot;</span>
+</span></code></pre></div>
+</div>
+<ul class="simple">
+<li><p>add-on YAML is merged via template_update before instantiation</p></li>
+</ul>
+<p>Boundaries and observation examples</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="c1"># Expose internal CP at system boundary</span>
+</span><span id="line-2"><span class="nt">boundaries</span><span class="p">:</span>
+</span><span id="line-3"><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AHU.SA_Duct.airOutlet -&gt; supplyAir</span>
+</span><span id="line-4">
+</span><span id="line-5"><span class="c1"># Sensor observation location (Sensor -&gt; Target)</span>
+</span><span id="line-6"><span class="nt">sensors_observation_location</span><span class="p">:</span>
+</span><span id="line-7"><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SAT_Sensor -&gt; AHU.supplyAirTemperature</span>
+</span></code></pre></div>
+</div>
+<p>End-to-end example (Python)</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><code><span id="line-1"><span class="kn">from</span><span class="w"> </span><span class="nn">bob.template</span><span class="w"> </span><span class="kn">import</span> <span class="n">config_from_yaml</span><span class="p">,</span> <span class="n">SystemFromTemplate</span>
+</span><span id="line-2"><span class="kn">from</span><span class="w"> </span><span class="nn">bob.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">data_graph</span><span class="p">,</span> <span class="n">dump</span>
+</span><span id="line-3">
+</span><span id="line-4"><span class="n">cfg</span> <span class="o">=</span> <span class="n">config_from_yaml</span><span class="p">(</span><span class="s2">&quot;doc/examples/ahu_system.yaml&quot;</span><span class="p">)</span>
+</span><span id="line-5"><span class="n">ahu</span> <span class="o">=</span> <span class="n">SystemFromTemplate</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">cfg</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;AHU-1&quot;</span><span class="p">)</span>
+</span><span id="line-6">
+</span><span id="line-7"><span class="n">dump</span><span class="p">(</span><span class="n">data_graph</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;build/ahu_system.ttl&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+</div>
+<p>Notes</p>
+<ul class="simple">
+<li><p>YAML only uses “-&gt;”; the parser (config_from_yaml) maps it based on section names.</p></li>
+<li><p>Labels/comments are passed through from params. Additional params_* blocks require importable packages and classes.</p></li>
+<li><p>Rich console output is optional; install rich for styled build</p></li>
+</ul>
+</section>
+
+    </div></div><aside id="right-sidebar" class="hidden text-sm xl:block">
+  <div class="sticky top-16 -mt-10 max-h-[calc(100vh-5rem)] overflow-y-auto pt-6 space-y-2"><p class="font-medium">On this page</p>
+    <ul>
+<li></li>
+<li><a class="reference internal" href="#templates-authoring-building-and-helpers-template-py">27. Templates: authoring, building, and helpers (template.py)</a></li>
+</ul>
+</div>
+</aside>
+        </main>
+      </div>
+    </div><footer class="py-6 border-t border-border md:py-0">
+    <div class="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
+      <div class="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0">
+        <p class="text-sm leading-loose text-center text-muted-foreground md:text-left">© 2025, ASHRAE 223P contributors&nbsp;Built with <a class="font-medium underline underline-offset-4"
+    href="https://www.sphinx-doc.org"
+    rel="noreferrer">Sphinx 8.2.3</a></p>
+</div>
+</div>
+</footer>
+  </div><button id="scrolltop"
+        x-cloak
+        @click="window.scrollTo({top: 0, behavior: 'smooth'})"
+        class="fixed bottom-8 right-8 p-2 z-10 rounded-sm bg-gray-700 text-xs text-white transition-all duration-1000 hover:bg-gray-950 focus:bg-gray-950"
+        :class="{'opacity-0 invisible' : !showScrollTop}"
+>
+  <svg xmlns="http://www.w3.org/2000/svg"
+       height="14"
+       viewBox="0 96 960 960"
+       width="14"
+       class="inline fill-current mb-[2px]"
+       aria-hidden="true">
+    <path d="M450 896V370L202 618l-42-42 320-320 320 320-42 42-248-248v526h-60Z" />
+  </svg>
+  Back to top
+</button>
+  
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script defer="defer" src="_static/theme.js?v=073f68d9"></script>
+  
+</body>
+</html>
