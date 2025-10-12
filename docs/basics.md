@@ -65,7 +65,7 @@ Python Code to use YAML template
 Figure: basics_fan_from_yaml graph
 ```
 
-#### Legends
+#### Fan Graph picture - Legends
 ```{admonition} Legend (SVG)
 - Boxes: Equipment, Systems, Spaces, and other nodes
 - Circles: s223:Property
@@ -136,7 +136,7 @@ YAML template
 Figure: basics_ahu_from_yaml graph
 ```
 
-#### Legends
+#### AHU Graph Picture - Legends
 ```{admonition} Legend (SVG)
 - Boxes: Equipment, Systems, Spaces, and other nodes
 - Circles: s223:Property

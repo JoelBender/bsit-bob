@@ -21,7 +21,7 @@ from bob.core import data_graph, schema_graph, dump
 ### Node: Base for all model elements.
   - Attributes declared via type annotations become RDF properties.
   - label and comment map to rdfs:label and rdfs:comment.
-#### Operator shorthands:
+#### Node Operator shorthands:
   - a >> b: connectivity (multimethod connect_mm)
   - a << b: reverse connectivity
   - a += x: add aspect/role
@@ -30,7 +30,7 @@ from bob.core import data_graph, schema_graph, dump
   - Zone(Container, Node)
   - ZoneGroup(Container, Node)
 
-#### Operator shorthands:
+#### Container Operator shorthands:
   - a > b: contains/hasMember depending on types (Equipment contains, System hasMember, PhysicalSpace contains/encloses).
 
 ### Connectable(Node): Can host ConnectionPoints; instantiates CPs from annotations.
@@ -56,7 +56,7 @@ Base for external references; attach with property @ ref.
 ### EnumerationKind(Node)
 Lightweight “class factory” for enumerations (Medium, Role, Domain, etc.)
 
-## Namespaces
+## Namespaces in Bob
 - S223, P223, SCRATCH, BOB, EX, G36, QUDT, QUANTITYKIND, UNIT, BRICK, SCHEMAORG are pre-bound via bind_namespace.
 - Class _class_iri and property IRIs are auto-derived from namespaces unless explicitly set.
 

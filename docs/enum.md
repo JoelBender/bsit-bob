@@ -74,6 +74,6 @@ analog = Signal.ModulatedSignal.DC0_10  # instance of s223:ModulatedSignal (0–
 current = Signal.ModulatedSignal.MA4_20 # 4–20 mA analog signal
 ```
 
-## Notes
+## Enum Notes
 - All enum members serialize as resources (not literals). Labels/comments originate from the 223P vocab and are preserved in the graph.
 - Use Open223 links above for canonical definitions and descriptions sourced from the standard.
