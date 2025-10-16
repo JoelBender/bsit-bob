@@ -111,35 +111,35 @@ bob:HVACSpace a rdfs:Class,
     rdfs:subClassOf s223:Connectable,
         s223:DomainSpace ;
     sh:property [ a sh:PropertyShape ;
-            sh:path bob:co ],
+            sh:path bob:temperature_setpoint ],
+        [ a sh:PropertyShape ;
+            sh:path bob:radiantCooling ],
         [ a sh:PropertyShape ;
             sh:path bob:humidity ],
         [ a sh:PropertyShape ;
-            sh:path bob:temperature_setpoint ],
+            sh:path bob:co2 ],
+        [ a sh:PropertyShape ;
+            sh:path bob:no2 ],
+        [ a sh:PropertyShape ;
+            sh:path bob:ductAirInlet ],
+        [ a sh:PropertyShape ;
+            sh:path bob:co ],
         [ a sh:PropertyShape ;
             sh:path bob:radiantHeating ],
         [ a sh:PropertyShape ;
             sh:path bob:ductAirOutlet ],
         [ a sh:PropertyShape ;
-            sh:path bob:ductAirInlet ],
-        [ a sh:PropertyShape ;
-            sh:path bob:temperature ],
-        [ a sh:PropertyShape ;
-            sh:path bob:airChangePerHour ],
+            sh:path bob:airTransfer ],
         [ a sh:PropertyShape ;
             sh:path bob:doors ],
         [ a sh:PropertyShape ;
-            sh:path bob:airTransfer ],
-        [ a sh:PropertyShape ;
-            sh:path bob:occupancy ],
-        [ a sh:PropertyShape ;
             sh:path bob:windows ],
         [ a sh:PropertyShape ;
-            sh:path bob:radiantCooling ],
+            sh:path bob:airChangePerHour ],
         [ a sh:PropertyShape ;
-            sh:path bob:no2 ],
+            sh:path bob:temperature ],
         [ a sh:PropertyShape ;
-            sh:path bob:co2 ] .
+            sh:path bob:occupancy ] .
 
 bob:HVACZone a rdfs:Class,
         sh:NodeShape ;
@@ -148,15 +148,15 @@ bob:HVACZone a rdfs:Class,
     sh:property [ a sh:PropertyShape ;
             sh:path bob:temperature ],
         [ a sh:PropertyShape ;
-            sh:path bob:airInlet ],
+            sh:path bob:airOutlet ],
         [ a sh:PropertyShape ;
             sh:path bob:temperature_setpoint ],
         [ a sh:PropertyShape ;
-            sh:path bob:co2 ],
+            sh:path bob:airInlet ],
         [ a sh:PropertyShape ;
-            sh:path bob:airOutlet ],
+            sh:path bob:occupancy ],
         [ a sh:PropertyShape ;
-            sh:path bob:occupancy ] .
+            sh:path bob:co2 ] .
 
 bob:InletZoneConnectionPoint a rdfs:Class ;
     rdfs:label "bob.connections.air.AirInletZoneConnectionPoint",
@@ -254,15 +254,15 @@ bob:ZoneConnectionPoint a rdfs:Class,
     """ ;
     rdfs:subClassOf bob:ZoneConnectionPoint ;
     sh:property [ a sh:PropertyShape ;
-            sh:path bob:mapsTo ],
+            sh:path bob:isZoneConnectionPointOf ],
         [ a sh:PropertyShape ;
             sh:class s223:EnumerationKind ;
             sh:path s223:hasMedium ],
         [ a sh:PropertyShape ;
-            sh:path bob:isZoneConnectionPointOf ],
-        [ a sh:PropertyShape ;
             sh:class s223:EnumerationKind ;
-            sh:path s223:hasMedium ] .
+            sh:path s223:hasMedium ],
+        [ a sh:PropertyShape ;
+            sh:path bob:mapsTo ] .
 
 bob:airChangePerHour a rdf:Property ;
     rdfs:subPropertyOf s223:hasProperty .
@@ -823,21 +823,6 @@ p223:Mix-PowerAndSignal a p223:Mix-PowerAndSignal,
         s223:Medium-Mix,
         s223:Substance-Medium .
 
-p223:Modulated-Resistive a p223:Modulated-Resistive,
-        s223:Constituent,
-        s223:EnumerationKind,
-        rdfs:Class,
-        sh:NodeShape ;
-    rdfs:label "Resistive" ;
-    rdfs:subClassOf s223:Constituent,
-        s223:Constituent-Electricity,
-        s223:Electricity-Signal,
-        s223:EnumerationKind,
-        s223:EnumerationKind-Substance,
-        s223:Medium-Constituent,
-        s223:Signal-Modulated,
-        s223:Substance-Medium .
-
 p223:NiagaraStatus-alarm a p223:NiagaraStatus-alarm,
         s223:EnumerationKind,
         rdfs:Class,
@@ -964,11 +949,11 @@ p223:PowerAndSignal-PoE a p223:PowerAndSignal-PoE,
         sh:NodeShape ;
     rdfs:label "PoE" ;
     s223:composedOf [ a s223:Property ;
-            rdfs:label "PoE.Constituent-WiredEthernet" ;
-            s223:ofConstituent s223:Signal-WiredEthernet ],
-        [ a s223:Property ;
             rdfs:label "PoE.Constituent-48V" ;
-            s223:ofConstituent s223:DC-48V ] ;
+            s223:ofConstituent s223:DC-48V ],
+        [ a s223:Property ;
+            rdfs:label "PoE.Constituent-WiredEthernet" ;
+            s223:ofConstituent s223:Signal-WiredEthernet ] ;
     rdfs:subClassOf p223:Mix-PowerAndSignal,
         s223:EnumerationKind,
         s223:EnumerationKind-Substance,

@@ -25,6 +25,7 @@ except ImportError:
 
 try:
     import yaml  # type: ignore
+
     _YAML_AVAILABLE = True
 
 except ImportError:
@@ -84,7 +85,8 @@ def get_instance(container: Equipment | System, blob: str):
     if "[" in blob:
         matches = re.findall(r'\[["\'](.*?)["\']\]', blob)  # sub-equipment
         property_match = re.search(
-            r"\.(?P<property>\w+)$", blob,
+            r"\.(?P<property>\w+)$",
+            blob,
         )  # property => .something
         thing = container[matches.pop(0)]  # type: ignore
 
@@ -134,7 +136,8 @@ def configure_boundaries(container: System, boundaries: list[str]):
 
 
 def configure_relations(
-    container: Equipment | System, relations: list[tuple[str, str, str]],
+    container: Equipment | System,
+    relations: list[tuple[str, str, str]],
 ):
     if len(relations) > 0:
         print_console("[green]Configuring relations[/green]")
@@ -162,7 +165,9 @@ def configure_relations(
         else:
             target = getattr(target_element, target_key, None)
 
-        if (target is None and isinstance(target_element, Connection)) or (target is None and isinstance(target_element, ConnectionPoint)):
+        if (target is None and isinstance(target_element, Connection)) or (
+            target is None and isinstance(target_element, ConnectionPoint)
+        ):
             target = target_element
         elif target is None:
             print_console(
@@ -213,6 +218,8 @@ def configure_relations(
             source.add_property(target)
         elif operator == "observes":
             source.observes = target
+        elif operator == "isInternalReferenceOf":
+            source.add_isInternalReferenceOf(target)
 
 
 class SystemFromTemplate(System):
@@ -367,7 +374,9 @@ def config_from_yaml(yaml_file: str | Path | dict = ""):
             f"Could not import parameters from YAML file: {e}. Parameters will not be applied.",
         )
 
-    def define_entities(entities: dict | None = None, entities_category: str | None = None):
+    def define_entities(
+        entities: dict | None = None, entities_category: str | None = None
+    ):
         if entities is None:
             return
         _dict[entities_category] = {}  # type: ignore
@@ -426,11 +435,13 @@ def config_from_yaml(yaml_file: str | Path | dict = ""):
     if from_catalog is not None:
         # console.print("[green]Importing entities from catalog[/green]")
         catalog_module, catalog_lookup_function = yaml_content.get(
-            "catalog_source", "",
+            "catalog_source",
+            "",
         ).split("|")
         importlib.import_module(catalog_module)
         get_template = getattr(
-            importlib.import_module(catalog_module), catalog_lookup_function,
+            importlib.import_module(catalog_module),
+            catalog_lookup_function,
         )
 
         for entity_name, entity_params in from_catalog.items():
@@ -541,6 +552,7 @@ def config_from_yaml(yaml_file: str | Path | dict = ""):
         if re.match(r".*_executes$", key) and isinstance(value, list):
             for _connection in value:
                 add_to_relation_dict(_connection, "executes", separator=" -> ")
+
         if re.match(r".*functions_inputs$", key) and isinstance(value, list):
             for _connection in value:
                 add_to_relation_dict(_connection, "hasInput", separator=" -> ")
@@ -548,12 +560,20 @@ def config_from_yaml(yaml_file: str | Path | dict = ""):
         if re.match(r".*functions_outputs$", key) and isinstance(value, list):
             for _connection in value:
                 add_to_relation_dict(_connection, "hasOutput", separator=" -> ")
+
         if re.match(r".*_references$", key) and isinstance(value, list):
             for _connection in value:
                 add_to_relation_dict(_connection, "@", separator=" -> ")
+
+        if re.match(r".*_isReferenceOf$", key) and isinstance(value, list):
+            for _connection in value:
+                add_to_relation_dict(
+                    _connection, "isInternalReferenceOf", separator=" -> "
+                )
         if re.match(r".*_hasProperty$", key) and isinstance(value, list):
             for _connection in value:
                 add_to_relation_dict(_connection, "hasProperty", separator=" -> ")
+
         if re.match(r".*_observes$", key) and isinstance(value, list):
             for _connection in value:
                 add_to_relation_dict(_connection, "observes", separator=" -> ")

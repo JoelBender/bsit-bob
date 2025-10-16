@@ -29,6 +29,7 @@ def test_add_external_reference_to_property_then_create_internal_ref(bob_fixture
 
     prop = Property(label="fake prop with ext ref")
     prop @ ref_prop
+    ref_prop.add_isInternalReferenceOf(prop)
     dump(filename=f"tests/ttl/{model_name}.ttl", header=ttl_test_header(model_name))
 
 

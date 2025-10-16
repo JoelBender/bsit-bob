@@ -2,7 +2,7 @@
 # imports: http://data.ashrae.org/standard223/1.0/model/all
 
 @prefix bacnet: <http://data.ashrae.org/bacnet/2024#> .
-@prefix ex42: <urn:ex/test_system-007/> .
+@prefix ex1: <urn:ex/test_internal_reference/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -18,18 +18,19 @@
   rdfs:label "test_internal_reference" ;
   owl:imports <http://data.ashrae.org/standard223/1.0/model/all> .
 
-ex42:00001 a s223:Property ;
+ex1:00001 a s223:Property ;
     rdfs:label "fake prop with ext ref" ;
-    s223:hasExternalReference ex42:00002 .
+    s223:hasExternalReference ex1:00002 ;
+    s223:isInternalReferenceOf ex1:00003 .
 
-ex42:00002 a s223:BACnetExternalReference,
+ex1:00002 a s223:BACnetExternalReference,
         s223:ExternalReference ;
     rdfs:label "ref1" ;
     bacnet:device-identifier "device,12345" ;
     bacnet:object-identifier "analog-value,1" ;
     bacnet:property-identifier "http://data.ashrae.org/bacnet/2024#PropertyIdentifier.present-value" .
 
-ex42:00003 a s223:Property ;
+ex1:00003 a s223:Property ;
     rdfs:label "fake prop with ext ref" ;
-    s223:hasInternalReference ex42:00001 .
+    s223:hasInternalReference ex1:00001 .
 

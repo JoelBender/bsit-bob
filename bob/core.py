@@ -1021,6 +1021,7 @@ class Property(Node):
 
         external_reference = None
         internal_reference = None
+        is_internal_reference = None
 
         if "hasExternalReference" in kwargs:
             if init_value or internal_reference:
@@ -1034,7 +1035,9 @@ class Property(Node):
                 raise RuntimeError(
                     "initialization conflict, can't have a value and an internal datasource",
                 )
-            internal_reference = kwargs.pop("hasExternalReference")
+            internal_reference = kwargs.pop("hasInternalReference")
+        if "isInternalReferenceOf" in kwargs:
+            is_internal_reference = kwargs.pop("isInternalReferenceOf")
         # Retrieve aspects so we can add them after the creation
         aspects = []
         if "hasAspect" in kwargs:
@@ -1046,9 +1049,10 @@ class Property(Node):
 
         # Create the property
         super().__init__(**kwargs)
-        self.hasAspect = set()
-        self.hasExternalReference = set()
-        self.hasInternalReference = set()
+        self.hasAspect: set = set()
+        self.hasExternalReference: set = set()
+        self.hasInternalReference: set = set()
+        self.isInternalReferenceOf: set = set()
         self._hasValue = None
 
         # Add aspects
@@ -1074,12 +1078,20 @@ class Property(Node):
         if internal_reference is not None:
             if isinstance(internal_reference, list):
                 for ref in internal_reference:
-                    self >> ref
+                    self @ ref
             elif isinstance(internal_reference, Property):
-                self >> internal_reference
+                self @ internal_reference
             else:
-                raise TypeError(f"external reference expected: {external_reference}")
-
+                raise TypeError(f"internal reference expected: {internal_reference}")
+        if is_internal_reference is not None:
+            if isinstance(is_internal_reference, list):
+                for ref in is_internal_reference:
+                    self.add_isInternalReferenceOf(ref)
+            elif isinstance(is_internal_reference, Property):
+                self.add_isInternalReferenceOf(is_internal_reference)
+            else:
+                raise TypeError(f"inverse of internal reference expected: {is_internal_reference}")
+            
     def __matmul__(self, other: Any) -> Any:
         """Add an external reference to the node
         property @ ref
@@ -1087,7 +1099,7 @@ class Property(Node):
         reference_mm(self, other)
         return self
 
-    def add_external_reference(self, external_reference):
+    def add_external_reference(self, external_reference: Property):
         if (
             self.hasInternalReference
             or self._hasValue is not None
@@ -1109,7 +1121,7 @@ class Property(Node):
         )
         self.hasExternalReference.add(external_reference)
 
-    def add_internal_reference(self, internal_reference):
+    def add_internal_reference(self, internal_reference: Property):
         if (
             self.hasExternalReference
             or self._hasValue is not None
@@ -1127,6 +1139,17 @@ class Property(Node):
         )
         self.hasInternalReference.add(internal_reference)
 
+    def add_isInternalReferenceOf(self, internal_reference: Property):
+        # We won't add hasInternalReference to the other property
+        # the inferrence will do that for us
+        if not isinstance(internal_reference, Property):
+            raise TypeError(f"property expected: {internal_reference}")
+
+        # link the two together
+        self._data_graph.add(
+            (self._node_iri, S223.isInternalReferenceOf, internal_reference._node_iri),
+        )
+        self.isInternalReferenceOf.add(internal_reference)
 
 @multimethod
 def add_mm(prop: Property, aspect: EnumerationKind) -> None:
