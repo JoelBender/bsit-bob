@@ -1590,6 +1590,7 @@ Substance.Medium = Medium = Substance("Medium")
 Medium.Constituent = Medium("Constituent")
 Medium.Mix = Mix = Medium("Mix")
 Medium.ThermalContact = Medium("ThermalContact")
+Medium.MechanicalLinkage = Medium("MechanicalLinkage")
 
 Role = EnumerationKind("Role")
 Domain = EnumerationKind("Domain")
