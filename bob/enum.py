@@ -181,7 +181,7 @@ Signal.WiFi = Signal("WiFi", _alt_namespace=P223)
 Signal.ModulatedSignal = ModulatedSignal = Signal("Modulated")
 ModulatedSignal.DC0_10 = ModulatedSignal("0-10VDC")
 ModulatedSignal.MA4_20 = ModulatedSignal("4-20mA")
-ModulatedSignal.Resistive = ModulatedSignal("Resistive", _alt_namespace=P223)
+ModulatedSignal.Resistive = ModulatedSignal("Resistive")
 
 
 Mix.PowerAndSignal = PowerAndSignal = Mix("PowerAndSignal", _alt_namespace=P223)
