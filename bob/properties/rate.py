@@ -4,9 +4,7 @@ _namespace = BOB
 
 
 class AirChangePerHour(QuantifiableObservableProperty):
-    """
-    airflow / volume * 1hour
-
+    """airflow / volume * 1hour
 
     ft^3           1
     ____   *   __________  *  60min = ACH

@@ -1,6 +1,5 @@
 import logging
-from typing import Dict
-
+from typing import Dict, Optional
 
 from bob.properties.network import Mbit_per_seconds
 
@@ -33,13 +32,12 @@ internet = EthernetConnection(label="internet")
 
 
 class EthernetFirewall(Equipment):
-    """
-    An Ethernet Firewall with wan and lan ports
+    """An Ethernet Firewall with wan and lan ports
     """
 
     _class_iri = P223.EthernetFirewall
 
-    def __init__(self, config: Dict = None, **kwargs):
+    def __init__(self, config: dict | None = None, **kwargs):
         if "wan_ports" in kwargs:
             _number_of_wanports = int(kwargs.pop("wan_ports"))
         else:
@@ -58,7 +56,7 @@ class EthernetFirewall(Equipment):
         for i, each in enumerate(range(_number_of_lanports)):
             _config["cp"][f"lan_port{i}"] = EthernetBidirectionalConnectionPoint
         kwargs = {**_config.get("params", {}), **kwargs}
-        super().__init__(_config, **kwargs)
+        super().__init__(config=_config, **kwargs)  # type: ignore[misc]
         for k, v in self._connection_points.items():
             if isinstance(v, EthernetBidirectionalConnectionPoint):
-                v.data_rate = Mbit_per_seconds(_data_rate)
+                v.data_rate = Mbit_per_seconds(_data_rate)  # type: ignore[call-arg]

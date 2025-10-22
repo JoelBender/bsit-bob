@@ -1,4 +1,5 @@
 furo
+sphinxawesome_theme
 myst-parser
 sphinx-copybutton
 sphinxcontrib-mermaid

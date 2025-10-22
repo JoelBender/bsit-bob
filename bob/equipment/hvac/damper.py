@@ -1,12 +1,11 @@
-from typing import Dict
-
+from typing import Dict, Optional
 
 from ...connections.air import (
     AirInletConnectionPoint,
     AirOutletConnectionPoint,
 )
 from ...core import BOB, S223, Equipment, logging
-from ...template import template_update, configure_relations
+from ...template import configure_relations, template_update
 
 # logging
 _log = logging.getLogger(__name__)
@@ -20,11 +19,11 @@ class Damper(Equipment):
     airInlet: AirInletConnectionPoint
     airOutlet: AirOutletConnectionPoint
 
-    def __init__(self, config: Dict = None, **kwargs):
+    def __init__(self, config: dict | None = None, **kwargs):
         _config = template_update({}, config=config)
         kwargs = {**_config.pop("params", {}), **kwargs}
         _log.info(f"Damper.__init__ {_config} {kwargs}")
         _relations = _config.pop("relations", [])
-        super().__init__(_config, **kwargs)
+        super().__init__(config=_config, **kwargs)
         configure_relations(self, _relations)
-        self.airOutlet.paired_to(self.airInlet)
+        self.airOutlet.paired_to(self.airInlet)  # type: ignore

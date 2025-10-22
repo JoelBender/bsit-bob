@@ -21,7 +21,7 @@ _namespace = S223
 #
 Substance.Particle = Particulate = Substance("Particulate")
 Particulate.PM1_0 = Particulate.PM1_0 = Particulate(
-    "PM1.0"
+    "PM1.0",
 )  # don't create PM1_0, not clear enough
 Particulate.PM2_5 = Particulate.PM2_5 = Particulate("PM2.5")
 Particulate.PM10_0 = Particulate.PM10_0 = Particulate("PM10.0")
@@ -32,28 +32,32 @@ Substance.Soot = Soot = Substance("Soot")
 # ======================================
 #
 Constituent.H2O = H2O = Constituent("H2O", label="H2O")
+Constituent.Vapor_H2O = Vapor_H2O = Constituent("Vapor-H2O", _alt_namespace=P223)
 Constituent.Oil = Oil = Constituent("Oil", label="Oil", _alt_namespace=P223)
 Constituent.Smoke = Smoke = Constituent("Smoke", label="Smoke", _alt_namespace=P223)
 # Gases
 Constituent.Ar = Argon = Constituent("Ar", label="Argon", _alt_namespace=P223)
 Constituent.CO = CO = Constituent("CO", label="Carbon monoxyde")
 Constituent.CO2 = CO2 = Constituent("CO2", label="Carbon dioxyde")
-Constituent.NO2 = NO2 = Constituent("NO2", label="NO2", _alt_namespace=P223)
-Constituent.CH4 = CH4 = Constituent("CH4", label="CH4", _alt_namespace=P223)
+Constituent.NOX = NOx = Constituent("NOX", label="Nitrogen oxides")
+NOx.NO2 = NO2 = NOx("NO2", label="Nitrogen dioxide (NO2)")
+Constituent.CH4 = CH4 = Constituent("CH4", label="CH4")
 Constituent.NH3 = NH3 = Constituent("NH3", label="NH3", _alt_namespace=P223)
-Constituent.H2S = H2S = Constituent("H2S", label="H2S", _alt_namespace=P223)
+Constituent.H2S = H2S = Constituent("H2S", label="H2S")
 Constituent.O2 = O2 = Constituent("O2", label="O2", _alt_namespace=P223)
-Constituent.O3 = O3 = Constituent("O3", label="O3", _alt_namespace=P223)
-Constituent.SO2 = SO2 = Constituent("SO2", label="SO2", _alt_namespace=P223)
+Constituent.O3 = O3 = Constituent("O3", label="O3")
+Constituent.SO2 = SO2 = Constituent("SO2", label="SO2")
 Constituent.N = Nitrogen = Constituent("N", label="Nitrogen", _alt_namespace=P223)
-Constituent.VOC = VOC = Constituent("VOC", label="VOC", _alt_namespace=P223)
-Constituent.Radon = Radon = Constituent("Radon", label="Radon", _alt_namespace=P223)
+Constituent.VOC = VOC = Constituent(
+    "VolatileOrganicCompounds", label="VolatileOrganicCompounds",
+)
+Constituent.Radon = Radon = Constituent("Radon", label="Radon")
 Constituent.R22 = const_R22 = Constituent("R-22", label="R-22", _alt_namespace=P223)
 Constituent.R134A = const_R134A = Constituent(
-    "R-134A", label="R-134A", _alt_namespace=P223
+    "R-134A", label="R-134A", _alt_namespace=P223,
 )
 Constituent.R410A = const_R410A = Constituent(
-    "R-410A", label="R-410A", _alt_namespace=P223
+    "R-410A", label="R-410A", _alt_namespace=P223,
 )
 Constituent.R32 = const_R32 = Constituent("R-32", label="R-32", _alt_namespace=P223)
 
@@ -101,10 +105,10 @@ Electricity.AC240VLL_139VLN_3Ph_50Hz = Electricity.AC("240VLL-139VLN-3Ph-50Hz")
 Electricity.AC240VLL_1Ph_50Hz = Electricity.AC("240VLL-1Ph-50Hz")
 Electricity.AC240VLL_1Ph_60Hz = Electricity.AC("240VLL-1Ph-60Hz")
 Electricity.AC240VLL_208VLN_120VLN_1Ph_60Hz = Electricity.AC(
-    "240VLL-208VLN-120VLN-1Ph-60Hz"
+    "240VLL-208VLN-120VLN-1Ph-60Hz",
 )
 Electricity.AC240VLL_208VLN_120VLN_3Ph_60Hz = Electricity.AC(
-    "240VLL-208VLN-120VLN-3Ph-60Hz"
+    "240VLL-208VLN-120VLN-3Ph-60Hz",
 )
 Electricity.AC240VLL_3Ph_50Hz = Electricity.AC("240VLL-3Ph-50Hz")
 Electricity.AC240VLL_3Ph_60Hz = Electricity.AC("240VLL-3Ph-60Hz")
@@ -170,19 +174,20 @@ Electricity.Signal = Signal = Electricity("Signal")
 Electricity.OnOffSignal = Electricity.Signal("OnOffSignal", _alt_namespace=P223)
 
 Signal.RS485 = Signal("EIA485")
-Signal.Ethernet = Signal("Ethernet")
+Signal.WiredEthernet = Signal("WiredEthernet")
 Signal.IEC14908 = Signal("IEC14908")
 Signal.USB = USB = Signal("USB")
 Signal.WiFi = Signal("WiFi", _alt_namespace=P223)
 Signal.ModulatedSignal = ModulatedSignal = Signal("Modulated")
 ModulatedSignal.DC0_10 = ModulatedSignal("0-10VDC")
 ModulatedSignal.MA4_20 = ModulatedSignal("4-20mA")
+ModulatedSignal.Resistive = ModulatedSignal("Resistive", _alt_namespace=P223)
 
 
 Mix.PowerAndSignal = PowerAndSignal = Mix("PowerAndSignal", _alt_namespace=P223)
 PowerAndSignal.PoE = PowerAndSignal("PoE", _alt_namespace=P223)
 PowerAndSignal.PoE.add_constituent(Electricity.DC48V)
-PowerAndSignal.PoE.add_constituent(Signal.Ethernet)
+PowerAndSignal.PoE.add_constituent(Signal.WiredEthernet)
 PowerAndSignal.USB = PowerAndSignal("USB", _alt_namespace=P223)
 PowerAndSignal.USB.add_constituent(Electricity.DC5V)
 
@@ -193,6 +198,7 @@ PowerAndSignal.USB.add_constituent(Electricity.DC5V)
 # Air and gases
 Mix.Fluid = Fluid = Mix("Fluid")
 Fluid.Air = Air = Fluid("Air")
+Air.add_constituent(Vapor_H2O)
 Fluid.Oil = Oil = Fluid("Oil")
 Air.CompressedAir = CompressedAir = Air("CompressedAir")
 
@@ -200,15 +206,15 @@ Fluid.NaturalGas = NaturalGas = Fluid("NaturalGas")
 Fluid.Refrigerant = Refrigerant = Fluid("Refrigerant")
 Refrigerant.R410A = R410a = Refrigerant("R-410A")
 R410a.add_constituent(
-    const_R410A, hasQuantityKind=QUANTITYKIND.VolumeFraction, hasUnit=UNIT.PERCENT
+    const_R410A, hasQuantityKind=QUANTITYKIND.VolumeFraction, hasUnit=UNIT.PERCENT,
 )
 Refrigerant.R32 = R32 = Refrigerant("R-32", _alt_namespace=P223)
 R32.add_constituent(
-    const_R32, hasQuantityKind=QUANTITYKIND.VolumeFraction, hasUnit=UNIT.PERCENT
+    const_R32, hasQuantityKind=QUANTITYKIND.VolumeFraction, hasUnit=UNIT.PERCENT,
 )
 Refrigerant.R22 = R22 = Refrigerant("R-22")
 R22.add_constituent(
-    const_R22, hasQuantityKind=QUANTITYKIND.VolumeFraction, hasUnit=UNIT.PERCENT
+    const_R22, hasQuantityKind=QUANTITYKIND.VolumeFraction, hasUnit=UNIT.PERCENT,
 )
 
 # Water
@@ -225,24 +231,25 @@ Water.MixedWater = MixedWater = Water("MixedWater", _alt_namespace=P223)
 Water.DomesticWater = DomesticWater = Water("DomesticWater", _alt_namespace=P223)
 
 Water.DomesticHotWater = DomesticHotWater = Water(
-    "DomesticHotWater", _alt_namespace=P223
+    "DomesticHotWater", _alt_namespace=P223,
 )
 
 Water.Condensate = Condensate = Water("Condensate", _alt_namespace=P223)
 Water.Condenser = Condensate = Water("Condenser", _alt_namespace=P223)
 
 Water.GlycolSolution = GlycolSolution = Water(
-    "GlycolSolution"
+    "GlycolSolution",
 )  # constituent in S223 already
 
 GlycolSolution.GlycolSolution_15Percent = GlycolSolution_15Percent = GlycolSolution(
-    "GlycolSolution-15Percent"
+    "GlycolSolution-15Percent",
 )  # constituent in S223 already
 GlycolSolution.GlycolSolution_30Percent = GlycolSolution_30Percent = GlycolSolution(
-    "GlycolSolution-30Percent"
+    "GlycolSolution-30Percent",
 )  # constituent in S223 already
 
 Water.Steam = Steam = Water("Steam")
+
 
 # Light
 Light.Visible = Light("Visible")
@@ -293,13 +300,13 @@ Role.Storage = Storage = Role("Storage", _alt_namespace=P223)
 # ===================
 # Enumeration kinds to create hasValue
 ActiveInactiveEnum = EnumerationKind("ActiveInactive", _alt_namespace=P223)
-AnalogSignalTypeEnum = EnumerationKind("Analog", _alt_namespace=P223)
+AnalogSignalTypeEnum = EnumerationKind("AnalogSignalType", _alt_namespace=P223)
 BinarySignalTypeEnum = EnumerationKind("BinarySignalType", _alt_namespace=P223)
+UniversalSignalTypeEnum = EnumerationKind("UniversalSignalType", _alt_namespace=P223)
 
 Binary = EnumerationKind("Binary")
 Binary.false = Binary("False")
 Binary.true = Binary("True")
-#
 OnOff = Binary("OnOff")
 OnOff.On = OnOff("On")
 OnOff.Off = OnOff("Off")
@@ -333,76 +340,103 @@ ActiveInactiveEnum.Active = ActiveInactiveEnum("Active", _alt_namespace=P223)
 ActiveInactiveEnum.Inactive = ActiveInactiveEnum("Inactive", _alt_namespace=P223)
 ActiveInactiveEnum.Unknown = ActiveInactiveEnum("Unknown", _alt_namespace=P223)
 
-#
 AnalogSignalTypeEnum.Unknown = AnalogSignalTypeEnum("Unknown", _alt_namespace=P223)
 AnalogSignalTypeEnum.RTD = AnalogSignalTypeEnum("RTD", _alt_namespace=P223)
 AnalogSignalTypeEnum.Nickel1kRTD = AnalogSignalTypeEnum(
-    "Nickel1kRTD", _alt_namespace=P223
+    "Nickel1kRTD", _alt_namespace=P223,
 )
 AnalogSignalTypeEnum.Platinum1kRTD = AnalogSignalTypeEnum(
-    "Platinum1kRTD", _alt_namespace=P223
+    "Platinum1kRTD", _alt_namespace=P223,
 )
 AnalogSignalTypeEnum.VDC_0_10 = AnalogSignalTypeEnum("0-10VDC", _alt_namespace=P223)
 AnalogSignalTypeEnum.mA_4_20 = AnalogSignalTypeEnum("4-20mA", _alt_namespace=P223)
 AnalogSignalTypeEnum.NTC10kType3 = AnalogSignalTypeEnum(
-    "NTC10kType3", _alt_namespace=P223
+    "NTC10kType3", _alt_namespace=P223,
 )
 AnalogSignalTypeEnum.NTC10kType2 = AnalogSignalTypeEnum(
-    "NTC10kType2", _alt_namespace=P223
+    "NTC10kType2", _alt_namespace=P223,
 )
 AnalogSignalTypeEnum.NTC2250Type2 = AnalogSignalTypeEnum(
-    "NTC2250Type2", _alt_namespace=P223
+    "NTC2250Type2", _alt_namespace=P223,
 )
 AnalogSignalTypeEnum.Resistive = AnalogSignalTypeEnum("Resistive", _alt_namespace=P223)
 
-#
 BinarySignalTypeEnum.DryContact = BinarySignalTypeEnum(
-    "DryContact", _alt_namespace=P223
+    "DryContact", _alt_namespace=P223,
 )
 BinarySignalTypeEnum.Pulse = BinarySignalTypeEnum("Pulse", _alt_namespace=P223)
 BinarySignalTypeEnum.StartStop = BinarySignalTypeEnum("StartStop", _alt_namespace=P223)
 BinarySignalTypeEnum.Incremental = BinarySignalTypeEnum(
-    "Incremental", _alt_namespace=P223
+    "Incremental", _alt_namespace=P223,
 )
 
-#
+
+UniversalSignalTypeEnum.Unknown = AnalogSignalTypeEnum("Unknown", _alt_namespace=P223)
+UniversalSignalTypeEnum.RTD = AnalogSignalTypeEnum("RTD", _alt_namespace=P223)
+UniversalSignalTypeEnum.Nickel1kRTD = AnalogSignalTypeEnum(
+    "Nickel1kRTD", _alt_namespace=P223,
+)
+UniversalSignalTypeEnum.Platinum1kRTD = AnalogSignalTypeEnum(
+    "Platinum1kRTD", _alt_namespace=P223,
+)
+UniversalSignalTypeEnum.VDC_0_10 = AnalogSignalTypeEnum("0-10VDC", _alt_namespace=P223)
+UniversalSignalTypeEnum.mA_4_20 = AnalogSignalTypeEnum("4-20mA", _alt_namespace=P223)
+UniversalSignalTypeEnum.NTC10kType3 = AnalogSignalTypeEnum(
+    "NTC10kType3", _alt_namespace=P223,
+)
+UniversalSignalTypeEnum.NTC10kType2 = AnalogSignalTypeEnum(
+    "NTC10kType2", _alt_namespace=P223,
+)
+UniversalSignalTypeEnum.NTC2250Type2 = AnalogSignalTypeEnum(
+    "NTC2250Type2", _alt_namespace=P223,
+)
+UniversalSignalTypeEnum.Resistive = AnalogSignalTypeEnum(
+    "Resistive", _alt_namespace=P223,
+)
+
+UniversalSignalTypeEnum.DryContact = BinarySignalTypeEnum(
+    "DryContact", _alt_namespace=P223,
+)
+UniversalSignalTypeEnum.Pulse = BinarySignalTypeEnum("Pulse", _alt_namespace=P223)
+UniversalSignalTypeEnum.StartStop = BinarySignalTypeEnum(
+    "StartStop", _alt_namespace=P223,
+)
+UniversalSignalTypeEnum.Incremental = BinarySignalTypeEnum(
+    "Incremental", _alt_namespace=P223,
+)
+
 G36AlarmLevel.Level1 = EnumerationKind(
-    "Level1", comment="Life Safetey Message", _alt_namespace=G36
+    "Level1", comment="Life Safetey Message", _alt_namespace=G36,
 )
 G36AlarmLevel.Level2 = EnumerationKind(
-    "Level2", comment="Critical Equipment Message", _alt_namespace=G36
+    "Level2", comment="Critical Equipment Message", _alt_namespace=G36,
 )
 G36AlarmLevel.Level3 = EnumerationKind(
-    "Level3", comment="Urgent Message", _alt_namespace=G36
+    "Level3", comment="Urgent Message", _alt_namespace=G36,
 )
 G36AlarmLevel.Level4 = EnumerationKind(
-    "Level4", comment="Normal Message", _alt_namespace=G36
+    "Level4", comment="Normal Message", _alt_namespace=G36,
 )
 
-#
 HandOffAutoEnum.Hand = HandOffAutoEnum("Hand", _alt_namespace=P223)
 HandOffAutoEnum.Off = HandOffAutoEnum("Off", _alt_namespace=P223)
 HandOffAutoEnum.Auto = HandOffAutoEnum("Auto", _alt_namespace=P223)
 
-#
 HVACOperatingMode.Auto = HVACOperatingMode("Auto")
 HVACOperatingMode.CoolOnly = HVACOperatingMode("CoolOnly")
 HVACOperatingMode.FanOnly = HVACOperatingMode("FanOnly")
 HVACOperatingMode.HeatOnly = HVACOperatingMode("HeatOnly")
 HVACOperatingMode.Off = HVACOperatingMode("Off")
 
-#
 HVACOperatingStatus.Cooling = HVACOperatingStatus("Cooling")
 HVACOperatingStatus.Dehumidifying = HVACOperatingStatus("Dehumidifying")
 HVACOperatingStatus.Heating = HVACOperatingStatus("Heating")
 HVACOperatingStatus.Off = HVACOperatingStatus("Off")
 HVACOperatingStatus.Ventilating = HVACOperatingStatus("Ventilating")
 
-#
 LeftRightEnum.Left = LeftRightEnum("Left", _alt_namespace=P223)
 LeftRightEnum.Right = LeftRightEnum("Right", _alt_namespace=P223)
 
-#
 ManualAutoEnum.Manual = ManualAutoEnum("Manual", _alt_namespace=P223)
 ManualAutoEnum.Auto = ManualAutoEnum("Auto", _alt_namespace=P223)
 
@@ -422,15 +456,12 @@ NiagaraStatusEnum.fault = NiagaraStatusEnum("fault", _alt_namespace=P223)
 NiagaraStatusEnum.disabled = NiagaraStatusEnum("disabled", _alt_namespace=P223)
 NiagaraStatusEnum.alarm = NiagaraStatusEnum("alarm", _alt_namespace=P223)
 
-#
 NormalAlarmEnum.Normal = NormalAlarmEnum("Normal", _alt_namespace=P223)
 NormalAlarmEnum.Alarm = NormalAlarmEnum("Alarm", _alt_namespace=P223)
 
-#
 NormalFaultEnum.Normal = NormalFaultEnum("Normal", _alt_namespace=P223)
 NormalFaultEnum.Fault = NormalFaultEnum("Fault", _alt_namespace=P223)
 
-#
 Occupancy.Motion = Motion = Occupancy("Motion")
 Occupancy.Occupied = Occupancy("Occupied")
 Occupancy.Presence = Presence = Occupancy("Presence")
@@ -439,11 +470,9 @@ Presence.true = Presence("True")
 Occupancy.Unknown = Occupancy("Unknown")
 Occupancy.Unoccupied = Occupancy("Unoccupied")
 
-#
 Motion.true = Motion("True")
 Motion.false = Motion("False")
 
-#
 Phase.Gas = Phase("Gas")
 Phase.Gas.SuperHeated = Phase.Gas("SuperHeated")
 Phase.Liquid = Phase("Liquid")
@@ -451,16 +480,13 @@ Phase.Liquid.Subcooled = Phase.Liquid("Subcooled")
 Phase.Solid = Phase("Solid")
 Phase.Vapor = Phase("Vapor")
 
-#
 Position.Closed = Position("Closed")
 Position.Open = Position("Open")
 Position.Unknown = Position("Unknown")
 
-#
 OverriddenAuto.Auto = OverriddenAuto("Auto", _alt_namespace=P223)
 OverriddenAuto.Overridden = OverriddenAuto("Overridden", _alt_namespace=P223)
 
-#
 ProtocolEnum.BACnet = ProtocolEnum("BACnet", _alt_namespace=P223)
 ProtocolEnum.BACnet_MSTP = ProtocolEnum("BACnet_MSTP", _alt_namespace=P223)
 ProtocolEnum.BACnet_IP = ProtocolEnum("BACnet_IP", _alt_namespace=P223)
@@ -470,24 +496,20 @@ ProtocolEnum.Modbus_RTU = ProtocolEnum("Modbus_RTU", _alt_namespace=P223)
 ProtocolEnum.Modbus_TCP = ProtocolEnum("Modbus_TCP", _alt_namespace=P223)
 ProtocolEnum.Lonworks = ProtocolEnum("Lonworks", _alt_namespace=P223)
 
-#
 RunStatus.On = RunStatus("On")
 RunStatus.Off = RunStatus("Off")
 RunStatus.Unknown = RunStatus("Unknown")
 
-#
 Speed.High = Speed("High")
 Speed.Low = Speed("Low")
 Speed.Medium = Speed("Medium")
 Speed.Off = Speed("Off")
 
-#
 ThreeSpeedSetting.High = ThreeSpeedSetting("High")
 ThreeSpeedSetting.Low = ThreeSpeedSetting("Low")
 ThreeSpeedSetting.Medium = ThreeSpeedSetting("Medium")
 ThreeSpeedSetting.Off = ThreeSpeedSetting("Off")
 
-#
 TopBottomEnum.Top = TopBottomEnum("Top", _alt_namespace=P223)
 TopBottomEnum.Bottom = TopBottomEnum("Bottom", _alt_namespace=P223)
 
@@ -495,7 +517,6 @@ TopBottomEnum.Bottom = TopBottomEnum("Bottom", _alt_namespace=P223)
 TrueFalseEnum.true = TrueFalseEnum("True", _alt_namespace=P223)
 TrueFalseEnum.false = TrueFalseEnum("False", _alt_namespace=P223)
 
-#
 YesNoEnum.Yes = YesNoEnum("Yes", _alt_namespace=P223)
 YesNoEnum.No = YesNoEnum("No", _alt_namespace=P223)
 
@@ -514,10 +535,10 @@ Aspect.DryBulb = Aspect("DryBulb")
 Aspect.Effectiveness = Effectiveness = Aspect("Effectiveness")
 Aspect.Efficiency = Aspect("Efficiency")
 Aspect.ElectricalPhaseIdentifier = ElectricalPhaseIdentifier = Aspect(
-    "ElectricalPhaseIdentifier"
+    "ElectricalPhaseIdentifier",
 )
 Aspect.ElectricalVoltagePhases = ElectricalVoltagePhases = Aspect(
-    "ElectricalVoltagePhases"
+    "ElectricalVoltagePhases",
 )
 Aspect.Face = Aspect("Face")
 Aspect.Fault = Aspect("Fault")
@@ -546,7 +567,6 @@ Aspect.Total = Aspect("Total")
 Aspect.WetBulb = Aspect("WetBulb")
 Aspect.Year = Aspect("Year")
 
-#
 DayOfWeek.Weekday = Weekday = DayOfWeek("Weekday")
 DayOfWeek.Weekend = Weekend = DayOfWeek("Weekend")
 Weekday.Monday = Weekday("Monday")
@@ -559,12 +579,10 @@ Weekday.Sunday = Weekday("Sunday")
 Weekend.Saturday = Weekday("Saturday")
 Weekend.Sunday = Weekday("Sunday")
 
-#
 Effectiveness.Active = Effectiveness("Active")
 Effectiveness.Inactive = Effectiveness("Inactive", _alt_namespace=P223)
 Effectiveness.Unknown = Effectiveness("Unknown", _alt_namespace=P223)
 
-#
 Numerical = EnumerationKind("Numerical")
 Numerical.DCVoltage = DCVoltage = Numerical("DCVoltage")
 DCVoltage.DCNegativeVoltage = DCVoltage("DCNegativeVoltage")
@@ -577,7 +595,7 @@ DCVoltage.DCNegativeVoltage = DCVoltage("DCNegativeVoltage")
 # s223:DCNegativeVoltage-48.0V
 # s223:DCNegativeVoltage-190.0V
 # s223:DCNegativeVoltage-380.0V
-DCVoltage.DCPositiveVoltage = DCVoltage("DCPositiveVoltage")
+DCVoltage.DCPositiveVoltage = DCPositiveVoltage = DCVoltage("DCPositiveVoltage")
 # see also negative voltages above
 DCVoltage.DCZeroVoltage = DCVoltage("DCZeroVoltage")
 
@@ -591,12 +609,11 @@ Numerical.LineNeutralVoltage = Numerical("LineNeutralVoltage")
 # many
 
 Numerical.NumberOfElectricalPhases = NumberOfElectricalPhases = Numerical(
-    "NumberOfElectricalPhases"
+    "NumberOfElectricalPhases",
 )
 NumberOfElectricalPhases.SinglePhase = NumberOfElectricalPhases("SinglePhase")
 NumberOfElectricalPhases.ThreePhase = NumberOfElectricalPhases("ThreePhase")
 
-#
 Numerical.Voltage = Voltage = Numerical("Voltage")
 # many
 
@@ -613,13 +630,13 @@ ElectricalVoltagePhases.BCLineLineVoltage = ElectricalVoltagePhases("BCLineLineV
 ElectricalVoltagePhases.CALineLineVoltage = ElectricalVoltagePhases("CALineLineVoltage")
 
 ElectricalVoltagePhases.ANLineNeutralVoltage = ElectricalVoltagePhases(
-    "ANLineNeutralVoltage"
+    "ANLineNeutralVoltage",
 )
 ElectricalVoltagePhases.BNLineNeutralVoltage = ElectricalVoltagePhases(
-    "BNLineNeutralVoltage"
+    "BNLineNeutralVoltage",
 )
 ElectricalVoltagePhases.CNLineNeutralVoltage = ElectricalVoltagePhases(
-    "CNLineNeutralVoltage"
+    "CNLineNeutralVoltage",
 )
 
 

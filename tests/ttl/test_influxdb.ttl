@@ -1,0 +1,41 @@
+# baseURI: http://data.ashrae.org/standard223/1.0/sample/test_influxdb
+# imports: http://data.ashrae.org/standard223/1.0/model/all
+
+@prefix ex42: <urn:ex/test_system-007/> .
+@prefix influxdb: <https://brickschema.org/schema/Brick/ref/influxdb#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix s223: <http://data.ashrae.org/standard223#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+
+
+
+<http://data.ashrae.org/standard223/1.0/data/test_influxdb>
+  a owl:Ontology ;
+  rdfs:isDefinedBy <http://data.ashrae.org/standard223/1.0/sample/test_influxdb> ;
+  rdfs:label "test_influxdb" ;
+  owl:imports <http://data.ashrae.org/standard223/1.0/model/all> .
+
+ex42:00001 a influxdb:InfluxdbServer ;
+    rdfs:label "my_influxdb_server" ;
+    influxdb:influxdbAuthenticationMethod "API Token" ;
+    influxdb:influxdbTokenLocation "env:INFLUXDB_TOKEN" ;
+    influxdb:organization "my_org" ;
+    influxdb:url "http://localhost:8086" .
+
+ex42:00002 a s223:ExternalReference,
+        influxdb:InfluxdbReference ;
+    rdfs:label "my_V2_influxdb_ref" ;
+    influxdb:InfluxdbServer ex42:00001 ;
+    influxdb:bucket "my_bucket" ;
+    influxdb:measurement "my_measurement" .
+
+ex42:00003 a s223:ExternalReference,
+        influxdb:InfluxdbReference ;
+    rdfs:label "my_V3_influxdb_ref" ;
+    influxdb:InfluxdbServer ex42:00001 ;
+    influxdb:database "my_bucket" ;
+    influxdb:table "my_measurement" .
+

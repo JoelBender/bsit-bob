@@ -1,0 +1,13 @@
+name: ahu_template
+template_class: System
+params: 
+    label: AHU
+    comment: AHU delivering air to 2 VAV boxes
+junctions:
+    MixedAir: 
+        class: Junction
+        comment: Mix between return air and outdoor air
+        hasMedium: Fluid.Air
+        returnAir: AirInletConnectionPoint
+        outdoorAir: AirInletConnectionPoint
+        mixedAir: AirOutletConnectionPoint

@@ -37,7 +37,7 @@ class FluidOutletConnectionPoint(FluidConnectionPoint, OutletConnectionPoint):
 
 
 class FluidBidirectionalConnectionPoint(
-    FluidConnectionPoint, BidirectionalConnectionPoint
+    FluidConnectionPoint, BidirectionalConnectionPoint,
 ):
     _class_iri = S223.BidirectionalConnectionPoint
 
@@ -65,7 +65,7 @@ class WaterOutletConnectionPoint(WaterConnectionPoint, OutletConnectionPoint):
 
 
 class WaterBidirectionalConnectionPoint(
-    WaterConnectionPoint, BidirectionalConnectionPoint
+    WaterConnectionPoint, BidirectionalConnectionPoint,
 ):
     _class_iri = S223.BidirectionalConnectionPoint
 
@@ -143,13 +143,13 @@ class ChilledWaterConnectionPoint(ConnectionPoint):
 
 
 class ChilledWaterInletConnectionPoint(
-    InletConnectionPoint, ChilledWaterConnectionPoint
+    InletConnectionPoint, ChilledWaterConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class ChilledWaterOutletConnectionPoint(
-    OutletConnectionPoint, ChilledWaterConnectionPoint
+    OutletConnectionPoint, ChilledWaterConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -207,13 +207,13 @@ class Glycol15PercentConnectionPoint(ConnectionPoint):
 
 
 class Glycol15PercentInletConnectionPoint(
-    InletConnectionPoint, Glycol15PercentConnectionPoint
+    InletConnectionPoint, Glycol15PercentConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Glycol15PercentOutletConnectionPoint(
-    OutletConnectionPoint, Glycol15PercentConnectionPoint
+    OutletConnectionPoint, Glycol15PercentConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
@@ -231,12 +231,12 @@ class Glycol30PercentConnectionPoint(ConnectionPoint):
 
 
 class Glycol30PercentInletConnectionPoint(
-    InletConnectionPoint, Glycol15PercentConnectionPoint
+    InletConnectionPoint, Glycol15PercentConnectionPoint,
 ):
     _class_iri = S223.InletConnectionPoint
 
 
 class Glycol30PercentOutletConnectionPoint(
-    OutletConnectionPoint, Glycol15PercentConnectionPoint
+    OutletConnectionPoint, Glycol15PercentConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint

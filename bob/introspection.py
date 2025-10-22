@@ -5,26 +5,37 @@ import typing as t
 
 import bob
 
-class_cache = {}
-module_cache = {}
-enum_cache = {}
+from .core import UNIT, Substance
+from .enum import Constituent, Medium, Particulate
 
+class_cache: dict[str, type] = {}
+module_cache: dict[str, list[str]] = {}
+enum_cache: dict[str, type] = {}
+XREF_CACHE = {
+    "UNIT": UNIT,
+    "Medium": Medium,
+    "Substance": Substance,
+    "Particulate": Particulate,
+    "Constituent": Constituent,
+}
 
-def look_in_cache(name: str = None, cache: dict = None):
+def look_in_cache(name: str | None = None, cache: dict | None = None):
+    if name is None or cache is None:
+        return None
     return cache[name] if name in cache else None
 
 
-def get_modules_from(package_name: str) -> t.List[str]:
+def get_modules_from(package_name: str) -> list[str]:
     package = importlib.import_module(package_name)
     modules = []
     for importer, modname, ispkg in pkgutil.walk_packages(
-        package.__path__, package.__name__ + "."
+        package.__path__, package.__name__ + ".",
     ):
         modules.append(modname)
     return modules
 
 
-def load_modules(module: t.Type = bob, force: bool = False) -> None:
+def load_modules(module = bob, force: bool = False) -> None:
     global class_cache
     global module_cache
     # print(f"Loading modules {module}")
@@ -32,10 +43,10 @@ def load_modules(module: t.Type = bob, force: bool = False) -> None:
         module_cache[module.__name__] = get_modules_from(module.__name__)
 
 
-def get_class_from_name(classname: str = None, module: t.Type = bob) -> t.Type:
+def get_class_from_name(classname: str | None = None, module = bob) -> t.Any:
     global class_cache
     global module_cache
-    super = None
+    _super = None
     if not classname:
         raise ValueError("Classname is required")
 
@@ -44,10 +55,22 @@ def get_class_from_name(classname: str = None, module: t.Type = bob) -> t.Type:
         return _existing
 
     if "." in classname:
-        super, classname = classname.split(".")
+        _super, classname = classname.split(".")
+
+        if _super == "UNIT":
+            return UNIT[classname]  # type: ignore
+        if _super == "Medium":
+            return getattr(Medium,classname)  # type: ignore
+        if _super == "Substance":
+            return getattr(Substance,classname)  # type: ignore
+        if _super == "Particulate":
+            return getattr(Particulate,classname)  # type: ignore
+        if _super == "Constituent":
+            return getattr(Constituent,classname)  # type: ignore
+
     if "|" in classname:
         _module, classname = classname.split("|")
-        module = importlib.import_module(_module)
+        module = importlib.import_module(_module)  # type: ignore
     load_modules(module)
     for each in module_cache[module.__name__]:
         try:
@@ -64,22 +87,20 @@ def get_class_from_name(classname: str = None, module: t.Type = bob) -> t.Type:
 
             if inspect.isclass(obj):
                 if name == classname:
-                    if super is not None:
-                        _key = f"{super}.{classname}"
+                    if _super is not None:
+                        _key = f"{_super}.{classname}"
                     else:
                         _key = classname
                     class_cache[_key] = obj
-                    return obj
-                else:
-                    if name not in class_cache:
-                        class_cache[name] = obj
-        if super is not None:
-            if super in enum_cache:
-                _super_class = enum_cache[super]
-                return getattr(_super_class, classname)
-            else:
-                if classname in enum_cache:
-                    return enum_cache[classname]
+                    return obj  # type: ignore
+                if name not in class_cache:
+                    class_cache[name] = obj
+        if _super is not None:
+            if _super in enum_cache:
+                _super_class = enum_cache[_super]
+                return getattr(_super_class, classname)  # type: ignore
+            if classname in enum_cache:
+                return enum_cache[classname]  # type: ignore
     raise TypeError(
-        f"Class {super} {classname} not found in {module}, cache is {class_cache}"
+        f"Class {_super} {classname} not found in {module}, cache is {class_cache}",
     )

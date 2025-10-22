@@ -1,6 +1,5 @@
 from typing import Dict
 
-
 from bob.properties.electricity import ElectricPower
 
 from ...connections.light import LightVisibleOutletConnectionPoint
@@ -21,13 +20,13 @@ class Luminaire(Equipment):
     onOffCommand: OnOffCommand
     electricalPower: ElectricPower
 
-    def __init__(self, config: Dict = {}, **kwargs):
+    def __init__(self, config: dict = {}, **kwargs):
         kwargs = {**config.get("params", {}), **kwargs}
         _electricalInlet = kwargs.pop("electricalInlet", None)
 
-        super().__init__(config, **kwargs)
+        super().__init__(**kwargs)
 
         if _electricalInlet:
             self.electricalInlet = _electricalInlet(
-                self, label=f"{self.label}.electricalInlet"
+                self, label=f"{self.label}.electricalInlet",  # type: ignore[attr-defined]
             )

@@ -11,13 +11,15 @@ from ..core import (
 )
 from ..enum import (
     Light,
-    Motion,
     NormalAlarmEnum,
     Occupancy,
     OnOff,
     Position,
     Smoke,
     YesNoEnum,
+)
+from ..enum import (
+    Motion as MotionEnum,
 )
 
 _namespace = BOB
@@ -70,10 +72,10 @@ class OccupancyStatus(EnumeratedObservableProperty):
     hasValue: Occupancy
 
 
-class Motion(EnumeratedObservableProperty):
+class MotionDetection(EnumeratedObservableProperty):
     _class_iri: URIRef = S223.EnumeratedObservableProperty
-    hasEnumerationKind = Motion
-    hasValue: Motion
+    hasEnumerationKind = MotionEnum
+    hasValue: MotionEnum
 
 
 class SmokePresence(EnumeratedObservableProperty):

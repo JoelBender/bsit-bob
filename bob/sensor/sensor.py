@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Any
+from typing import Any, Dict
 
 from rdflib import URIRef
 
@@ -60,7 +60,7 @@ def define_sensors(config):
         try:
             if issubclass(_cls, Sensor):
                 _cls = _cls
-        except:
+        except Exception:
             raise TypeError("Please provide class for sensor")
 
         sensors.append(_cls(label=_label, **sensor_data))
@@ -69,8 +69,7 @@ def define_sensors(config):
 
 
 class Sensor(_Sensor):
-    """
-    An equipment meant to observe a property
+    """An equipment meant to observe a property
     """
 
     _class_iri: URIRef = S223.Sensor
@@ -81,14 +80,18 @@ class Sensor(_Sensor):
     hasObservationLocation: LocationReference
     observes: PropertyReference
 
-    def __init__(self, **kwargs: Any) -> None:
+    def __init__(self, config: dict[str, Any] = {}, **kwargs: Any) -> None:
         _sensor_kwargs, _property_kwargs = split_kwargs(kwargs)
-        super().__init__(**_sensor_kwargs)
+        _observed_prop = _sensor_kwargs.pop("observed_property", None)
+        super().__init__(config=config, **_sensor_kwargs)
+        if _observed_prop:
+            self.observes = _observed_prop
+            self.add_property(_observed_prop)  # type: ignore[attr-defined]
+            self["observed_property"] = _observed_prop  # type: ignore[index]
 
     @property
     def observedProperty(self):
-        """
-        When accessing the property, it feels ackward to use sensor.observes
+        """When accessing the property, it feels ackward to use sensor.observes
         The terms fit for assignation...but for retrieval, feel unnatural
         So let's try this shortcut
         """
@@ -100,10 +103,11 @@ class Sensor(_Sensor):
 
         # link the two together
         self._data_graph.add(
-            (self._node_iri, S223.hasObservationLocation, node._node_iri)
+            (self._node_iri, S223.hasObservationLocation, node._node_iri),
         )
         if INCLUDE_INVERSE:
-            node.isObservationLocationOf = self
+            node.isObservationLocationOf = self  # type: ignore[attr-defined]
+        self.hasObservationLocation = node  # type: ignore[assignment]
 
     def __mod__(self, other: Node) -> Node:
         """This sensor measurementLocation taken from some other node."""

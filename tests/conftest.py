@@ -1,24 +1,43 @@
-"""
-Glue routines to simulate package setup and teardown.
-"""
+import logging
+import os
+import sys
 
 import pytest
-import _pytest  # type: ignore[import]
-import logging
+
+from bob.core import clear
+
+print("======================", sys.path)
+
 
 _log = logging.getLogger(__name__)
 
 
-@pytest.fixture(scope="session", autouse=True)
-def setup_and_teardown_package():
-    _log.debug("setup package")
-    yield
-    _log.debug("teardown package")
+@pytest.fixture(autouse=True)
+def run_before_and_after_tests(tmpdir):
+    """Be sure to clear graph after each test"""
+    # Setup: fill with any logic you want
+
+    yield  # this is where the testing happens
+
+    clear()
 
 
-def pytest_configure(config: _pytest.config.Config) -> None:
-    _log.debug("pytest_configure")
+@pytest.fixture(scope="session")
+def bob_fixture(request):
+    _log.debug("bob_fixture")
 
-
-def pytest_unconfigure() -> None:
-    _log.debug("pytest_unconfigure")
+    params = {}
+    params["nonconforming_samples_directory"] = os.path.join(
+        os.getcwd(), "samples", "nonconforming",
+    )
+    params["conforming_samples_directory"] = os.path.join(
+        os.getcwd(), "samples", "conforming",
+    )
+    params["samples_ttl_directory"] = os.path.join(
+        os.getcwd(), "samples", "nonconforming", "ttl",
+    )
+    params["g36_directory"] = os.path.join(os.getcwd(), "G36")
+    params["g36_ttl_directory"] = os.path.join(os.getcwd(), "G36", "ttl")
+    params["root_directory"] = os.path.join(os.getcwd())
+    return params
+    # teardown

@@ -5,8 +5,7 @@ _namespace = BOB
 
 
 class Causality(Producer):
-    """
-    Simple causality black box. Its goal is to express a
+    """Simple causality black box. Its goal is to express a
     simple relation between the output and the input.
     It tells : this input, causes an effect on that output.
     """
@@ -16,8 +15,7 @@ class Causality(Producer):
 
 
 class Differential(Producer):
-    """
-    This causality block goals explain that the output is the result
+    """This causality block goals explain that the output is the result
     of substracting high input and low input.
     """
 
@@ -27,8 +25,7 @@ class Differential(Producer):
 
 
 class HandOffAutoMotorStarter(Producer):
-    """
-    Typically used in Electrical Motor Starter, where a selector allow manual, off, or auto
+    """Typically used in Electrical Motor Starter, where a selector allow manual, off, or auto
     The contactor position is commanded on or off depending on standard input (manual or auto + automatic command signal)
     Fire input, protection input and overload are protection that will turn off the contactor, stopping the load.
     """
@@ -42,8 +39,7 @@ class HandOffAutoMotorStarter(Producer):
 
 
 class VFDProducer(Producer):
-    """
-    Very simple implementation of a VFD Producer.
+    """Very simple implementation of a VFD Producer.
     This is not Function, only relating different input properties with output properties.
     Any input causes an effect on all output in some way.
 

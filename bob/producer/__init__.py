@@ -1,5 +1,4 @@
-"""
-Producers
+"""Producers
 
 This is an adaptation of the S223 Function Blocks
 """
@@ -8,7 +7,7 @@ from __future__ import annotations
 
 import inspect
 import logging
-from typing import Any, AnyStr, Dict
+from typing import Any, Dict, Optional
 
 from rdflib import Literal, URIRef  # type: ignore
 
@@ -18,12 +17,12 @@ from ..core import (
     INCLUDE_INVERSE,
     P223,
     S223,
+    ConnectionPoint,
     Container,
     Equipment,
     LocationReference,
     Node,
     Property,
-    _Producer,
     data_graph,
 )
 from ..equipment.control import AnalogInput, AnalogOutput, BinaryInput, BinaryOutput
@@ -38,11 +37,12 @@ _log = logging.getLogger(__name__)
 _namespace = BOB
 
 
-class old_Producer(Container, Node):
-    "Placeholder to prevent circular reference"
+class _Producer(Container, Node):
+    """Producer base class to prevent circular reference"""
+
     _class_iri: URIRef = P223.Producer
 
-    def __init__(self, config: Dict[str, Any] = {}, *args, **kwargs: Any) -> None:
+    def __init__(self, config: dict[str, Any] = {}, *args, **kwargs: Any) -> None:
         _log.debug(f"Producer.__init__ {config} {args} {kwargs}")
 
         # if there are "params" in the configuation, use those as defaults for
@@ -67,8 +67,8 @@ class old_Producer(Container, Node):
                 if issubclass(attr_value, ConnectionPoint):
                     # Beware here... _Producer are function Block so...FB in and out only....
                     _config["cp"] = (
-                        {**_config["cp"], **{attr_name: kwargs.pop(attr_name)}}
-                        if "cp" in _config.keys()
+                        {**_config["cp"], attr_name: kwargs.pop(attr_name)}
+                        if "cp" in _config
                         else {attr_name: kwargs.pop(attr_name)}
                     )
 
@@ -83,20 +83,20 @@ class old_Producer(Container, Node):
                         setattr(
                             self,
                             thing_name,
-                            thing_class(self, label=f"{self.label}.{thing_name}"),
+                            thing_class(self, label=f"{self.label}.{thing_name}"),  # type: ignore[attr-defined]
                         )
                     continue
                 things = []
                 for (thing_name, thing_class), thing_kwargs in group_items.items():
-                    if thing_name in self:
-                        raise ValueError(f"label already used: {self[thing_name]}")
+                    if thing_name in self:  # type: ignore[operator]
+                        raise ValueError(f"label already used: {self[thing_name]}")  # type: ignore[index]
                     thing = thing_class(label=thing_name, **thing_kwargs)
 
                     if isinstance(thing, (_Producer)):
-                        self > thing
+                        self > thing  # type: ignore[operator]
                     if isinstance(thing, Property):
-                        self[thing_name] = thing
-                        self.add_property(thing)
+                        self[thing_name] = thing  # type: ignore[index]
+                        self.add_property(thing)  # type: ignore[attr-defined]
 
                     things.append(thing)
 
@@ -104,6 +104,7 @@ class old_Producer(Container, Node):
 
 
 @multimethod
+# type: ignore[no-redef]
 def contains_mm(producer: Producer, sub_producer: _Producer) -> None:
     """Producer > Producer"""
     _log.info(f"producer {producer} contains producer {sub_producer}")
@@ -122,7 +123,7 @@ class ProducerInput(Node):
 
     def __init__(self, function_block: Producer, **kwargs: Any) -> None:
         _log.debug(
-            f"ProducerInput({self.__class__.__name__}).__init__ {function_block} {kwargs}"
+            f"ProducerInput({self.__class__.__name__}).__init__ {function_block} {kwargs}",
         )
 
         super().__init__(**kwargs)
@@ -146,7 +147,7 @@ class ProducerOutput(Node):
 
     def __init__(self, function_block: Producer, **kwargs: Any) -> None:
         _log.debug(
-            f"ProducerOutput({self.__class__.__name__}).__init__ {function_block} {kwargs}"
+            f"ProducerOutput({self.__class__.__name__}).__init__ {function_block} {kwargs}",
         )
 
         super().__init__(**kwargs)
@@ -155,12 +156,12 @@ class ProducerOutput(Node):
 
     def add_hasEffectLocation(self, node: Node) -> None:
         # Must be from a sensor
-        self.hasEffectLocation = node
+        self.hasEffectLocation = node  # type: ignore[assignment]
 
         # link the two together
         self._data_graph.add((self._node_iri, P223.hasEffectLocation, node._node_iri))
         if INCLUDE_INVERSE:
-            node.isEffectLocationOf = self
+            node.isEffectLocationOf = self  # type: ignore[attr-defined]
 
     def __rshift__(self, other: Any) -> Any:
         """Build a connection from this thing to another thing."""
@@ -182,17 +183,17 @@ class ProducerOutput(Node):
 
 @multimethod
 def connect_mm(
-    output_connector: ProducerOutput, input_connector: ProducerInput
+    output_connector: ProducerOutput, input_connector: ProducerInput,
 ) -> None:
     """ProducerOutput >> ProducerInput"""
     _log.info(f"connect from {output_connector} to {input_connector}")
 
     data_graph.add(
-        (output_connector._node_iri, S223.connect, input_connector._node_iri)
+        (output_connector._node_iri, S223.connect, input_connector._node_iri),
     )
 
 
-@multimethod
+@multimethod  # type: ignore[no-redef]
 def connect_mm(prop: Property, input_connector: ProducerInput) -> None:
     """Property >> ProducerInput"""
     _log.info(f"connect from {prop} to {input_connector}")
@@ -201,7 +202,7 @@ def connect_mm(prop: Property, input_connector: ProducerInput) -> None:
 
 
 @multimethod
-def connect_mm(output_connector: ProducerOutput, prop: Property) -> None:
+def connect_mm(output_connector: ProducerOutput, prop: Property) -> None:  # type: ignore[no-redef]
     """ProducerOutput >> Property"""
     _log.info(f"connect from {output_connector} to {prop}")
 
@@ -209,7 +210,7 @@ def connect_mm(output_connector: ProducerOutput, prop: Property) -> None:
 
 
 @multimethod
-def connect_mm(output_connector: ProducerOutput, cp: AnalogOutput) -> None:
+def connect_mm(output_connector: ProducerOutput, cp: AnalogOutput) -> None:  # type: ignore[no-redef]
     """ProducerOutput >> Property"""
     _log.info(f"connect from {output_connector} to {cp}")
 
@@ -217,7 +218,7 @@ def connect_mm(output_connector: ProducerOutput, cp: AnalogOutput) -> None:
 
 
 @multimethod
-def connect_mm(output_connector: ProducerOutput, cp: BinaryOutput) -> None:
+def connect_mm(output_connector: ProducerOutput, cp: BinaryOutput) -> None:  # type: ignore[no-redef]
     """ProducerOutput >> Controller connection point"""
     _log.info(f"connect from {output_connector} to {cp}")
 
@@ -225,7 +226,7 @@ def connect_mm(output_connector: ProducerOutput, cp: BinaryOutput) -> None:
 
 
 @multimethod
-def connect_mm(output_connector: ProducerOutput, cp: AnalogOutput) -> None:
+def connect_mm(output_connector: ProducerOutput, cp: AnalogOutput) -> None:  # type: ignore[no-redef]
     """ProducerOutput >> Controller connection point"""
     _log.info(f"connect from {output_connector} to {cp}")
 
@@ -259,8 +260,7 @@ class G36DigitalOutput(FunctionOutput):
 
 
 class Producer(_Producer):
-    """
-    Producers are black boxes representing causality.
+    """Producers are black boxes representing causality.
     Their inputs are causes and they produce an effect on a property
     It is very similar to a function, but it is meant to show the relation
     between an input and an output of something not-driven by an algorithm.
@@ -270,20 +270,20 @@ class Producer(_Producer):
 
     _class_iri: URIRef = P223.Producer
 
-    def __init__(self, config: Dict = None, **kwargs):
+    def __init__(self, config: dict | None = None, **kwargs):
         _config = template_update({}, config=config)
         kwargs = {**_config.pop("params", {}), **kwargs}
 
         _log.debug(f"Producer.__init__ {kwargs}")
 
         # resolve annotations if necessary
-        if not self._resolved:
-            self._resolve_annotations()
+        if not self._resolved:  # type: ignore[attr-defined]
+            self._resolve_annotations()  # type: ignore[attr-defined]
         _log.debug("    - continue Producer.__init__")
 
         # pull out the inputs and outputs
-        connector_inits: Dict[str, Any] = {}
-        for attr_name, attr_type in self._nodes.items():
+        connector_inits: dict[str, Any] = {}
+        for attr_name, attr_type in self._nodes.items():  # type: ignore[attr-defined]
             if inspect.isclass(attr_type) and (attr_name in kwargs):
                 if issubclass(attr_type, (ProducerInput, ProducerOutput)):
                     connector_inits[attr_name] = kwargs.pop(attr_name)
@@ -296,13 +296,13 @@ class Producer(_Producer):
 
         # instantiate and associate all of the connectors
         self._connectors = {}
-        for attr_name, attr_type in self._nodes.items():
+        for attr_name, attr_type in self._nodes.items():  # type: ignore[attr-defined]
             if not inspect.isclass(attr_type):
                 continue
 
             if issubclass(attr_type, (ProducerInput, ProducerOutput)):
                 # build an instance of this connector
-                attr_element = attr_type(self, label=self.label + "." + attr_name)
+                attr_element = attr_type(self, label=self.label + "." + attr_name)  # type: ignore[attr-defined]
                 self._connectors[attr_name] = attr_element
                 _log.debug(f"    - connector {attr_name}: {attr_element}")
 
@@ -324,20 +324,20 @@ class Producer(_Producer):
                         setattr(
                             self,
                             thing_name,
-                            thing_class(self, label=f"{self.label}.{thing_name}"),
+                            thing_class(self, label=f"{self.label}.{thing_name}"),  # type: ignore[attr-defined]
                         )
                     continue
                 things = []
                 for (thing_name, thing_class), thing_kwargs in group_items.items():
-                    if thing_name in self:
-                        raise ValueError(f"label already used: {self[thing_name]}")
+                    if thing_name in self:  # type: ignore[operator]
+                        raise ValueError(f"label already used: {self[thing_name]}")  # type: ignore[index]
                     thing = thing_class(label=thing_name, **thing_kwargs)
 
                     if isinstance(thing, Producer):
-                        self > thing
+                        self > thing  # type: ignore[operator]
                     if isinstance(thing, Property):
-                        self[thing_name] = thing
-                        self.add_property(thing)
+                        self[thing_name] = thing  # type: ignore[index]
+                        self.add_property(thing)  # type: ignore[attr-defined]
 
                     things.append(thing)
 
@@ -346,26 +346,26 @@ class Producer(_Producer):
     def uses(
         self,
         prop: Property,
-        klass: ProducerInput = ProducerInput,
-        label: AnyStr = "input",
+        klass: type[ProducerInput] = ProducerInput,
+        label: str = "input",
     ) -> None:
-        connector = klass(self, label=f"{self.label}.{label}")
+        connector = klass(self, label=f"{self.label}.{label}")  # type: ignore[attr-defined]
         setattr(self, label, connector)
-        prop >> connector
+        prop >> connector  # type: ignore[operator]
 
     def produces(
         self,
         prop: Property,
-        klass: ProducerOutput = ProducerOutput,
-        label: AnyStr = "output",
+        klass: type[ProducerOutput] = ProducerOutput,
+        label: str = "output",
     ) -> None:
-        connector = klass(self, label=f"{self.label}.{label}")
+        connector = klass(self, label=f"{self.label}.{label}")  # type: ignore[attr-defined]
         setattr(self, label, connector)
         connector >> prop
 
 
 @multimethod
-def contains_mm(producer: Producer, sub_producer: Producer) -> None:
+def contains_mm(producer: Producer, sub_producer: Producer) -> None:  # type: ignore[no-redef]
     """Producer > Producer"""
     _log.info(f"producer {producer} contains producer {sub_producer}")
 
@@ -373,8 +373,9 @@ def contains_mm(producer: Producer, sub_producer: Producer) -> None:
 
 
 @multimethod
-def contains_mm(equipment: Equipment, producer: Producer) -> None:
+def contains_mm(equipment: Equipment, producer: Producer) -> None:  # type: ignore[no-redef]
     """Equipment > Producer"""
     _log.info(f"equipment {equipment} contains producer {producer}")
 
     producer._data_graph.add((equipment._node_iri, BOB.contains, producer._node_iri))
+

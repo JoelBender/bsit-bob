@@ -1,0 +1,99 @@
+# baseURI: http://data.ashrae.org/standard223/1.0/sample/test_device-005
+# imports: http://data.ashrae.org/standard223/1.0/model/all
+
+@prefix bob: <https://github.com/JoelBender/bsit-bob/> .
+@prefix ex42: <urn:ex/test_system-007/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix s223: <http://data.ashrae.org/standard223#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+
+
+
+<http://data.ashrae.org/standard223/1.0/data/test_device-005>
+  a owl:Ontology ;
+  rdfs:isDefinedBy <http://data.ashrae.org/standard223/1.0/sample/test_device-005> ;
+  rdfs:label "test_device-005" ;
+  owl:imports <http://data.ashrae.org/standard223/1.0/model/all> .
+
+ex42:00001 a s223:Connectable,
+        s223:Equipment,
+        s223:Fan ;
+    rdfs:label "VA-1" ;
+    s223:cnx ex42:00003 ;
+    s223:contains ex42:00005 ;
+    s223:hasConnectionPoint ex42:00002,
+        ex42:00003,
+        ex42:00004 ;
+    rdfs:comment "Supply Fan" ;
+    bob:airInlet ex42:00002 ;
+    bob:airOutlet ex42:00003 .
+
+ex42:00002 a s223:ConnectionPoint,
+        s223:InletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "VA-1.airInlet" ;
+    s223:cnx ex42:00001 ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf ex42:00001 ;
+    s223:pairedConnectionPoint ex42:00003 .
+
+ex42:00003 a s223:ConnectionPoint,
+        s223:OutletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "VA-1.airOutlet" ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf ex42:00001 ;
+    s223:pairedConnectionPoint ex42:00002 .
+
+ex42:00004 a s223:ConnectionPoint,
+        s223:InletConnectionPoint,
+        bob:ElectricalConnectionPoint ;
+    rdfs:label "VA-1.electricalInlet" ;
+    s223:cnx ex42:00001 ;
+    s223:hasMedium s223:Constituent-Electricity ;
+    s223:isConnectionPointOf ex42:00001 .
+
+ex42:00005 a s223:Connectable,
+        s223:Equipment ;
+    rdfs:label "VA1-VFD" ;
+    rdfs:comment "VFD for VA-1" .
+
+ex42:00006 a s223:Connectable,
+        s223:Equipment,
+        s223:Fan ;
+    rdfs:label "VA-2" ;
+    s223:cnx ex42:00008 ;
+    s223:hasConnectionPoint ex42:00007,
+        ex42:00008,
+        ex42:00009 ;
+    bob:airInlet ex42:00007 ;
+    bob:airOutlet ex42:00008 .
+
+ex42:00007 a s223:ConnectionPoint,
+        s223:InletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "VA-2.airInlet" ;
+    s223:cnx ex42:00006 ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf ex42:00006 ;
+    s223:pairedConnectionPoint ex42:00008 .
+
+ex42:00008 a s223:ConnectionPoint,
+        s223:OutletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "VA-2.airOutlet" ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf ex42:00006 ;
+    s223:pairedConnectionPoint ex42:00007 .
+
+ex42:00009 a s223:ConnectionPoint,
+        s223:InletConnectionPoint,
+        bob:ElectricalConnectionPoint ;
+    rdfs:label "VA-2.electricalInlet" ;
+    s223:cnx ex42:00006 ;
+    s223:hasMedium s223:Constituent-Electricity ;
+    s223:isConnectionPointOf ex42:00006 .
+

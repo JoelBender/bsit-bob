@@ -1,0 +1,68 @@
+# baseURI: http://data.ashrae.org/standard223/1.0/sample/test_external_reference
+# imports: http://data.ashrae.org/standard223/1.0/model/all
+
+@prefix bacnet: <http://data.ashrae.org/bacnet/2024#> .
+@prefix bob: <https://github.com/JoelBender/bsit-bob/> .
+@prefix ex42: <urn:ex/test_system-007/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix qudtqk: <http://qudt.org/vocab/quantitykind/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix s223: <http://data.ashrae.org/standard223#> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+
+
+
+<http://data.ashrae.org/standard223/1.0/data/test_external_reference>
+  a owl:Ontology ;
+  rdfs:isDefinedBy <http://data.ashrae.org/standard223/1.0/sample/test_external_reference> ;
+  rdfs:label "test_external_reference" ;
+  owl:imports <http://data.ashrae.org/standard223/1.0/model/all> .
+
+ex42:00001 a bacnet:Device,
+        s223:Connectable,
+        s223:Controller,
+        s223:Equipment ;
+    rdfs:label "CGM-2-004" ;
+    bacnet:deviceInstance 5204 ;
+    bacnet:hasObject ex42:00002,
+        ex42:00003 ;
+    rdfs:comment "AHU Controller" .
+
+ex42:00002 a bacnet:DeviceObject,
+        bacnet:Object ;
+    bacnet:isObjectOf ex42:00001 ;
+    bacnet:object-identifier "device,5204" ;
+    bacnet:object-name "CGM-2-004" ;
+    bacnet:object-type bacnet:ObjectType.device ;
+    bacnet:vendor-identifier 5 ;
+    bacnet:vendor-name "Unknown" .
+
+ex42:00003 a bacnet:AnalogInputObject,
+        bacnet:Object ;
+    bacnet:description "Return Air Temeprature" ;
+    bacnet:hasProperty ex42:00005 ;
+    bacnet:isObjectOf ex42:00001 ;
+    bacnet:object-identifier "analog-input,1209" ;
+    bacnet:object-name "RA-T" ;
+    bacnet:object-type bacnet:ObjectType.analog-input .
+
+ex42:00004 a s223:ObservableProperty,
+        s223:Property,
+        s223:QuantifiableObservableProperty,
+        s223:QuantifiableProperty,
+        bob:Temperature ;
+    rdfs:label "fake temp" ;
+    s223:hasExternalReference ex42:00005 ;
+    qudt:hasQuantityKind qudtqk:Temperature ;
+    qudt:hasUnit unit:DEG_C .
+
+ex42:00005 a s223:BACnetExternalReference,
+        s223:ExternalReference ;
+    bacnet:device-identifier "device,5204" ;
+    bacnet:object-identifier "analog-input,1209" ;
+    bacnet:property-identifier "http://data.ashrae.org/bacnet/2024#PropertyIdentifier.present-value" .
+

@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Any
+from typing import Any, Dict
 
 from rdflib import URIRef
 
@@ -29,31 +29,30 @@ class HumiditySensor(Sensor):
     _class_iri = S223.HumiditySensor
     observes: PropertyReference  # Temperature
 
-    def __init__(self, **kwargs: Any) -> None:
+    def __init__(self, config: dict[str, Any] = {}, **kwargs: Any) -> None:
         _sensor_kwargs, _property_kwargs = split_kwargs(kwargs)
 
         if "ofMedium" not in _property_kwargs:
             raise ValueError(
-                "You must provide ofMedium when defining a humidity sensor"
+                "You must provide ofMedium when defining a humidity sensor",
             )
 
-        super().__init__(**_sensor_kwargs)
-
-        self.observes = RelativeHumidity(
-            # isObservedBy=self,
-            label=f"{self.label}.Humidity",
+        observed_prop = RelativeHumidity(
+            label="observed_property",
             **_property_kwargs,
         )
+        _sensor_kwargs["observed_property"] = observed_prop
+
+        super().__init__(config=config,**_sensor_kwargs)
 
 
 class AirHumiditySensor(HumiditySensor):
-    """
-    Air humidity sensor. Can model room sensor or duct sensor.
+    """Air humidity sensor. Can model room sensor or duct sensor.
     """
 
     _class_iri = S223.HumiditySensor
 
-    def __init__(self, **kwargs: Any) -> None:
+    def __init__(self, config: dict[str, Any] = {}, **kwargs: Any) -> None:
         _sensor_kwargs, _property_kwargs = split_kwargs(kwargs)
 
-        super().__init__(ofMedium=Air, **kwargs)
+        super().__init__(config=config, ofMedium=Air, **kwargs)

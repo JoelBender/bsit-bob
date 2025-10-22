@@ -1,5 +1,4 @@
-"""
-This module contains just enough of the BACnet object model to help build
+"""This module contains just enough of the BACnet object model to help build
 example models.  A complete description of BACnet objects and properties is
 beyond the scope of this project.
 """
@@ -7,11 +6,11 @@ beyond the scope of this project.
 from __future__ import annotations
 
 import logging
-from typing import List
+from typing import Union, List
 
-from rdflib import XSD, Literal, URIRef
+from rdflib import Literal, URIRef
 
-from .core import (
+from .core import (  # type: ignore[attr-defined]
     INCLUDE_INVERSE,
     ConnectionPoint,
     Node,
@@ -34,7 +33,7 @@ class Device(Controller):
     _class_iri: URIRef = BACNET.Device
     _namespace = BACNET
     _device_object: DeviceObject  # reference to a device's DeviceObject
-    _bacnet_objects = set()  # references to all objects
+    _bacnet_objects: set = set()  # references to all objects  # type: ignore[var-annotated]
 
     deviceInstance: Literal
 
@@ -53,36 +52,34 @@ class Object(Node):
     objectType: URIRef
     description: Literal
 
-    _device: Device  # reference from an object to its device
+    # _device: Device  # reference from an object to its device (duplicate definition removed)
     _present_value: BACnetExternalReference
 
     @property
     def presentValue(self) -> BACnetExternalReference:
-        """
-        Creates the present-value reference on demand to be used for a property.
+        """Creates the present-value reference on demand to be used for a property.
         Cache it in case there are multiple references.
         """
         if getattr(self, "_present_value", None) is None:
             self._present_value = BACnetExternalReference(
-                f"bacnet://{self._device.deviceInstance}/{self.objectIdentifier}/present-value"
+                f"bacnet://{self._device.deviceInstance}/{self.objectIdentifier}/present-value",
             )
             self._data_graph.add(
-                (self._node_iri, BACNET.hasProperty, self._present_value._node_iri)
+                (self._node_iri, BACNET.hasProperty, self._present_value._node_iri),
             )
         return self._present_value
 
     @property
     def relinquishDefault(self) -> BACnetExternalReference:
-        """
-        Creates the relinquish-default reference on demand to be used for a property.
+        """Creates the relinquish-default reference on demand to be used for a property.
         Cache it in case there are multiple references.
         """
         if getattr(self, "_relinquish_default", None) is None:
             self._relinquish_default = BACnetExternalReference(
-                f"bacnet://{self._device.deviceInstance}/{self.objectIdentifier}/relinquish-default"
+                f"bacnet://{self._device.deviceInstance}/{self.objectIdentifier}/relinquish-default",
             )
             self._data_graph.add(
-                (self._node_iri, BACNET.hasProperty, self._relinquish_default._node_iri)
+                (self._node_iri, BACNET.hasProperty, self._relinquish_default._node_iri),
             )
         return self._relinquish_default
 
@@ -115,12 +112,12 @@ def contains_mm(device_: Device, object_: Object) -> None:
 
     if INCLUDE_INVERSE:
         device_._data_graph.add(
-            (object_._node_iri, BACNET.isObjectOf, device_._node_iri)
+            (object_._node_iri, BACNET.isObjectOf, device_._node_iri),
         )
 
 
 @multimethod
-def contains_mm(device_: Device, object_list: List[Object]) -> None:
+def contains_mm(device_: Device, object_list: list[Object]) -> None:  # type: ignore[no-redef]
     """Device > [ Object, ... ]"""
     _log.info(f"device {device_} contains object list {object_list}")
 
@@ -143,13 +140,13 @@ def connect_mm(object_: Object, cp_: ConnectionPoint) -> None:
 
 
 @multimethod
-def connect_mm(object1_: Object, object2_: Object) -> None:
+def connect_mm(object1_: Object, object2_: Object) -> None:  # type: ignore[no-redef]
     """Object >> Object"""
     _log.info(f"object {object1_} mapsTo {object2_}")
 
     # add it to the graph
     object1_._data_graph.add(
-        (object1_._node_iri, BACNET.PeerToPeer, object2_._node_iri)
+        (object1_._node_iri, BACNET.PeerToPeer, object2_._node_iri),
     )
 
     # if INCLUDE_INVERSE:
@@ -168,7 +165,7 @@ class DeviceObject(Object):
     }
     systemStatus: URIRef  # one of bacnet:DeviceStatus
     vendorName: Literal
-    vendorIdentifier: XSD.nonNegativeInteger
+    vendorIdentifier: Union[str, int]  # XSD.nonNegativeInteger  # type: ignore[valid-type]
     modelName: Literal
 
 

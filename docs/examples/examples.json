@@ -1,0 +1,7 @@
+{
+  "basics_fan_from_yaml": { "script": "fan_device_from_yaml.py", "out_ttl": "basics_fan_from_yaml.ttl" },
+  "basics_fan_from_class": { "script": "fan_device_from_class.py", "out_ttl": "basics_fan_from_class.ttl" },
+  "basics_ahu_from_class": { "script": "ahu_system_from_class.py", "out_ttl": "basics_ahu_from_class.ttl" },
+  "basics_ahu_from_yaml": { "script": "ahu_system_from_yaml.py", "out_ttl": "basics_ahu_from_yaml.ttl" },
+  "core_minimal": { "script": "core_minimal.py", "out_ttl": "core_minimal.ttl" }
+}

@@ -21,7 +21,7 @@ from .ratio import RPM, GasConcentration, Percent, PercentCommand, RelativeHumid
 from .setpoint import Setpoint
 from .states import (
     DaylightDetected,
-    Motion,
+    MotionDetection,
     NormalAlarmStatus,
     OccupancyStatus,
     OnOffCommand,

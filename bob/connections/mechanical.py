@@ -35,6 +35,6 @@ class MechanicalOutletConnectionPoint(OutletConnectionPoint, MechanicalConnectio
 
 
 class MechanicalBidirectionalConnectionPoint(
-    BidirectionalConnectionPoint, MechanicalConnectionPoint
+    BidirectionalConnectionPoint, MechanicalConnectionPoint,
 ):
     _class_iri = S223.BidirectionalConnectionPoint

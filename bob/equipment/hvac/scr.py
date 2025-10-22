@@ -5,12 +5,12 @@ from rdflib import URIRef
 from bob.properties import PercentCommand
 from bob.properties.electricity import Amps, ElectricPowerkW
 
+from ...connections.controlsignal import (
+    ModulationSignalInletConnectionPoint,
+)
 from ...connections.electricity import (
     Electricity_600VLL_3Ph_60HzInletConnectionPoint,
     Electricity_600VLL_3Ph_60HzOutletConnectionPoint,
-)
-from ...connections.controlsignal import (
-    ModulationSignalInletConnectionPoint,
 )
 from ...core import BOB, P223, Equipment
 
@@ -37,8 +37,8 @@ class SCR(Equipment):
     # a SCR accept 0-10VDC signal to modulate
     _class_iri: URIRef = P223.SCR
 
-    def __init__(self, config: Dict = SCR_template, **kwargs):
+    def __init__(self, config: dict = SCR_template, **kwargs):
         config["properties"] = config.get("properties", SCR_template["properties"])
         kwargs = {**config.get("params", {}), **kwargs}
-        super().__init__(config, **kwargs)
-        self.electricalOutlet.paired_to(self.electricalInlet)
+        super().__init__(**config, **kwargs)  # type: ignore[misc]
+        self.electricalOutlet.paired_to(self.electricalInlet)  # type: ignore[attr-defined]

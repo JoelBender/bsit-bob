@@ -1,0 +1,194 @@
+# baseURI: http://data.ashrae.org/standard223/1.0/sample/test_create_from_yaml-001
+# imports: http://data.ashrae.org/standard223/1.0/model/all
+
+@prefix bob: <https://github.com/JoelBender/bsit-bob/> .
+@prefix ex42: <urn:ex/test_system-007/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix s223: <http://data.ashrae.org/standard223#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+
+
+
+<http://data.ashrae.org/standard223/1.0/data/test_create_from_yaml-001>
+  a owl:Ontology ;
+  rdfs:isDefinedBy <http://data.ashrae.org/standard223/1.0/sample/test_create_from_yaml-001> ;
+  rdfs:label "test_create_from_yaml-001" ;
+  owl:imports <http://data.ashrae.org/standard223/1.0/model/all> .
+
+ex42:00001 a s223:Connectable,
+        s223:Equipment,
+        s223:Fan,
+        bob:DynamicEquipment ;
+    rdfs:label "Fan in a duct" ;
+    s223:cnx ex42:00003 ;
+    s223:contains ex42:00006,
+        ex42:00010,
+        ex42:00013 ;
+    s223:hasConnectionPoint ex42:00002,
+        ex42:00003,
+        ex42:00004,
+        ex42:00005 ;
+    rdfs:comment "Just a Fan in a duct" ;
+    bob:airInlet ex42:00002 ;
+    bob:airOutlet ex42:00003 .
+
+ex42:00002 a s223:ConnectionPoint,
+        s223:InletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "Fan in a duct.airInlet" ;
+    s223:cnx ex42:00001 ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf ex42:00001 ;
+    s223:pairedConnectionPoint ex42:00003 .
+
+ex42:00003 a s223:ConnectionPoint,
+        s223:OutletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "Fan in a duct.airOutlet" ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf ex42:00001 ;
+    s223:pairedConnectionPoint ex42:00002 .
+
+ex42:00004 a s223:ConnectionPoint,
+        s223:InletConnectionPoint,
+        bob:ElectricalConnectionPoint ;
+    rdfs:label "Fan in a duct.electricalInlet" ;
+    s223:cnx ex42:00001 ;
+    s223:hasMedium s223:Constituent-Electricity ;
+    s223:isConnectionPointOf ex42:00001 .
+
+ex42:00005 a s223:ConnectionPoint,
+        s223:InletConnectionPoint,
+        bob:ElectricalConnectionPoint,
+        bob:Electricity_600VLL_3Ph_60HzConnectionPoint ;
+    rdfs:label "Fan in a duct.electricityInlet" ;
+    s223:cnx ex42:00001 ;
+    s223:hasMedium s223:AC-600VLL-3Ph-60Hz ;
+    s223:isConnectionPointOf ex42:00001 .
+
+ex42:00006 a s223:Connectable,
+        s223:Equipment,
+        s223:Fan ;
+    rdfs:label "TheFan" ;
+    s223:cnx ex42:00008 ;
+    s223:connected ex42:00010,
+        ex42:00013 ;
+    s223:connectedFrom ex42:00010 ;
+    s223:connectedThrough ex42:00016,
+        ex42:00017 ;
+    s223:connectedTo ex42:00013 ;
+    s223:hasConnectionPoint ex42:00007,
+        ex42:00008,
+        ex42:00009 ;
+    s223:hasRole s223:Role-Supply ;
+    rdfs:comment "The Fan, which is in a duct" ;
+    bob:airInlet ex42:00007 ;
+    bob:airOutlet ex42:00008 .
+
+ex42:00007 a s223:ConnectionPoint,
+        s223:InletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "TheFan.airInlet" ;
+    s223:cnx ex42:00006 ;
+    s223:connectsThrough ex42:00016 ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf ex42:00006 ;
+    s223:pairedConnectionPoint ex42:00008 .
+
+ex42:00008 a s223:ConnectionPoint,
+        s223:OutletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "TheFan.airOutlet" ;
+    s223:cnx ex42:00017 ;
+    s223:connectsThrough ex42:00017 ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf ex42:00006 ;
+    s223:pairedConnectionPoint ex42:00007 .
+
+ex42:00009 a s223:ConnectionPoint,
+        s223:InletConnectionPoint,
+        bob:ElectricalConnectionPoint,
+        bob:Electricity_600VLL_3Ph_60HzConnectionPoint ;
+    rdfs:label "TheFan.electricalInlet" ;
+    s223:cnx ex42:00006 ;
+    s223:hasMedium s223:AC-600VLL-3Ph-60Hz ;
+    s223:isConnectionPointOf ex42:00006 .
+
+ex42:00010 a s223:Connectable,
+        s223:Junction ;
+    rdfs:label "TheDuctBefore" ;
+    s223:cnx ex42:00012 ;
+    s223:connected ex42:00006 ;
+    s223:connectedThrough ex42:00016 ;
+    s223:connectedTo ex42:00006 ;
+    s223:hasConnectionPoint ex42:00011,
+        ex42:00012 ;
+    s223:hasMedium s223:Fluid-Air ;
+    rdfs:comment "Supply Air Duct" .
+
+ex42:00011 a s223:ConnectionPoint,
+        s223:InletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "TheDuctBefore.airIn" ;
+    s223:cnx ex42:00010 ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf ex42:00010 ;
+    s223:mapsTo ex42:00002 .
+
+ex42:00012 a s223:ConnectionPoint,
+        s223:OutletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "TheDuctBefore.airOut" ;
+    s223:cnx ex42:00016 ;
+    s223:connectsThrough ex42:00016 ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf ex42:00010 .
+
+ex42:00013 a s223:Connectable,
+        s223:Junction ;
+    rdfs:label "TheDuctAfter" ;
+    s223:cnx ex42:00015 ;
+    s223:connected ex42:00006 ;
+    s223:connectedFrom ex42:00006 ;
+    s223:connectedThrough ex42:00017 ;
+    s223:hasConnectionPoint ex42:00014,
+        ex42:00015 ;
+    s223:hasMedium s223:Fluid-Air ;
+    rdfs:comment "Supply Air Duct" .
+
+ex42:00014 a s223:ConnectionPoint,
+        s223:InletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "TheDuctAfter.airIn" ;
+    s223:cnx ex42:00013 ;
+    s223:connectsThrough ex42:00017 ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf ex42:00013 .
+
+ex42:00015 a s223:ConnectionPoint,
+        s223:OutletConnectionPoint,
+        bob:AirConnectionPoint ;
+    rdfs:label "TheDuctAfter.airOut" ;
+    s223:hasMedium s223:Fluid-Air ;
+    s223:isConnectionPointOf ex42:00013 ;
+    s223:mapsTo ex42:00003 .
+
+ex42:00016 a s223:Connection ;
+    s223:cnx ex42:00007 ;
+    s223:connectsAt ex42:00007,
+        ex42:00012 ;
+    s223:connectsFrom ex42:00010 ;
+    s223:connectsTo ex42:00006 ;
+    s223:hasMedium s223:Fluid-Air .
+
+ex42:00017 a s223:Connection ;
+    s223:cnx ex42:00014 ;
+    s223:connectsAt ex42:00008,
+        ex42:00014 ;
+    s223:connectsFrom ex42:00006 ;
+    s223:connectsTo ex42:00013 ;
+    s223:hasMedium s223:Fluid-Air .
+

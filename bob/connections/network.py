@@ -1,5 +1,8 @@
 from rdflib import Literal
 
+from bob.enum import ProtocolEnum
+from bob.properties.network import Mbit_per_seconds
+
 from ..core import (
     BOB,
     P223,
@@ -8,8 +11,6 @@ from ..core import (
     Connection,
     ConnectionPoint,
 )
-from bob.enum import ProtocolEnum
-from bob.properties.network import Mbit_per_seconds
 from ..enum import PowerAndSignal, Signal
 
 _namespace = BOB
@@ -31,7 +32,7 @@ class RS485ConnectionPoint(ConnectionPoint):
 
 
 class RS485BidirectionalConnectionPoint(
-    BidirectionalConnectionPoint, RS485ConnectionPoint
+    BidirectionalConnectionPoint, RS485ConnectionPoint,
 ):
     _class_iri = S223.BidirectionalConnectionPoint
 
@@ -40,7 +41,7 @@ class RS485BidirectionalConnectionPoint(
 
 
 class EthernetConnection(Connection):
-    hasMedium = Signal.Ethernet
+    hasMedium = Signal.WiredEthernet
     _class_iri = S223.Connection
 
 
@@ -50,14 +51,14 @@ class EthernetConnectionPoint(ConnectionPoint):
         "data_rate": P223.data_rate,
         "vlan": P223.VLAN,
     }
-    hasMedium = Signal.Ethernet
+    hasMedium = Signal.WiredEthernet
     hasProtocol: ProtocolEnum
     data_rate: Mbit_per_seconds
     vlan: Literal
 
 
 class EthernetBidirectionalConnectionPoint(
-    BidirectionalConnectionPoint, EthernetConnectionPoint
+    BidirectionalConnectionPoint, EthernetConnectionPoint,
 ):
     _class_iri = S223.BidirectionalConnectionPoint
 

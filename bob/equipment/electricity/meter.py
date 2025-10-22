@@ -1,6 +1,6 @@
-from typing import Dict
+from typing import Dict, Optional
 
-from bob.enum import Numerical, ElectricalPhaseIdentifier
+from bob.enum import ElectricalPhaseIdentifier, Numerical
 from bob.properties.electricity import (
     ElectricApparentEnergy,
     ElectricApparentPower,
@@ -230,8 +230,7 @@ three_phase_electricalmeter_template = {
 
 
 class ThreePhaseElectricalMeter(Equipment):
-    """
-    This is an attemp to model a complete Electrical meter
+    """This is an attemp to model a complete Electrical meter
     starting with all the voltages and current sensors.
     All other information being results
     of calculation based on those measures.
@@ -244,29 +243,29 @@ class ThreePhaseElectricalMeter(Equipment):
 
     _class_iri: URIRef = S223.ElectricMeter
 
-    def __init__(self, config: Dict = None, **kwargs):
+    def __init__(self, config: dict | None = None, **kwargs):
         _config = template_update(three_phase_electricalmeter_template, config)
         if "medium" not in kwargs:
             raise ValueError(
-                "You must provide medium when defining an electrical meter"
+                "You must provide medium when defining an electrical meter",
             )
         _medium = kwargs.pop("medium")
         for k, v in _config["sensors"].items():
             v["ofMedium"] = _medium
 
-        kwargs = {**_config.get("params", {}), **kwargs}
-        super().__init__(_config, **kwargs)
+        kwargs = {**_config.pop("params", {}), **kwargs}
+        super().__init__(config=_config, **kwargs)
 
-    def set_measurement_location(self, node: Node = None):
+    def set_measurement_location(self, node: Node | None = None):
         self.set_voltage_measurement_location(node)
         self.set_current_measurement_location(node)
 
-    def set_voltage_measurement_location(self, node: Node = None):
-        for each in self._sensors:
+    def set_voltage_measurement_location(self, node: Node | None = None):
+        for each in self._sensors:  # type: ignore
             if isinstance(each, VoltageSensor):
-                each % node
+                each % node  # type: ignore
 
-    def set_current_measurement_location(self, node: Node = None):
-        for each in self._sensors:
+    def set_current_measurement_location(self, node: Node | None = None):
+        for each in self._sensors:  # type: ignore
             if isinstance(each, CurrentSensor):
-                each % node
+                each % node  # type: ignore

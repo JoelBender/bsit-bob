@@ -1,0 +1,38 @@
+# This workflow will install Python dependencies, run tests and lint with a variety of Python versions
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+
+name: Python package
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    name: continuous-integration
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version:
+          - "3.13"
+
+    steps:
+      - uses: actions/checkout@v5
+      - uses: astral-sh/ruff-action@v3
+      - name: Install uv and set the Python version
+        uses: astral-sh/setup-uv@v6
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install the project ${{ matrix.python-version }}
+        run: uv sync --locked --all-extras --dev
+      - name: Ruff linter ${{ matrix.python-version }}
+        run: ruff check .
+      - name: Mypy type check install
+        run: uv pip install mypy 
+      - name: Mypy type check run
+        run: uv run mypy bob/
+      - name: Run tests
+        # For example, using `pytest`
+        run: uv run pytest tests

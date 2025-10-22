@@ -1,3 +1,4 @@
+
 from bob.enum import AnalogSignalTypeEnum, BinarySignalTypeEnum
 
 from ..core import (
@@ -17,7 +18,7 @@ _namespace = BOB
 
 # === GENERAL
 class OnOffSignalConnection(Connection):
-    hasMedium = Electricity.OnOffSignal
+    hasMedium = Electricity.OnOffSignal #noqa f841
     _class_iri = S223.Connection
 
 
@@ -25,7 +26,7 @@ class OnOffSignalConnectionPoint(ConnectionPoint):
     _attr_uriref = {"hasSignalType": P223.hasSignalType}
 
     hasMedium = Electricity.OnOffSignal
-    hasSignalType: BinarySignalTypeEnum
+    hasSignalType = BinarySignalTypeEnum
 
 
 class OnOffSignalInletConnectionPoint(InletConnectionPoint, OnOffSignalConnectionPoint):
@@ -33,7 +34,7 @@ class OnOffSignalInletConnectionPoint(InletConnectionPoint, OnOffSignalConnectio
 
 
 class OnOffSignalOutletConnectionPoint(
-    OutletConnectionPoint, OnOffSignalConnectionPoint
+    OutletConnectionPoint, OnOffSignalConnectionPoint,
 ):
     _class_iri = P223.BinaryOutput
 
@@ -51,16 +52,88 @@ class ModulationSignalConnectionPoint(ConnectionPoint):
     _attr_uriref = {"hasSignalType": P223.hasSignalType}
 
     hasMedium = ModulatedSignal
-    hasSignalType: AnalogSignalTypeEnum
+    hasSignalType = AnalogSignalTypeEnum
 
 
 class ModulationSignalInletConnectionPoint(
-    InletConnectionPoint, ModulationSignalConnectionPoint
+    InletConnectionPoint, ModulationSignalConnectionPoint,
 ):
     _class_iri = P223.AnalogInput
 
 
 class ModulationSignalOutletConnectionPoint(
-    OutletConnectionPoint, ModulationSignalConnectionPoint
+    OutletConnectionPoint, ModulationSignalConnectionPoint,
 ):
     _class_iri = P223.AnalogOutput
+
+
+class Modulated_0_10V_Connection(Connection):
+    hasMedium = ModulatedSignal.DC0_10
+    _class_iri = S223.Connection
+
+
+class Modulated_0_10V_ConnectionPoint(ConnectionPoint):
+    _attr_uriref = {"hasSignalType": P223.hasSignalType}
+
+    hasMedium = ModulatedSignal.DC0_10
+    hasSignalType = AnalogSignalTypeEnum
+
+
+class Modulated_0_10V_InletConnectionPoint(
+    InletConnectionPoint, ModulationSignalConnectionPoint,
+):
+    _class_iri = P223.AnalogInput
+
+
+class Modulated_0_10V_OutletConnectionPoint(
+    OutletConnectionPoint, ModulationSignalConnectionPoint,
+):
+    _class_iri = P223.AnalogOutput
+
+
+class Modulated_4_20mA_Connection(Connection):
+    hasMedium = ModulatedSignal.DC0_10
+    _class_iri = S223.Connection
+
+
+class Modulated_4_20mA_ConnectionPoint(ConnectionPoint):
+    _attr_uriref = {"hasSignalType": P223.hasSignalType}
+
+    hasMedium = ModulatedSignal.DC0_10
+    hasSignalType = AnalogSignalTypeEnum
+
+
+class Modulated_4_20mA_InletConnectionPoint(
+    InletConnectionPoint, ModulationSignalConnectionPoint,
+):
+    _class_iri = P223.AnalogInput
+
+
+class Modulated_4_20mA_OutletConnectionPoint(
+    OutletConnectionPoint, ModulationSignalConnectionPoint,
+):
+    _class_iri = P223.AnalogOutput
+
+
+class ResistiveSignalConnection(Connection):
+    hasMedium = ModulatedSignal.Resistive
+    _class_iri = S223.Connection
+
+
+class ResistiveSignalConnectionPoint(ConnectionPoint):
+    _attr_uriref = {"hasSignalType": P223.hasSignalType}
+
+    hasMedium = ModulatedSignal.Resistive
+    hasSignalType = AnalogSignalTypeEnum
+
+
+class ResistiveSignalInletConnectionPoint(
+    InletConnectionPoint, ResistiveSignalConnectionPoint,
+):
+    _class_iri = P223.ResistiveInput
+
+
+class ResistiveSignalOutletConnectionPoint(
+    OutletConnectionPoint, ResistiveSignalConnectionPoint,
+):
+    _class_iri = P223.ResistiveOutput

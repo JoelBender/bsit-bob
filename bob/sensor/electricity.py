@@ -1,5 +1,4 @@
-from typing import Any
-
+from typing import Any, Dict
 
 from ..core import (
     BOB,
@@ -15,11 +14,11 @@ _namespace = BOB
 
 class VoltageSensor(Sensor):
     _class_iri = S223.Sensor
-    observes: PropertyReference
-    hasMinRange: PropertyReference
-    hasMaxRange: PropertyReference
+    observes: PropertyReference  # type: ignore[assignment]
+    hasMinRange: PropertyReference  # type: ignore[assignment]
+    hasMaxRange: PropertyReference  # type: ignore[assignment]
 
-    def __init__(self, **kwargs: Any) -> None:
+    def __init__(self, config: dict[str, Any] = {}, **kwargs: Any) -> None:
         _sensor_kwargs, _property_kwargs = split_kwargs(kwargs)
 
         if "ofMedium" not in _property_kwargs:
@@ -28,50 +27,49 @@ class VoltageSensor(Sensor):
             # )
             _property_kwargs["ofMedium"] = Electricity
 
-        super().__init__(**_sensor_kwargs)
-
-        self.observes = Volts(
-            # isObservedBy=self,
-            label=f"{self.label}.Voltage",
+        observed_prop = Volts(
+            label="observed_property",
             **_property_kwargs,
         )
+        _sensor_kwargs["observed_property"] = observed_prop
+
+        super().__init__(config=config, **_sensor_kwargs)
 
 
 class CurrentSensor(Sensor):
     _class_iri = S223.Sensor
-    observes: PropertyReference
-    hasMinRange: PropertyReference
-    hasMaxRange: PropertyReference
+    observes: PropertyReference  # type: ignore[assignment]
+    hasMinRange: PropertyReference  # type: ignore[assignment]
+    hasMaxRange: PropertyReference  # type: ignore[assignment]
 
-    def __init__(self, **kwargs: Any) -> None:
+    def __init__(self, config: dict[str, Any] = {}, **kwargs: Any) -> None:
         _sensor_kwargs, _property_kwargs = split_kwargs(kwargs)
 
         if "ofMedium" not in _property_kwargs:
             _property_kwargs["ofMedium"] = Electricity
 
-        super().__init__(**_sensor_kwargs)
-
-        self.observes = Amps(
-            # isObservedBy=self,
-            label=f"{self.label}.Amps",
+        observed_prop = Amps(
+            label="observed_property",
             **_property_kwargs,
         )
+        _sensor_kwargs["observed_property"] = observed_prop
 
+        super().__init__(config=config, **_sensor_kwargs)
 
 class DryContactSensor(Sensor):
     _class_iri = S223.Sensor
     observes: PropertyReference
 
-    def __init__(self, **kwargs: Any) -> None:
+    def __init__(self, config: dict[str, Any] = {}, **kwargs: Any) -> None:
         _sensor_kwargs, _property_kwargs = split_kwargs(kwargs)
 
         if "ofMedium" not in _property_kwargs:
             _property_kwargs["ofMedium"] = Electricity
 
-        super().__init__(**_sensor_kwargs)
-
-        self.observes = OnOffStatus(
-            # isObservedBy=self,
-            label=f"{self.label}.Amps",
+        observed_prop = OnOffStatus(
+            label="observed_property",
             **_property_kwargs,
         )
+        _sensor_kwargs["observed_property"] = observed_prop
+
+        super().__init__(config=config, **_sensor_kwargs)

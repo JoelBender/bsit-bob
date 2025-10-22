@@ -1,0 +1,8 @@
+digraph G {
+  graph [rankdir="LR"];
+  node [fontsize=10];
+  edge [fontsize=9];
+  n_4ec92bcb75 [label="SF-1", shape="box"];
+  n_63b1f8e18c [label="SF-1.Speed", shape="circle"];
+  n_4ec92bcb75 -> n_63b1f8e18c [label="hasProperty"];
+}

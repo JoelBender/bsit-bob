@@ -37,12 +37,12 @@ class OccupancyZoneConnectionPoint(ZoneConnectionPoint):
 
 
 class OccupancyInletZoneConnectionPoint(
-    OccupancyZoneConnectionPoint, InletZoneConnectionPoint
+    OccupancyZoneConnectionPoint, InletZoneConnectionPoint,
 ):
     _class_iri = BOB.InletZoneConnectionPoint
 
 
 class OccupancyOutletZoneConnectionPoint(
-    OccupancyZoneConnectionPoint, OutletZoneConnectionPoint
+    OccupancyZoneConnectionPoint, OutletZoneConnectionPoint,
 ):
     _class_iri = BOB.OutletZoneConnectionPoint

@@ -1,0 +1,40 @@
+# baseURI: http://data.ashrae.org/standard223/1.0/sample/test_device-001
+# imports: http://data.ashrae.org/standard223/1.0/model/all
+
+@prefix ex16: <urn:ex/test_device-001/> .
+@prefix ex42: <urn:ex/test_system-007/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix s223: <http://data.ashrae.org/standard223#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+
+
+
+<http://data.ashrae.org/standard223/1.0/data/test_device-001>
+  a owl:Ontology ;
+  rdfs:isDefinedBy <http://data.ashrae.org/standard223/1.0/sample/test_device-001> ;
+  rdfs:label "test_device-001" ;
+  owl:imports <http://data.ashrae.org/standard223/1.0/model/all> .
+
+ex42:00001 a s223:Connectable,
+        s223:Equipment ;
+    rdfs:label "d1" .
+
+ex42:00002 a s223:Connectable,
+        s223:Equipment,
+        ex16:TestEquipment2 ;
+    rdfs:label "d2" .
+
+ex42:00003 a s223:Connectable,
+        s223:Equipment,
+        ex16:TestEquipment3 ;
+    rdfs:label "d3" ;
+    s223:hasProperty ex42:00004 ;
+    ex16:prop ex42:00004 .
+
+ex42:00004 a s223:Property,
+        ex16:TestProperty ;
+    s223:hasValue 1 .
+

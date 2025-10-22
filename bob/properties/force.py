@@ -8,6 +8,7 @@ from ..core import (
     Medium,
     QuantifiableObservableProperty,
 )
+from ..enum import Air
 
 _namespace = BOB
 
@@ -27,6 +28,8 @@ class Nm(QuantifiableObservableProperty):
 class Pressure(QuantifiableObservableProperty):
     hasQuantityKind = QUANTITYKIND.Pressure
 
+class AirPressure(Pressure):
+    ofMedium = Air
 
 class DifferentialStaticPressure(QuantifiableObservableProperty):
     hasQuantityKind = QUANTITYKIND.ForcePerArea
@@ -35,5 +38,5 @@ class DifferentialStaticPressure(QuantifiableObservableProperty):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self._data_graph.add(
-            (self._node_iri, QUDT.isDeltaQuantity, Literal(True, datatype=XSD.boolean))
+            (self._node_iri, QUDT.isDeltaQuantity, Literal(True, datatype=XSD.boolean)),
         )

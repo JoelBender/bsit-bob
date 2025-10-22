@@ -29,12 +29,12 @@ class RefrigerantInletConnectionPoint(InletConnectionPoint, RefrigerantConnectio
 
 
 class RefrigerantOutletConnectionPoint(
-    OutletConnectionPoint, RefrigerantConnectionPoint
+    OutletConnectionPoint, RefrigerantConnectionPoint,
 ):
     _class_iri = S223.OutletConnectionPoint
 
 
 class RefrigerantBidirectionalConnectionPoint(
-    BidirectionalConnectionPoint, RefrigerantConnectionPoint
+    BidirectionalConnectionPoint, RefrigerantConnectionPoint,
 ):
     _class_iri = S223.BidirectionalConnectionPoint

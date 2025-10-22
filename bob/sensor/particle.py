@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Any
+from typing import Any, Dict
 
 from ..core import (
     BOB,
@@ -18,16 +18,18 @@ class ParticulateSensor(Sensor):
     _class_iri = S223.ParticulateSensor
     observes: PropertyReference  # ParticulateCount
 
-    def __init__(self, **kwargs: Any) -> None:
+    def __init__(self, config: dict[str, Any] = {}, **kwargs: Any) -> None:
         _sensor_kwargs, _property_kwargs = split_kwargs(kwargs)
 
-        super().__init__(**_sensor_kwargs)
-
-        self.observes = ParticulateCount(
-            label=f"{self.label}.ParticulateCount",  # needs more focus
+        observed_prop = ParticulateCount(
+            label="observed_property",  # needs more focus
             ofMedium=Air,
             **_property_kwargs,
         )
+
+        _sensor_kwargs["observed_property"] = observed_prop
+
+        super().__init__(config=config, **_sensor_kwargs)
 
 
 class UltraFineParticulateSensor(ParticulateSensor):
@@ -36,8 +38,8 @@ class UltraFineParticulateSensor(ParticulateSensor):
     comment = "Ultra Fine Particulate Sensor"
 
     # measuresSubstance: Substance = PM1_0
-    def __init__(self, **kwargs):
-        super().__init__(ofSubstance=Particulate.PM1_0, **kwargs)
+    def __init__(self, config: dict[str, Any] = {}, **kwargs):
+        super().__init__(ofSubstance=Particulate.PM1_0, config=config, **kwargs)
 
 
 class FineParticulateSensor(ParticulateSensor):
@@ -46,8 +48,8 @@ class FineParticulateSensor(ParticulateSensor):
     comment = "Fine Particulate Sensor"
 
     # measuresSubstance: Substance = PM2_5
-    def __init__(self, **kwargs):
-        super().__init__(ofSubstance=Particulate.PM2_5, **kwargs)
+    def __init__(self, config: dict[str, Any] = {}, **kwargs):
+        super().__init__(ofSubstance=Particulate.PM2_5, config=config, **kwargs)
 
 
 class CoarseParticulateSensor(ParticulateSensor):
@@ -56,5 +58,5 @@ class CoarseParticulateSensor(ParticulateSensor):
     comment = "Coarse Particulate Sensor"
 
     # measuresSubstance: Substance = PM10_0
-    def __init__(self, **kwargs):
-        super().__init__(ofSubstance=Particulate.PM10_0, **kwargs)
+    def __init__(self, config: dict[str, Any] = {}, **kwargs):
+        super().__init__(ofSubstance=Particulate.PM10_0, config=config, **kwargs)

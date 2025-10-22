@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Dict
 
 from bob.properties.states import OnOffStatus
 
@@ -15,10 +15,12 @@ class IntrusionSensor(Sensor):
     _class_iri = S223.Sensor
     observes: PropertyReference  # OnOffStatus
 
-    def __init__(self, **kwargs: Any) -> None:
+    def __init__(self, config: dict[str, Any] = {}, **kwargs: Any) -> None:
         _sensor_kwargs, _property_kwargs = split_kwargs(kwargs)
 
-        super().__init__(**_sensor_kwargs)
-        self.observes = OnOffStatus(
-            label=f"{self.label}.intrusion_status", **_property_kwargs
+        observed_prop = OnOffStatus(
+            label="observed_property", **_property_kwargs,
         )
+
+        _sensor_kwargs["observed_property"] = observed_prop
+        super().__init__(config=config, **_sensor_kwargs)

@@ -1,0 +1,12 @@
+name: ahu_system
+template_class: System
+params:
+  label: "AHU-1"
+
+equipment:
+  SF:
+    class: Fan
+  Coil:
+    class: ChilledWaterCoil
+air_connections:
+  - SF.airOutlet -> Coil.airInlet

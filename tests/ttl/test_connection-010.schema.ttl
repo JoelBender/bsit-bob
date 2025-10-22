@@ -1,0 +1,1240 @@
+# baseURI: http://data.ashrae.org/standard223/1.0/sample/test_connection-010
+# imports: http://data.ashrae.org/standard223/1.0/model/all
+
+@prefix bob: <https://github.com/JoelBender/bsit-bob/> .
+@prefix ex8: <urn:ex/test_connection-008/> .
+@prefix g36: <http://data.ashrae.org/standard223/1.0/extension/g36#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix p223: <http://data.ashrae.org/proposal-to-standard223#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix qudtqk: <http://qudt.org/vocab/quantitykind/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix s223: <http://data.ashrae.org/standard223#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+
+
+
+<http://data.ashrae.org/standard223/1.0/data/test_connection-010>
+  a owl:Ontology ;
+  rdfs:isDefinedBy <http://data.ashrae.org/standard223/1.0/sample/test_connection-010> ;
+  rdfs:label "test_connection-010" ;
+  owl:imports <http://data.ashrae.org/standard223/1.0/model/all> .
+
+[] a s223:Property ;
+    rdfs:label "Air.Constituent-Vapor-H2O" ;
+    s223:ofConstituent p223:Constituent-Vapor-H2O .
+
+[] a s223:Property ;
+    rdfs:label "CompressedAir.Constituent-Vapor-H2O" ;
+    s223:ofConstituent p223:Constituent-Vapor-H2O .
+
+[] a s223:Property,
+        s223:QuantifiableProperty ;
+    rdfs:label "R-22.Constituent-R-22" ;
+    s223:ofConstituent p223:Constituent-R-22 ;
+    qudt:hasQuantityKind qudtqk:VolumeFraction ;
+    qudt:hasUnit unit:PERCENT .
+
+[] a s223:Property,
+        s223:QuantifiableProperty ;
+    rdfs:label "R-410A.Constituent-R-410A" ;
+    s223:ofConstituent p223:Constituent-R-410A ;
+    qudt:hasQuantityKind qudtqk:VolumeFraction ;
+    qudt:hasUnit unit:PERCENT .
+
+bob:AirConnectionPoint a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "bob.connections.air.AirConnectionPoint" ;
+    rdfs:subClassOf s223:ConnectionPoint ;
+    sh:property [ a sh:PropertyShape ;
+            sh:class s223:EnumerationKind ;
+            sh:path s223:hasMedium ] .
+
+bob:Building a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "bob.space.physical.Building" ;
+    rdfs:subClassOf s223:PhysicalSpace ;
+    sh:property [ a sh:PropertyShape ;
+            sh:path bob:area ] .
+
+bob:ChilledWaterConnectionPoint a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "bob.connections.liquid.ChilledWaterConnectionPoint" ;
+    rdfs:subClassOf s223:ConnectionPoint ;
+    sh:property [ a sh:PropertyShape ;
+            sh:class s223:EnumerationKind ;
+            sh:path s223:hasMedium ] .
+
+bob:ElectricalConnectionPoint a rdfs:Class ;
+    rdfs:label "bob.connections.electricity.ElectricalConnectionPoint" ;
+    rdfs:subClassOf s223:ConnectionPoint .
+
+bob:Electricity_600VLL_3Ph_60HzConnectionPoint a rdfs:Class ;
+    rdfs:label "bob.connections.electricity.Electricity_600VLL_3Ph_60HzConnectionPoint" ;
+    rdfs:subClassOf s223:ConnectionPoint,
+        bob:ElectricalConnectionPoint .
+
+bob:EthernetConnectionPoint a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "bob.connections.network.EthernetConnectionPoint" ;
+    rdfs:subClassOf s223:ConnectionPoint ;
+    sh:property [ a sh:PropertyShape ;
+            sh:path p223:data_rate ],
+        [ a sh:PropertyShape ;
+            sh:class s223:EnumerationKind ;
+            sh:path p223:hasProtocol ],
+        [ a sh:PropertyShape ;
+            sh:path p223:VLAN ] .
+
+bob:Floor a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "bob.space.physical.Floor" ;
+    rdfs:subClassOf s223:PhysicalSpace ;
+    sh:property [ a sh:PropertyShape ;
+            sh:path bob:area ] .
+
+bob:Glycol15PercentConnectionPoint a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "bob.connections.liquid.Glycol15PercentConnectionPoint" ;
+    rdfs:subClassOf s223:ConnectionPoint ;
+    sh:property [ a sh:PropertyShape ;
+            sh:class s223:EnumerationKind ;
+            sh:path s223:hasMedium ] .
+
+bob:HVACSpace a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "bob.space.hvac.HVACSpace" ;
+    rdfs:subClassOf s223:Connectable,
+        s223:DomainSpace ;
+    sh:property [ a sh:PropertyShape ;
+            sh:path bob:co ],
+        [ a sh:PropertyShape ;
+            sh:path bob:humidity ],
+        [ a sh:PropertyShape ;
+            sh:path bob:temperature_setpoint ],
+        [ a sh:PropertyShape ;
+            sh:path bob:radiantHeating ],
+        [ a sh:PropertyShape ;
+            sh:path bob:ductAirOutlet ],
+        [ a sh:PropertyShape ;
+            sh:path bob:ductAirInlet ],
+        [ a sh:PropertyShape ;
+            sh:path bob:temperature ],
+        [ a sh:PropertyShape ;
+            sh:path bob:airChangePerHour ],
+        [ a sh:PropertyShape ;
+            sh:path bob:doors ],
+        [ a sh:PropertyShape ;
+            sh:path bob:airTransfer ],
+        [ a sh:PropertyShape ;
+            sh:path bob:occupancy ],
+        [ a sh:PropertyShape ;
+            sh:path bob:windows ],
+        [ a sh:PropertyShape ;
+            sh:path bob:radiantCooling ],
+        [ a sh:PropertyShape ;
+            sh:path bob:no2 ],
+        [ a sh:PropertyShape ;
+            sh:path bob:co2 ] .
+
+bob:HVACZone a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "bob.space.hvac.HVACZone" ;
+    rdfs:subClassOf s223:Zone ;
+    sh:property [ a sh:PropertyShape ;
+            sh:path bob:temperature ],
+        [ a sh:PropertyShape ;
+            sh:path bob:airInlet ],
+        [ a sh:PropertyShape ;
+            sh:path bob:temperature_setpoint ],
+        [ a sh:PropertyShape ;
+            sh:path bob:co2 ],
+        [ a sh:PropertyShape ;
+            sh:path bob:airOutlet ],
+        [ a sh:PropertyShape ;
+            sh:path bob:occupancy ] .
+
+bob:InletZoneConnectionPoint a rdfs:Class ;
+    rdfs:label "bob.connections.air.AirInletZoneConnectionPoint",
+        "bob.core.InletZoneConnectionPoint" ;
+    rdfs:subClassOf bob:InletZoneConnectionPoint,
+        bob:ZoneConnectionPoint .
+
+bob:LightVisibleConnectionPoint a rdfs:Class ;
+    rdfs:label "bob.connections.light.LightVisibleConnectionPoint" ;
+    rdfs:subClassOf s223:ConnectionPoint .
+
+bob:Mbit_per_seconds a rdfs:Class ;
+    rdfs:label "bob.properties.network.Mbit_per_seconds" ;
+    rdfs:subClassOf s223:ObservableProperty,
+        s223:Property,
+        s223:QuantifiableObservableProperty,
+        s223:QuantifiableProperty .
+
+bob:MechanicalRoom a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "bob.space.physical.MechanicalRoom" ;
+    rdfs:subClassOf s223:PhysicalSpace,
+        bob:Room ;
+    sh:property [ a sh:PropertyShape ;
+            sh:path bob:area ] .
+
+bob:Office a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "bob.space.physical.Office" ;
+    rdfs:subClassOf s223:PhysicalSpace,
+        bob:Room ;
+    sh:property [ a sh:PropertyShape ;
+            sh:path bob:area ] .
+
+bob:OutletZoneConnectionPoint a rdfs:Class ;
+    rdfs:label "bob.connections.air.AirOutletZoneConnectionPoint",
+        "bob.core.OutletZoneConnectionPoint" ;
+    rdfs:subClassOf bob:OutletZoneConnectionPoint,
+        bob:ZoneConnectionPoint .
+
+bob:PoEConnectionPoint a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "bob.connections.network.PoEConnectionPoint" ;
+    rdfs:subClassOf s223:ConnectionPoint ;
+    sh:property [ a sh:PropertyShape ;
+            sh:path p223:data_rate ],
+        [ a sh:PropertyShape ;
+            sh:path bob:VLAN ],
+        [ a sh:PropertyShape ;
+            sh:class s223:EnumerationKind ;
+            sh:path p223:hasProtocol ] .
+
+bob:Pressure a rdfs:Class ;
+    rdfs:label "bob.properties.force.Pressure" ;
+    rdfs:subClassOf s223:ObservableProperty,
+        s223:Property,
+        s223:QuantifiableObservableProperty,
+        s223:QuantifiableProperty .
+
+bob:Room a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "bob.space.physical.Room" ;
+    rdfs:subClassOf s223:PhysicalSpace ;
+    sh:property [ a sh:PropertyShape ;
+            sh:path bob:area ] .
+
+bob:Temperature a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "bob.properties.temperature.Temperature" ;
+    rdfs:subClassOf s223:ObservableProperty,
+        s223:Property,
+        s223:QuantifiableObservableProperty,
+        s223:QuantifiableProperty ;
+    sh:property [ a sh:PropertyShape ;
+            sh:path qudt:hasUnit ],
+        [ a sh:PropertyShape ;
+            sh:class s223:EnumerationKind ;
+            sh:path s223:ofMedium ] .
+
+bob:VLAN a rdf:Property .
+
+bob:WaterConnectionPoint a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "bob.connections.liquid.WaterConnectionPoint" ;
+    rdfs:subClassOf s223:ConnectionPoint ;
+    sh:property [ a sh:PropertyShape ;
+            sh:class s223:EnumerationKind ;
+            sh:path s223:hasMedium ] .
+
+bob:ZoneConnectionPoint a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "bob.connections.air.AirZoneConnectionPoint",
+        "bob.core.ZoneConnectionPoint" ;
+    rdfs:comment """Zone Connection Point
+    """ ;
+    rdfs:subClassOf bob:ZoneConnectionPoint ;
+    sh:property [ a sh:PropertyShape ;
+            sh:path bob:mapsTo ],
+        [ a sh:PropertyShape ;
+            sh:class s223:EnumerationKind ;
+            sh:path s223:hasMedium ],
+        [ a sh:PropertyShape ;
+            sh:path bob:isZoneConnectionPointOf ],
+        [ a sh:PropertyShape ;
+            sh:class s223:EnumerationKind ;
+            sh:path s223:hasMedium ] .
+
+bob:airChangePerHour a rdf:Property ;
+    rdfs:subPropertyOf s223:hasProperty .
+
+bob:airInlet a rdf:Property ;
+    rdfs:subPropertyOf s223:hasConnectionPoint,
+        bob:hasZoneConnectionPoint .
+
+bob:airOutlet a rdf:Property ;
+    rdfs:subPropertyOf s223:hasConnectionPoint,
+        bob:hasZoneConnectionPoint .
+
+bob:airTransfer a rdf:Property ;
+    rdfs:subPropertyOf s223:hasConnectionPoint .
+
+bob:area a rdf:Property ;
+    rdfs:subPropertyOf s223:hasProperty .
+
+bob:chilledWaterInlet a rdf:Property ;
+    rdfs:subPropertyOf s223:hasConnectionPoint .
+
+bob:chilledWaterOutlet a rdf:Property ;
+    rdfs:subPropertyOf s223:hasConnectionPoint .
+
+bob:co a rdf:Property ;
+    rdfs:subPropertyOf s223:hasProperty .
+
+bob:co2 a rdf:Property ;
+    rdfs:subPropertyOf s223:hasProperty .
+
+bob:doors a rdf:Property ;
+    rdfs:subPropertyOf s223:hasConnectionPoint .
+
+bob:ductAirInlet a rdf:Property ;
+    rdfs:subPropertyOf s223:hasConnectionPoint .
+
+bob:ductAirOutlet a rdf:Property ;
+    rdfs:subPropertyOf s223:hasConnectionPoint .
+
+bob:fluidInlet a rdf:Property ;
+    rdfs:subPropertyOf s223:hasConnectionPoint .
+
+bob:fluidOutlet a rdf:Property ;
+    rdfs:subPropertyOf s223:hasConnectionPoint .
+
+bob:humidity a rdf:Property ;
+    rdfs:subPropertyOf s223:hasProperty .
+
+bob:isObservedBy a rdf:Property .
+
+bob:isZoneConnectionPointOf a rdf:Property .
+
+bob:mapsTo a rdf:Property .
+
+bob:modulation a rdf:Property .
+
+bob:no2 a rdf:Property ;
+    rdfs:subPropertyOf s223:hasProperty .
+
+bob:occupancy a rdf:Property ;
+    rdfs:subPropertyOf s223:hasProperty .
+
+bob:onOffCommand a rdf:Property .
+
+bob:onOffStatus a rdf:Property .
+
+bob:radiantCooling a rdf:Property ;
+    rdfs:subPropertyOf s223:hasConnectionPoint .
+
+bob:radiantHeating a rdf:Property ;
+    rdfs:subPropertyOf s223:hasConnectionPoint .
+
+bob:temperature a rdf:Property ;
+    rdfs:subPropertyOf s223:hasProperty .
+
+bob:temperature_setpoint a rdf:Property ;
+    rdfs:subPropertyOf s223:hasProperty .
+
+bob:windows a rdf:Property ;
+    rdfs:subPropertyOf s223:hasConnectionPoint .
+
+ex8:electricalInlet a rdf:Property ;
+    rdfs:subPropertyOf s223:hasConnectionPoint .
+
+ex8:lightOutlet a rdf:Property ;
+    rdfs:subPropertyOf s223:hasConnectionPoint .
+
+g36:EnumerationKind-G36AlarmLevels a s223:EnumerationKind,
+        g36:EnumerationKind-G36AlarmLevels,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "G36AlarmLevels" ;
+    rdfs:subClassOf s223:EnumerationKind .
+
+g36:EnumerationKind-Level1 a s223:EnumerationKind,
+        g36:EnumerationKind-Level1,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Level1" ;
+    rdfs:comment "Life Safetey Message" ;
+    rdfs:subClassOf s223:EnumerationKind .
+
+g36:EnumerationKind-Level2 a s223:EnumerationKind,
+        g36:EnumerationKind-Level2,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Level2" ;
+    rdfs:comment "Critical Equipment Message" ;
+    rdfs:subClassOf s223:EnumerationKind .
+
+g36:EnumerationKind-Level3 a s223:EnumerationKind,
+        g36:EnumerationKind-Level3,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Level3" ;
+    rdfs:comment "Urgent Message" ;
+    rdfs:subClassOf s223:EnumerationKind .
+
+g36:EnumerationKind-Level4 a s223:EnumerationKind,
+        g36:EnumerationKind-Level4,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Level4" ;
+    rdfs:comment "Normal Message" ;
+    rdfs:subClassOf s223:EnumerationKind .
+
+p223:ActiveInactive-Active a p223:ActiveInactive-Active,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Active" ;
+    rdfs:subClassOf p223:EnumerationKind-ActiveInactive,
+        s223:EnumerationKind .
+
+p223:ActiveInactive-Inactive a p223:ActiveInactive-Inactive,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Inactive" ;
+    rdfs:subClassOf p223:EnumerationKind-ActiveInactive,
+        s223:EnumerationKind .
+
+p223:ActiveInactive-Unknown a p223:ActiveInactive-Unknown,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Unknown" ;
+    rdfs:subClassOf p223:EnumerationKind-ActiveInactive,
+        s223:EnumerationKind .
+
+p223:AnalogSignalType-0-10VDC a p223:AnalogSignalType-0-10VDC,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "0-10VDC" ;
+    rdfs:subClassOf p223:EnumerationKind-AnalogSignalType,
+        s223:EnumerationKind .
+
+p223:AnalogSignalType-4-20mA a p223:AnalogSignalType-4-20mA,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "4-20mA" ;
+    rdfs:subClassOf p223:EnumerationKind-AnalogSignalType,
+        s223:EnumerationKind .
+
+p223:AnalogSignalType-NTC10kType2 a p223:AnalogSignalType-NTC10kType2,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "NTC10kType2" ;
+    rdfs:subClassOf p223:EnumerationKind-AnalogSignalType,
+        s223:EnumerationKind .
+
+p223:AnalogSignalType-NTC10kType3 a p223:AnalogSignalType-NTC10kType3,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "NTC10kType3" ;
+    rdfs:subClassOf p223:EnumerationKind-AnalogSignalType,
+        s223:EnumerationKind .
+
+p223:AnalogSignalType-NTC2250Type2 a p223:AnalogSignalType-NTC2250Type2,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "NTC2250Type2" ;
+    rdfs:subClassOf p223:EnumerationKind-AnalogSignalType,
+        s223:EnumerationKind .
+
+p223:AnalogSignalType-Nickel1kRTD a p223:AnalogSignalType-Nickel1kRTD,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Nickel1kRTD" ;
+    rdfs:subClassOf p223:EnumerationKind-AnalogSignalType,
+        s223:EnumerationKind .
+
+p223:AnalogSignalType-Platinum1kRTD a p223:AnalogSignalType-Platinum1kRTD,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Platinum1kRTD" ;
+    rdfs:subClassOf p223:EnumerationKind-AnalogSignalType,
+        s223:EnumerationKind .
+
+p223:AnalogSignalType-RTD a p223:AnalogSignalType-RTD,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "RTD" ;
+    rdfs:subClassOf p223:EnumerationKind-AnalogSignalType,
+        s223:EnumerationKind .
+
+p223:AnalogSignalType-Resistive a p223:AnalogSignalType-Resistive,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Resistive" ;
+    rdfs:subClassOf p223:EnumerationKind-AnalogSignalType,
+        s223:EnumerationKind .
+
+p223:AnalogSignalType-Unknown a p223:AnalogSignalType-Unknown,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Unknown" ;
+    rdfs:subClassOf p223:EnumerationKind-AnalogSignalType,
+        s223:EnumerationKind .
+
+p223:BinarySignalType-DryContact a p223:BinarySignalType-DryContact,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "DryContact" ;
+    rdfs:subClassOf p223:EnumerationKind-BinarySignalType,
+        s223:EnumerationKind .
+
+p223:BinarySignalType-Incremental a p223:BinarySignalType-Incremental,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Incremental" ;
+    rdfs:subClassOf p223:EnumerationKind-BinarySignalType,
+        s223:EnumerationKind .
+
+p223:BinarySignalType-Pulse a p223:BinarySignalType-Pulse,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Pulse" ;
+    rdfs:subClassOf p223:EnumerationKind-BinarySignalType,
+        s223:EnumerationKind .
+
+p223:BinarySignalType-StartStop a p223:BinarySignalType-StartStop,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "StartStop" ;
+    rdfs:subClassOf p223:EnumerationKind-BinarySignalType,
+        s223:EnumerationKind .
+
+p223:Constituent-Ar a p223:Constituent-Ar,
+        s223:Constituent,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Argon" ;
+    rdfs:subClassOf s223:Constituent,
+        s223:EnumerationKind .
+
+p223:Constituent-N a p223:Constituent-N,
+        s223:Constituent,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Nitrogen" ;
+    rdfs:subClassOf s223:Constituent,
+        s223:EnumerationKind .
+
+p223:Constituent-NH3 a p223:Constituent-NH3,
+        s223:Constituent,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "NH3" ;
+    rdfs:subClassOf s223:Constituent,
+        s223:EnumerationKind .
+
+p223:Constituent-O2 a p223:Constituent-O2,
+        s223:Constituent,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "O2" ;
+    rdfs:subClassOf s223:Constituent,
+        s223:EnumerationKind .
+
+p223:Constituent-Oil a p223:Constituent-Oil,
+        s223:Constituent,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Oil" ;
+    rdfs:subClassOf s223:Constituent,
+        s223:EnumerationKind .
+
+p223:Constituent-R-134A a p223:Constituent-R-134A,
+        s223:Constituent,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "R-134A" ;
+    rdfs:subClassOf s223:Constituent,
+        s223:EnumerationKind .
+
+p223:Constituent-R-22 a p223:Constituent-R-22,
+        s223:Constituent,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "R-22" ;
+    rdfs:subClassOf s223:Constituent,
+        s223:EnumerationKind .
+
+p223:Constituent-R-32 a p223:Constituent-R-32,
+        s223:Constituent,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "R-32" ;
+    rdfs:subClassOf s223:Constituent,
+        s223:EnumerationKind .
+
+p223:Constituent-R-410A a p223:Constituent-R-410A,
+        s223:Constituent,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "R-410A" ;
+    rdfs:subClassOf s223:Constituent,
+        s223:EnumerationKind .
+
+p223:Constituent-Smoke a p223:Constituent-Smoke,
+        s223:Constituent,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Smoke" ;
+    rdfs:subClassOf s223:Constituent,
+        s223:EnumerationKind .
+
+p223:Constituent-Vapor-H2O a p223:Constituent-Vapor-H2O,
+        s223:Constituent,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Vapor-H2O" ;
+    rdfs:subClassOf s223:Constituent,
+        s223:EnumerationKind .
+
+p223:Effectiveness-Inactive a p223:Effectiveness-Inactive,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Inactive" ;
+    rdfs:subClassOf s223:Aspect-Effectiveness,
+        s223:EnumerationKind,
+        s223:EnumerationKind-Aspect .
+
+p223:Effectiveness-Unknown a p223:Effectiveness-Unknown,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Unknown" ;
+    rdfs:subClassOf s223:Aspect-Effectiveness,
+        s223:EnumerationKind,
+        s223:EnumerationKind-Aspect .
+
+p223:EnumerationKind-ActiveInactive a p223:EnumerationKind-ActiveInactive,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "ActiveInactive" ;
+    rdfs:subClassOf s223:EnumerationKind .
+
+p223:EnumerationKind-AnalogSignalType a p223:EnumerationKind-AnalogSignalType,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "AnalogSignalType" ;
+    rdfs:subClassOf s223:EnumerationKind .
+
+p223:EnumerationKind-BinarySignalType a p223:EnumerationKind-BinarySignalType,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "BinarySignalType" ;
+    rdfs:subClassOf s223:EnumerationKind .
+
+p223:EnumerationKind-HandOffAuto a p223:EnumerationKind-HandOffAuto,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "HandOffAuto" ;
+    rdfs:subClassOf s223:EnumerationKind .
+
+p223:EnumerationKind-LeftRight a p223:EnumerationKind-LeftRight,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "LeftRight" ;
+    rdfs:subClassOf s223:EnumerationKind .
+
+p223:EnumerationKind-ManualAuto a p223:EnumerationKind-ManualAuto,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "ManualAuto" ;
+    rdfs:subClassOf s223:EnumerationKind .
+
+p223:EnumerationKind-NiagaraStatus a p223:EnumerationKind-NiagaraStatus,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "NiagaraStatus" ;
+    rdfs:subClassOf s223:EnumerationKind .
+
+p223:EnumerationKind-NormalAlarm a p223:EnumerationKind-NormalAlarm,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "NormalAlarm" ;
+    rdfs:subClassOf s223:EnumerationKind .
+
+p223:EnumerationKind-NormalFault a p223:EnumerationKind-NormalFault,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "NormalFault" ;
+    rdfs:subClassOf s223:EnumerationKind .
+
+p223:EnumerationKind-OverriddenAuto a p223:EnumerationKind-OverriddenAuto,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "OverriddenAuto" ;
+    rdfs:subClassOf s223:EnumerationKind .
+
+p223:EnumerationKind-Protocol a p223:EnumerationKind-Protocol,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Protocol" ;
+    rdfs:subClassOf s223:EnumerationKind .
+
+p223:EnumerationKind-TopBottom a p223:EnumerationKind-TopBottom,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "TopBottom" ;
+    rdfs:subClassOf s223:EnumerationKind .
+
+p223:EnumerationKind-TrueFalse a p223:EnumerationKind-TrueFalse,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "TrueFalse" ;
+    rdfs:subClassOf s223:EnumerationKind .
+
+p223:EnumerationKind-UniversalSignalType a p223:EnumerationKind-UniversalSignalType,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "UniversalSignalType" ;
+    rdfs:subClassOf s223:EnumerationKind .
+
+p223:EnumerationKind-YesNo a p223:EnumerationKind-YesNo,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "YesNo" ;
+    rdfs:subClassOf s223:EnumerationKind .
+
+p223:HandOffAuto-Auto a p223:HandOffAuto-Auto,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Auto" ;
+    rdfs:subClassOf p223:EnumerationKind-HandOffAuto,
+        s223:EnumerationKind .
+
+p223:HandOffAuto-Hand a p223:HandOffAuto-Hand,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Hand" ;
+    rdfs:subClassOf p223:EnumerationKind-HandOffAuto,
+        s223:EnumerationKind .
+
+p223:HandOffAuto-Off a p223:HandOffAuto-Off,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Off" ;
+    rdfs:subClassOf p223:EnumerationKind-HandOffAuto,
+        s223:EnumerationKind .
+
+p223:LeftRight-Left a p223:LeftRight-Left,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Left" ;
+    rdfs:subClassOf p223:EnumerationKind-LeftRight,
+        s223:EnumerationKind .
+
+p223:LeftRight-Right a p223:LeftRight-Right,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Right" ;
+    rdfs:subClassOf p223:EnumerationKind-LeftRight,
+        s223:EnumerationKind .
+
+p223:Light a rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "tests.test_connection-008.WeirdLuminaire" ;
+    rdfs:subClassOf s223:Connectable,
+        s223:Equipment ;
+    sh:property [ a sh:PropertyShape ;
+            sh:path ex8:electricalInlet ],
+        [ a sh:PropertyShape ;
+            sh:path ex8:lightOutlet ] .
+
+p223:ManualAuto-Auto a p223:ManualAuto-Auto,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Auto" ;
+    rdfs:subClassOf p223:EnumerationKind-ManualAuto,
+        s223:EnumerationKind .
+
+p223:ManualAuto-Manual a p223:ManualAuto-Manual,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Manual" ;
+    rdfs:subClassOf p223:EnumerationKind-ManualAuto,
+        s223:EnumerationKind .
+
+p223:Mix-PowerAndSignal a p223:Mix-PowerAndSignal,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "PowerAndSignal" ;
+    rdfs:subClassOf s223:EnumerationKind,
+        s223:EnumerationKind-Substance,
+        s223:Medium-Mix,
+        s223:Substance-Medium .
+
+p223:Modulated-Resistive a p223:Modulated-Resistive,
+        s223:Constituent,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Resistive" ;
+    rdfs:subClassOf s223:Constituent,
+        s223:Constituent-Electricity,
+        s223:Electricity-Signal,
+        s223:EnumerationKind,
+        s223:EnumerationKind-Substance,
+        s223:Medium-Constituent,
+        s223:Signal-Modulated,
+        s223:Substance-Medium .
+
+p223:NiagaraStatus-alarm a p223:NiagaraStatus-alarm,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "alarm" ;
+    rdfs:subClassOf p223:EnumerationKind-NiagaraStatus,
+        s223:EnumerationKind .
+
+p223:NiagaraStatus-disabled a p223:NiagaraStatus-disabled,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "disabled" ;
+    rdfs:subClassOf p223:EnumerationKind-NiagaraStatus,
+        s223:EnumerationKind .
+
+p223:NiagaraStatus-down a p223:NiagaraStatus-down,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "down" ;
+    rdfs:subClassOf p223:EnumerationKind-NiagaraStatus,
+        s223:EnumerationKind .
+
+p223:NiagaraStatus-fault a p223:NiagaraStatus-fault,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "fault" ;
+    rdfs:subClassOf p223:EnumerationKind-NiagaraStatus,
+        s223:EnumerationKind .
+
+p223:NiagaraStatus-null a p223:NiagaraStatus-null,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "null" ;
+    rdfs:subClassOf p223:EnumerationKind-NiagaraStatus,
+        s223:EnumerationKind .
+
+p223:NiagaraStatus-ok a p223:NiagaraStatus-ok,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "ok" ;
+    rdfs:subClassOf p223:EnumerationKind-NiagaraStatus,
+        s223:EnumerationKind .
+
+p223:NiagaraStatus-overridden a p223:NiagaraStatus-overridden,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "overridden" ;
+    rdfs:subClassOf p223:EnumerationKind-NiagaraStatus,
+        s223:EnumerationKind .
+
+p223:NiagaraStatus-stale a p223:NiagaraStatus-stale,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "stale" ;
+    rdfs:subClassOf p223:EnumerationKind-NiagaraStatus,
+        s223:EnumerationKind .
+
+p223:NiagaraStatus-unackedAlarm a p223:NiagaraStatus-unackedAlarm,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "unackedAlarm" ;
+    rdfs:subClassOf p223:EnumerationKind-NiagaraStatus,
+        s223:EnumerationKind .
+
+p223:NormalAlarm-Alarm a p223:NormalAlarm-Alarm,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Alarm" ;
+    rdfs:subClassOf p223:EnumerationKind-NormalAlarm,
+        s223:EnumerationKind .
+
+p223:NormalAlarm-Normal a p223:NormalAlarm-Normal,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Normal" ;
+    rdfs:subClassOf p223:EnumerationKind-NormalAlarm,
+        s223:EnumerationKind .
+
+p223:NormalFault-Fault a p223:NormalFault-Fault,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Fault" ;
+    rdfs:subClassOf p223:EnumerationKind-NormalFault,
+        s223:EnumerationKind .
+
+p223:NormalFault-Normal a p223:NormalFault-Normal,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Normal" ;
+    rdfs:subClassOf p223:EnumerationKind-NormalFault,
+        s223:EnumerationKind .
+
+p223:OverriddenAuto-Auto a p223:OverriddenAuto-Auto,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Auto" ;
+    rdfs:subClassOf p223:EnumerationKind-OverriddenAuto,
+        s223:EnumerationKind .
+
+p223:OverriddenAuto-Overridden a p223:OverriddenAuto-Overridden,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Overridden" ;
+    rdfs:subClassOf p223:EnumerationKind-OverriddenAuto,
+        s223:EnumerationKind .
+
+p223:PowerAndSignal-PoE a p223:PowerAndSignal-PoE,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "PoE" ;
+    s223:composedOf [ a s223:Property ;
+            rdfs:label "PoE.Constituent-WiredEthernet" ;
+            s223:ofConstituent s223:Signal-WiredEthernet ],
+        [ a s223:Property ;
+            rdfs:label "PoE.Constituent-48V" ;
+            s223:ofConstituent s223:DC-48V ] ;
+    rdfs:subClassOf p223:Mix-PowerAndSignal,
+        s223:EnumerationKind,
+        s223:EnumerationKind-Substance,
+        s223:Medium-Mix,
+        s223:Substance-Medium .
+
+p223:PowerAndSignal-USB a p223:PowerAndSignal-USB,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "USB" ;
+    s223:composedOf [ a s223:Property ;
+            rdfs:label "USB.Constituent-5V" ;
+            s223:ofConstituent s223:DC-5V ] ;
+    rdfs:subClassOf p223:Mix-PowerAndSignal,
+        s223:EnumerationKind,
+        s223:EnumerationKind-Substance,
+        s223:Medium-Mix,
+        s223:Substance-Medium .
+
+p223:Protocol-BACnet a p223:Protocol-BACnet,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "BACnet" ;
+    rdfs:subClassOf p223:EnumerationKind-Protocol,
+        s223:EnumerationKind .
+
+p223:Protocol-BACnet_IP a p223:Protocol-BACnet_IP,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "BACnet_IP" ;
+    rdfs:subClassOf p223:EnumerationKind-Protocol,
+        s223:EnumerationKind .
+
+p223:Protocol-BACnet_MSTP a p223:Protocol-BACnet_MSTP,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "BACnet_MSTP" ;
+    rdfs:subClassOf p223:EnumerationKind-Protocol,
+        s223:EnumerationKind .
+
+p223:Protocol-BACnet_SC a p223:Protocol-BACnet_SC,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "BACnet_SC" ;
+    rdfs:subClassOf p223:EnumerationKind-Protocol,
+        s223:EnumerationKind .
+
+p223:Protocol-Lonworks a p223:Protocol-Lonworks,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Lonworks" ;
+    rdfs:subClassOf p223:EnumerationKind-Protocol,
+        s223:EnumerationKind .
+
+p223:Protocol-Modbus a p223:Protocol-Modbus,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Modbus" ;
+    rdfs:subClassOf p223:EnumerationKind-Protocol,
+        s223:EnumerationKind .
+
+p223:Protocol-Modbus_RTU a p223:Protocol-Modbus_RTU,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Modbus_RTU" ;
+    rdfs:subClassOf p223:EnumerationKind-Protocol,
+        s223:EnumerationKind .
+
+p223:Protocol-Modbus_TCP a p223:Protocol-Modbus_TCP,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Modbus_TCP" ;
+    rdfs:subClassOf p223:EnumerationKind-Protocol,
+        s223:EnumerationKind .
+
+p223:Refrigerant-R-32 a p223:Refrigerant-R-32,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "R-32" ;
+    s223:composedOf [ a s223:Property,
+                s223:QuantifiableProperty ;
+            rdfs:label "R-32.Constituent-R-32" ;
+            s223:ofConstituent p223:Constituent-R-32 ;
+            qudt:hasQuantityKind qudtqk:VolumeFraction ;
+            qudt:hasUnit unit:PERCENT ] ;
+    rdfs:subClassOf s223:EnumerationKind,
+        s223:EnumerationKind-Substance,
+        s223:Fluid-Refrigerant,
+        s223:Medium-Mix,
+        s223:Mix-Fluid,
+        s223:Substance-Medium .
+
+p223:Role-Storage a p223:Role-Storage,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Storage" ;
+    rdfs:subClassOf s223:EnumerationKind,
+        s223:EnumerationKind-Role .
+
+p223:Signal-OnOffSignal a p223:Signal-OnOffSignal,
+        s223:Constituent,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "OnOffSignal" ;
+    rdfs:subClassOf s223:Constituent,
+        s223:Constituent-Electricity,
+        s223:Electricity-Signal,
+        s223:EnumerationKind,
+        s223:EnumerationKind-Substance,
+        s223:Medium-Constituent,
+        s223:Substance-Medium .
+
+p223:Signal-WiFi a p223:Signal-WiFi,
+        s223:Constituent,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "WiFi" ;
+    rdfs:subClassOf s223:Constituent,
+        s223:Constituent-Electricity,
+        s223:Electricity-Signal,
+        s223:EnumerationKind,
+        s223:EnumerationKind-Substance,
+        s223:Medium-Constituent,
+        s223:Substance-Medium .
+
+p223:TopBottom-Bottom a p223:TopBottom-Bottom,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Bottom" ;
+    rdfs:subClassOf p223:EnumerationKind-TopBottom,
+        s223:EnumerationKind .
+
+p223:TopBottom-Top a p223:TopBottom-Top,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Top" ;
+    rdfs:subClassOf p223:EnumerationKind-TopBottom,
+        s223:EnumerationKind .
+
+p223:TrueFalse-False a p223:TrueFalse-False,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "False" ;
+    rdfs:subClassOf p223:EnumerationKind-TrueFalse,
+        s223:EnumerationKind .
+
+p223:TrueFalse-True a p223:TrueFalse-True,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "True" ;
+    rdfs:subClassOf p223:EnumerationKind-TrueFalse,
+        s223:EnumerationKind .
+
+p223:VLAN a rdf:Property .
+
+p223:Water-Condensate a p223:Water-Condensate,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Condensate" ;
+    rdfs:subClassOf s223:EnumerationKind,
+        s223:EnumerationKind-Substance,
+        s223:Fluid-Water,
+        s223:Medium-Mix,
+        s223:Mix-Fluid,
+        s223:Substance-Medium .
+
+p223:Water-Condenser a p223:Water-Condenser,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Condenser" ;
+    rdfs:subClassOf s223:EnumerationKind,
+        s223:EnumerationKind-Substance,
+        s223:Fluid-Water,
+        s223:Medium-Mix,
+        s223:Mix-Fluid,
+        s223:Substance-Medium .
+
+p223:Water-DomesticHotWater a p223:Water-DomesticHotWater,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "DomesticHotWater" ;
+    rdfs:subClassOf s223:EnumerationKind,
+        s223:EnumerationKind-Substance,
+        s223:Fluid-Water,
+        s223:Medium-Mix,
+        s223:Mix-Fluid,
+        s223:Substance-Medium .
+
+p223:Water-DomesticWater a p223:Water-DomesticWater,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "DomesticWater" ;
+    rdfs:subClassOf s223:EnumerationKind,
+        s223:EnumerationKind-Substance,
+        s223:Fluid-Water,
+        s223:Medium-Mix,
+        s223:Mix-Fluid,
+        s223:Substance-Medium .
+
+p223:Water-MixedWater a p223:Water-MixedWater,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "MixedWater" ;
+    rdfs:subClassOf s223:EnumerationKind,
+        s223:EnumerationKind-Substance,
+        s223:Fluid-Water,
+        s223:Medium-Mix,
+        s223:Mix-Fluid,
+        s223:Substance-Medium .
+
+p223:Water-PotableWater a p223:Water-PotableWater,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "PotableWater" ;
+    rdfs:subClassOf s223:EnumerationKind,
+        s223:EnumerationKind-Substance,
+        s223:Fluid-Water,
+        s223:Medium-Mix,
+        s223:Mix-Fluid,
+        s223:Substance-Medium .
+
+p223:YesNo-No a p223:YesNo-No,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "No" ;
+    rdfs:subClassOf p223:EnumerationKind-YesNo,
+        s223:EnumerationKind .
+
+p223:YesNo-Yes a p223:YesNo-Yes,
+        s223:EnumerationKind,
+        rdfs:Class,
+        sh:NodeShape ;
+    rdfs:label "Yes" ;
+    rdfs:subClassOf p223:EnumerationKind-YesNo,
+        s223:EnumerationKind .
+
+p223:data_rate a rdf:Property ;
+    rdfs:subPropertyOf s223:hasProperty .
+
+p223:hasProtocol a rdf:Property .
+
+qudt:hasQuantityKind a rdf:Property .
+
+qudt:hasUnit a rdf:Property .
+

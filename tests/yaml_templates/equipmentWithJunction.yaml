@@ -1,0 +1,34 @@
+name: FanInADuct
+template_class: Fan
+params: 
+    label: Fan in a duct
+    comment: Just a Fan in a duct
+cp:
+    electricityInlet:  Electricity_600VLL_3Ph_60HzInletConnectionPoint
+junctions:
+    TheDuctBefore:
+        class: Junction
+        comment: Supply Air Duct
+        hasMedium: Fluid.Air
+        airIn: AirInletConnectionPoint
+        airOut: AirOutletConnectionPoint
+    TheDuctAfter:
+        class: Junction
+        comment: Supply Air Duct
+        hasMedium: Fluid.Air
+        airIn: AirInletConnectionPoint
+        airOut: AirOutletConnectionPoint
+equipment:
+    TheFan:
+        class: Fan
+        comment: The Fan, which is in a duct
+        electricalInlet: Electricity_600VLL_3Ph_60HzInletConnectionPoint
+        hasRole: Role.Supply
+        
+air_connections:
+    - TheDuctBefore.airOut -> TheFan.airInlet
+    - TheFan.airOutlet -> TheDuctAfter.airIn
+
+mapsTo:
+    - TheDuctBefore.airIn -> airInlet
+    - TheDuctAfter.airOut -> airOutlet

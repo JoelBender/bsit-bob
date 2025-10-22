@@ -1,23 +1,16 @@
-from bob.connections.air import AirBidirectionalConnectionPoint
+from bob.connections.air import AirInletConnectionPoint, AirOutletConnectionPoint
 from bob.connections.light import (
     LightVisibleInletConnectionPoint,
     LightVisibleOutletConnectionPoint,
 )
-from bob.core import BOB, S223, Equipment, PropertyReference
+from bob.core import S223, Equipment
 
-_namespace = BOB
+_namespace = S223
 
 
 class Window(Equipment):
     _class_iri = S223.Window
-    indoor: AirBidirectionalConnectionPoint
-    outdoor: AirBidirectionalConnectionPoint
+    indoor: AirInletConnectionPoint
+    outdoor: AirOutletConnectionPoint
     naturalLightInlet: LightVisibleInletConnectionPoint
     naturalLightOutlet: LightVisibleOutletConnectionPoint
-
-    # Those will come from something else, but be accessible from here.
-    openCloseStatus: PropertyReference
-    openCloseCommand: PropertyReference
-    shadeStatus: PropertyReference
-    shadeCommand: PropertyReference
-    breakDetection: PropertyReference

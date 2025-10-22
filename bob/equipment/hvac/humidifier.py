@@ -7,6 +7,7 @@ from ...connections.liquid import (
     SteamInletConnectionPoint,
     SteamOutletConnectionPoint,
     WaterInletConnectionPoint,
+    WaterOutletConnectionPoint,
 )
 from ...core import BOB, S223, Equipment
 
@@ -25,6 +26,7 @@ class Humidifier(Equipment):
     _class_iri = S223.Humidifier
     steamOutlet: SteamOutletConnectionPoint
     waterInlet: WaterInletConnectionPoint
+    drainOutlet: WaterOutletConnectionPoint
 
 
 class ElectricalHumidifier(Humidifier):
