@@ -1,9 +1,42 @@
-# SI-Builder Documentation
-
 .. Bob Documentation Master File
 
 Bob
 ===
+
+.. toctree::
+   :hidden:
+   :maxdepth: 2
+   :numbered:
+
+   getting-started.md
+   environment.md
+   namespaces.md
+   subclass.md
+   schema-graph.md
+   basic_properties.md
+   basic_connections.md
+   more-connections.md
+   core.md
+   enum.md
+   basics.md
+   syntax-operators.md
+   syntax.md
+   connections.md
+   junctions-and-boundaries.md
+   sensors-and-observation.md
+   controllers-and-bacnet.md
+   references.md
+   systems-vs-equipment.md
+   equipment.md
+   spaces.md
+   properties.md
+   externalreferences.md
+   templates-and-catalog.md
+   validation-and-export.md
+   examples-from-tests.md
+   operators-implementation.md
+   glossary.md
+
 
 **Bob** is one of a family of Python packages for building RDF representations of
 building systems, the building spaces that they serve, and the measurement and
@@ -26,16 +59,18 @@ more information about the standard contact **ASHRAE** or visit
 `Open223 <https://open223.info>`_.
 
 **Bob** defines Python classes that coorespond to the RDF classes in the standard
-with shortcuts for common graph construction operations.  For example a `Fan` is
-a subclass of `Equipment` that has inlet and outlet connection points for `Air`.
+with shortcuts for common graph construction operations.  For example a
+`Fan <https://explore.open223.info/s223/Fan.html>`_ is a subclass of
+`Equipment <https://explore.open223.info/s223/Equipment.html>`_ that has inlet and
+outlet connection points for `Air <https://explore.open223.info/s223/Fluid-Air.html>`_.
 
 Workflow
 --------
 
-When `Bob` applications instantiate a `Fan` or some other concept there are
-RDF statments added to a in-memory graph which can then be queried and/or dumped
-to a Turtle file or some other RDF serialization for import into other Semantic
-Web tools::
+When `Bob` applications instantiate a `Fan <https://explore.open223.info/s223/Fan.html>`_
+or some other concept there are RDF statments added to a in-memory graph which can
+then be queried and/or dumped to a Turtle file or some other RDF serialization for
+import into other Semantic Web tools::
 
     from bob import dump
     from bob.equipment.hvac.fan import Fan
@@ -58,43 +93,3 @@ Will output a TTL file like this, along with lots of other statements::
           _:b2ed ;
         bob:airInlet _:bd78 ;
         bob:airOutlet _:b2ed .
-
-Table of Content
-----------------
-
-```{toctree}
-:maxdepth: 2
-:numbered:
-
-getting-started.md
-environment.md
-namespaces.md
-subclass.md
-schema-graph.md
-basic_properties.md
-basic_connections.md
-more-connections.md
-core.md
-enum.md
-basics.md
-syntax-operators.md
-syntax.md
-connections.md
-junctions-and-boundaries.md
-sensors-and-observation.md
-controllers-and-bacnet.md
-references.md
-systems-vs-equipment.md
-equipment.md
-spaces.md
-properties.md
-externalreferences.md
-templates-and-catalog.md
-validation-and-export.md
-examples-from-tests.md
-operators-implementation.md
-glossary.md
-```
-
-Notes
-- Cross-references align with ASHRAE 223P classes (see links in each page).

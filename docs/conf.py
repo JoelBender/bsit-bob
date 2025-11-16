@@ -4,6 +4,8 @@ import os
 from datetime import datetime
 from pathlib import Path
 
+from sphinxawesome_theme.postprocess import Icons
+
 
 # Optionally sync ASHRAE 223 publication figures into doc/figures at build time
 def _sync_s223_figures():
@@ -63,13 +65,14 @@ def setup(app):
 
 # -- Project information
 project = "si-builder"
-author = "ASHRAE 223P contributors"
+author = "ASHRAE 223P Contributors"
 copyright = f"{datetime.now():%Y}, {author}"
 release = "0.1.2"  # set to package version if desired
 
 # -- General configuration
 extensions = [
     "myst_parser",
+    # "sphinx_copybutton",
     "sphinx.ext.autosectionlabel",
     "sphinx.ext.intersphinx",
     "sphinx.ext.extlinks",
@@ -84,6 +87,12 @@ source_suffix = {
 
 # Use Awesome Theme
 html_theme = "sphinxawesome_theme"
+html_theme_options = {
+    "show_scrolltop": True,
+    "awesome_external_links": True,
+}
+
+html_permalinks_icon = Icons.permalinks_icon
 
 # Root document drives the global ToC
 root_doc = "index"
@@ -92,15 +101,11 @@ master_doc = "index"
 # Furo-specific sidebars are not used with Awesome Theme
 # html_sidebars = {}  # keep unset
 
-# Optional theme options
-html_theme_options = {
-    "show_scrolltop": True,
-    "awesome_external_links": True,
-}
-
 # Exclude folders from Sphinx source build
 exclude_patterns = [
     "archive/**",
     "_build/**",
+    "Thumbs.db",
+    ".DS_Stroe",
     # do NOT exclude _artifacts; we literal-include TTLs from there
 ]

@@ -1,5 +1,3 @@
-# Getting Started
-
 # Installation
 
 The recommended way to install `Bob` is with [uv](https://docs.astral.sh/uv/):
@@ -45,8 +43,9 @@ finialized and are subject to change.
 
 
 Environment configuration
-- We suggest you install python-dotenv. si-builder automatically loads a .env file in your project root if present.
-- See Environment (environment.md) for available variables and their effects.
+- We suggest you install [python-dotenv](https://pypi.org/project/python-dotenv/).
+  If it is installed Bob automatically loads a **.env** file in your project root if present.
+- See [Environment](./environment.md) for available variables and their effects.
 
 Load/validate via tests runner (recommended while authoring)
 ```bash
