@@ -67,28 +67,28 @@ bacnet:DeviceObject a rdfs:Class,
     rdfs:label "bob.bacnet.DeviceObject" ;
     rdfs:subClassOf bacnet:Object ;
     sh:property [ a sh:PropertyShape ;
-            sh:datatype xsd:string ;
-            sh:path bacnet:vendor-identifier ],
+            sh:path bacnet:object-type ],
+        [ a sh:PropertyShape ;
+            sh:path bacnet:model-name ],
         [ a sh:PropertyShape ;
             sh:path bacnet:vendor-name ],
         [ a sh:PropertyShape ;
-            sh:path bacnet:object-type ],
-        [ a sh:PropertyShape ;
             sh:path bacnet:system-status ],
         [ a sh:PropertyShape ;
-            sh:path bacnet:model-name ] .
+            sh:datatype xsd:string ;
+            sh:path bacnet:vendor-identifier ] .
 
 bacnet:Object a rdfs:Class,
         sh:NodeShape ;
     rdfs:label "bob.bacnet.Object" ;
     sh:property [ a sh:PropertyShape ;
-            sh:path bacnet:object-type ],
+            sh:path bacnet:description ],
         [ a sh:PropertyShape ;
-            sh:path bacnet:object-name ],
+            sh:path bacnet:object-type ],
         [ a sh:PropertyShape ;
             sh:path bacnet:object-identifier ],
         [ a sh:PropertyShape ;
-            sh:path bacnet:description ] .
+            sh:path bacnet:object-name ] .
 
 bacnet:description a rdf:Property .
 
@@ -251,11 +251,11 @@ ex23:Function a rdfs:Class,
     rdfs:label "tests.test_function-001.MyFunction" ;
     rdfs:subClassOf s223:Function ;
     sh:property [ a sh:PropertyShape ;
-            sh:path ex23:output1 ],
-        [ a sh:PropertyShape ;
             sh:path ex23:input1 ],
         [ a sh:PropertyShape ;
-            sh:path ex23:input2 ] .
+            sh:path ex23:input2 ],
+        [ a sh:PropertyShape ;
+            sh:path ex23:output1 ] .
 
 ex23:input1 a rdf:Property .
 
@@ -843,9 +843,9 @@ p223:Light a rdfs:Class,
     rdfs:subClassOf s223:Connectable,
         s223:Equipment ;
     sh:property [ a sh:PropertyShape ;
-            sh:path ex8:electricalInlet ],
+            sh:path ex8:lightOutlet ],
         [ a sh:PropertyShape ;
-            sh:path ex8:lightOutlet ] .
+            sh:path ex8:electricalInlet ] .
 
 p223:ManualAuto-Auto a p223:ManualAuto-Auto,
         s223:EnumerationKind,
@@ -863,15 +863,6 @@ p223:ManualAuto-Manual a p223:ManualAuto-Manual,
     rdfs:subClassOf p223:EnumerationKind-ManualAuto,
         s223:EnumerationKind .
 
-p223:Medium-MechanicalCoupling a p223:Medium-MechanicalCoupling,
-        s223:EnumerationKind,
-        rdfs:Class,
-        sh:NodeShape ;
-    rdfs:label "MechanicalCoupling" ;
-    rdfs:subClassOf s223:EnumerationKind,
-        s223:EnumerationKind-Substance,
-        s223:Substance-Medium .
-
 p223:Mix-PowerAndSignal a p223:Mix-PowerAndSignal,
         s223:EnumerationKind,
         rdfs:Class,
@@ -880,21 +871,6 @@ p223:Mix-PowerAndSignal a p223:Mix-PowerAndSignal,
     rdfs:subClassOf s223:EnumerationKind,
         s223:EnumerationKind-Substance,
         s223:Medium-Mix,
-        s223:Substance-Medium .
-
-p223:Modulated-Resistive a p223:Modulated-Resistive,
-        s223:Constituent,
-        s223:EnumerationKind,
-        rdfs:Class,
-        sh:NodeShape ;
-    rdfs:label "Resistive" ;
-    rdfs:subClassOf s223:Constituent,
-        s223:Constituent-Electricity,
-        s223:Electricity-Signal,
-        s223:EnumerationKind,
-        s223:EnumerationKind-Substance,
-        s223:Medium-Constituent,
-        s223:Signal-Modulated,
         s223:Substance-Medium .
 
 p223:NiagaraStatus-alarm a p223:NiagaraStatus-alarm,
@@ -1026,10 +1002,10 @@ p223:ParticulateCount a rdfs:Class,
         s223:QuantifiableProperty ;
     sh:property [ a sh:PropertyShape ;
             sh:class s223:EnumerationKind ;
-            sh:path s223:ofSubstance ],
+            sh:path s223:ofMedium ],
         [ a sh:PropertyShape ;
             sh:class s223:EnumerationKind ;
-            sh:path s223:ofMedium ] .
+            sh:path s223:ofSubstance ] .
 
 p223:PowerAndSignal-PoE a p223:PowerAndSignal-PoE,
         s223:EnumerationKind,
@@ -1037,11 +1013,11 @@ p223:PowerAndSignal-PoE a p223:PowerAndSignal-PoE,
         sh:NodeShape ;
     rdfs:label "PoE" ;
     s223:composedOf [ a s223:Property ;
-            rdfs:label "PoE.Constituent-WiredEthernet" ;
-            s223:ofConstituent s223:Signal-WiredEthernet ],
-        [ a s223:Property ;
             rdfs:label "PoE.Constituent-48V" ;
-            s223:ofConstituent s223:DC-48V ] ;
+            s223:ofConstituent s223:DC-48V ],
+        [ a s223:Property ;
+            rdfs:label "PoE.Constituent-WiredEthernet" ;
+            s223:ofConstituent s223:Signal-WiredEthernet ] ;
     rdfs:subClassOf p223:Mix-PowerAndSignal,
         s223:EnumerationKind,
         s223:EnumerationKind-Substance,
@@ -1315,8 +1291,8 @@ scratch:GasMonitor a rdfs:Class,
         sh:NodeShape ;
     rdfs:label "tests.test_device-004.GasMonitor" ;
     rdfs:comment """Gas monitor that contains 1 or more gas sensors
-    It comes from si-modeler and is presetned here for testing purposes.
-    """ ;
+It comes from si-modeler and is presetned here for testing purposes.
+""" ;
     rdfs:subClassOf s223:Connectable,
         s223:Equipment ;
     sh:property [ a sh:PropertyShape ;
@@ -1330,14 +1306,14 @@ scratch:ParticleCounter a rdfs:Class,
         sh:NodeShape ;
     rdfs:label "tests.test_device-003.ParticleCounter" ;
     rdfs:comment """This Equipment is normally defined in Scratch and duplicated here for testing purposes.
-    It represents a particle counter that measures particulate matter in the air.
-    """ ;
+It represents a particle counter that measures particulate matter in the air.
+""" ;
     rdfs:subClassOf s223:Connectable,
         s223:Equipment ;
     sh:property [ a sh:PropertyShape ;
-            sh:path ex18:airOutlet ],
+            sh:path ex18:airInlet ],
         [ a sh:PropertyShape ;
-            sh:path ex18:airInlet ] .
+            sh:path ex18:airOutlet ] .
 
 influxdb:InfluxdbReference a rdfs:Class,
         sh:NodeShape ;
@@ -1347,17 +1323,17 @@ influxdb:InfluxdbReference a rdfs:Class,
     rdfs:subClassOf s223:ExternalReference,
         influxdb:InfluxdbReference ;
     sh:property [ a sh:PropertyShape ;
-            sh:path influxdb:InfluxdbServer ],
-        [ a sh:PropertyShape ;
             sh:path influxdb:table ],
+        [ a sh:PropertyShape ;
+            sh:path influxdb:InfluxdbServer ],
         [ a sh:PropertyShape ;
             sh:path influxdb:measurement ],
         [ a sh:PropertyShape ;
             sh:path influxdb:bucket ],
         [ a sh:PropertyShape ;
-            sh:path influxdb:database ],
+            sh:path influxdb:tag ],
         [ a sh:PropertyShape ;
-            sh:path influxdb:tag ] .
+            sh:path influxdb:database ] .
 
 influxdb:InfluxdbServer a rdf:Property,
         rdfs:Class,
@@ -1366,13 +1342,13 @@ influxdb:InfluxdbServer a rdf:Property,
     rdfs:comment """InfluxDB server
     """ ;
     sh:property [ a sh:PropertyShape ;
-            sh:path influxdb:influxdbAuthenticationMethod ],
-        [ a sh:PropertyShape ;
             sh:path influxdb:organization ],
         [ a sh:PropertyShape ;
-            sh:path influxdb:url ],
+            sh:path influxdb:influxdbAuthenticationMethod ],
         [ a sh:PropertyShape ;
-            sh:path influxdb:influxdbTokenLocation ] .
+            sh:path influxdb:influxdbTokenLocation ],
+        [ a sh:PropertyShape ;
+            sh:path influxdb:url ] .
 
 bob:AirConnectionPoint a rdfs:Class,
         sh:NodeShape ;
@@ -1464,12 +1440,12 @@ bob:EthernetConnectionPoint a rdfs:Class,
     rdfs:label "bob.connections.network.EthernetConnectionPoint" ;
     rdfs:subClassOf s223:ConnectionPoint ;
     sh:property [ a sh:PropertyShape ;
-            sh:path p223:data_rate ],
+            sh:path p223:VLAN ],
         [ a sh:PropertyShape ;
             sh:class s223:EnumerationKind ;
             sh:path p223:hasProtocol ],
         [ a sh:PropertyShape ;
-            sh:path p223:VLAN ] .
+            sh:path p223:data_rate ] .
 
 bob:Floor a rdfs:Class,
         sh:NodeShape ;
@@ -1505,40 +1481,40 @@ bob:HVACSpace a rdfs:Class,
     sh:property [ a sh:PropertyShape ;
             sh:path bob:co ],
         [ a sh:PropertyShape ;
-            sh:path bob:humidity ],
-        [ a sh:PropertyShape ;
-            sh:path bob:temperature_setpoint ],
-        [ a sh:PropertyShape ;
-            sh:path bob:radiantHeating ],
-        [ a sh:PropertyShape ;
             sh:path bob:ductAirOutlet ],
-        [ a sh:PropertyShape ;
-            sh:path bob:ductAirInlet ],
-        [ a sh:PropertyShape ;
-            sh:path bob:temperature ],
         [ a sh:PropertyShape ;
             sh:path bob:airChangePerHour ],
         [ a sh:PropertyShape ;
             sh:path bob:doors ],
         [ a sh:PropertyShape ;
+            sh:path bob:temperature_setpoint ],
+        [ a sh:PropertyShape ;
+            sh:path bob:radiantHeating ],
+        [ a sh:PropertyShape ;
+            sh:path bob:temperature ],
+        [ a sh:PropertyShape ;
+            sh:path bob:co2 ],
+        [ a sh:PropertyShape ;
+            sh:path bob:humidity ],
+        [ a sh:PropertyShape ;
             sh:path bob:airTransfer ],
         [ a sh:PropertyShape ;
-            sh:path bob:occupancy ],
-        [ a sh:PropertyShape ;
-            sh:path bob:windows ],
-        [ a sh:PropertyShape ;
-            sh:path bob:radiantCooling ],
+            sh:path bob:ductAirInlet ],
         [ a sh:PropertyShape ;
             sh:path bob:no2 ],
         [ a sh:PropertyShape ;
-            sh:path bob:co2 ] .
+            sh:path bob:radiantCooling ],
+        [ a sh:PropertyShape ;
+            sh:path bob:windows ],
+        [ a sh:PropertyShape ;
+            sh:path bob:occupancy ] .
 
 bob:HVACZone a rdfs:Class,
         sh:NodeShape ;
     rdfs:label "bob.space.hvac.HVACZone" ;
     rdfs:subClassOf s223:Zone ;
     sh:property [ a sh:PropertyShape ;
-            sh:path bob:temperature ],
+            sh:path bob:airOutlet ],
         [ a sh:PropertyShape ;
             sh:path bob:airInlet ],
         [ a sh:PropertyShape ;
@@ -1546,7 +1522,7 @@ bob:HVACZone a rdfs:Class,
         [ a sh:PropertyShape ;
             sh:path bob:co2 ],
         [ a sh:PropertyShape ;
-            sh:path bob:airOutlet ],
+            sh:path bob:temperature ],
         [ a sh:PropertyShape ;
             sh:path bob:occupancy ] .
 
@@ -1617,9 +1593,9 @@ bob:PoEConnectionPoint a rdfs:Class,
     rdfs:label "bob.connections.network.PoEConnectionPoint" ;
     rdfs:subClassOf s223:ConnectionPoint ;
     sh:property [ a sh:PropertyShape ;
-            sh:path p223:data_rate ],
-        [ a sh:PropertyShape ;
             sh:path bob:VLAN ],
+        [ a sh:PropertyShape ;
+            sh:path p223:data_rate ],
         [ a sh:PropertyShape ;
             sh:class s223:EnumerationKind ;
             sh:path p223:hasProtocol ] .
@@ -1682,13 +1658,13 @@ bob:ZoneConnectionPoint a rdfs:Class,
     """ ;
     rdfs:subClassOf bob:ZoneConnectionPoint ;
     sh:property [ a sh:PropertyShape ;
-            sh:path bob:mapsTo ],
+            sh:class s223:EnumerationKind ;
+            sh:path s223:hasMedium ],
         [ a sh:PropertyShape ;
             sh:class s223:EnumerationKind ;
             sh:path s223:hasMedium ],
         [ a sh:PropertyShape ;
-            sh:path bob:isZoneConnectionPointOf ],
+            sh:path bob:mapsTo ],
         [ a sh:PropertyShape ;
-            sh:class s223:EnumerationKind ;
-            sh:path s223:hasMedium ] .
+            sh:path bob:isZoneConnectionPointOf ] .
 

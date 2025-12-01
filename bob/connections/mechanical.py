@@ -7,23 +7,22 @@ from ..core import (
     InletConnectionPoint,
     Medium,
     OutletConnectionPoint,
+    MechanicalLinkage,
 )
 
-_namespace = P223
+_namespace = S223
 
 
 # === GENERAL
 
-MechanicalCoupling = Medium("MechanicalCoupling", _alt_namespace=P223)
-
 
 class MechanicalConnection(Connection):
-    hasMedium: Medium = MechanicalCoupling
+    hasMedium: Medium = MechanicalLinkage
     _class_iri = S223.Connection
 
 
 class MechanicalConnectionPoint(ConnectionPoint):
-    hasMedium: Medium = MechanicalCoupling
+    hasMedium: Medium = MechanicalLinkage
 
 
 class MechanicalInletConnectionPoint(InletConnectionPoint, MechanicalConnectionPoint):

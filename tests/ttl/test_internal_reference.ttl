@@ -20,7 +20,8 @@
 
 ex42:00001 a s223:Property ;
     rdfs:label "fake prop with ext ref" ;
-    s223:hasExternalReference ex42:00002 .
+    s223:hasExternalReference ex42:00002 ;
+    s223:isInternalReferenceOf ex42:00003 .
 
 ex42:00002 a s223:BACnetExternalReference,
         s223:ExternalReference ;
