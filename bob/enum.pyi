@@ -184,26 +184,26 @@ RF: Any
 Signal: Any
 
 # Additional enum classes that are imported by various modules
-type Motion = Any
-type NormalAlarmEnum = Any
-type Occupancy = Any
-type OnOff = Any
-type Position = Any
-type YesNoEnum = Any
-type Air = Any
-type Medium = Any  # Medium type imported from core
-type Fluid = Any
-type GlycolSolution_15Percent = Any
-type GlycolSolution_30Percent = Any
-type Water = Any
-type NaturalGas = Any
-type Refrigerant = Any
-type ProtocolEnum = Any
-type PowerAndSignal = Any
-type AnalogSignalTypeEnum = Any
-type BinarySignalTypeEnum = Any
-type ModulatedSignal = Any
-type ElectricalPhaseIdentifier = Any
+Motion: TypeAlias = Any
+NormalAlarmEnum: TypeAlias = Any
+Occupancy: TypeAlias = Any
+OnOff: TypeAlias = Any
+Position: TypeAlias = Any
+YesNoEnum: TypeAlias = Any
+Air: TypeAlias = Any
+Medium: TypeAlias = Any  # Medium type imported from core
+Fluid: TypeAlias = Any
+GlycolSolution_15Percent: TypeAlias = Any
+GlycolSolution_30Percent: TypeAlias = Any
+Water: TypeAlias = Any
+NaturalGas: TypeAlias = Any
+Refrigerant: TypeAlias = Any
+ProtocolEnum: TypeAlias = Any
+PowerAndSignal: TypeAlias = Any
+AnalogSignalTypeEnum: TypeAlias = Any
+BinarySignalTypeEnum: TypeAlias = Any
+ModulatedSignal: TypeAlias = Any
+ElectricalPhaseIdentifier: TypeAlias = Any
 
 # Additional enumeration classes
 class Role:

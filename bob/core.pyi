@@ -197,16 +197,16 @@ UNIT: NamespaceType
 data_graph: Graph
 schema_graph: Graph
 
-# Variables that are dynamically created
-type Medium = Any  # Type alias for medium instances
-type Substance = Any  # Type alias for substance instances
-type Domain = Any  # Type alias for domain instances
+# Variables that are dynamically created as EnumerationKind instances
+Substance: SubstanceType  # EnumerationKind instance
+Medium: MediumType  # EnumerationKind instance
+Domain: DomainType  # EnumerationKind instance
 
 # Medium instances
-Mix: Any  # Medium instance defined as Medium("Mix")
+Mix: EnumerationKind  # Medium instance defined as Medium("Mix")
 
 # EnumerationKind instances
-Role: Any  # Role enumeration kind
+Role: RoleType  # Role enumeration kind
 
 # Additional variables and objects
 QUDT: Any  # QUDT namespace
