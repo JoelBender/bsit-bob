@@ -9,7 +9,7 @@ from bob.core import Medium, Substance
 from bob.enum import EM, Constituent, Electricity
 
 
-def test_constituent_attributes():
+def test_constituent_attributes() -> None:
     """Test that Constituent class attributes are recognized by mypy."""
     # These should not cause mypy errors anymore
     h2o = Constituent.H2O
@@ -22,9 +22,11 @@ def test_constituent_attributes():
 
     print(f"Water: {h2o}")
     print(f"CO2: {co2}")
-    return h2o, co2, oxygen
+    print(f"oxygen: {oxygen}")
+    print(f"r22: {r22}")
+    print(f"r410a: {r410a}")
 
-def test_electricity_attributes():
+def test_electricity_attributes() -> None:
     """Test that Electricity class attributes are recognized by mypy."""
     # This was the original error case
     voltage_110 = Electricity.AC110VLN_1Ph_50Hz
@@ -40,9 +42,10 @@ def test_electricity_attributes():
 
     print(f"110V AC: {voltage_110}")
     print(f"120V AC: {voltage_120}")
-    return voltage_110, voltage_120
+    print(f"12V DC: {dc12v}")
+    print(f"24V DC: {dc24v}")
 
-def test_electromagnetic_attributes():
+def test_electromagnetic_attributes() -> None:
     """Test that EM class attributes are recognized by mypy."""
     light = EM.Light
     microwave = EM.Microwave
@@ -50,9 +53,9 @@ def test_electromagnetic_attributes():
 
     print(f"Light: {light}")
     print(f"Microwave: {microwave}")
-    return light, microwave
+    print(f"RF: {rf}")
 
-def test_core_hierarchy():
+def test_core_hierarchy() -> None:
     """Test that core enumeration hierarchy is recognized by mypy."""
     # Test Substance.Medium
     medium = Substance.Medium
@@ -65,16 +68,15 @@ def test_core_hierarchy():
 
     print(f"Medium: {medium}")
     print(f"Constituent class: {constituent_class}")
-    return medium, constituent_class
+    print(f"Mix: {mix_class}")
 
-def test_electrical_connections():
+def test_electrical_connections() -> None:
     """Test electrical connection pattern that was causing the original error."""
     from bob.connections.electricity import Electricity_110VLN_1Ph_50HzConnection
 
     # This should work without mypy errors
     connection = Electricity_110VLN_1Ph_50HzConnection()
     print(f"Connection medium: {connection.hasMedium}")
-    return connection
 
 if __name__ == "__main__":
     print("Testing mypy integration...")
